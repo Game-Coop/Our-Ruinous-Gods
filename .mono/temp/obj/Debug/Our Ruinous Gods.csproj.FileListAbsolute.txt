@@ -1,0 +1,10 @@
+C:\Users\micha\Projects\Our-Ruinous-Gods\.mono\temp\bin\Debug\Our Ruinous Gods.dll
+C:\Users\micha\Projects\Our-Ruinous-Gods\.mono\temp\bin\Debug\Our Ruinous Gods.pdb
+C:\Users\micha\Projects\Our-Ruinous-Gods\.mono\temp\obj\Debug\Our Ruinous Gods.csproj.AssemblyReference.cache
+C:\Users\micha\Projects\Our-Ruinous-Gods\.mono\temp\obj\Debug\Our Ruinous Gods.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\micha\Projects\Our-Ruinous-Gods\.mono\temp\obj\Debug\Our Ruinous Gods.AssemblyInfoInputs.cache
+C:\Users\micha\Projects\Our-Ruinous-Gods\.mono\temp\obj\Debug\Our Ruinous Gods.AssemblyInfo.cs
+C:\Users\micha\Projects\Our-Ruinous-Gods\.mono\temp\obj\Debug\Our Ruinous Gods.csproj.CoreCompileInputs.cache
+C:\Users\micha\Projects\Our-Ruinous-Gods\.mono\temp\obj\Debug\Our Ruinous Gods.sourcelink.json
+C:\Users\micha\Projects\Our-Ruinous-Gods\.mono\temp\obj\Debug\Our Ruinous Gods.dll
+C:\Users\micha\Projects\Our-Ruinous-Gods\.mono\temp\obj\Debug\Our Ruinous Gods.pdb
