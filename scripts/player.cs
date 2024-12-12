@@ -26,11 +26,11 @@ public class player : KinematicBody
         float turnHorizontal = Input.GetActionStrength("look_right") - Input.GetActionStrength("look_left") * gamepad_sensitivity;
         float turnVertical = Input.GetActionStrength("look_down") - Input.GetActionStrength("look_up") * gamepad_sensitivity;
 
-        handleMove();
-        handleTurn(turnHorizontal, turnVertical);
+        HandelMove();
+        HandelTurn(turnHorizontal, turnVertical);
     }
 
-    private void handleMove() {
+    private void HandelMove() {
         float horizontalRotion = GlobalTransform.basis.GetEuler().y;
         float movement = (Input.GetActionStrength("move_backward") - Input.GetActionStrength("move_forward")) * player_speed;
         float strafe = (Input.GetActionStrength("move_right") - Input.GetActionStrength("move_left")) * player_speed;
@@ -42,7 +42,7 @@ public class player : KinematicBody
         MoveAndSlide(direction, Vector3.Up);
     }
 
-    private void handleTurn(float x, float y) {
+    private void HandelTurn(float x, float y) {
         float clampDegrees = 90;
 
         RotateY(Mathf.Deg2Rad(-x));
@@ -52,6 +52,6 @@ public class player : KinematicBody
     }
 
     private void handleMouseLook(InputEventMouseMotion e) {
-        handleTurn(e.Relative.x * mouse_sensitivity, e.Relative.y * mouse_sensitivity);
+        HandelTurn(e.Relative.x * mouse_sensitivity, e.Relative.y * mouse_sensitivity);
     }
 }

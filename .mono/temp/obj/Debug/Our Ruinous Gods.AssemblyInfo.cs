@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Our Ruinous Gods")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e3a164e9ddf76b873c9d0a74e37a8e773a575f0d")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d3c865c816fb80a22e48130ce7493800ae6d04f1")]
 [assembly: System.Reflection.AssemblyProductAttribute("Our Ruinous Gods")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Our Ruinous Gods")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
