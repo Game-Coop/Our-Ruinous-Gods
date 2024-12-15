@@ -1,1 +1,1 @@
-{"res://scripts/player.cs":{"modified_time":"1733669274","class":{"namespace":"","class_name":"player","nested":false}}}
+{"res://scripts/Objects/Lamp.cs":{"modified_time":"1734274673","class":{"namespace":"","class_name":"Lamp","nested":false}},"res://scripts/Objects/PushButton.cs":{"modified_time":"1734274673","class":{"namespace":"","class_name":"PushButton","nested":false}},"res://scripts/player.cs":{"modified_time":"1734277529","class":{"namespace":"","class_name":"player","nested":false}}}

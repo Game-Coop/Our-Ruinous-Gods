@@ -6,20 +6,22 @@
 
 [sub_resource type="CapsuleShape" id=2]
 
-[node name="player" type="Spatial"]
-
-[node name="KinematicBody" type="KinematicBody" parent="."]
+[node name="Player" type="KinematicBody"]
 script = ExtResource( 1 )
+gamepad_sensitivity = 2.0
+mouse_sensitivity = 0.1
+speed = 6.0
+inertia = 0.1
 
-[node name="MeshInstance" type="MeshInstance" parent="KinematicBody"]
+[node name="Head" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0 )
+
+[node name="Camera" type="Camera" parent="Head"]
+
+[node name="Capsule" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
 mesh = SubResource( 1 )
 
-[node name="CollisionShape" type="CollisionShape" parent="KinematicBody"]
+[node name="Collision" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
 shape = SubResource( 2 )
-
-[node name="Head" type="Spatial" parent="KinematicBody"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0 )
-
-[node name="Camera" type="Camera" parent="KinematicBody/Head"]

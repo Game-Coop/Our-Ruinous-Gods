@@ -5,10 +5,12 @@ using System.IO.Compression;
 public class player : KinematicBody
 {
     private Vector3 direction;
+    [Export] private float gamepad_sensitivity = (float)1;
     private Spatial head;
-    private float mouse_sensitivity = (float)0.1;
-    private float gamepad_sensitivity = (float)1.25;
-    private float player_speed = 10000;
+    [Export] private float mouse_sensitivity = (float)1;
+    [Export] private float speed = 1;
+    [Export] private float inertia = 1;
+    private Vector3 velocity;
 
     public override void _Ready()
     {
@@ -23,23 +25,25 @@ public class player : KinematicBody
     }
 
     public override void _PhysicsProcess(float delta) {
-        float turnHorizontal = Input.GetActionStrength("look_right") - Input.GetActionStrength("look_left") * gamepad_sensitivity;
-        float turnVertical = Input.GetActionStrength("look_down") - Input.GetActionStrength("look_up") * gamepad_sensitivity;
+        float turnHorizontal = (Input.GetActionStrength("look_right") - Input.GetActionStrength("look_left")) * gamepad_sensitivity;
+        float turnVertical = (Input.GetActionStrength("look_down") - Input.GetActionStrength("look_up")) * gamepad_sensitivity;
 
-        HandelMove();
+        HandelMove(delta);
         HandelTurn(turnHorizontal, turnVertical);
     }
 
-    private void HandelMove() {
+    private void HandelMove(float delta) {
         float horizontalRotion = GlobalTransform.basis.GetEuler().y;
-        float movement = (Input.GetActionStrength("move_backward") - Input.GetActionStrength("move_forward")) * player_speed;
-        float strafe = (Input.GetActionStrength("move_right") - Input.GetActionStrength("move_left")) * player_speed;
+        float movement = Input.GetActionStrength("move_backward") - Input.GetActionStrength("move_forward");
+        float strafe = Input.GetActionStrength("move_right") - Input.GetActionStrength("move_left");
 
         direction = Vector3.Zero;
         direction = new Vector3(strafe, 0, movement);
         direction = direction.Rotated(Vector3.Up, horizontalRotion).Normalized();
 
-        MoveAndSlide(direction, Vector3.Up);
+        velocity = velocity.LinearInterpolate(direction * speed, delta / inertia);
+
+        MoveAndSlide(velocity, Vector3.Up);
     }
 
     private void HandelTurn(float x, float y) {
