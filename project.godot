@@ -11,8 +11,12 @@ config_version=4
 [application]
 
 config/name="Our Ruinous Gods"
-run/main_scene="res://scenes/world_test.tscn"
+run/main_scene="res://scenes/Elysia.tscn"
 config/icon="res://icon.png"
+
+[global]
+
+rendering=false
 
 [gui]
 
