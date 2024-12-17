@@ -24,25 +24,110 @@ uv1_triplanar_sharpness = 1.0
 environment = SubResource( 4 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0 )
-
-[node name="OmniLight" type="OmniLight" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0 )
-light_color = Color( 0.85098, 0.796078, 1, 1 )
-omni_range = 50.0
+speed = 7.0
 
 [node name="Level" type="CSGCombiner" parent="."]
 material_overlay = SubResource( 5 )
 use_collision = true
 
-[node name="CSGCylinder" type="CSGCylinder" parent="Level"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0 )
-radius = 17.3591
-height = 1.81365
+[node name="Room 1" type="CSGBox" parent="Level"]
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 1.7, 0 )
+width = 40.0
+height = 15.0
+depth = 40.0
 
-[node name="CSGBox" type="CSGBox" parent="Level"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.969568, -6.3268 )
+[node name="Light" type="OmniLight" parent="Level/Room 1"]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 4.99402, 0 )
+light_color = Color( 0.85098, 0.796078, 1, 1 )
+omni_range = 30.0
 
-[node name="CSGPolygon" type="CSGPolygon" parent="Level"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.22618, -0.229339, 2.91022 )
-polygon = PoolVector2Array( -2.8516, -0.01235, 0, 1, 1, 1, 1, 0 )
+[node name="Empty Space" type="CSGBox" parent="Level/Room 1"]
+operation = 2
+width = 38.0
+height = 13.0
+depth = 38.0
+
+[node name="Door Empty Space" type="CSGBox" parent="Level/Room 1"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 20 )
+operation = 2
+width = 8.0
+height = 11.0
+depth = 4.0
+
+[node name="Window Empty Space" type="CSGBox" parent="Level/Room 1"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -19.5 )
+operation = 2
+width = 23.0
+height = 6.0
+depth = 4.0
+
+[node name="Window" type="CSGBox" parent="Level/Room 1"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -19.5 )
+width = 25.0
+height = 8.0
+depth = 3.0
+
+[node name="Empty Space" type="CSGBox" parent="Level/Room 1/Window"]
+operation = 2
+width = 23.0
+height = 6.0
+depth = 4.0
+
+[node name="Room 2" type="CSGBox" parent="Level"]
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 1.7, 20 )
+width = 40.0
+height = 15.0
+depth = 40.0
+
+[node name="Empty Space" type="CSGBox" parent="Level/Room 2"]
+operation = 2
+width = 38.0
+height = 13.0
+depth = 38.0
+
+[node name="Door Empty Space" type="CSGBox" parent="Level/Room 2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, -20 )
+operation = 2
+width = 8.0
+height = 11.0
+depth = 4.0
+
+[node name="Door" type="CSGBox" parent="Level/Room 2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.5, -20 )
+width = 10.0
+height = 12.0
+depth = 3.0
+
+[node name="Empty Space" type="CSGBox" parent="Level/Room 2/Door"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0 )
+operation = 2
+width = 8.0
+height = 11.0
+depth = 4.0
+
+[node name="Window Empty Space" type="CSGBox" parent="Level/Room 2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 15 )
+operation = 2
+width = 43.0
+height = 6.0
+depth = 14.0
+
+[node name="Window" type="CSGBox" parent="Level/Room 2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 14 )
+width = 42.0
+height = 8.0
+depth = 14.0
+
+[node name="Empty Space Horizontal" type="CSGBox" parent="Level/Room 2/Window"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1 )
+operation = 2
+width = 43.0
+height = 6.0
+depth = 14.0
+
+[node name="Empty Space Vertical" type="CSGBox" parent="Level/Room 2/Window"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3 )
+operation = 2
+width = 36.0
+height = 9.0
+depth = 14.0
