@@ -24,7 +24,10 @@ uv1_triplanar_sharpness = 1.0
 environment = SubResource( 4 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-speed = 7.0
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 0 )
+gravity_radius = 20.0
+gravity = 400.0
+speed = 5.0
 
 [node name="Level" type="CSGCombiner" parent="."]
 material_overlay = SubResource( 5 )
@@ -72,6 +75,12 @@ operation = 2
 width = 23.0
 height = 6.0
 depth = 4.0
+
+[node name="Port Hole" type="CSGCylinder" parent="Level/Room 1"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10, -7.5, 0 )
+operation = 2
+radius = 8.0
+height = 10.0
 
 [node name="Room 2" type="CSGBox" parent="Level"]
 transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 1.7, 20 )
@@ -131,3 +140,15 @@ operation = 2
 width = 36.0
 height = 9.0
 depth = 14.0
+
+[node name="CSGCylinder" type="CSGCylinder" parent="Level"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
+radius = 50.0
+height = 50.0
+sides = 64
+
+[node name="CSGCylinder" type="CSGCylinder" parent="Level/CSGCylinder"]
+operation = 2
+radius = 45.0
+height = 100.0
+sides = 64
