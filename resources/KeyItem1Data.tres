@@ -1,0 +1,14 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://scripts/Inventory/ItemData.cs" type="Script" id=1]
+[ext_resource path="res://icon.png" type="Texture" id=2]
+
+[resource]
+script = ExtResource( 1 )
+Id = 0
+Name = "Security Card"
+Category = 0
+Description = "Used to access doors that requires high level security"
+Count = 1
+IconSprite = ExtResource( 2 )
+PreviewSprite = ExtResource( 2 )

@@ -14,8 +14,8 @@
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -13.7369, 1.1081, 6.41663 )
 collision_layer = 2
 script = ExtResource( 1 )
-switchableObjectPath = NodePath("../Lamp")
 hintIcon = ExtResource( 3 )
+switchableObjectPath = NodePath("../Lamp")
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 shape = SubResource( 3 )
