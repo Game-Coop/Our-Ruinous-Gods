@@ -6,7 +6,7 @@
 [ext_resource path="res://objects/PushButton.tscn" type="PackedScene" id=4]
 [ext_resource path="res://ui/Hint.tscn" type="PackedScene" id=5]
 [ext_resource path="res://objects/Lamp.tscn" type="PackedScene" id=6]
-[ext_resource path="res://scenes/Inventory.tscn" type="PackedScene" id=7]
+[ext_resource path="res://menus/Inventory.tscn" type="PackedScene" id=7]
 [ext_resource path="res://resources/KeyItem1Data.tres" type="Resource" id=8]
 [ext_resource path="res://resources/KeyItem2Data.tres" type="Resource" id=9]
 [ext_resource path="res://scripts/Objects/CollectableItem.cs" type="Script" id=10]
@@ -153,9 +153,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.220026, -0.810355, 26.4457 
 [node name="Lamp" parent="." instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.220026, -0.0579853, 26.4457 )
 
-[node name="Inventory" parent="." instance=ExtResource( 7 )]
-visible = false
-
 [node name="Collectable Item 1" type="Area" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8.24102, -0.55, 8.2971 )
 collision_layer = 2
@@ -189,3 +186,8 @@ material/0 = SubResource( 8 )
 
 [node name="Hint" parent="Collectable Item 2" instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.53142, 0 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Inventory" parent="CanvasLayer" instance=ExtResource( 7 )]
+visible = false
