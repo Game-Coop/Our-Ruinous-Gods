@@ -24,9 +24,7 @@ uv1_triplanar_sharpness = 1.0
 environment = SubResource( 4 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 0 )
-gravity_radius = 20.0
-gravity = 400.0
+gravity = 12.5
 speed = 5.0
 
 [node name="Level" type="CSGCombiner" parent="."]
