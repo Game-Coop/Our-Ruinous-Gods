@@ -58,7 +58,7 @@ public class player : KinematicBody
             GlobalTransform = up_transform;
         }
 
-        velocity += GetDownDirection() * gravity * delta;
+        velocity += Vector3.Down * gravity * delta;
         
         velocity_y = velocity.y;
 
@@ -67,7 +67,7 @@ public class player : KinematicBody
         velocity += GlobalTransform.basis.x * ((Input.GetActionStrength("move_right") - Input.GetActionStrength("move_left")) * (speed * 250) * delta);
         velocity.y = velocity_y;
 
-        velocity = MoveAndSlideWithSnap(velocity, GetDownDirection() * 2, GetUpDirection());
+        velocity = MoveAndSlideWithSnap(velocity, Vector3.Down  * 2, Vector3.Up);
     }
     private Transform AlignPlayerUp(Transform transform, Vector3 y) {
         transform.basis.y = y;
