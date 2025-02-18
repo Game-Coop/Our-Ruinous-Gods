@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using Godot;
 
-public class Inventory : Control
+public class Inventory : Page
 {
 	public Dictionary<int, InventoryItem> items = new Dictionary<int, InventoryItem>();
 	[Export] private PackedScene itemTemplate;
@@ -15,11 +15,9 @@ public class Inventory : Control
 	private Label itemNameLabel;
 	private Label itemDescriptionLabel;
 	private TextureRect itemPreviewTextureRect;
-	private bool isShown = false;
-	public override void _Ready()
+	protected override void _Ready()
 	{
 		base._Ready();
-
 		container = GetNode(itemsContainerPath);
 		itemNameLabel = GetNode<Label>(itemNameLabelPath);
 		itemDescriptionLabel = GetNode<Label>(itemDescriptionLabelPath);
@@ -28,39 +26,15 @@ public class Inventory : Control
 		InventoryEvents.OnItemCollect -= OnItemCollect;
 		InventoryEvents.OnItemCollect += OnItemCollect;
 	}
-	public override void _Input(InputEvent @event)
+	public override void Select()
 	{
-		if(@event.IsActionPressed("inventory_toggle"))
-		{
-			if (isShown)
-			{
-				CloseInventory();
-			}
-			else
-			{
-				OpenInventory();
-			}
-			GetTree().SetInputAsHandled();
-		}
-	}
-
-	private void OpenInventory()
-	{
-		isShown = true;
-		Input.MouseMode = Input.MouseModeEnum.Visible;
-		Show();
+		base.Select();
+		GD.Print("Selected inventory");
 		if (container.GetChildCount() > 0)
 		{
 			(container.GetChild(0) as InventoryItem).GrabFocus();
 		}
 	}
-	private void CloseInventory()
-	{
-		isShown = false;
-		Input.MouseMode = Input.MouseModeEnum.Captured;
-		Hide();
-	}
-
 	private void OnItemCollect(ItemData data)
 	{
 		AddItem(data);
@@ -68,7 +42,7 @@ public class Inventory : Control
 
 	public void AddItem(ItemData itemData)
 	{
-		if(items.ContainsKey(itemData.Id))
+		if (items.ContainsKey(itemData.Id))
 		{
 			GD.PrintErr("Item is already in inventory!");
 			return;
@@ -77,13 +51,31 @@ public class Inventory : Control
 		item.Setup(itemData);
 		item.OnFocus += OnItemFocus;
 		items.Add(itemData.Id, item);
-		
+
 		container.AddChild(item);
-		container.MoveChild(item, GetChildCount());
+		container.MoveChild(item, container.GetChildCount());
+		ConfigureFocus(item);
+	}
+	public void ConfigureFocus(InventoryItem item)
+	{
+		var childCount = container.GetChildCount();
+		int index = item.GetIndex();
+		var topItem = index - 1 >= 0 ? container.GetChildOrNull<InventoryItem>(index - 1) : null;
+		var bottomItem = index + 1 < childCount ? container.GetChildOrNull<InventoryItem>(index + 1) : null;
+		if (topItem != null)
+		{
+			item.FocusNeighbourTop = topItem.GetPath();
+			topItem.FocusNeighbourBottom = item.GetPath();
+		}
+		if (bottomItem != null)
+		{
+			item.FocusNeighbourBottom = bottomItem.GetPath();
+			bottomItem.FocusNeighbourTop = item.GetPath();
+		}
 	}
 	public void RemoveItem(ItemData itemData)
 	{
-		if(items.ContainsKey(itemData.Id))
+		if (items.ContainsKey(itemData.Id))
 		{
 			items[itemData.Id].OnFocus -= OnItemFocus;
 			items.Remove(itemData.Id);
@@ -93,7 +85,6 @@ public class Inventory : Control
 			GD.PrintErr("Item does not registered!");
 		}
 	}
-
 	private void OnItemFocus(InventoryItem item)
 	{
 		itemPreviewTextureRect.Texture = item.itemData.PreviewSprite;
@@ -102,12 +93,11 @@ public class Inventory : Control
 
 		ConfigureButtons(item);
 	}
-
 	private void ConfigureButtons(InventoryItem item)
 	{
 		// useBtn.Visible = false;
 		// inspectBtn.Visible = false;
-		if(item.itemData.Category == ItemCategory.Consumable)
+		if (item.itemData.Category == ItemCategory.Consumable)
 		{
 			// useBtn.Visible = true;
 			// inspectBtn.Visible = true;

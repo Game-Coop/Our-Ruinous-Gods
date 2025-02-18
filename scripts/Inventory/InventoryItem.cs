@@ -7,7 +7,6 @@ public class InventoryItem : Button
 	[Export] private NodePath textureRectPath;
 	[Export] private NodePath labelPath;
 	[Export] public ItemData itemData;
-	static int i = 0;
 	public void Setup(ItemData itemData)
 	{
 		this.itemData = itemData;
@@ -16,7 +15,7 @@ public class InventoryItem : Button
 	{
 		base._Ready();
 		GetNode<TextureRect>(textureRectPath).Texture = itemData.IconSprite;
-		GetNode<Label>(labelPath).Text = itemData.Name + (i++).ToString();
+		GetNode<Label>(labelPath).Text = itemData.Name;
 	}
 
 	public void OnFocused()

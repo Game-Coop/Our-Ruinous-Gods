@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/startmenu-generated.webp-ebb90f97ab97541f481a951d2bf405a8.stex"
+path="res://.import/right-arrow.png-ba5b57f11411c53301c626b5eb36cdc8.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/startmenu-generated.webp"
-dest_files=[ "res://.import/startmenu-generated.webp-ebb90f97ab97541f481a951d2bf405a8.stex" ]
+source_file="res://assets/ui/right-arrow.png"
+dest_files=[ "res://.import/right-arrow.png-ba5b57f11411c53301c626b5eb36cdc8.stex" ]
 
 [params]
 
