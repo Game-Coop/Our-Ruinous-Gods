@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://themes/inventoryScrollbarTheme.tres" type="Theme" id=1]
 [ext_resource path="res://menus/Journal.tscn" type="PackedScene" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://scripts/UI/PauseMenu.cs" type="Script" id=6]
 [ext_resource path="res://scripts/UI/ScrollablePages.cs" type="Script" id=7]
 [ext_resource path="res://ui/Titled Pagination.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scripts/UI/OrderedPages.cs" type="Script" id=9]
 
 [sub_resource type="InputEventAction" id=8]
 action = "pause_menu_left"
@@ -26,10 +27,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 6 )
 navBarPath = NodePath("VBox/Navigation Bar")
-scrollablePagesPath = NodePath("VBox/ScrollContainer")
+orderedPagesPath = NodePath("VBox/Ordered Pages")
+inventoryPagePath = NodePath("VBox/Ordered Pages/Inventory")
+journalPagePath = NodePath("VBox/Ordered Pages/Journal")
 paginationTemplate = ExtResource( 8 )
-inventoryTemplate = ExtResource( 3 )
-journalTemplate = ExtResource( 2 )
 
 [node name="VBox" type="VBoxContainer" parent="."]
 anchor_right = 1.0
@@ -103,6 +104,7 @@ expand = true
 stretch_mode = 6
 
 [node name="ScrollContainer" type="ScrollContainer" parent="VBox"]
+visible = false
 margin_top = 58.0
 margin_right = 1920.0
 margin_bottom = 1030.0
@@ -121,3 +123,16 @@ margin_bottom = 972.0
 rect_clip_content = true
 size_flags_horizontal = 3
 size_flags_vertical = 3
+
+[node name="Ordered Pages" type="Panel" parent="VBox"]
+margin_top = 58.0
+margin_right = 1920.0
+margin_bottom = 1030.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource( 9 )
+pageContainerPath = NodePath(".")
+
+[node name="Inventory" parent="VBox/Ordered Pages" instance=ExtResource( 3 )]
+
+[node name="Journal" parent="VBox/Ordered Pages" instance=ExtResource( 2 )]

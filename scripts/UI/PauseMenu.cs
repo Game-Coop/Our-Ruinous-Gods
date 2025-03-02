@@ -3,24 +3,26 @@ using Godot;
 public class PauseMenu : Control
 {
 	[Export] private NodePath navBarPath;
-	[Export] private NodePath scrollablePagesPath;
+	[Export] private NodePath orderedPagesPath;
+	[Export] private NodePath inventoryPagePath;
+	[Export] private NodePath journalPagePath;
 	[Export] private PackedScene paginationTemplate;
-	[Export] private PackedScene inventoryTemplate;
-	[Export] private PackedScene journalTemplate;
+	// [Export] private PackedScene inventoryTemplate;
+	// [Export] private PackedScene journalTemplate;
 	private Page inventoryPage;
 	private Page journalPage;
 	private Navbar navbar;
-	private ScrollablePages scrollablePages;
+	private OrderedPages orderedPages;
 	private bool isShown;
-
-	private int GetIndex(Page page) => page.GetIndex(); 
 	public override void _Ready()
 	{
 		base._Ready();
 		navbar = GetNode<Navbar>(navBarPath);
-		scrollablePages = GetNode<ScrollablePages>(scrollablePagesPath);
-		inventoryPage = scrollablePages.AddPage(inventoryTemplate);
-		journalPage = scrollablePages.AddPage(journalTemplate);
+		orderedPages = GetNode<OrderedPages>(orderedPagesPath);
+		inventoryPage = GetNode<Page>(inventoryPagePath);
+		journalPage = GetNode<Page>(journalPagePath);
+		inventoryPage = orderedPages.AddPage(inventoryPage);
+		journalPage = orderedPages.AddPage(journalPage);
 		var paginationInventory = navbar.AddPagination(paginationTemplate);
 		var paginationJournal = navbar.AddPagination(paginationTemplate);
 		paginationInventory.SetTitle("Inventory");
@@ -33,26 +35,26 @@ public class PauseMenu : Control
 		var toggleInventory = @event.IsActionPressed("inventory_toggle");
 		var toggleJournal = @event.IsActionPressed("journal_toggle");
 
-		if(toggleInventory || toggleInventory)
+		if (toggleInventory || toggleInventory)
 			GetTree().SetInputAsHandled();
 
-		if (inventoryPage.IsSelected && toggleInventory && isShown)
+		if (inventoryPage.Visible && toggleInventory && isShown)
 		{
 			SetVisibility(false);
 		}
-		else if(journalPage.IsSelected && toggleJournal && isShown)
+		else if (journalPage.Visible && toggleJournal && isShown)
 		{
 			SetVisibility(false);
 		}
-		else if(inventoryPage.IsSelected && toggleJournal && isShown)
+		else if (inventoryPage.Visible && toggleJournal && isShown)
 		{
 			OpenPage(journalPage, false);
 		}
-		else if(journalPage.IsSelected && toggleInventory && isShown)
+		else if (journalPage.Visible && toggleInventory && isShown)
 		{
 			OpenPage(inventoryPage, false);
 		}
-		else if(toggleInventory && isShown == false)
+		else if (toggleInventory && isShown == false)
 		{
 			SetVisibility(true);
 			OpenPage(inventoryPage);
@@ -80,15 +82,17 @@ public class PauseMenu : Control
 	}
 	private void OpenPage(Page page, bool isInstant = true)
 	{
-		var destinationIndex = GetIndex(page);
-		if(isInstant)
+		var destinationIndex = page.GetIndex();
+		if (isInstant)
+		{
 			navbar.NavigateWithoutNotify(destinationIndex);
+			orderedPages.SelectPage(destinationIndex, isInstant);
+		}
 		else
 			navbar.NavigateTo(destinationIndex);
-		scrollablePages.SelectPage(destinationIndex, true);
 	}
 	private void Navbar_OnNavigate(int from, int to)
 	{
-		scrollablePages.SelectPage(to, false);
+		orderedPages.SelectPage(to, false);
 	}
 }

@@ -15,7 +15,6 @@ border_blend = true
 margin_right = 611.0
 margin_bottom = 100.0
 rect_min_size = Vector2( 0, 100 )
-focus_mode = 1
 custom_styles/focus = SubResource( 5 )
 script = ExtResource( 2 )
 textureRectPath = NodePath("TextureRect")

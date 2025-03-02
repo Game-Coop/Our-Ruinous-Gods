@@ -1,18 +1,14 @@
-using System;
 using System.Collections.Generic;
 using Godot;
 
-public class ScrollablePages : ScrollContainer
+public class OrderedPages : Control
 {
 	private List<Page> pages = new List<Page>();
 	[Export] private NodePath pageContainerPath;
-	private BoxContainer pageContainer;
-	private int separation;
+	private Control pageContainer;
 	private bool isReady;
-	private int targetScroll;
 	public int PageCount => pages.Count;
 	private int currentIndex;
-	SceneTreeTween tween;
 	public override void _Ready()
 	{
 		base._Ready();
@@ -21,7 +17,9 @@ public class ScrollablePages : ScrollContainer
 	public void SelectPage(int toIndex, bool isInstant)
 	{
 		Init();
-		AnimateScroll(toIndex, isInstant);
+		pages[currentIndex].ReplicatePage(pages[toIndex], true);
+		pages[currentIndex].HidePage(isInstant);
+		pages[toIndex].ShowPage(isInstant);
 		currentIndex = toIndex;
 	}
 	public void ClearPages()
@@ -43,8 +41,12 @@ public class ScrollablePages : ScrollContainer
 	public Page AddPage(Page page)
 	{
 		Init();
+		GD.Print("Added page");
 		pages.Add(page);
-		pageContainer.AddChild(page);
+		if(page.GetParent() != pageContainer)
+		{
+			pageContainer.AddChild(page);
+		}
 		pageContainer.MoveChild(page, pageContainer.GetChildCount());
 		return page;
 	}
@@ -61,45 +63,11 @@ public class ScrollablePages : ScrollContainer
 		if (isReady) return;
 		isReady = true;
 
-		pageContainer = GetNode<BoxContainer>(pageContainerPath);
-		object seperationValue = pageContainer.Get("custom_constants/separation");
-		separation = seperationValue == null ? 0 : (int)seperationValue;
+		pageContainer = GetNode<Control>(pageContainerPath);
 		for (int i = 0; i < pageContainer.GetChildCount(); i++)
 		{
 			var page = pageContainer.GetChild(i) as Page;
 			pages.Add(page);
 		}
-	}
-	private void AnimateScroll(int pageIndex, bool isInstant)
-	{
-		if (ScrollVerticalEnabled)
-		{
-			targetScroll = (int)((RectSize.y + separation) * pageIndex);
-			if (isInstant)
-			{
-				SetDeferred("scroll_vertical", targetScroll);
-				return;
-			}
-		}
-		else
-		{
-			targetScroll = (int)((RectSize.x + separation) * pageIndex);
-			GD.Print("TargetScroll: " + targetScroll);
-			if (isInstant)
-			{
-				SetDeferred("scroll_horizontal", targetScroll);
-				return;
-			}
-		}
-
-		if (tween != null && tween.IsValid())
-		{
-			tween.Kill();
-		}
-		tween = CreateTween();
-		tween.TweenProperty(this, ScrollVerticalEnabled ? "scroll_vertical" : "scroll_horizontal", targetScroll, 0.3f)
-		.FromCurrent()
-		.SetTrans(Tween.TransitionType.Cubic)
-		.SetEase(Tween.EaseType.Out);
 	}
 }

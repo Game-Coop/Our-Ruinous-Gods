@@ -22,9 +22,9 @@ public class Journal : Page
 		JournalEvents.OnEntryCollect -= OnEntryCollect;
 		JournalEvents.OnEntryCollect += OnEntryCollect;
 	}
-	public override void Select()
+	public override void ShowPage(bool instant = false)
 	{
-		base.Select();
+		base.ShowPage(instant);
 		GD.Print("Selected journal");
 		if (entryContainer.GetChildCount() > 0)
 		{

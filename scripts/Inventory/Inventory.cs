@@ -26,9 +26,9 @@ public class Inventory : Page
 		InventoryEvents.OnItemCollect -= OnItemCollect;
 		InventoryEvents.OnItemCollect += OnItemCollect;
 	}
-	public override void Select()
+	public override void ShowPage(bool instant = false)
 	{
-		base.Select();
+		base.ShowPage(instant);
 		GD.Print("Selected inventory");
 		if (container.GetChildCount() > 0)
 		{
@@ -54,7 +54,7 @@ public class Inventory : Page
 
 		container.AddChild(item);
 		container.MoveChild(item, container.GetChildCount());
-		ConfigureFocus(item);
+		// ConfigureFocus(item);
 	}
 	public void ConfigureFocus(InventoryItem item)
 	{

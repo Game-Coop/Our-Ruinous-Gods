@@ -5,37 +5,65 @@ using Godot;
 
 public class Page : Control
 {
-	public bool IsSelected { get; private set; }
-	public event Action OnSelect;
-	public event Action OnUnSelect;
+	[Export] private NodePath panelTweenerPath;
+	public event Action OnShown;
+	public event Action OnHidden;
+	private PanelTweener _panelTweener;
+	private PanelTweener panelTweener
+	{
+		get
+		{
+			if (_panelTweener == null && panelTweenerPath != null)
+			{
+				_panelTweener = GetNode<PanelTweener>(panelTweenerPath);
+			}
+			return _panelTweener;
+		}
+	}
 	protected virtual void _Ready()
 	{
 		base._Ready();
-	}
-	public override void _GuiInput(InputEvent @event)
-	{
-		if (!IsSelected)
+		OnHidden += Hide;
+		if (panelTweener != null)
 		{
-			GD.Print("Ignoring focus event");
-			GetViewport().SetInputAsHandled();
+			if (panelTweener.IsHidden)
+			{
+				OnHidden?.Invoke();
+			}
 		}
 	}
-	public virtual void Select()
+	public virtual void ShowPage(bool instant = false)
 	{
-		// GrabFocus();
-		var color = Modulate;
-		color.a = 1f;
-		Modulate = color;
-		IsSelected = true;
-		OnSelect?.Invoke();
+		Show();
+
+		if (panelTweener == null)
+		{
+			OnShown?.Invoke();
+		}
+		else
+		{
+			panelTweener.OnAppeared += OnShown;
+			panelTweener.Appear(instant);
+		}
 	}
-	public virtual void UnSelect()
+	public virtual void HidePage(bool instant = false)
 	{
-		// ReleaseFocus();
-		var color = Modulate;
-		color.a = 0f;
-		Modulate = color;
-		IsSelected = false;
-		OnUnSelect?.Invoke();
+		if (panelTweener == null)
+		{
+			OnHidden?.Invoke();
+		}
+		else
+		{
+			panelTweener.OnDisappeared += OnHidden;
+			panelTweener.Disappear(instant);
+		}
+	}
+	public void ReplicatePage(Page page, bool isReverse)
+	{
+		panelTweener.Replicate(page.panelTweener, isReverse);
+	}
+	public void RevertReplicate()
+	{
+		panelTweener.RevertReplicate();
 	}
 }
