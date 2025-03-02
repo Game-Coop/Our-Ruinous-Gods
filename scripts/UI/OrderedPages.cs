@@ -3,11 +3,11 @@ using Godot;
 
 public class OrderedPages : Control
 {
+	public int PageCount => pages.Count;
 	private List<Page> pages = new List<Page>();
 	[Export] private NodePath pageContainerPath;
 	private Control pageContainer;
 	private bool isReady;
-	public int PageCount => pages.Count;
 	private int currentIndex;
 	public override void _Ready()
 	{
@@ -17,9 +17,24 @@ public class OrderedPages : Control
 	public void SelectPage(int toIndex, bool isInstant)
 	{
 		Init();
-		pages[currentIndex].ReplicatePage(pages[toIndex], true);
-		pages[currentIndex].HidePage(isInstant);
-		pages[toIndex].ShowPage(isInstant);
+		if (toIndex > currentIndex)
+		{
+			//forward
+			GD.Print("forward");
+			pages[currentIndex].TweenerSetReverse(true);
+			pages[toIndex].TweenerSetReverse(false);
+			pages[currentIndex].HidePage(isInstant);
+			pages[toIndex].ShowPage(isInstant);
+		}
+		else
+		{
+			//backward
+			GD.Print("backward");
+			pages[toIndex].TweenerSetReverse(true);
+			pages[currentIndex].TweenerSetReverse(false);
+			pages[currentIndex].HidePage(isInstant);
+			pages[toIndex].ShowPage(isInstant);
+		}
 		currentIndex = toIndex;
 	}
 	public void ClearPages()
@@ -43,7 +58,7 @@ public class OrderedPages : Control
 		Init();
 		GD.Print("Added page");
 		pages.Add(page);
-		if(page.GetParent() != pageContainer)
+		if (page.GetParent() != pageContainer)
 		{
 			pageContainer.AddChild(page);
 		}

@@ -25,7 +25,6 @@ public class Journal : Page
 	public override void ShowPage(bool instant = false)
 	{
 		base.ShowPage(instant);
-		GD.Print("Selected journal");
 		if (entryContainer.GetChildCount() > 0)
 		{
 			(entryContainer.GetChild(0) as JournalEntry).GrabFocus();

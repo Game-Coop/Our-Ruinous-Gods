@@ -58,12 +58,8 @@ public class Page : Control
 			panelTweener.Disappear(instant);
 		}
 	}
-	public void ReplicatePage(Page page, bool isReverse)
+	public void TweenerSetReverse(bool isReverse)
 	{
-		panelTweener.Replicate(page.panelTweener, isReverse);
-	}
-	public void RevertReplicate()
-	{
-		panelTweener.RevertReplicate();
+		panelTweener.SetReverse(isReverse);
 	}
 }

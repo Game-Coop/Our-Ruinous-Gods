@@ -36,14 +36,11 @@ public class MovingPanelTweener : PanelTweener
 		if (isReady) return;
 		isReady = true;
 
-		float screenWidth = GetViewport().Size.x;
-		float screenHeight = GetViewport().Size.y;
 		float scaleFactor = 1;
-
-		disappearPos.Add(Direction.LeftToRight, () => new Vector2(-screenWidth / scaleFactor * (isReverse ? -1f : 1f), 0));
-		disappearPos.Add(Direction.RightToLeft, () => new Vector2(screenWidth / scaleFactor * (isReverse ? -1f : 1f), 0));
-		disappearPos.Add(Direction.UpToDown, () => new Vector2(0, screenHeight / scaleFactor * (isReverse ? -1f : 1f)));
-		disappearPos.Add(Direction.DownToUp, () => new Vector2(0, -screenHeight / scaleFactor * (isReverse ? -1f : 1f)));
+		disappearPos.Add(Direction.LeftToRight, () => new Vector2(-GetViewport().Size.x / scaleFactor * (isReverse ? -1f : 1f), 0));
+		disappearPos.Add(Direction.RightToLeft, () => new Vector2(GetViewport().Size.x / scaleFactor * (isReverse ? -1f : 1f), 0));
+		disappearPos.Add(Direction.UpToDown, () => new Vector2(0, GetViewport().Size.y / scaleFactor * (isReverse ? -1f : 1f)));
+		disappearPos.Add(Direction.DownToUp, () => new Vector2(0, -GetViewport().Size.y / scaleFactor * (isReverse ? -1f : 1f)));
 		originalDirection = direction;
 	}
 	public override void Appear(bool instant = false)
@@ -62,10 +59,12 @@ public class MovingPanelTweener : PanelTweener
 			return;
 		}
 		tween = CreateTween();
-		// tween.TweenProperty(foreground, "modulate:a", appearAlpha, appearTime)
-		// .FromCurrent()
-		// .SetEase(appearEase)
-		// .SetTrans(appearTransition);
+		tween.SetParallel(true);
+
+		tween.TweenProperty(foreground, "modulate:a", appearAlpha, appearTime)
+		.FromCurrent()
+		.SetEase(appearEase)
+		.SetTrans(appearTransition);
 
 		tween.TweenProperty(foreground, "rect_position", appearPos, appearTime)
 		.FromCurrent()
@@ -90,10 +89,12 @@ public class MovingPanelTweener : PanelTweener
 			return;
 		}
 		tween = CreateTween();
-		// tween.TweenProperty(foreground, "modulate:a", disappearAlpha, disappearTime)
-		// .FromCurrent()
-		// .SetEase(disappearEase)
-		// .SetTrans(disappearTransition);
+		tween.SetParallel(true);
+
+		tween.TweenProperty(foreground, "modulate:a", disappearAlpha, disappearTime)
+		.FromCurrent()
+		.SetEase(disappearEase)
+		.SetTrans(disappearTransition);
 
 		tween.TweenProperty(foreground, "rect_position", disappearPos[direction](), disappearTime)
 		.FromCurrent()
@@ -102,25 +103,14 @@ public class MovingPanelTweener : PanelTweener
 
 		tween.Connect("finished", this, nameof(OnDisappearComplete));
 	}
-	public override void Replicate(PanelTweener sourceTweener, bool isReverse)
+	public override void SetReverse(bool isReverse)
 	{
-		base.Replicate(sourceTweener, isReverse);
-		if (sourceTweener is MovingPanelTweener tweener)
+		base.SetReverse(isReverse);
+		this.isReverse = isReverse;
+		if (IsHidden)
 		{
-			direction = tweener.direction;
-			GD.Print("replicate called");
-			this.isReverse = isReverse ? !sourceTweener.IsReverse : this.isReverse;
+			foreground.RectPosition = disappearPos[direction]();
 		}
-		else
-		{
-			GD.PrintErr("Tweeners are of different type! Can't replicate");
-		}
-	}
-	public override void RevertReplicate()
-	{
-		base.RevertReplicate();
-		direction = originalDirection;
-		isReverse = false;
 	}
 	private void OnDisappearComplete()
 	{

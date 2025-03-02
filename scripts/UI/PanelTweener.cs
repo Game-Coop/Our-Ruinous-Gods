@@ -49,10 +49,7 @@ public abstract class PanelTweener : Control
 		OnDisappeared?.Invoke();
 		OnDisappeared = null;
 	}
-	public virtual void Replicate(PanelTweener sourceTweener, bool isReverse)
-	{
-	}
-	public virtual void RevertReplicate()
+	public virtual void SetReverse(bool isReverse)
 	{
 	}
 	protected virtual void KillTweens()

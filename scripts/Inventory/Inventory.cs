@@ -29,7 +29,6 @@ public class Inventory : Page
 	public override void ShowPage(bool instant = false)
 	{
 		base.ShowPage(instant);
-		GD.Print("Selected inventory");
 		if (container.GetChildCount() > 0)
 		{
 			(container.GetChild(0) as InventoryItem).GrabFocus();

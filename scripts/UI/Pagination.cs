@@ -29,7 +29,6 @@ public class Pagination : Control
 
 	private void ButtonPressed()
 	{
-		GD.Print("clicked");
 		OnClick?.Invoke();
 	}
 

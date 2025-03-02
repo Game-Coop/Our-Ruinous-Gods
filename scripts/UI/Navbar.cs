@@ -109,7 +109,6 @@ public class Navbar : Control
 	}
 	private void Select(int from, int to)
 	{
-		GD.Print("Selecting from: " + from + " to: " + to);
 		index = to;
 		paginations[from].UnSelect();
 		paginations[to].Select();
