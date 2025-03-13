@@ -17,6 +17,13 @@ public class player : KinematicBody
         head = GetNode<Spatial>("Head");
 
         Input.MouseMode = Input.MouseModeEnum.Captured;
+
+        
+        GetNode<EventBus>("/root/EventBus").Connect('WorldEventHandler', SomeFunction)
+    }
+
+    public SomeFunction(e) {
+        GD.Print("test");
     }
 
     public override void _Input(InputEvent e)

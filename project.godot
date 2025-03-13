@@ -20,6 +20,10 @@ config/name="Our Ruinous Gods"
 run/main_scene="res://scenes/Elysia.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+EventBus="*res://scripts/EventBus.cs"
+
 [display]
 
 window/size/width=1920
@@ -29,12 +33,13 @@ window/stretch/aspect="keep_height"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/Godot-Mono-CustomResourceRegistry-godot-3.x/addons/MonoCustomResourceRegistry/plugin.cfg" )
+enabled=PoolStringArray(  )
 
 [global]
 
 rendering=false
 theme=false
+text=false
 
 [gui]
 
