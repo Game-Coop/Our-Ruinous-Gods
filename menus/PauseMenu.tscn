@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://themes/inventoryScrollbarTheme.tres" type="Theme" id=1]
 [ext_resource path="res://menus/Journal.tscn" type="PackedScene" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://scripts/UI/ScrollablePages.cs" type="Script" id=7]
 [ext_resource path="res://ui/Titled Pagination.tscn" type="PackedScene" id=8]
 [ext_resource path="res://scripts/UI/OrderedPages.cs" type="Script" id=9]
+[ext_resource path="res://menus/AudioPlayerMenu.tscn" type="PackedScene" id=10]
 
 [sub_resource type="InputEventAction" id=8]
 action = "pause_menu_left"
@@ -30,6 +31,7 @@ navBarPath = NodePath("VBox/Navigation Bar")
 orderedPagesPath = NodePath("VBox/Ordered Pages")
 inventoryPagePath = NodePath("VBox/Ordered Pages/Inventory")
 journalPagePath = NodePath("VBox/Ordered Pages/Journal")
+audioPlayerPagePath = NodePath("VBox/Ordered Pages/AudioPlayerMenu")
 paginationTemplate = ExtResource( 8 )
 
 [node name="VBox" type="VBoxContainer" parent="."]
@@ -136,3 +138,5 @@ pageContainerPath = NodePath(".")
 [node name="Inventory" parent="VBox/Ordered Pages" instance=ExtResource( 3 )]
 
 [node name="Journal" parent="VBox/Ordered Pages" instance=ExtResource( 2 )]
+
+[node name="AudioPlayerMenu" parent="VBox/Ordered Pages" instance=ExtResource( 10 )]

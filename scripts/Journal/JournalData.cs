@@ -6,10 +6,8 @@ public class JournalData : Resource
 {
     [Export] public int Id { get; set; }
     [Export] public string Name { get; set; }
-
-    [Export(PropertyHint.MultilineText)]
-    public string Content { get; set; }
-    public JournalCategory Category { get; set; }
+    [Export(PropertyHint.MultilineText)] public string Content { get; set; }
+    [Export] public JournalCategory Category { get; set; }
     public JournalData()
     {
         Id = 0;

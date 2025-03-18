@@ -6,11 +6,13 @@ public class PauseMenu : Control
 	[Export] private NodePath orderedPagesPath;
 	[Export] private NodePath inventoryPagePath;
 	[Export] private NodePath journalPagePath;
+	[Export] private NodePath audioPlayerPagePath;
 	[Export] private PackedScene paginationTemplate;
 	// [Export] private PackedScene inventoryTemplate;
 	// [Export] private PackedScene journalTemplate;
 	private Page inventoryPage;
 	private Page journalPage;
+	private Page audioPlayerPage;
 	private Navbar navbar;
 	private OrderedPages orderedPages;
 	private bool isShown;
@@ -19,15 +21,23 @@ public class PauseMenu : Control
 		base._Ready();
 		navbar = GetNode<Navbar>(navBarPath);
 		orderedPages = GetNode<OrderedPages>(orderedPagesPath);
+
 		inventoryPage = GetNode<Page>(inventoryPagePath);
 		journalPage = GetNode<Page>(journalPagePath);
-		inventoryPage = orderedPages.AddPage(inventoryPage);
-		journalPage = orderedPages.AddPage(journalPage);
+		audioPlayerPage = GetNode<Page>(audioPlayerPagePath);
+
+		orderedPages.AddPage(inventoryPage);
+		orderedPages.AddPage(journalPage);
+		orderedPages.AddPage(audioPlayerPage);
+
 		var paginationInventory = navbar.AddPagination(paginationTemplate);
 		var paginationJournal = navbar.AddPagination(paginationTemplate);
+		var paginationAudioplayer = navbar.AddPagination(paginationTemplate);
+
 		paginationInventory.SetTitle("Inventory");
 		paginationJournal.SetTitle("Journal");
-
+		paginationAudioplayer.SetTitle("Audio Player");
+		
 		navbar.OnNavigate += Navbar_OnNavigate;
 	}
 	public override void _Input(InputEvent @event)
