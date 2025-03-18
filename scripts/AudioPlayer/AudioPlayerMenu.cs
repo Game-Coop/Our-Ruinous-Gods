@@ -6,6 +6,7 @@ public class AudioPlayerMenu : Page
 {
 	private SortedDictionary<int, AudioEntry> entries = new SortedDictionary<int, AudioEntry>();
 	[Export] private PackedScene audioEntryTemplate;
+	[Export] private NodePath controlPanelPath;
 	[Export] private NodePath entryContainerPath;
 	[Export] private NodePath entryNameLabelPath;
 	[Export] private NodePath sliderPath;
@@ -25,6 +26,7 @@ public class AudioPlayerMenu : Page
 	private TextureRect playImage;
 	private TextureRect pauseImage;
 	private bool isDragging = false;
+	private AudioEntry focusedEntry;
 
 	protected override void _Ready()
 	{
@@ -91,9 +93,11 @@ public class AudioPlayerMenu : Page
 	public override void ShowPage(bool instant = false)
 	{
 		base.ShowPage(instant);
-		if (entryContainer.GetChildCount() > 0)
+		if (entryContainer.GetChildCount() > 0 && focusedEntry == null)
 		{
-			(entryContainer.GetChild(0) as AudioEntry).GrabFocus();
+			focusedEntry = entryContainer.GetChild(0) as AudioEntry;
+			focusedEntry.GrabFocus();
+			GetNode<Control>(controlPanelPath).Visible = true;
 		}
 	}
 	private void OnEntryCollect(AudioData data)

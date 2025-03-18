@@ -64,11 +64,18 @@ public class AudioPlayer : AudioStreamPlayer
 	}
 	public void End()
 	{
-		Stop();
-		OnFinished += () =>
+		if(Playing)
+		{
+			OnFinished += () =>
+			{
+				Seek(0);
+			};
+		}
+		else
 		{
 			Seek(0);
-		};
+		}
+		Stop();
 	}
 	private void OnStreamFinished()
 	{
