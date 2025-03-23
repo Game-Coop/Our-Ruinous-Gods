@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://entities/player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/textures/skybox.jpg" type="Texture" id=2]
@@ -13,7 +13,7 @@
 [ext_resource path="res://assets/ui/E-Key.png" type="Texture" id=11]
 [ext_resource path="res://scripts/AudioPlayer/AudioPlayer.cs" type="Script" id=12]
 [ext_resource path="res://resources/JournalDatas/JornalEntryData1.tres" type="Resource" id=13]
-[ext_resource path="res://resources/JournalDatas/JornalEntryData2.tres" type="Resource" id=14]
+[ext_resource path="res://scripts/Journal/JournalData.cs" type="Script" id=14]
 [ext_resource path="res://scripts/Objects/JournalEntryItem.cs" type="Script" id=15]
 [ext_resource path="res://resources/AudioDatas/audioData1.tres" type="Resource" id=16]
 [ext_resource path="res://scripts/AudioPlayer/AudioEntryItem.cs" type="Script" id=17]
@@ -38,6 +38,13 @@ uv1_triplanar_sharpness = 1.0
 
 [sub_resource type="SpatialMaterial" id=8]
 albedo_color = Color( 0.901961, 0.670588, 0.670588, 1 )
+
+[sub_resource type="Resource" id=9]
+script = ExtResource( 14 )
+Id = 1
+Name = "Log 2"
+Content = "I like to sit here and watch our big friend’s body gently spin around. I can’t see much through the darkness, but sometimes I catch a glimpse of rotten bone. At least, I think it’s bone. They didn’t tell us much about what we’re studying up here, just that it could be the key to eternal life. Honestly, I think the company knows just as little as we do about it. That’s fine with me; just means more secrets to unravel"
+Category = 0
 
 [node name="Elysia" type="Spatial"]
 
@@ -222,7 +229,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8.35019, -1.36535, 4.65913 )
 collision_layer = 2
 script = ExtResource( 15 )
 hintIcon = ExtResource( 11 )
-journalData = ExtResource( 14 )
+journalData = SubResource( 9 )
 
 [node name="CollisionShape" type="CollisionShape" parent="JournalEntry Item 2"]
 transform = Transform( 1, 0, 0, 0, 0.693608, 0, 0, 0, 1, 0, 0.468151, 0 )
