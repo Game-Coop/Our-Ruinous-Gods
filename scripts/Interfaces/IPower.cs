@@ -1,8 +1,7 @@
 using Godot;
 public interface IPower
 {
-    PowerState State { get; }
+    PowerState State { get; set; }
     int Charge { get; set; }
     int Zone { get; set; }
-    void OnPowerChange(PowerEvent e);
 }

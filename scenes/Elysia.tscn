@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://entities/player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/textures/skybox.jpg" type="Texture" id=2]
 [ext_resource path="res://assets/textures/grid.png" type="Texture" id=3]
 [ext_resource path="res://objects/PowerSwitch.tscn" type="PackedScene" id=4]
+[ext_resource path="res://objects/PowerableLight.tscn" type="PackedScene" id=5]
 
 [sub_resource type="PanoramaSky" id=3]
 panorama = ExtResource( 2 )
@@ -133,5 +134,11 @@ width = 36.0
 height = 9.0
 depth = 14.0
 
-[node name="PowerTrigger" parent="." instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0457392, 0.0729854, 20.0065 )
+[node name="PowerSwitch" parent="." instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 20 )
+Charge = 20
+Zone = 1
+
+[node name="PowerableLight" parent="." instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 20 )
+Zone = 1

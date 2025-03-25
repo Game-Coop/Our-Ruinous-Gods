@@ -11,20 +11,33 @@ public class player : KinematicBody
     [Export] private float speed = 1;
     [Export] private float inertia = 1;
     private Vector3 velocity;
+    private int Power = 0;
+    private int MaxPower = 100;
 
     public override void _Ready()
-    {
-        EventBus EventBusHandler = GetNode<EventBus>("/root/EventBus");
-
+    {;
         head = GetNode<Spatial>("Head");
 
         Input.MouseMode = Input.MouseModeEnum.Captured;
-        EventBusHandler.Connect("PowerChangedEventHandler", this, "SomeFunction");
+
+        EventBus EventBusHandler = GetNode<EventBus>("/root/EventBus");
+        EventBusHandler.Connect("PowerChangedEventHandler", this, "OnPowerChange");
     }
 
-    public void SomeFunction(PowerEvent e) {
-        //GD.Print("test");
-        GD.Print(e.Charge);
+    public void OnPowerChange(PowerEvent e) {
+        int currentPower = Power;
+
+        if(e.State == PowerState.On) {
+            currentPower += e.Charge;
+        } else {
+            currentPower -= e.Charge;
+        }
+
+        if(currentPower < 0) currentPower = 0;
+        if(currentPower >= MaxPower) currentPower = MaxPower;
+
+        Power = currentPower;
+        GD.Print("current power use is: " + Power);
     }
 
     public override void _Input(InputEvent e)
