@@ -1,4 +1,6 @@
-public class PowerEvent
+using Godot;
+
+public class PowerEvent : Object
 {
     public PowerState State;
     public int Charge;

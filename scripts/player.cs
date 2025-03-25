@@ -14,16 +14,17 @@ public class player : KinematicBody
 
     public override void _Ready()
     {
+        EventBus EventBusHandler = GetNode<EventBus>("/root/EventBus");
+
         head = GetNode<Spatial>("Head");
 
         Input.MouseMode = Input.MouseModeEnum.Captured;
-
-        
-        GetNode<EventBus>("/root/EventBus").Connect('WorldEventHandler', SomeFunction)
+        EventBusHandler.Connect("PowerChangedEventHandler", this, "SomeFunction");
     }
 
-    public SomeFunction(e) {
-        GD.Print("test");
+    public void SomeFunction(PowerEvent e) {
+        //GD.Print("test");
+        GD.Print(e.Charge);
     }
 
     public override void _Input(InputEvent e)
