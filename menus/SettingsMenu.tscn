@@ -1,0 +1,184 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://scripts/UI/MovingPanelTweener.cs" type="Script" id=2]
+[ext_resource path="res://fonts/Chakra_Petch/ChakraPetch-Regular.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://scripts/UI/SettingsMenu.cs" type="Script" id=4]
+[ext_resource path="res://menus/ControlsMenu.tscn" type="PackedScene" id=5]
+
+[sub_resource type="StyleBoxEmpty" id=6]
+
+[sub_resource type="StyleBoxFlat" id=2]
+
+[sub_resource type="DynamicFont" id=3]
+size = 60
+font_data = ExtResource( 3 )
+
+[sub_resource type="StyleBoxEmpty" id=4]
+
+[sub_resource type="StyleBoxEmpty" id=5]
+
+[node name="Settings Menu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource( 4 )
+panelTweenerPath = NodePath("Panel Tweener")
+continueBtnPath = NodePath("Panel/Header/Panel/Continue Button")
+controlsBtnPath = NodePath("Panel/Header/Panel/Controls Button")
+gameplayBtnPath = NodePath("Panel/Header/Panel/Gameplay Button")
+graphicsBtnPath = NodePath("Panel/Header/Panel/Graphics Button")
+exitBtnPath = NodePath("Panel/Header/Panel/Exit Button")
+controlsMenuPath = NodePath("Panel/Content/Frame/ControlsMenu")
+
+[node name="Panel" type="Panel" parent="."]
+self_modulate = Color( 1, 1, 1, 0.392157 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_clip_content = true
+custom_styles/panel = SubResource( 6 )
+
+[node name="Header" type="Panel" parent="Panel"]
+self_modulate = Color( 0, 0, 0, 0.5 )
+anchor_bottom = 1.0
+margin_right = 350.0
+rect_min_size = Vector2( 350, 0 )
+custom_styles/panel = SubResource( 2 )
+
+[node name="Panel" type="VBoxContainer" parent="Panel/Header"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 20.0
+custom_constants/separation = 10
+alignment = 1
+
+[node name="Controls Button" type="Button" parent="Panel/Header/Panel"]
+margin_top = 215.0
+margin_right = 330.0
+margin_bottom = 315.0
+rect_min_size = Vector2( 0, 100 )
+size_flags_horizontal = 3
+flat = true
+
+[node name="Label" type="Label" parent="Panel/Header/Panel/Controls Button"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = SubResource( 3 )
+text = "CONTROLS"
+valign = 1
+
+[node name="Gameplay Button" type="Button" parent="Panel/Header/Panel"]
+margin_top = 325.0
+margin_right = 330.0
+margin_bottom = 425.0
+rect_min_size = Vector2( 0, 100 )
+size_flags_horizontal = 3
+flat = true
+
+[node name="Label" type="Label" parent="Panel/Header/Panel/Gameplay Button"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = SubResource( 3 )
+text = "GAMEPLAY"
+valign = 1
+
+[node name="Graphics Button" type="Button" parent="Panel/Header/Panel"]
+margin_top = 435.0
+margin_right = 330.0
+margin_bottom = 535.0
+rect_min_size = Vector2( 0, 100 )
+size_flags_horizontal = 3
+flat = true
+
+[node name="Label" type="Label" parent="Panel/Header/Panel/Graphics Button"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = SubResource( 3 )
+text = "GRAPHICS"
+valign = 1
+
+[node name="Empty Space" type="Button" parent="Panel/Header/Panel"]
+margin_top = 545.0
+margin_right = 330.0
+margin_bottom = 645.0
+rect_min_size = Vector2( 0, 100 )
+size_flags_horizontal = 3
+disabled = true
+flat = true
+
+[node name="Label" type="Label" parent="Panel/Header/Panel/Empty Space"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = SubResource( 3 )
+valign = 1
+
+[node name="Continue Button" type="Button" parent="Panel/Header/Panel"]
+margin_top = 655.0
+margin_right = 330.0
+margin_bottom = 755.0
+rect_min_size = Vector2( 0, 100 )
+size_flags_horizontal = 3
+flat = true
+
+[node name="Label" type="Label" parent="Panel/Header/Panel/Continue Button"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = SubResource( 3 )
+text = "CONTINUE"
+valign = 1
+
+[node name="Exit Button" type="Button" parent="Panel/Header/Panel"]
+margin_top = 765.0
+margin_right = 330.0
+margin_bottom = 865.0
+rect_min_size = Vector2( 0, 100 )
+size_flags_horizontal = 3
+flat = true
+
+[node name="Label" type="Label" parent="Panel/Header/Panel/Exit Button"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = SubResource( 3 )
+text = "MAIN MENU"
+valign = 1
+
+[node name="Content" type="Panel" parent="Panel"]
+self_modulate = Color( 1, 1, 1, 0 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 350.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_styles/panel = SubResource( 4 )
+
+[node name="Frame" type="Panel" parent="Panel/Content"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 50.0
+margin_top = 50.0
+margin_right = -50.0
+margin_bottom = -50.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_styles/panel = SubResource( 5 )
+
+[node name="ControlsMenu" parent="Panel/Content/Frame" instance=ExtResource( 5 )]
+
+[node name="Panel Tweener" type="Control" parent="."]
+script = ExtResource( 2 )
+foregroundPath = NodePath("../Panel")
+appearTransition = 1
+disappearEase = 0
+disappearTransition = 1

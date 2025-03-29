@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://themes/inventoryScrollbarTheme.tres" type="Theme" id=1]
 [ext_resource path="res://menus/Journal.tscn" type="PackedScene" id=2]
@@ -10,36 +10,44 @@
 [ext_resource path="res://ui/Titled Pagination.tscn" type="PackedScene" id=8]
 [ext_resource path="res://scripts/UI/OrderedPages.cs" type="Script" id=9]
 [ext_resource path="res://menus/AudioPlayerMenu.tscn" type="PackedScene" id=10]
+[ext_resource path="res://scripts/UI/FadingPanelTweener.cs" type="Script" id=11]
 
-[sub_resource type="InputEventAction" id=8]
+[sub_resource type="InputEventAction" id=13]
 action = "pause_menu_left"
 
 [sub_resource type="ShortCut" id=11]
-shortcut = SubResource( 8 )
+shortcut = SubResource( 13 )
 
-[sub_resource type="InputEventAction" id=10]
+[sub_resource type="InputEventAction" id=14]
 action = "pause_menu_right"
 
 [sub_resource type="ShortCut" id=12]
-shortcut = SubResource( 10 )
+shortcut = SubResource( 14 )
 
 [node name="Pause Menu" type="Panel"]
+self_modulate = Color( 1, 1, 1, 0 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 6 )
-navBarPath = NodePath("VBox/Navigation Bar")
-orderedPagesPath = NodePath("VBox/Ordered Pages")
-inventoryPagePath = NodePath("VBox/Ordered Pages/Inventory")
-journalPagePath = NodePath("VBox/Ordered Pages/Journal")
-audioPlayerPagePath = NodePath("VBox/Ordered Pages/AudioPlayerMenu")
+panelTweenerPath = NodePath("Panel Tweener")
+navBarPath = NodePath("Panel/VBox/Navigation Bar")
+orderedPagesPath = NodePath("Panel/VBox/Ordered Pages")
+inventoryPagePath = NodePath("Panel/VBox/Ordered Pages/Inventory")
+journalPagePath = NodePath("Panel/VBox/Ordered Pages/Journal")
+audioPlayerPagePath = NodePath("Panel/VBox/Ordered Pages/AudioPlayerMenu")
 paginationTemplate = ExtResource( 8 )
 
-[node name="VBox" type="VBoxContainer" parent="."]
+[node name="Panel" type="Panel" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="VBox" type="VBoxContainer" parent="Panel"]
+self_modulate = Color( 1, 1, 1, 0 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = 50.0
 
-[node name="Navigation Bar" type="HBoxContainer" parent="VBox"]
+[node name="Navigation Bar" type="HBoxContainer" parent="Panel/VBox"]
 margin_left = 860.0
 margin_right = 1060.0
 margin_bottom = 54.0
@@ -53,7 +61,7 @@ paginationsPath = NodePath("Paginations")
 leftButtonPath = NodePath("Left Button")
 rightButtonPath = NodePath("Right Button")
 
-[node name="Left Button" type="Button" parent="VBox/Navigation Bar"]
+[node name="Left Button" type="Button" parent="Panel/VBox/Navigation Bar"]
 margin_right = 50.0
 margin_bottom = 54.0
 grow_horizontal = 2
@@ -65,7 +73,7 @@ flat = true
 icon_align = 1
 expand_icon = true
 
-[node name="TextureRect" type="TextureRect" parent="VBox/Navigation Bar/Left Button"]
+[node name="TextureRect" type="TextureRect" parent="Panel/VBox/Navigation Bar/Left Button"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 texture = ExtResource( 4 )
@@ -73,7 +81,7 @@ expand = true
 stretch_mode = 6
 flip_h = true
 
-[node name="Paginations" type="HBoxContainer" parent="VBox/Navigation Bar"]
+[node name="Paginations" type="HBoxContainer" parent="Panel/VBox/Navigation Bar"]
 margin_left = 100.0
 margin_right = 100.0
 margin_bottom = 54.0
@@ -84,7 +92,7 @@ size_flags_vertical = 3
 custom_constants/separation = 40
 alignment = 1
 
-[node name="Right Button" type="Button" parent="VBox/Navigation Bar"]
+[node name="Right Button" type="Button" parent="Panel/VBox/Navigation Bar"]
 margin_left = 150.0
 margin_right = 200.0
 margin_bottom = 54.0
@@ -98,14 +106,14 @@ flat = true
 icon_align = 1
 expand_icon = true
 
-[node name="TextureRect" type="TextureRect" parent="VBox/Navigation Bar/Right Button"]
+[node name="TextureRect" type="TextureRect" parent="Panel/VBox/Navigation Bar/Right Button"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 texture = ExtResource( 4 )
 expand = true
 stretch_mode = 6
 
-[node name="ScrollContainer" type="ScrollContainer" parent="VBox"]
+[node name="ScrollContainer" type="ScrollContainer" parent="Panel/VBox"]
 visible = false
 margin_top = 58.0
 margin_right = 1920.0
@@ -119,14 +127,14 @@ scroll_vertical_enabled = false
 script = ExtResource( 7 )
 pageContainerPath = NodePath("HBoxContainer")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBox/ScrollContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/VBox/ScrollContainer"]
 margin_right = 1920.0
 margin_bottom = 972.0
 rect_clip_content = true
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Ordered Pages" type="Panel" parent="VBox"]
+[node name="Ordered Pages" type="Panel" parent="Panel/VBox"]
 margin_top = 58.0
 margin_right = 1920.0
 margin_bottom = 1030.0
@@ -135,8 +143,15 @@ size_flags_vertical = 3
 script = ExtResource( 9 )
 pageContainerPath = NodePath(".")
 
-[node name="Inventory" parent="VBox/Ordered Pages" instance=ExtResource( 3 )]
+[node name="Inventory" parent="Panel/VBox/Ordered Pages" instance=ExtResource( 3 )]
 
-[node name="Journal" parent="VBox/Ordered Pages" instance=ExtResource( 2 )]
+[node name="Journal" parent="Panel/VBox/Ordered Pages" instance=ExtResource( 2 )]
 
-[node name="AudioPlayerMenu" parent="VBox/Ordered Pages" instance=ExtResource( 10 )]
+[node name="AudioPlayerMenu" parent="Panel/VBox/Ordered Pages" instance=ExtResource( 10 )]
+
+[node name="Panel Tweener" type="Control" parent="."]
+script = ExtResource( 11 )
+foregroundPath = NodePath("../Panel")
+appearTransition = 1
+disappearEase = 0
+disappearTransition = 1

@@ -1,6 +1,7 @@
+using System;
 using Godot;
 
-public class PauseMenu : Control
+public class PauseMenu : Page
 {
 	[Export] private NodePath navBarPath;
 	[Export] private NodePath orderedPagesPath;
@@ -8,15 +9,12 @@ public class PauseMenu : Control
 	[Export] private NodePath journalPagePath;
 	[Export] private NodePath audioPlayerPagePath;
 	[Export] private PackedScene paginationTemplate;
-	// [Export] private PackedScene inventoryTemplate;
-	// [Export] private PackedScene journalTemplate;
 	private Page inventoryPage;
 	private Page journalPage;
 	private Page audioPlayerPage;
 	private Navbar navbar;
 	private OrderedPages orderedPages;
-	private bool isShown;
-	public override void _Ready()
+	protected override void _Ready()
 	{
 		base._Ready();
 		navbar = GetNode<Navbar>(navBarPath);
@@ -37,60 +35,22 @@ public class PauseMenu : Control
 		paginationInventory.SetTitle("Inventory");
 		paginationJournal.SetTitle("Journal");
 		paginationAudioplayer.SetTitle("Audio Player");
-		
+
 		navbar.OnNavigate += Navbar_OnNavigate;
 	}
-	public override void _Input(InputEvent @event)
+	public override void HidePage(bool instant = false)
 	{
-		var toggleInventory = @event.IsActionPressed("inventory_toggle");
-		var toggleJournal = @event.IsActionPressed("journal_toggle");
-
-		if (toggleInventory || toggleInventory)
-			GetTree().SetInputAsHandled();
-
-		if (inventoryPage.Visible && toggleInventory && isShown)
-		{
-			SetVisibility(false);
-		}
-		else if (journalPage.Visible && toggleJournal && isShown)
-		{
-			SetVisibility(false);
-		}
-		else if (inventoryPage.Visible && toggleJournal && isShown)
-		{
-			OpenPage(journalPage, false);
-		}
-		else if (journalPage.Visible && toggleInventory && isShown)
-		{
-			OpenPage(inventoryPage, false);
-		}
-		else if (toggleInventory && isShown == false)
-		{
-			SetVisibility(true);
-			OpenPage(inventoryPage);
-		}
-		else if (toggleJournal && isShown == false)
-		{
-			SetVisibility(true);
-			OpenPage(journalPage);
-		}
+		base.HidePage(instant);
+		GetTree().Paused = false;
+		Input.MouseMode = Input.MouseModeEnum.Captured;
 	}
-	private void SetVisibility(bool value)
+	public override void ShowPage(bool instant = false)
 	{
-		if (value == false)
-		{
-			isShown = false;
-			Input.MouseMode = Input.MouseModeEnum.Captured;
-			Hide();
-		}
-		else
-		{
-			isShown = true;
-			Input.MouseMode = Input.MouseModeEnum.Visible;
-			Show();
-		}
+		base.ShowPage(instant);
+		GetTree().Paused = true;
+		Input.MouseMode = Input.MouseModeEnum.Visible;
 	}
-	private void OpenPage(Page page, bool isInstant = true)
+	private void OpenPage(Page page, bool isInstant = false)
 	{
 		var destinationIndex = page.GetIndex();
 		if (isInstant)
@@ -104,5 +64,81 @@ public class PauseMenu : Control
 	private void Navbar_OnNavigate(int from, int to)
 	{
 		orderedPages.SelectPage(to, false);
+	}
+
+	public override void _Input(InputEvent @event)
+	{
+		base._Input(@event);
+		if (!Visible) return;
+
+		var toggleInventory = @event.IsActionPressed("inventory_toggle");
+		var toggleJournal = @event.IsActionPressed("journal_toggle");
+		var toggleAudioplayer = @event.IsActionPressed("audioplayer_toggle");
+
+		if (toggleInventory || toggleInventory || toggleAudioplayer)
+			GetTree().SetInputAsHandled();
+
+		if (inventoryPage.Visible && toggleInventory)
+		{
+			HidePage();
+		}
+		else if (journalPage.Visible && toggleJournal)
+		{
+			HidePage();
+		}
+		else if (audioPlayerPage.Visible && toggleAudioplayer)
+		{
+			HidePage();
+		}
+		else if (!journalPage.Visible && toggleJournal)
+		{
+			OpenPage(journalPage, false);
+		}
+		else if (!inventoryPage.Visible && toggleInventory)
+		{
+			OpenPage(inventoryPage, false);
+		}
+		else if (!audioPlayerPage.Visible && toggleAudioplayer)
+		{
+			OpenPage(audioPlayerPage, false);
+		}
+	}
+	public void OpenInventory()
+	{
+		if (Visible)
+		{
+			OpenPage(inventoryPage);
+		}
+		else
+		{
+			ShowPage();
+			OpenPage(inventoryPage, true);
+		}
+	}
+
+	public void OpenJournal()
+	{
+		if (Visible)
+		{
+			OpenPage(journalPage);
+		}
+		else
+		{
+			ShowPage();
+			OpenPage(journalPage, true);
+		}
+	}
+
+	public void OpenAudioPlayer()
+	{
+		if (Visible)
+		{
+			OpenPage(audioPlayerPage);
+		}
+		else
+		{
+			ShowPage();
+			OpenPage(audioPlayerPage, true);
+		}
 	}
 }
