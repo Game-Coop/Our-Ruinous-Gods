@@ -39,3 +39,5 @@ margin_bottom = 10.0
 texture = ExtResource( 2 )
 expand = true
 stretch_mode = 5
+
+[connection signal="pressed" from="." to="." method="ButtonPressed"]

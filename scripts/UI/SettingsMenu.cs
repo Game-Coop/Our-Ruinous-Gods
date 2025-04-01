@@ -10,24 +10,38 @@ public class SettingsMenu : Page
 	[Export] private NodePath graphicsBtnPath;
 	[Export] private NodePath exitBtnPath;
 	[Export] private NodePath controlsMenuPath;
+	[Export] private NodePath gameplayMenuPath;
+	[Export] private NodePath graphicsMenuPath;
 	private Button _continueBtn;
 	private Button _exitBtn;
 	private Button _controlsBtn;
+	private Button _gameplayBtn;
+	private Button _graphicsBtn;
 	private Page controlsMenuPage;
+	private Page gameplayMenuPage;
+	private Page graphicsMenuPage;
 
 	private Page currentPage;
 	protected override void _Ready()
 	{
 		base._Ready();
 		controlsMenuPage = GetNode<Page>(controlsMenuPath);
+		gameplayMenuPage = GetNode<Page>(gameplayMenuPath);
+		graphicsMenuPage = GetNode<Page>(graphicsMenuPath);
 
 		_continueBtn = GetNode<Button>(continueBtnPath);
 		_exitBtn = GetNode<Button>(exitBtnPath);
+		
 		_controlsBtn = GetNode<Button>(controlsBtnPath);
+		_gameplayBtn = GetNode<Button>(gameplayBtnPath);
+		_graphicsBtn = GetNode<Button>(graphicsBtnPath);
 
 		_continueBtn.Connect("pressed", this, nameof(ContinuePressed));
 		_exitBtn.Connect("pressed", this, nameof(OnExitPressed));
+
 		_controlsBtn.Connect("pressed", this, nameof(ControlsPressed));
+		_gameplayBtn.Connect("pressed", this, nameof(GameplayPressed));
+		_graphicsBtn.Connect("pressed", this, nameof(GraphicsPressed));
 
 		OnHidden += Hidden;
 	}
@@ -54,12 +68,36 @@ public class SettingsMenu : Page
 	}
 	private void ControlsPressed()
 	{
+		currentPage?.HidePage();
+
 		currentPage = controlsMenuPage;
 
 		if (!controlsMenuPage.Visible)
 			controlsMenuPage.ShowPage();
 		else
 			controlsMenuPage.HidePage();
+	}
+	private void GameplayPressed()
+	{
+		currentPage?.HidePage();
+
+		currentPage = gameplayMenuPage;
+
+		if (!gameplayMenuPage.Visible)
+			gameplayMenuPage.ShowPage();
+		else
+			gameplayMenuPage.HidePage();
+	}
+	private void GraphicsPressed()
+	{
+		currentPage?.HidePage();
+
+		currentPage = graphicsMenuPage;
+
+		if (!graphicsMenuPage.Visible)
+			graphicsMenuPage.ShowPage();
+		else
+			graphicsMenuPage.HidePage();
 	}
 	private void Hidden()
 	{

@@ -6,11 +6,9 @@ public class AudioPlayer : AudioStreamPlayer
 {
 	public static AudioPlayer Instance { get; private set; }
 	private event Action OnFinished;
-	// [Export] private AudioStreamSample sample;
 	public override void _Ready()
 	{
 		base._Ready();
-		// Setup(sample);
 		Instance = this;
 	}
 	public override void _Input(InputEvent e)
@@ -58,7 +56,6 @@ public class AudioPlayer : AudioStreamPlayer
 		}
 		else
 		{
-			GD.Print("play?");
 			Play(GetPlaybackPosition());
 		}
 	}

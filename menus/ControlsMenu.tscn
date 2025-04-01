@@ -1,10 +1,13 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://scripts/UI/MovingPanelTweener.cs" type="Script" id=1]
 [ext_resource path="res://scripts/UI/ControlsMenu.cs" type="Script" id=2]
-[ext_resource path="res://themes/inventoryScrollbarTheme.tres" type="Theme" id=3]
+[ext_resource path="res://menus/KeyboardControlsMenu.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scripts/UI/Navbar.cs" type="Script" id=4]
 [ext_resource path="res://assets/ui/right-arrow.png" type="Texture" id=5]
+[ext_resource path="res://ui/Titled Pagination.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scripts/UI/OrderedPages.cs" type="Script" id=7]
+[ext_resource path="res://menus/GamepadControlsMenu.tscn" type="PackedScene" id=8]
 
 [sub_resource type="StyleBoxEmpty" id=1]
 
@@ -20,24 +23,20 @@ action = "pause_menu_right"
 [sub_resource type="ShortCut" id=12]
 shortcut = SubResource( 10 )
 
-[sub_resource type="StyleBoxEmpty" id=2]
-
-[sub_resource type="StyleBoxEmpty" id=13]
-
-[sub_resource type="StyleBoxEmpty" id=3]
-
-[sub_resource type="StyleBoxEmpty" id=4]
-
-[sub_resource type="StyleBoxEmpty" id=5]
-
 [node name="ControlsMenu" type="Panel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+rect_clip_content = true
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_styles/panel = SubResource( 1 )
 script = ExtResource( 2 )
 panelTweenerPath = NodePath("Panel Tweener")
+paginationTemplate = ExtResource( 6 )
+navBarPath = NodePath("Panel/Panel/Navigation Bar")
+orderedPagesPath = NodePath("Panel/Ordered Pages")
+keyboardMenuPath = NodePath("Panel/Ordered Pages/KeyboardControlsMenu")
+gamepadMenuPath = NodePath("Panel/Ordered Pages/GamepadControlsMenu")
 
 [node name="Panel" type="Panel" parent="."]
 anchor_right = 1.0
@@ -46,7 +45,6 @@ anchor_bottom = 1.0
 [node name="Panel" type="Panel" parent="Panel"]
 anchor_right = 1.0
 margin_top = 200.0
-margin_bottom = 200.0
 
 [node name="Navigation Bar" type="HBoxContainer" parent="Panel/Panel"]
 anchor_left = 0.5
@@ -118,134 +116,17 @@ texture = ExtResource( 5 )
 expand = true
 stretch_mode = 6
 
-[node name="ScrollContainer" type="ScrollContainer" parent="Panel"]
+[node name="Ordered Pages" type="Control" parent="Panel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = 200.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme = ExtResource( 3 )
-scroll_vertical_enabled = false
+script = ExtResource( 7 )
+pageContainerPath = NodePath(".")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Panel/ScrollContainer"]
-margin_right = 1920.0
-margin_bottom = 880.0
-rect_min_size = Vector2( 0, 100 )
-size_flags_horizontal = 3
-size_flags_vertical = 3
-custom_constants/separation = 200
-alignment = 1
+[node name="KeyboardControlsMenu" parent="Panel/Ordered Pages" instance=ExtResource( 3 )]
 
-[node name="Input Names Column" type="VBoxContainer" parent="Panel/ScrollContainer/HBoxContainer"]
-margin_left = 662.0
-margin_right = 871.0
-margin_bottom = 880.0
-size_flags_vertical = 3
-
-[node name="Title" type="Label" parent="Panel/ScrollContainer/HBoxContainer/Input Names Column"]
-margin_right = 209.0
-margin_bottom = 48.0
-text = "Input"
-
-[node name="Inventory" type="Label" parent="Panel/ScrollContainer/HBoxContainer/Input Names Column"]
-margin_top = 52.0
-margin_right = 209.0
-margin_bottom = 100.0
-text = "Inventory"
-
-[node name="Journal" type="Label" parent="Panel/ScrollContainer/HBoxContainer/Input Names Column"]
-margin_top = 104.0
-margin_right = 209.0
-margin_bottom = 152.0
-text = "Journal"
-
-[node name="Audio Player" type="Label" parent="Panel/ScrollContainer/HBoxContainer/Input Names Column"]
-margin_top = 156.0
-margin_right = 209.0
-margin_bottom = 204.0
-text = "Audio Player"
-
-[node name="Pause" type="Label" parent="Panel/ScrollContainer/HBoxContainer/Input Names Column"]
-margin_top = 208.0
-margin_right = 209.0
-margin_bottom = 256.0
-text = "Pause"
-
-[node name="Interact" type="Label" parent="Panel/ScrollContainer/HBoxContainer/Input Names Column"]
-margin_top = 260.0
-margin_right = 209.0
-margin_bottom = 308.0
-text = "Interact"
-
-[node name="Inputs Column" type="VBoxContainer" parent="Panel/ScrollContainer/HBoxContainer"]
-margin_left = 1071.0
-margin_right = 1258.0
-margin_bottom = 880.0
-
-[node name="Label" type="Label" parent="Panel/ScrollContainer/HBoxContainer/Inputs Column"]
-margin_right = 187.0
-margin_bottom = 48.0
-text = "Input name"
-
-[node name="Inventory Button" type="Button" parent="Panel/ScrollContainer/HBoxContainer/Inputs Column"]
-margin_top = 52.0
-margin_right = 187.0
-margin_bottom = 100.0
-rect_min_size = Vector2( 100, 0 )
-custom_styles/hover = SubResource( 2 )
-custom_styles/pressed = SubResource( 13 )
-custom_styles/focus = SubResource( 3 )
-custom_styles/disabled = SubResource( 4 )
-custom_styles/normal = SubResource( 5 )
-text = "Tab"
-
-[node name="Journal Button" type="Button" parent="Panel/ScrollContainer/HBoxContainer/Inputs Column"]
-margin_top = 104.0
-margin_right = 187.0
-margin_bottom = 152.0
-rect_min_size = Vector2( 100, 0 )
-custom_styles/hover = SubResource( 2 )
-custom_styles/pressed = SubResource( 13 )
-custom_styles/focus = SubResource( 3 )
-custom_styles/disabled = SubResource( 4 )
-custom_styles/normal = SubResource( 5 )
-text = "J"
-
-[node name="Audio Player Button" type="Button" parent="Panel/ScrollContainer/HBoxContainer/Inputs Column"]
-margin_top = 156.0
-margin_right = 187.0
-margin_bottom = 204.0
-rect_min_size = Vector2( 100, 0 )
-custom_styles/hover = SubResource( 2 )
-custom_styles/pressed = SubResource( 13 )
-custom_styles/focus = SubResource( 3 )
-custom_styles/disabled = SubResource( 4 )
-custom_styles/normal = SubResource( 5 )
-text = "O"
-
-[node name="Pause Button" type="Button" parent="Panel/ScrollContainer/HBoxContainer/Inputs Column"]
-margin_top = 208.0
-margin_right = 187.0
-margin_bottom = 256.0
-rect_min_size = Vector2( 100, 0 )
-custom_styles/hover = SubResource( 2 )
-custom_styles/pressed = SubResource( 13 )
-custom_styles/focus = SubResource( 3 )
-custom_styles/disabled = SubResource( 4 )
-custom_styles/normal = SubResource( 5 )
-text = "Esc"
-
-[node name="Interact Button" type="Button" parent="Panel/ScrollContainer/HBoxContainer/Inputs Column"]
-margin_top = 260.0
-margin_right = 187.0
-margin_bottom = 308.0
-rect_min_size = Vector2( 100, 0 )
-custom_styles/hover = SubResource( 2 )
-custom_styles/pressed = SubResource( 13 )
-custom_styles/focus = SubResource( 3 )
-custom_styles/disabled = SubResource( 4 )
-custom_styles/normal = SubResource( 5 )
-text = "E"
+[node name="GamepadControlsMenu" parent="Panel/Ordered Pages" instance=ExtResource( 8 )]
+visible = false
 
 [node name="Panel Tweener" type="Control" parent="."]
 script = ExtResource( 1 )

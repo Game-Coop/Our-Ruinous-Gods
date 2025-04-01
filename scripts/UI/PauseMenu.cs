@@ -71,6 +71,11 @@ public class PauseMenu : Page
 		base._Input(@event);
 		if (!Visible) return;
 
+		if (@event.IsActionPressed("settings_toggle"))
+		{
+			HidePage();
+			return;
+		}
 		var toggleInventory = @event.IsActionPressed("inventory_toggle");
 		var toggleJournal = @event.IsActionPressed("journal_toggle");
 		var toggleAudioplayer = @event.IsActionPressed("audioplayer_toggle");

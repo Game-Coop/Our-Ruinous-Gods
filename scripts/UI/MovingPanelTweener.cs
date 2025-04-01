@@ -51,9 +51,9 @@ public class MovingPanelTweener : PanelTweener
 		foreground.Visible = true;
 		if (instant)
 		{
-			var color = Modulate;
+			var color = foreground.Modulate;
 			color.a = 1f;
-			Modulate = color;
+			foreground.Modulate = color;
 			foreground.RectPosition = appearPos;
 			OnAppear();
 			return;
@@ -80,9 +80,10 @@ public class MovingPanelTweener : PanelTweener
 
 		if (instant)
 		{
-			var color = Modulate;
+			var color = foreground.Modulate;
 			color.a = 0f;
-			Modulate = color;
+			foreground.Modulate = color;
+
 			foreground.Visible = false;
 			foreground.RectPosition = disappearPos[direction]();
 			OnDisappear();
