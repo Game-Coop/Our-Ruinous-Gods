@@ -22,6 +22,7 @@ public class player : KinematicBody
 
         EventBus EventBusHandler = GetNode<EventBus>("/root/EventBus");
         EventBusHandler.Connect("PowerChangedEventHandler", this, "OnPowerChange");
+        EventBusHandler.Connect("WorldEventHandler", this, "OnWorldEvent");
     }
 
     public void OnPowerChange(PowerEvent e) {
@@ -38,6 +39,10 @@ public class player : KinematicBody
 
         Power = currentPower;
         GD.Print("current power use is: " + Power);
+    }
+
+    public void OnWorldEvent(string name) {
+        GD.Print("event has occured: " + name);
     }
 
     public override void _Input(InputEvent e)
