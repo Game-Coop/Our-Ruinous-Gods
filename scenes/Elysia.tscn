@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://entities/player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/textures/skybox.jpg" type="Texture" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://objects/PowerableLight.tscn" type="PackedScene" id=5]
 [ext_resource path="res://objects/PowerCollisionTrigger.tscn" type="PackedScene" id=6]
 [ext_resource path="res://objects/WorldEventCollisionTrigger.tscn" type="PackedScene" id=7]
+[ext_resource path="res://objects/PowerSwitchWithStaminaCost.tscn" type="PackedScene" id=8]
 
 [sub_resource type="PanoramaSky" id=3]
 panorama = ExtResource( 2 )
@@ -140,6 +141,11 @@ depth = 14.0
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 20 )
 Zone = 1
 
+[node name="PowerSwitch (Stamina)" parent="." instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6.53926, -1.37046, 13.5592 )
+Zone = 1
+Stamina = 10
+
 [node name="PowerableLight" parent="." instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 20 )
 Charge = 50
@@ -147,7 +153,6 @@ Zone = 1
 
 [node name="WorldEventCollisionTrigger" parent="." instance=ExtResource( 7 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.91255, -0.113734, -6.24291 )
-Name = "Some Test Event"
 
 [node name="PowerCollisionSwitch" parent="." instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.16026, -1.55, 25.3769 )

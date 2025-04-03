@@ -3,7 +3,7 @@ using System;
 
 public class WorldEventCollisionTrigger : Spatial
 {
-	[Export] public string Name { get; set; }
+	[Export] public string EventName { get; set; }
 	private Area area;
 	public override void _Ready()
 	{
@@ -15,6 +15,6 @@ public class WorldEventCollisionTrigger : Spatial
 	public void OnBodyEntered(Node body)
 	{
 		EventBus EventBusHandler = GetNode<EventBus>("/root/EventBus");      
-        EventBusHandler.OnWorldEvent(this.Name);
+        EventBusHandler.OnWorldEvent(this.EventName);
 	}
 }

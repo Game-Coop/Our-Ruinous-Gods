@@ -13,6 +13,7 @@ public class player : KinematicBody
 	private Vector3 velocity;
     private int Power = 0;
     private int MaxPower = 100;
+    private int Stamina = 100;
 
     public override void _Ready()
     {;
@@ -22,6 +23,7 @@ public class player : KinematicBody
 
         EventBus EventBusHandler = GetNode<EventBus>("/root/EventBus");
         EventBusHandler.Connect("PowerChangedEventHandler", this, "OnPowerChange");
+        EventBusHandler.Connect("StaminaChangeEventHandler", this, "OnStaminaChange");
         EventBusHandler.Connect("WorldEventHandler", this, "OnWorldEvent");
     }
 	
@@ -49,6 +51,11 @@ public class player : KinematicBody
 
     public void OnWorldEvent(string name) {
         GD.Print("event has occured: " + name);
+    }
+
+    public void OnStaminaChange(int cost) {
+		this.Stamina -= cost;
+        GD.Print("current stamina: " + this.Stamina);
     }
 
 	public override void _PhysicsProcess(float delta) {
