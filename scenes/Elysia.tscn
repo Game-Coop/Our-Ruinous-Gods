@@ -147,6 +147,7 @@ Zone = 1
 
 [node name="WorldEventCollisionTrigger" parent="." instance=ExtResource( 7 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.91255, -0.113734, -6.24291 )
+Name = "Some Test Event"
 
 [node name="PowerCollisionSwitch" parent="." instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.16026, -1.55, 25.3769 )
