@@ -27,6 +27,7 @@ default_bus_layout="res://audio_mixer.tres"
 [autoload]
 
 ResourceDatabase="*res://resources/ResourceDatabase.tscn"
+EventBus="*res://scripts/EventBus.cs"
 
 [display]
 

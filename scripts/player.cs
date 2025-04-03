@@ -21,8 +21,8 @@ public class player : KinematicBody
 
 	public override void _Input(InputEvent e)
 	{
-		if(e is InputEventMouseMotion) handleMouseLook(e as InputEventMouseMotion);
-		// if (e.IsActionPressed("quit")) GetTree().Quit();
+		if (e is InputEventMouseMotion) handleMouseLook(e as InputEventMouseMotion);
+		if (e.IsActionPressed("quit")) GetTree().Quit();
 	}
 
 	public override void _PhysicsProcess(float delta) {
