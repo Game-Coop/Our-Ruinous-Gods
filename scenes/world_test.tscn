@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://entities/player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/textures/skybox.jpg" type="Texture" id=2]
@@ -11,9 +11,15 @@
 [ext_resource path="res://resources/ItemDatas/KeyItem2Data.tres" type="Resource" id=9]
 [ext_resource path="res://scripts/Objects/CollectableItem.cs" type="Script" id=10]
 [ext_resource path="res://assets/ui/E-Key.png" type="Texture" id=11]
+[ext_resource path="res://scripts/AudioPlayer/AudioPlayer.cs" type="Script" id=12]
 [ext_resource path="res://resources/JournalDatas/JornalEntryData1.tres" type="Resource" id=13]
-[ext_resource path="res://resources/JournalDatas/JornalEntryData2.tres" type="Resource" id=14]
+[ext_resource path="res://scripts/Journal/JournalData.cs" type="Script" id=14]
 [ext_resource path="res://scripts/Objects/JournalEntryItem.cs" type="Script" id=15]
+[ext_resource path="res://resources/AudioDatas/audioData1.tres" type="Resource" id=16]
+[ext_resource path="res://scripts/AudioPlayer/AudioEntryItem.cs" type="Script" id=17]
+[ext_resource path="res://menus/SettingsMenu.tscn" type="PackedScene" id=18]
+[ext_resource path="res://scripts/UI/UIManager.cs" type="Script" id=19]
+[ext_resource path="res://resources/AudioDatas/audioData2.tres" type="Resource" id=20]
 
 [sub_resource type="PanoramaSky" id=3]
 panorama = ExtResource( 2 )
@@ -35,6 +41,13 @@ uv1_triplanar_sharpness = 1.0
 
 [sub_resource type="SpatialMaterial" id=8]
 albedo_color = Color( 0.901961, 0.670588, 0.670588, 1 )
+
+[sub_resource type="Resource" id=9]
+script = ExtResource( 14 )
+Id = 1
+Name = "Log 2"
+Content = "I like to sit here and watch our big friend’s body gently spin around. I can’t see much through the darkness, but sometimes I catch a glimpse of rotten bone. At least, I think it’s bone. They didn’t tell us much about what we’re studying up here, just that it could be the key to eternal life. Honestly, I think the company knows just as little as we do about it. That’s fine with me; just means more secrets to unravel"
+Category = 0
 
 [node name="Elysia" type="Spatial"]
 
@@ -191,9 +204,15 @@ material/0 = SubResource( 8 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.53142, 0 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+pause_mode = 2
+script = ExtResource( 19 )
+pauseMenuPagePath = NodePath("Pause Menu")
+settingsMenuPagePath = NodePath("Settings Menu")
 
 [node name="Pause Menu" parent="CanvasLayer" instance=ExtResource( 7 )]
 visible = false
+
+[node name="Settings Menu" parent="CanvasLayer" instance=ExtResource( 18 )]
 
 [node name="JournalEntry Item 1" type="Area" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8.35019, -1.36535, 8.32227 )
@@ -219,7 +238,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8.35019, -1.36535, 4.65913 )
 collision_layer = 2
 script = ExtResource( 15 )
 hintIcon = ExtResource( 11 )
-journalData = ExtResource( 14 )
+journalData = SubResource( 9 )
 
 [node name="CollisionShape" type="CollisionShape" parent="JournalEntry Item 2"]
 transform = Transform( 1, 0, 0, 0, 0.693608, 0, 0, 0, 1, 0, 0.468151, 0 )
@@ -232,3 +251,47 @@ material/0 = SubResource( 8 )
 
 [node name="Hint" parent="JournalEntry Item 2" instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.53142, 0 )
+
+[node name="Audio Entry Item 1" type="Area" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8.25368, -1.36535, -1.42453 )
+collision_layer = 2
+script = ExtResource( 17 )
+hintIcon = ExtResource( 11 )
+audioData = ExtResource( 16 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Audio Entry Item 1"]
+transform = Transform( 1, 0, 0, 0, 0.693608, 0, 0, 0, 1, 0, 0.468151, 0 )
+shape = SubResource( 6 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Audio Entry Item 1"]
+transform = Transform( 1, 0, 0, 0, 0.107645, 0, 0, 0, 1, 0, 0, 0 )
+mesh = SubResource( 7 )
+material/0 = SubResource( 8 )
+
+[node name="Hint" parent="Audio Entry Item 1" instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.53142, 0 )
+
+[node name="Audio Entry Item 2" type="Area" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8.25368, -1.36535, -7.56598 )
+collision_layer = 2
+script = ExtResource( 17 )
+hintIcon = ExtResource( 11 )
+audioData = ExtResource( 20 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Audio Entry Item 2"]
+transform = Transform( 1, 0, 0, 0, 0.693608, 0, 0, 0, 1, 0, 0.468151, 0 )
+shape = SubResource( 6 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Audio Entry Item 2"]
+transform = Transform( 1, 0, 0, 0, 0.107645, 0, 0, 0, 1, 0, 0, 0 )
+mesh = SubResource( 7 )
+material/0 = SubResource( 8 )
+
+[node name="Hint" parent="Audio Entry Item 2" instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.53142, 0 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+pause_mode = 2
+script = ExtResource( 12 )
+
+[connection signal="finished" from="AudioStreamPlayer" to="AudioStreamPlayer" method="OnStreamFinished"]

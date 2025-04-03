@@ -3,9 +3,11 @@
 using System;
 using Godot;
 
-public class Page : Control
+public abstract class Page : Control
 {
 	[Export] private NodePath panelTweenerPath;
+	public event Action OnShow;
+	public event Action OnHide;
 	public event Action OnShown;
 	public event Action OnHidden;
 	private PanelTweener _panelTweener;
@@ -34,8 +36,9 @@ public class Page : Control
 	}
 	public virtual void ShowPage(bool instant = false)
 	{
-		Show();
+		OnShow?.Invoke();
 
+		Show();
 		if (panelTweener == null)
 		{
 			OnShown?.Invoke();
@@ -48,6 +51,8 @@ public class Page : Control
 	}
 	public virtual void HidePage(bool instant = false)
 	{
+		OnHide?.Invoke();
+		
 		if (panelTweener == null)
 		{
 			OnHidden?.Invoke();

@@ -1,4 +1,3 @@
-
 using System;
 using Godot;
 
@@ -6,7 +5,6 @@ public class StartMenu : Control
 {
 	[Export] private NodePath startBtnPath;
 	[Export] private NodePath exitBtnPath;
-	[Export] private PackedScene gameScene;
 	private Button _startBtn;
 	private Button _exitBtn;
 	public override void _Ready()
@@ -21,7 +19,8 @@ public class StartMenu : Control
 	private void OnStartPressed()
 	{
 		_startBtn.Disabled = true;
-		GetTree().ChangeSceneTo(gameScene);
+		GetTree().Paused = false;
+		GetTree().ChangeSceneTo(ResourceDatabase.GameScene);
 	}
 	private void OnExitPressed()
 	{

@@ -21,24 +21,17 @@ public class Pagination : Control
 		}
 	}
 	private Label label;
-	public override void _Ready()
-	{
-		base._Ready();
-		Connect("pressed", this, nameof(ButtonPressed));
-	}
 
 	private void ButtonPressed()
 	{
 		OnClick?.Invoke();
 	}
-
-
 	public void SetTitle(string name)
 	{
 		label = GetNodeOrNull<Label>(labelPath);
 		if (label != null)
 		{
-			label.Text = name;	
+			label.Text = name;
 		}
 	}
 	public void Select()

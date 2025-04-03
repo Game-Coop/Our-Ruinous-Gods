@@ -22,9 +22,17 @@ public class Inventory : Page
 		itemNameLabel = GetNode<Label>(itemNameLabelPath);
 		itemDescriptionLabel = GetNode<Label>(itemDescriptionLabelPath);
 		itemPreviewTextureRect = GetNode<TextureRect>(itemPreviewRectPath);
-
-		InventoryEvents.OnItemCollect -= OnItemCollect;
+	}
+	
+	public override void _EnterTree()
+	{
+		base._EnterTree();
 		InventoryEvents.OnItemCollect += OnItemCollect;
+	}
+	public override void _ExitTree()
+	{
+		base._ExitTree();
+		InventoryEvents.OnItemCollect -= OnItemCollect;
 	}
 	public override void ShowPage(bool instant = false)
 	{

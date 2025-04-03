@@ -7,3 +7,4 @@ script = ExtResource( 1 )
 Id = 0
 Name = "Log 1"
 Content = "I never realized just how many stars there are in space. They’re hard to see down on Earth, with the smog and the light pollution. @But up here... billions of gleaming beams, death masks for giants that died millennia ago. @Sometimes I wonder if there were billions of Earths orbiting those stars, with billions of Hilts trying to break free. @Was I the only one to get the chance?"
+Category = 0

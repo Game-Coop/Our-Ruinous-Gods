@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scripts/AudioPlayer/AudioEntry.cs" type="Script" id=1]
+
+[sub_resource type="StyleBoxFlat" id=5]
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_blend = true
+
+[node name="Item Template" type="Button"]
+margin_right = 611.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 0, 100 )
+custom_styles/focus = SubResource( 5 )
+script = ExtResource( 1 )
+labelPath = NodePath("Label")
+
+[node name="Label" type="Label" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -187.5
+margin_right = 305.5
+text = "Item 1"
+valign = 1
+
+[connection signal="focus_entered" from="." to="." method="OnFocused"]

@@ -18,9 +18,16 @@ public class Journal : Page
 		entryContainer = GetNode(entryContainerPath);
 		entryNameLabel = GetNode<Label>(entryNameLabelPath);
 		entryReader = GetNode<JournalEntryReader>(pageControllerPath);
-
-		JournalEvents.OnEntryCollect -= OnEntryCollect;
+	}
+	public override void _EnterTree()
+	{
+		base._EnterTree();
 		JournalEvents.OnEntryCollect += OnEntryCollect;
+	}
+	public override void _ExitTree()
+	{
+		base._ExitTree();
+		JournalEvents.OnEntryCollect -= OnEntryCollect;
 	}
 	public override void ShowPage(bool instant = false)
 	{

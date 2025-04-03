@@ -1,0 +1,139 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://scripts/UI/MovingPanelTweener.cs" type="Script" id=1]
+[ext_resource path="res://scripts/UI/ControlsMenu.cs" type="Script" id=2]
+[ext_resource path="res://menus/KeyboardControlsMenu.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scripts/UI/Navbar.cs" type="Script" id=4]
+[ext_resource path="res://assets/ui/right-arrow.png" type="Texture" id=5]
+[ext_resource path="res://ui/Titled Pagination.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scripts/UI/OrderedPages.cs" type="Script" id=7]
+[ext_resource path="res://menus/GamepadControlsMenu.tscn" type="PackedScene" id=8]
+
+[sub_resource type="StyleBoxEmpty" id=1]
+
+[sub_resource type="InputEventAction" id=8]
+action = "pause_menu_left"
+
+[sub_resource type="ShortCut" id=11]
+shortcut = SubResource( 8 )
+
+[sub_resource type="InputEventAction" id=10]
+action = "pause_menu_right"
+
+[sub_resource type="ShortCut" id=12]
+shortcut = SubResource( 10 )
+
+[node name="ControlsMenu" type="Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_clip_content = true
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_styles/panel = SubResource( 1 )
+script = ExtResource( 2 )
+panelTweenerPath = NodePath("Panel Tweener")
+paginationTemplate = ExtResource( 6 )
+navBarPath = NodePath("Panel/Panel/Navigation Bar")
+orderedPagesPath = NodePath("Panel/Ordered Pages")
+keyboardMenuPath = NodePath("Panel/Ordered Pages/KeyboardControlsMenu")
+gamepadMenuPath = NodePath("Panel/Ordered Pages/GamepadControlsMenu")
+
+[node name="Panel" type="Panel" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Panel" type="Panel" parent="Panel"]
+anchor_right = 1.0
+margin_top = 200.0
+
+[node name="Navigation Bar" type="HBoxContainer" parent="Panel/Panel"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -100.0
+margin_top = -145.0
+margin_right = 100.0
+margin_bottom = -91.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+custom_constants/separation = 50
+alignment = 1
+script = ExtResource( 4 )
+paginationsPath = NodePath("Paginations")
+leftButtonPath = NodePath("Left Button")
+rightButtonPath = NodePath("Right Button")
+
+[node name="Left Button" type="Button" parent="Panel/Panel/Navigation Bar"]
+margin_right = 50.0
+margin_bottom = 54.0
+grow_horizontal = 2
+grow_vertical = 2
+rect_min_size = Vector2( 50, 50 )
+shortcut = SubResource( 11 )
+flat = true
+icon_align = 1
+expand_icon = true
+
+[node name="TextureRect" type="TextureRect" parent="Panel/Panel/Navigation Bar/Left Button"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 5 )
+expand = true
+stretch_mode = 6
+flip_h = true
+
+[node name="Paginations" type="HBoxContainer" parent="Panel/Panel/Navigation Bar"]
+margin_left = 100.0
+margin_right = 100.0
+margin_bottom = 54.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/separation = 40
+alignment = 1
+
+[node name="Right Button" type="Button" parent="Panel/Panel/Navigation Bar"]
+margin_left = 150.0
+margin_right = 200.0
+margin_bottom = 54.0
+grow_horizontal = 2
+grow_vertical = 2
+rect_min_size = Vector2( 50, 50 )
+focus_mode = 0
+disabled = true
+shortcut = SubResource( 12 )
+flat = true
+icon_align = 1
+expand_icon = true
+
+[node name="TextureRect" type="TextureRect" parent="Panel/Panel/Navigation Bar/Right Button"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 5 )
+expand = true
+stretch_mode = 6
+
+[node name="Ordered Pages" type="Control" parent="Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 200.0
+script = ExtResource( 7 )
+pageContainerPath = NodePath(".")
+
+[node name="KeyboardControlsMenu" parent="Panel/Ordered Pages" instance=ExtResource( 3 )]
+
+[node name="GamepadControlsMenu" parent="Panel/Ordered Pages" instance=ExtResource( 8 )]
+visible = false
+
+[node name="Panel Tweener" type="Control" parent="."]
+script = ExtResource( 1 )
+foregroundPath = NodePath("../Panel")
+direction = 3
+appearTime = 0.2
+disappearTime = 0.2
+appearTransition = 1
+disappearEase = 0
+disappearTransition = 1
