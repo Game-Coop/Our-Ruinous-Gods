@@ -27,6 +27,7 @@ default_bus_layout="res://audio_mixer.tres"
 [autoload]
 
 ResourceDatabase="*res://resources/ResourceDatabase.tscn"
+EventBus="*res://scripts/EventBus.cs"
 
 [display]
 
@@ -37,12 +38,13 @@ window/stretch/aspect="keep_height"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/Godot-Mono-CustomResourceRegistry-godot-3.x/addons/MonoCustomResourceRegistry/plugin.cfg" )
+enabled=PoolStringArray(  )
 
 [global]
 
 rendering=false
 theme=false
+text=false
 
 [gui]
 
