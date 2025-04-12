@@ -1,9 +1,12 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://themes/inventoryScrollbarTheme.tres" type="Theme" id=1]
 [ext_resource path="res://scripts/UI/MovingPanelTweener.cs" type="Script" id=2]
 [ext_resource path="res://scripts/UI/GamepadControlsMenu.cs" type="Script" id=3]
 [ext_resource path="res://ui/InputBindingButton.tscn" type="PackedScene" id=4]
+[ext_resource path="res://resources/KeyInfos/Gamepad/PS_Select.tres" type="Resource" id=5]
+[ext_resource path="res://resources/KeyInfos/Gamepad/PS_Start.tres" type="Resource" id=6]
+[ext_resource path="res://resources/KeyInfos/Gamepad/PS_East.tres" type="Resource" id=7]
 
 [sub_resource type="StyleBoxEmpty" id=14]
 
@@ -97,34 +100,33 @@ align = 1
 [node name="Inventory Button" parent="ScrollContainer/Panel/HBoxContainer/Playstation Column" instance=ExtResource( 4 )]
 margin_right = 220.0
 text = "Start / Menu"
+keyInfo = ExtResource( 6 )
 
 [node name="Journal Button" parent="ScrollContainer/Panel/HBoxContainer/Playstation Column" instance=ExtResource( 4 )]
 margin_top = 104.0
 margin_right = 220.0
 margin_bottom = 152.0
 text = "None"
-actionName = "journal_toggle"
 
 [node name="Audio Player Button" parent="ScrollContainer/Panel/HBoxContainer/Playstation Column" instance=ExtResource( 4 )]
 margin_top = 156.0
 margin_right = 220.0
 margin_bottom = 204.0
 text = "None"
-actionName = "audioplayer_toggle"
 
 [node name="Pause Button" parent="ScrollContainer/Panel/HBoxContainer/Playstation Column" instance=ExtResource( 4 )]
 margin_top = 208.0
 margin_right = 220.0
 margin_bottom = 256.0
 text = "Select / Back"
-actionName = "settings_toggle"
+keyInfo = ExtResource( 5 )
 
 [node name="Interact Button" parent="ScrollContainer/Panel/HBoxContainer/Playstation Column" instance=ExtResource( 4 )]
 margin_top = 260.0
 margin_right = 220.0
 margin_bottom = 308.0
 text = "[] / X"
-actionName = "interact"
+keyInfo = ExtResource( 7 )
 
 [node name="Label" type="Label" parent="ScrollContainer/Panel"]
 visible = false

@@ -25,7 +25,6 @@ custom_styles/disabled = SubResource( 4 )
 custom_styles/normal = SubResource( 5 )
 text = "Tab"
 script = ExtResource( 2 )
-actionName = "inventory_toggle"
 selectionFramePath = NodePath("TextureRect")
 
 [node name="TextureRect" type="TextureRect" parent="."]

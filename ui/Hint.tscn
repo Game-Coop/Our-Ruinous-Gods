@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://scripts/UI/Hint.cs" type="Script" id=1]
-[ext_resource path="res://assets/ui/E-Key.png" type="Texture" id=2]
+[ext_resource path="res://assets/ui/KeyboardKeys/keyboard-e.tres" type="Texture" id=2]
 
 [node name="Hint" type="Label3D"]
 pixel_size = 0.002
@@ -15,7 +15,7 @@ spritePath = NodePath("Sprite3D")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 offset = Vector2( -20, 0 )
-pixel_size = 0.002
+pixel_size = 0.0005
 billboard = 1
 fixed_size = true
 texture = ExtResource( 2 )

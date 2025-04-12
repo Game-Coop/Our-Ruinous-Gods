@@ -5,14 +5,6 @@ using System.Linq;
 
 public static class InputRebinder
 {
-    public static void Save()
-    {
-        throw new NotImplementedException();
-    }
-    public static void Load()
-    {
-        throw new NotImplementedException();
-    }
     /// <summary>
     /// Rebinds an input action to a new key.
     /// </summary>
@@ -93,12 +85,10 @@ public static class InputRebinder
     {
         SwapSpecificBindings<InputEventKey>(actionOne, actionTwo);
     }
-
     public static void SwapGamepadBindings(string actionOne, string actionTwo)
     {
         SwapSpecificBindings<InputEventJoypadButton>(actionOne, actionTwo);
     }
-
     private static void SwapSpecificBindings<T>(string actionOne, string actionTwo) where T : InputEvent
     {
         if (!InputMap.HasAction(actionOne) || !InputMap.HasAction(actionTwo))
@@ -130,43 +120,4 @@ public static class InputRebinder
 
         GD.Print($"Swapped {typeof(T).Name} bindings between '{actionOne}' and '{actionTwo}'.");
     }
-    // public static void SwapBindings(string actionOne, string actionTwo)
-    // {
-    //     if (!InputMap.HasAction(actionOne) || !InputMap.HasAction(actionTwo))
-    //     {
-    //         GD.PrintErr("One or both actions do not exist.");
-    //         return;
-    //     }
-
-    //     // Retrieve action events
-    //     var actionOneEvents = InputMap.GetActionList(actionOne);
-    //     var actionTwoEvents = InputMap.GetActionList(actionTwo);
-
-    //     // Store copies to prevent modifying the list during iteration
-    //     List<InputEvent> actionOneCopy = new List<InputEvent>();
-    //     List<InputEvent> actionTwoCopy = new List<InputEvent>();
-
-    //     foreach (InputEvent evt in actionOneEvents)
-    //         actionOneCopy.Add(evt.Duplicate() as InputEvent); // Use Duplicate() to copy events
-
-    //     foreach (InputEvent evt in actionTwoEvents)
-    //         actionTwoCopy.Add(evt.Duplicate() as InputEvent);
-
-    //     // Clear existing bindings
-    //     foreach (InputEvent evt in actionOneEvents)
-    //         InputMap.ActionEraseEvent(actionOne, evt);
-
-    //     foreach (InputEvent evt in actionTwoEvents)
-    //         InputMap.ActionEraseEvent(actionTwo, evt);
-
-    //     // Swap bindings
-    //     foreach (InputEvent evt in actionTwoCopy)
-    //         InputMap.ActionAddEvent(actionOne, evt);
-
-    //     foreach (InputEvent evt in actionOneCopy)
-    //         InputMap.ActionAddEvent(actionTwo, evt);
-
-    //     GD.Print($"Swapped bindings between '{actionOne}' and '{actionTwo}'.");
-    // }
-
 }

@@ -6,7 +6,7 @@ public class InputBindingButton : Button
 {
 	public event Action<InputBindingButton> OnBindingSelected;
 	public event Action<InputBindingButton> OnBindingUnselected;
-	[Export] public string actionName { get; private set; }
+	[Export] public KeyInfo keyInfo { get; private set; }
 	[Export] private NodePath selectionFramePath;
 	private Control selectionFrame;
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://entities/player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/textures/skybox.jpg" type="Texture" id=2]
@@ -10,7 +10,6 @@
 [ext_resource path="res://resources/ItemDatas/KeyItem1Data.tres" type="Resource" id=8]
 [ext_resource path="res://resources/ItemDatas/KeyItem2Data.tres" type="Resource" id=9]
 [ext_resource path="res://scripts/Objects/CollectableItem.cs" type="Script" id=10]
-[ext_resource path="res://assets/ui/E-Key.png" type="Texture" id=11]
 [ext_resource path="res://resources/JournalDatas/JornalEntryData1.tres" type="Resource" id=13]
 [ext_resource path="res://scripts/Journal/JournalData.cs" type="Script" id=14]
 [ext_resource path="res://scripts/Objects/JournalEntryItem.cs" type="Script" id=15]
@@ -172,7 +171,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.220026, -0.0579853, 26.4457
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8.24102, -0.55, 8.2971 )
 collision_layer = 2
 script = ExtResource( 10 )
-hintIcon = ExtResource( 11 )
 itemData = ExtResource( 8 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Collectable Item 1"]
@@ -189,7 +187,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.53142, 0 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8.28742, -0.55, 11.9824 )
 collision_layer = 2
 script = ExtResource( 10 )
-hintIcon = ExtResource( 11 )
 itemData = ExtResource( 9 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Collectable Item 2"]
@@ -217,7 +214,6 @@ visible = false
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8.35019, -1.36535, 8.32227 )
 collision_layer = 2
 script = ExtResource( 15 )
-hintIcon = ExtResource( 11 )
 journalData = ExtResource( 13 )
 
 [node name="CollisionShape" type="CollisionShape" parent="JournalEntry Item 1"]
@@ -236,7 +232,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.53142, 0 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8.35019, -1.36535, 4.65913 )
 collision_layer = 2
 script = ExtResource( 15 )
-hintIcon = ExtResource( 11 )
 journalData = SubResource( 9 )
 
 [node name="CollisionShape" type="CollisionShape" parent="JournalEntry Item 2"]
@@ -255,7 +250,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.53142, 0 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8.25368, -1.36535, -1.42453 )
 collision_layer = 2
 script = ExtResource( 17 )
-hintIcon = ExtResource( 11 )
 audioData = ExtResource( 16 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Audio Entry Item 1"]
@@ -274,7 +268,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.53142, 0 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8.25368, -1.36535, -7.56598 )
 collision_layer = 2
 script = ExtResource( 17 )
-hintIcon = ExtResource( 11 )
 audioData = ExtResource( 20 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Audio Entry Item 2"]

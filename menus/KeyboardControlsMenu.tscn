@@ -1,9 +1,14 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://themes/inventoryScrollbarTheme.tres" type="Theme" id=1]
 [ext_resource path="res://scripts/UI/MovingPanelTweener.cs" type="Script" id=2]
 [ext_resource path="res://scripts/UI/KeyboardControlsMenu.cs" type="Script" id=3]
 [ext_resource path="res://ui/InputBindingButton.tscn" type="PackedScene" id=4]
+[ext_resource path="res://resources/KeyInfos/Keyboard/Keyboard_J.tres" type="Resource" id=5]
+[ext_resource path="res://resources/KeyInfos/Keyboard/Keyboard_Esc.tres" type="Resource" id=6]
+[ext_resource path="res://resources/KeyInfos/Keyboard/Keyboard_Tab.tres" type="Resource" id=7]
+[ext_resource path="res://resources/KeyInfos/Keyboard/Keyboard_O.tres" type="Resource" id=8]
+[ext_resource path="res://resources/KeyInfos/Keyboard/Keyboard_E.tres" type="Resource" id=9]
 
 [sub_resource type="StyleBoxEmpty" id=14]
 
@@ -92,30 +97,31 @@ margin_right = 100.0
 margin_bottom = 48.0
 
 [node name="Inventory Button" parent="ScrollContainer/Panel/HBoxContainer/Inputs Column" instance=ExtResource( 4 )]
+keyInfo = ExtResource( 7 )
 
 [node name="Journal Button" parent="ScrollContainer/Panel/HBoxContainer/Inputs Column" instance=ExtResource( 4 )]
 margin_top = 104.0
 margin_bottom = 152.0
 text = "J"
-actionName = "journal_toggle"
+keyInfo = ExtResource( 5 )
 
 [node name="Audio Player Button" parent="ScrollContainer/Panel/HBoxContainer/Inputs Column" instance=ExtResource( 4 )]
 margin_top = 156.0
 margin_bottom = 204.0
 text = "O"
-actionName = "audioplayer_toggle"
+keyInfo = ExtResource( 8 )
 
 [node name="Pause Button" parent="ScrollContainer/Panel/HBoxContainer/Inputs Column" instance=ExtResource( 4 )]
 margin_top = 208.0
 margin_bottom = 256.0
 text = "Esc"
-actionName = "settings_toggle"
+keyInfo = ExtResource( 6 )
 
 [node name="Interact Button" parent="ScrollContainer/Panel/HBoxContainer/Inputs Column" instance=ExtResource( 4 )]
 margin_top = 260.0
 margin_bottom = 308.0
 text = "E"
-actionName = "interact"
+keyInfo = ExtResource( 9 )
 
 [node name="Label" type="Label" parent="ScrollContainer/Panel"]
 visible = false

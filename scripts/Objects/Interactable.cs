@@ -7,7 +7,6 @@ public class Interactable : Spatial, IInteractable
 {
 	public virtual event Action<BaseEventData> OnInteract;
 	public virtual string InteractionText => "Interact";
-	[Export] public Texture hintIcon;
 	private Hint _hint;
 	private Hint hint
 	{
@@ -19,11 +18,6 @@ public class Interactable : Spatial, IInteractable
 			}
 			return _hint;
 		}
-	}
-	public override void _Ready()
-	{
-		base._Ready();
-		hint.Setup(InteractionText, hintIcon);
 	}
 	public virtual void HideHint()
 	{
@@ -38,6 +32,7 @@ public class Interactable : Spatial, IInteractable
 
 	public virtual void ShowHint()
 	{
+		hint.Setup(InteractionText, InputBindings.GetKeyInfo("interact").Icon);
 		hint.Show();
 	}
 }
