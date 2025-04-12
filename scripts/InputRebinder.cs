@@ -14,7 +14,7 @@ public static class InputRebinder
         throw new NotImplementedException();
     }
     /// <summary>
-    /// Rebinds an input action to a new key or gamepad button.
+    /// Rebinds an input action to a new key.
     /// </summary>
     public static void RebindKey(string actionName, KeyList newKey)
     {

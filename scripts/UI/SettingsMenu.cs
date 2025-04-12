@@ -8,18 +8,22 @@ public class SettingsMenu : Page
 	[Export] private NodePath controlsBtnPath;
 	[Export] private NodePath gameplayBtnPath;
 	[Export] private NodePath graphicsBtnPath;
+	[Export] private NodePath audioBtnPath;
 	[Export] private NodePath exitBtnPath;
 	[Export] private NodePath controlsMenuPath;
 	[Export] private NodePath gameplayMenuPath;
 	[Export] private NodePath graphicsMenuPath;
+	[Export] private NodePath audioMenuPath;
 	private Button _continueBtn;
 	private Button _exitBtn;
 	private Button _controlsBtn;
 	private Button _gameplayBtn;
 	private Button _graphicsBtn;
+	private Button _audioBtn;
 	private Page controlsMenuPage;
 	private Page gameplayMenuPage;
 	private Page graphicsMenuPage;
+	private Page audioMenuPage;
 
 	private Page currentPage;
 	protected override void _Ready()
@@ -28,13 +32,15 @@ public class SettingsMenu : Page
 		controlsMenuPage = GetNode<Page>(controlsMenuPath);
 		gameplayMenuPage = GetNode<Page>(gameplayMenuPath);
 		graphicsMenuPage = GetNode<Page>(graphicsMenuPath);
+		audioMenuPage = GetNode<Page>(audioMenuPath);
 
 		_continueBtn = GetNode<Button>(continueBtnPath);
 		_exitBtn = GetNode<Button>(exitBtnPath);
-		
+
 		_controlsBtn = GetNode<Button>(controlsBtnPath);
 		_gameplayBtn = GetNode<Button>(gameplayBtnPath);
 		_graphicsBtn = GetNode<Button>(graphicsBtnPath);
+		_audioBtn = GetNode<Button>(audioBtnPath);
 
 		_continueBtn.Connect("pressed", this, nameof(ContinuePressed));
 		_exitBtn.Connect("pressed", this, nameof(OnExitPressed));
@@ -42,6 +48,7 @@ public class SettingsMenu : Page
 		_controlsBtn.Connect("pressed", this, nameof(ControlsPressed));
 		_gameplayBtn.Connect("pressed", this, nameof(GameplayPressed));
 		_graphicsBtn.Connect("pressed", this, nameof(GraphicsPressed));
+		_audioBtn.Connect("pressed", this, nameof(AudioPressed));
 
 		OnHidden += Hidden;
 	}
@@ -68,36 +75,19 @@ public class SettingsMenu : Page
 	}
 	private void ControlsPressed()
 	{
-		currentPage?.HidePage();
-
-		currentPage = controlsMenuPage;
-
-		if (!controlsMenuPage.Visible)
-			controlsMenuPage.ShowPage();
-		else
-			controlsMenuPage.HidePage();
+		SelectPage(controlsMenuPage);
 	}
 	private void GameplayPressed()
 	{
-		currentPage?.HidePage();
-
-		currentPage = gameplayMenuPage;
-
-		if (!gameplayMenuPage.Visible)
-			gameplayMenuPage.ShowPage();
-		else
-			gameplayMenuPage.HidePage();
+		SelectPage(gameplayMenuPage);
 	}
 	private void GraphicsPressed()
 	{
-		currentPage?.HidePage();
-
-		currentPage = graphicsMenuPage;
-
-		if (!graphicsMenuPage.Visible)
-			graphicsMenuPage.ShowPage();
-		else
-			graphicsMenuPage.HidePage();
+		SelectPage(graphicsMenuPage);
+	}
+	private void AudioPressed()
+	{
+		SelectPage(audioMenuPage);
 	}
 	private void Hidden()
 	{
@@ -105,6 +95,17 @@ public class SettingsMenu : Page
 		{
 			currentPage.HidePage(true);
 		}
+	}
+	private void SelectPage(Page page)
+	{
+		currentPage?.HidePage();
+
+		currentPage = page;
+
+		if (!page.Visible)
+			page.ShowPage();
+		else
+			page.HidePage();
 	}
 	public override void _Input(InputEvent @event)
 	{

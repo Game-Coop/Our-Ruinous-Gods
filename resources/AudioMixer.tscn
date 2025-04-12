@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scripts/AudioMixer.cs" type="Script" id=1]
+[ext_resource path="res://audio_mixer.tres" type="AudioBusLayout" id=2]
+
+[node name="AudioMixer" type="Node"]
+script = ExtResource( 1 )
+audioBusLayout = ExtResource( 2 )

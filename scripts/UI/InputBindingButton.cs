@@ -2,10 +2,10 @@
 using System;
 using Godot;
 
-public class InputBinding : Button
+public class InputBindingButton : Button
 {
-	public event Action<InputBinding> OnBindingSelected;
-	public event Action<InputBinding> OnBindingUnselected;
+	public event Action<InputBindingButton> OnBindingSelected;
+	public event Action<InputBindingButton> OnBindingUnselected;
 	[Export] public string actionName { get; private set; }
 	[Export] private NodePath selectionFramePath;
 	private Control selectionFrame;

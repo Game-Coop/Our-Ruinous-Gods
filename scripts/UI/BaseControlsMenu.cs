@@ -5,10 +5,10 @@ public abstract class BaseControlsMenu : Page
 {
 	[Export] private List<NodePath> inputBindingPaths = new List<NodePath>();
 	[Export] private NodePath swapLabelPath;
-	private List<InputBinding> inputBindings = new List<InputBinding>();
-	private InputBinding selectedBinding;
+	private List<InputBindingButton> inputBindings = new List<InputBindingButton>();
+	private InputBindingButton selectedBinding;
 	private Label swapLabel;
-	public virtual void SwapKeys(InputBinding inputBinding1, InputBinding inputBinding2)
+	public virtual void SwapKeys(InputBindingButton inputBinding1, InputBindingButton inputBinding2)
 	{
 		var text1 = inputBinding1.Text;
 		inputBinding1.Text = inputBinding2.Text;
@@ -21,13 +21,13 @@ public abstract class BaseControlsMenu : Page
 
 		foreach (var binding in inputBindingPaths)
 		{
-			var inputBinding = GetNode<InputBinding>(binding);
+			var inputBinding = GetNode<InputBindingButton>(binding);
 			inputBindings.Add(inputBinding);
 			inputBinding.OnBindingSelected += OnBindingSelect;
 		}
 	}
 
-	private void OnBindingSelect(InputBinding binding)
+	private void OnBindingSelect(InputBindingButton binding)
 	{
 		if (selectedBinding == null)
 		{
