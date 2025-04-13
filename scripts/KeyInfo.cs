@@ -12,7 +12,7 @@ public class KeyInfo : Resource
 	{
 		Name = "";
 		InputName = "";
-		Layout = InputLayout.Keyboard;
+		Layout = InputLayout.KeyboardMouse;
 		Icon = null;
 	}
 }

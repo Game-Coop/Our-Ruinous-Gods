@@ -1,6 +1,4 @@
 
-using System;
-using System.Collections.Generic;
 using Godot;
 
 public class AudioSettingsMenu : Page
@@ -44,39 +42,39 @@ public class AudioSettingsMenu : Page
 	}
 	private void LoadAudioSettings()
 	{
-		_masterSlider.Value = Mathf.Lerp((float)_masterSlider.MinValue, (float)_masterSlider.MaxValue, AudioMixer.MasterVolume);
-		_dialogSlider.Value = Mathf.Lerp((float)_dialogSlider.MinValue, (float)_dialogSlider.MaxValue, AudioMixer.DialogVolume);
-		_musicSlider.Value = Mathf.Lerp((float)_musicSlider.MinValue, (float)_musicSlider.MaxValue, AudioMixer.MusicVolume);
-		_sfxSlider.Value = Mathf.Lerp((float)_sfxSlider.MinValue, (float)_sfxSlider.MaxValue, AudioMixer.SfxVolume);
-		_environmentSlider.Value = Mathf.Lerp((float)_environmentSlider.MinValue, (float)_environmentSlider.MaxValue, AudioMixer.EnvironmentVolume);
+		_masterSlider.Value = Mathf.Lerp((float)_masterSlider.MinValue, (float)_masterSlider.MaxValue, AudioMixer.GetVolume(AudioMixerGroup.Master));
+		_dialogSlider.Value = Mathf.Lerp((float)_dialogSlider.MinValue, (float)_dialogSlider.MaxValue, AudioMixer.GetVolume(AudioMixerGroup.Dialog));
+		_musicSlider.Value = Mathf.Lerp((float)_musicSlider.MinValue, (float)_musicSlider.MaxValue, AudioMixer.GetVolume(AudioMixerGroup.Music));
+		_sfxSlider.Value = Mathf.Lerp((float)_sfxSlider.MinValue, (float)_sfxSlider.MaxValue, AudioMixer.GetVolume(AudioMixerGroup.Sfx));
+		_environmentSlider.Value = Mathf.Lerp((float)_environmentSlider.MinValue, (float)_environmentSlider.MaxValue, AudioMixer.GetVolume(AudioMixerGroup.Envrionment));
 	}
 	private void MasterSliderChanged(float val)
 	{
 		float normalizedVal = _masterSlider.GetNormalizedValue();
-		AudioMixer.MasterVolume = normalizedVal;
+		AudioMixer.SetVolume(AudioMixerGroup.Master, normalizedVal);
 	}
 	private void DialogSliderChanged(float val)
 	{
 		float normalizedVal = _dialogSlider.GetNormalizedValue();
-		AudioMixer.DialogVolume = normalizedVal;
+		AudioMixer.SetVolume(AudioMixerGroup.Dialog, normalizedVal);
 	}
 
 	private void SfxSliderSliderChanged(float val)
 	{
 		float normalizedVal = _sfxSlider.GetNormalizedValue();
-		AudioMixer.SfxVolume = normalizedVal;
+		AudioMixer.SetVolume(AudioMixerGroup.Sfx, normalizedVal);
 	}
 
 	private void MusicSliderChanged(float val)
 	{
 		float normalizedVal = _musicSlider.GetNormalizedValue();
-		AudioMixer.MusicVolume = normalizedVal;
+		AudioMixer.SetVolume(AudioMixerGroup.Music, normalizedVal);
 	}
 
 	private void EnvironmentSliderChanged(float val)
 	{
 		float normalizedVal = _environmentSlider.GetNormalizedValue();
-		AudioMixer.EnvironmentVolume = normalizedVal;
+		AudioMixer.SetVolume(AudioMixerGroup.Envrionment, normalizedVal);
 	}
 
 }

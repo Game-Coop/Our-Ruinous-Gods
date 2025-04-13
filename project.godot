@@ -31,6 +31,7 @@ EventBus="*res://scripts/EventBus.cs"
 AudioSettings="*res://resources/AudioMixer.tscn"
 GlobalAudioStreamPlayer="*res://resources/AudioStreamPlayer.tscn"
 InputBindings="*res://resources/InputBindings.tscn"
+InputLayoutTracker="*res://resources/InputLayoutTracker.tscn"
 
 [display]
 

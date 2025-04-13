@@ -1,7 +1,7 @@
 [System.Serializable]
 public enum InputLayout
 {
-    Keyboard = 0,
-    PS = 1,
+    KeyboardMouse = 0,
+    PlayStation = 1,
     Xbox = 2,
 }

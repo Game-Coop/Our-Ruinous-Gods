@@ -1,5 +1,3 @@
-
-using System;
 using Godot;
 
 public class SettingsMenu : Page
