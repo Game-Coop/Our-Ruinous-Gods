@@ -1,11 +1,11 @@
 using Godot;
-using System;
 
 public class Hint : Label3D
 {
 	[Export] private NodePath spritePath;
 
 	private Sprite3D sprite;
+	private Vector2 referenceScale = new Vector2(200f, 200f);
 	public override void _Ready()
 	{
 		base._Ready();
@@ -14,6 +14,10 @@ public class Hint : Label3D
 	}
 	public void Setup(string text, Texture texture)
 	{
+		float aspect = texture.GetHeight() / (float)texture.GetWidth();
+		var scaleFactor = referenceScale / texture.GetSize();
+
+		sprite.Scale = new Vector3(scaleFactor.x, scaleFactor.x * aspect, 1f);
 		sprite.Texture = texture;
 		Text = text;
 	}

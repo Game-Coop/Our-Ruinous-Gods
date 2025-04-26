@@ -118,7 +118,7 @@ public class AudioPlayerMenu : Page
 
 		entryContainer.AddChild(entry);
 		ReOrderChilds();
-		ConfigureFocus(entry);
+		// ConfigureFocus(entry);
 	}
 	private void ReOrderChilds()
 	{

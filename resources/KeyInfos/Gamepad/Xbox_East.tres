@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://assets/ui/GamepadKeys/xb_b.300dpi.png" type="Texture" id=1]
+[ext_resource path="res://scripts/KeyInfo.cs" type="Script" id=2]
+
+[resource]
+script = ExtResource( 2 )
+Name = "B"
+InputName = ""
+Icon = ExtResource( 1 )
+Layout = 2

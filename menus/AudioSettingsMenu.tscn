@@ -1,0 +1,137 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scripts/UI/MovingPanelTweener.cs" type="Script" id=1]
+[ext_resource path="res://scripts/UI/AudioSettingsMenu.cs" type="Script" id=2]
+
+[sub_resource type="StyleBoxEmpty" id=1]
+
+[node name="AudioSettingsMenu" type="Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_clip_content = true
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_styles/panel = SubResource( 1 )
+script = ExtResource( 2 )
+panelTweenerPath = NodePath("Panel Tweener")
+masterSliderPath = NodePath("Panel/Panel/Master Slider")
+dialogSliderPath = NodePath("Panel/Panel/Dialog Slider")
+sfxSliderPath = NodePath("Panel/Panel/Sfx Slider")
+musicSliderPath = NodePath("Panel/Panel/Music Slider")
+envrionmentSliderPath = NodePath("Panel/Panel/Environment Slider")
+
+[node name="Panel" type="Panel" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Panel" type="VBoxContainer" parent="Panel"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -300.0
+margin_top = -500.0
+margin_right = 300.0
+margin_bottom = 500.0
+custom_constants/separation = 50
+alignment = 1
+
+[node name="Master Slider" type="HSlider" parent="Panel/Panel"]
+margin_top = 360.0
+margin_right = 600.0
+margin_bottom = 376.0
+
+[node name="Label" type="Label" parent="Panel/Panel/Master Slider"]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_top = -24.0
+margin_bottom = 24.0
+grow_horizontal = 0
+grow_vertical = 2
+text = "Master"
+align = 2
+valign = 1
+
+[node name="Music Slider" type="HSlider" parent="Panel/Panel"]
+margin_top = 426.0
+margin_right = 600.0
+margin_bottom = 442.0
+
+[node name="Label" type="Label" parent="Panel/Panel/Music Slider"]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_top = -24.0
+margin_bottom = 24.0
+grow_horizontal = 0
+grow_vertical = 2
+text = "Music"
+align = 2
+valign = 1
+
+[node name="Dialog Slider" type="HSlider" parent="Panel/Panel"]
+margin_top = 492.0
+margin_right = 600.0
+margin_bottom = 508.0
+
+[node name="Label" type="Label" parent="Panel/Panel/Dialog Slider"]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_top = -24.0
+margin_bottom = 24.0
+grow_horizontal = 0
+grow_vertical = 2
+text = "Dialog"
+align = 2
+valign = 1
+
+[node name="Sfx Slider" type="HSlider" parent="Panel/Panel"]
+margin_top = 558.0
+margin_right = 600.0
+margin_bottom = 574.0
+
+[node name="Label" type="Label" parent="Panel/Panel/Sfx Slider"]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_top = -24.0
+margin_bottom = 24.0
+grow_horizontal = 0
+grow_vertical = 2
+text = "Sound Effects"
+align = 2
+valign = 1
+
+[node name="Environment Slider" type="HSlider" parent="Panel/Panel"]
+margin_top = 624.0
+margin_right = 600.0
+margin_bottom = 640.0
+
+[node name="Label" type="Label" parent="Panel/Panel/Environment Slider"]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_top = -24.0
+margin_bottom = 24.0
+grow_horizontal = 0
+grow_vertical = 2
+text = "Environment"
+align = 2
+valign = 1
+
+[node name="Label" type="Label" parent="Panel"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -129.5
+margin_top = 100.0
+margin_right = 129.5
+margin_bottom = 48.0
+text = "Audio"
+align = 1
+
+[node name="Panel Tweener" type="Control" parent="."]
+script = ExtResource( 1 )
+foregroundPath = NodePath("../Panel")
+direction = 3
+appearTime = 0.2
+disappearTime = 0.2
+appearTransition = 1
+disappearEase = 0
+disappearTransition = 1

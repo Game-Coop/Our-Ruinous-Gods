@@ -36,7 +36,7 @@ public class UIManager : CanvasLayer
 				GetTree().SetInputAsHandled();
 				pauseMenuPage.OpenAudioPlayer();
 			}
-			else if (@event.IsActionPressed("settings_toggle"))
+			else if (@event.IsActionPressed("pause_toggle"))
 			{
 				GetTree().SetInputAsHandled();
 				settingsMenuPage.OpenSettings();

@@ -1,5 +1,6 @@
 
 using System;
+using System.Collections.Generic;
 using Godot;
 
 public class ControlsMenu : Page
@@ -13,7 +14,6 @@ public class ControlsMenu : Page
 	private OrderedPages orderedPages;
 	private Page keyboardMenu;
 	private Page gamepadMenu;
-
 	protected override void _Ready()
 	{
 		base._Ready();
@@ -31,6 +31,7 @@ public class ControlsMenu : Page
 		paginationKeyboardMouse.SetTitle("Keyboard & Mouse");
 		paginationGamePad.SetTitle("Gamepad");
 		navbar.OnNavigate += OnNavigate;
+
 	}
 
 	private void OnNavigate(int from, int to)
