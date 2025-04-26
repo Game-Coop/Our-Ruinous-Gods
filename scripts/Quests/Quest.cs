@@ -5,7 +5,9 @@ public class Quest {
     public string Name;
     public Guid Id { get; };
     public List<Objective> Objectives;
-
+    public Quest() {
+        
+    }
     public checkComplete() {
         if(Objectives.All(objective => objective.Complete == true)) {
             this._complete = true
