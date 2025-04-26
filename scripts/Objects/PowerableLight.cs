@@ -6,11 +6,17 @@ public class PowerableLight : Spatial, IPower
     [Export] public int Charge { get; set; }
     [Export] public int Zone { get; set; }
     private Spatial light;
-    public PowerState State { get; set; }
+    [Export]public PowerState State { get; set; }
 
     public override void _Ready()
     {
         light = GetNode<Spatial>("Light");
+
+        if(this.State == PowerState.On) {
+            light.Show();
+        } else {
+            light.Hide();
+        }
 
         EventBus EventBusHandler = GetNode<EventBus>("/root/EventBus");
         EventBusHandler.Connect("PowerEventHandler", this, "OnPowerEvent");
