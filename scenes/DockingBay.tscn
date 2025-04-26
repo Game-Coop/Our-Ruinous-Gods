@@ -17,15 +17,20 @@ background_sky = SubResource( 3 )
 environment = SubResource( 4 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.7638, 0 )
-speed = 5.0
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.501679, 1.74876, 2.80733 )
+gravity = 20.0
+
+[node name="DockingbayBlockout" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1.4, 0, 0, 0, 1.4, 0, 0, 0, 1.4, -0.0344119, 0, 0.000638962 )
 
 [node name="CSGCombiner" type="CSGCombiner" parent="."]
-
-[node name="DockingbayBlockout" parent="CSGCombiner" instance=ExtResource( 1 )]
+use_collision = true
 
 [node name="CSGBox" type="CSGBox" parent="CSGCombiner"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.56599, -3.08886 )
-width = 10.0
-height = 10.0
-depth = 1.0
+transform = Transform( 2.96124, 0, 0, 0, 3.4166, 0, 0, 0, 1, 0.447214, 2.92033, -2.10941 )
+width = 3.10349
+height = 3.1661
+
+[node name="OmniLight" type="OmniLight" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.885, 20.3188 )
+omni_range = 20.0
