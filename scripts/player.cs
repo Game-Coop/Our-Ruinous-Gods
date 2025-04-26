@@ -8,6 +8,7 @@ public class player : KinematicBody
 	[Export] private float gamepad_sensitivity = (float)1;
 	private Spatial head;
 	[Export] private float mouse_sensitivity = (float)1;
+    [Export] private float gravity = 9.8f;  
 	[Export] private float speed = 1;
 	[Export] private float inertia = 1;
 	private Vector3 velocity;
@@ -75,9 +76,10 @@ public class player : KinematicBody
 		direction = new Vector3(strafe, 0, movement);
 		direction = direction.Rotated(Vector3.Up, horizontalRotion).Normalized();
 
+        velocity += Vector3.Down * gravity * delta;
 		velocity = velocity.LinearInterpolate(direction * speed, delta / inertia);
 
-		MoveAndSlide(velocity, Vector3.Up);
+		MoveAndSlideWithSnap(velocity, Vector3.Down, Vector3.Up, true, 1);
 	}
 
 	private void HandelTurn(float x, float y) {
