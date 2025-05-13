@@ -8,6 +8,7 @@ public class player : KinematicBody
 	[Export] private float gamepad_sensitivity = (float)1;
 	private Spatial head;
 	[Export] private float mouse_sensitivity = (float)1;
+    [Export] private float gravity = 9.8f;  
 	[Export] private float speed = 1;
 	[Export] private float inertia = 1;
 	private Vector3 velocity;
@@ -30,33 +31,33 @@ public class player : KinematicBody
 	public override void _Input(InputEvent e)
 	{
 		if (e is InputEventMouseMotion) handleMouseLook(e as InputEventMouseMotion);
-		if (e.IsActionPressed("quit")) GetTree().Quit();
+		// if (e.IsActionPressed("quit")) GetTree().Quit();
 	}
 
-    public void OnPowerChange(PowerEvent e) {
-        int currentPower = Power;
+	public void OnPowerChange(PowerEvent e) {
+		int currentPower = Power;
 
-        if(e.State == PowerState.On) {
-            currentPower += e.Charge;
-        } else {
-            currentPower -= e.Charge;
-        }
+		if(e.State == PowerState.On) {
+			currentPower += e.Charge;
+		} else {
+			currentPower -= e.Charge;
+		}
 
-        if(currentPower < 0) currentPower = 0;
-        if(currentPower >= MaxPower) currentPower = MaxPower;
+		if(currentPower < 0) currentPower = 0;
+		if(currentPower >= MaxPower) currentPower = MaxPower;
 
-        Power = currentPower;
-        GD.Print("current power use is: " + Power);
-    }
+		Power = currentPower;
+		GD.Print("current power use is: " + Power);
+	}
 
-    public void OnWorldEvent(string name) {
-        GD.Print("event has occured: " + name);
-    }
+	public void OnWorldEvent(string name) {
+		GD.Print("event has occured: " + name);
+	}
 
-    public void OnStaminaChange(int cost) {
+	public void OnStaminaChange(int cost) {
 		this.Stamina -= cost;
-        GD.Print("current stamina: " + this.Stamina);
-    }
+		GD.Print("current stamina: " + this.Stamina);
+	}
 
 	public override void _PhysicsProcess(float delta) {
 		float turnHorizontal = (Input.GetActionStrength("look_right") - Input.GetActionStrength("look_left")) * gamepad_sensitivity;
@@ -75,9 +76,10 @@ public class player : KinematicBody
 		direction = new Vector3(strafe, 0, movement);
 		direction = direction.Rotated(Vector3.Up, horizontalRotion).Normalized();
 
+        velocity += Vector3.Down * gravity * delta;
 		velocity = velocity.LinearInterpolate(direction * speed, delta / inertia);
 
-		MoveAndSlide(velocity, Vector3.Up);
+		MoveAndSlideWithSnap(velocity, Vector3.Down, Vector3.Up, true, 1);
 	}
 
 	private void HandelTurn(float x, float y) {

@@ -9,12 +9,12 @@
 [ext_resource path="res://objects/WorldEventCollisionTrigger.tscn" type="PackedScene" id=7]
 [ext_resource path="res://objects/PowerSwitchWithStaminaCost.tscn" type="PackedScene" id=8]
 
-[sub_resource type="PanoramaSky" id=3]
+[sub_resource type="PanoramaSky" id=6]
 panorama = ExtResource( 2 )
 
 [sub_resource type="Environment" id=4]
 background_mode = 2
-background_sky = SubResource( 3 )
+background_sky = SubResource( 6 )
 
 [sub_resource type="SpatialMaterial" id=5]
 flags_world_triplanar = true
@@ -29,6 +29,7 @@ uv1_triplanar_sharpness = 1.0
 environment = SubResource( 4 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.182181, 1.76786, 0.00218105 )
 speed = 7.0
 
 [node name="Level" type="CSGCombiner" parent="."]

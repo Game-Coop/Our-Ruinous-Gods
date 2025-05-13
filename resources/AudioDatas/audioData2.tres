@@ -1,11 +1,9 @@
-[gd_resource type="Resource" load_steps=3 format=2]
+[gd_resource type="Resource" load_steps=2 format=2]
 
 [ext_resource path="res://scripts/AudioPlayer/AudioData.cs" type="Script" id=1]
-[ext_resource path="res://assets/audio/audiologtest.wav" type="AudioStream" id=2]
 
 [resource]
 script = ExtResource( 1 )
 Id = 1
-Name = "Test Audio"
-Category = 0
-AudioStreamSample = ExtResource( 2 )
+Name = "Console"
+Category = 1
