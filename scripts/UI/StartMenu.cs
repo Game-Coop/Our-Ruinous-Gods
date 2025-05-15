@@ -7,25 +7,30 @@ public class StartMenu : Control
 	[Export] private NodePath startBtnPath;
 	[Export] private NodePath exitBtnPath;
 	[Export] private NodePath musicPlayerPath;
+	[Export] private NodePath versionLabelPath;
 
-	private Button _startBtn;
+    private Button _startBtn;
 	private Button _exitBtn;
 	private AudioStreamPlayer _musicPlayer;
+	private Label _versionLabel;
 
 	public override void _Ready()
 	{
 		base._Ready();
 		_startBtn = GetNode<Button>(startBtnPath);
 		_exitBtn = GetNode<Button>(exitBtnPath);
-        _musicPlayer = GetNode<AudioStreamPlayer>(musicPlayerPath);
-		_musicPlayer.Play();
+        _versionLabel = GetNode<Label>(versionLabelPath);
 
+        _musicPlayer = GetNode<AudioStreamPlayer>(musicPlayerPath);
+        _musicPlayer.Play();
 		Timer timer = new Timer();
 		timer.WaitTime = _musicPlayer.Stream.GetLength();
 		timer.Autostart = true;
         timer.OneShot = false;
         timer.Connect("timeout", this, nameof(OnMusicTimerTimeout));
         AddChild(timer);
+
+		_versionLabel.Text = VersionInfo.Version;
 
         _startBtn.Connect("pressed", this, nameof(OnStartPressed));
 		_exitBtn.Connect("pressed", this, nameof(OnExitPressed));
