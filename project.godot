@@ -32,6 +32,8 @@ AudioSettings="*res://resources/AudioMixer.tscn"
 InputBindings="*res://resources/InputBindings.tscn"
 InputLayoutTracker="*res://resources/InputLayoutTracker.tscn"
 AudioPlayer="*res://resources/AudioPlayer.tscn"
+Inventory="*res://resources/Inventory.tscn"
+Journal="*res://resources/Journal.tscn"
 
 [display]
 

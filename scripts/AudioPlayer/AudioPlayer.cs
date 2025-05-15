@@ -1,9 +1,11 @@
 
 using System;
+using System.Collections.Generic;
 using Godot;
 
 public class AudioPlayer : AudioStreamPlayer
 {
+	public Dictionary<int, AudioData> audioDatas = new Dictionary<int, AudioData>();
 	public static AudioPlayer Instance { get; private set; }
 	private event Action OnFinished;
 	public override void _Ready()
@@ -11,6 +13,29 @@ public class AudioPlayer : AudioStreamPlayer
 		base._Ready();
 		Instance = this;
 	}
+	public override void _EnterTree()
+	{
+		base._EnterTree();
+		AudioPlayerEvents.OnAudioCollect += AddData;
+	}
+	public override void _ExitTree()
+	{
+		base._ExitTree();
+		AudioPlayerEvents.OnAudioCollect -= AddData;
+
+	}
+	private void AddData(AudioData data)
+	{
+		GD.Print("Audio entry added to AudioPlayer: " + data.Name);
+		audioDatas.Add(data.Id, data);
+		AudioPlayerChanged();
+	}
+
+	private void AudioPlayerChanged()
+	{
+		AudioPlayerEvents.OnAudioPlayerChange?.Invoke(audioDatas);
+	}
+
 	public override void _Input(InputEvent e)
 	{
 		base._Input(e);
@@ -61,7 +86,7 @@ public class AudioPlayer : AudioStreamPlayer
 	}
 	public void End()
 	{
-		if(Playing)
+		if (Playing)
 		{
 			OnFinished += () =>
 			{
