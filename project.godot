@@ -43,7 +43,7 @@ window/stretch/aspect="keep_height"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/Godot-Mono-CustomResourceRegistry-godot-3.x/addons/MonoCustomResourceRegistry/plugin.cfg" )
+enabled=PoolStringArray(  )
 
 [global]
 
