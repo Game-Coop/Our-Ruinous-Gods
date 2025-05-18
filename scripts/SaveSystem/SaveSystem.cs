@@ -25,16 +25,19 @@ public class SaveSystem : ISaveSystem
 		_saver.Save(saveFileName, _decoder.Encode<T>(data));
 	}
 
-	public void Load<T>(string saveFileName, out T data) where T : new()
+	public void Load<T>(string saveFileName, out T data, bool notify = true) where T : new()
 	{
 		data = _decoder.Decode<T>(_saver.Load(saveFileName));
 		if (data != null)
 		{
 			T val = data;
-			ForEachSavable<T>((savable) =>
+			if (notify)
 			{
-				savable.OnLoad(val);
-			});
+				ForEachSavable<T>((savable) =>
+				{
+					savable.OnLoad(val);
+				});
+			}
 		}
 		else
 		{
@@ -78,4 +81,7 @@ public class SaveSystem : ISaveSystem
 		foreach (Node child in node.GetChildren())
 			Traverse(child, action);
 	}
+
+
+
 }
