@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using Godot;
 
-public class Journal : Node
+public class Journal : Node, ISavable<SaveData>
 {
 	public Dictionary<int, JournalData> journalDatas = new Dictionary<int, JournalData>();
 	public override void _EnterTree()
@@ -38,4 +38,25 @@ public class Journal : Node
 	{
 		JournalEvents.OnJournalChange.Invoke(journalDatas);
 	}
+
+	public void OnSave(SaveData data)
+	{
+		data.collectibleData.JournalIds.Clear();
+		foreach (var item in journalDatas)
+		{
+			data.collectibleData.JournalIds.Add(item.Value.Id);
+		}
+	}
+
+	public void OnLoad(SaveData data)
+	{
+		journalDatas.Clear();
+		foreach (var id in data.collectibleData.JournalIds)
+		{
+			var journalData = ResourceDatabase.JournalDatas[id];
+			journalDatas.Add(id, journalData);
+			journalData.IsCollected = true;
+		}
+	}
+
 }

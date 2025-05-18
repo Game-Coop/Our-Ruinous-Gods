@@ -23,14 +23,14 @@ public class InventoryPage : Page
 		itemNameLabel = GetNode<Label>(itemNameLabelPath);
 		itemDescriptionLabel = GetNode<Label>(itemDescriptionLabelPath);
 		itemPreviewTextureRect = GetNode<TextureRect>(itemPreviewRectPath);
+
+		InventoryEvents.OnUpdateRequest.Invoke();
 	}
 
 	public override void _EnterTree()
 	{
 		base._EnterTree();
 		InventoryEvents.OnInventoryChange += UpdateInventory;
-		
-		InventoryEvents.OnUpdateRequest.Invoke();
 	}
 	public override void _ExitTree()
 	{

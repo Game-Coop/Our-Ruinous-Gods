@@ -12,7 +12,7 @@ public class ItemData : Resource
     [Export] public Texture IconSprite { get; set; }
     [Export] public Texture PreviewSprite { get; set; }
     [Export] public Resource PreviewModel { get; set; }
-
+    public bool IsCollected { get; set; }
     public ItemData()
     {
         Id = 0;

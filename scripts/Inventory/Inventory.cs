@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using Godot;
 
-public class Inventory : Node
+public class Inventory : Node, ISavable<SaveData>
 {
     public Dictionary<int, ItemData> itemDatas = new Dictionary<int, ItemData>();
     public override void _EnterTree()
@@ -40,5 +40,25 @@ public class Inventory : Node
     private void InventoryChanged()
     {
         InventoryEvents.OnInventoryChange.Invoke(itemDatas);
+    }
+
+    public void OnSave(SaveData data)
+    {
+        data.collectibleData.ItemIds.Clear();
+        foreach (var item in itemDatas)
+        {
+            data.collectibleData.ItemIds.Add(item.Value.Id);
+        }
+    }
+
+    public void OnLoad(SaveData data)
+    {
+        itemDatas.Clear();
+        foreach (var id in data.collectibleData.ItemIds)
+        {
+            var itemData = ResourceDatabase.ItemDatas[id];
+            itemDatas.Add(id, itemData);
+            itemData.IsCollected = true;
+        }
     }
 }

@@ -49,6 +49,8 @@ public class AudioPlayerMenu : Page
 		stopButton.Connect("pressed", this, nameof(StopButtonPressed));
 		rewindButton.Connect("pressed", this, nameof(RewindButtonPressed));
 		fastForwardButton.Connect("pressed", this, nameof(FastForwardButtonPressed));
+
+		AudioPlayerEvents.OnUpdateRequest.Invoke();
 	}
 	public override void _EnterTree()
 	{

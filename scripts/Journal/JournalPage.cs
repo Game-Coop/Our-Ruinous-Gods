@@ -20,13 +20,13 @@ public class JournalPage : Page
 		entryContainer = GetNode(entryContainerPath);
 		entryNameLabel = GetNode<Label>(entryNameLabelPath);
 		entryReader = GetNode<JournalEntryReader>(entryReaderPath);
+		
+		JournalEvents.OnUpdateRequest.Invoke();
 	}
 	public override void _EnterTree()
 	{
 		base._EnterTree();
 		JournalEvents.OnJournalChange += OnJournalChange;
-
-		JournalEvents.OnUpdateRequest.Invoke();
 	}
 	public override void _ExitTree()
 	{
