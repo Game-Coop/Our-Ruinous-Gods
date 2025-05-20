@@ -15,6 +15,7 @@ public class player : KinematicBody
     private int Power = 0;
     private int MaxPower = 100;
     private int Stamina = 100;
+	private bool isOnLadder = false;
 
     public override void _Ready()
     {;
@@ -26,6 +27,10 @@ public class player : KinematicBody
         EventBusHandler.Connect("PowerChangedEventHandler", this, "OnPowerChange");
         EventBusHandler.Connect("StaminaChangeEventHandler", this, "OnStaminaChange");
         EventBusHandler.Connect("WorldEventHandler", this, "OnWorldEvent");
+
+		var ladderDetector = GetNode<Area>("LadderDetector");
+		ladderDetector.Connect("area_entered", this, nameof(OnAreaEntered));
+		ladderDetector.Connect("area_exited", this, nameof(OnAreaExited));
     }
 	
 	public override void _Input(InputEvent e)
@@ -76,10 +81,18 @@ public class player : KinematicBody
 		direction = new Vector3(strafe, 0, movement);
 		direction = direction.Rotated(Vector3.Up, horizontalRotion).Normalized();
 
-        velocity += Vector3.Down * gravity * delta;
-		velocity = velocity.LinearInterpolate(direction * speed, delta / inertia);
-
-		MoveAndSlideWithSnap(velocity, Vector3.Down, Vector3.Up, true, 1);
+		if (isOnLadder)
+		{
+			float climpInput = Input.GetActionStrength("move_up") - Input.GetActionStrength("move_down");
+			velocity = new Vector3(direction.x, climpInput * speed, direction.z);
+			MoveAndSlide(velocity, Vector3.Up);
+        }
+		else
+		{
+			velocity += Vector3.Down * gravity * delta;
+			velocity = velocity.LinearInterpolate(direction * speed, delta / inertia);
+			MoveAndSlideWithSnap(velocity, Vector3.Down, Vector3.Up, true, 1);
+		}
 	}
 
 	private void HandelTurn(float x, float y) {
@@ -94,4 +107,23 @@ public class player : KinematicBody
 	private void handleMouseLook(InputEventMouseMotion e) {
 		HandelTurn(e.Relative.x * mouse_sensitivity, e.Relative.y * mouse_sensitivity);
 	}
+
+    private void OnAreaEntered(Area area)
+    {
+        if (area is LadderCollision)
+        {
+            isOnLadder = true;
+            velocity = Vector3.Zero; // Reset velocity when entering the ladder
+            GD.Print("Player entered ladder");
+        }
+    }
+
+    private void OnAreaExited(Area area)
+    {
+        if (area is LadderCollision)
+        {
+            isOnLadder = false;
+            GD.Print("Player exited ladder");
+        }
+    }
 }
