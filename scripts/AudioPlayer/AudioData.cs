@@ -8,7 +8,7 @@ public class AudioData : Resource
     [Export] public string Name { get; set; }
     [Export] public AudioCategory Category { get; set; }
     [Export] public AudioStreamSample AudioStreamSample { get; set; }
-
+    public bool IsCollected { get; set; }
     public AudioData()
     {
         Id = 0;

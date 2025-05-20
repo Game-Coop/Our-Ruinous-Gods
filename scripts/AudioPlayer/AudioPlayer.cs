@@ -1,9 +1,11 @@
 
 using System;
+using System.Collections.Generic;
 using Godot;
 
-public class AudioPlayer : AudioStreamPlayer
+public class AudioPlayer : AudioStreamPlayer, ISavable<SaveData>
 {
+	public Dictionary<int, AudioData> audioDatas = new Dictionary<int, AudioData>();
 	public static AudioPlayer Instance { get; private set; }
 	private event Action OnFinished;
 	public override void _Ready()
@@ -11,6 +13,32 @@ public class AudioPlayer : AudioStreamPlayer
 		base._Ready();
 		Instance = this;
 	}
+	public override void _EnterTree()
+	{
+		base._EnterTree();
+		AudioPlayerEvents.OnAudioCollect += AddData;
+		AudioPlayerEvents.OnUpdateRequest += AudioPlayerChanged;
+	}
+	public override void _ExitTree()
+	{
+		base._ExitTree();
+		AudioPlayerEvents.OnAudioCollect -= AddData;
+		AudioPlayerEvents.OnUpdateRequest -= AudioPlayerChanged;
+
+	}
+	private void AddData(AudioData data)
+	{
+		GD.Print("Audio entry added to AudioPlayer: " + data.Name);
+		audioDatas.Add(data.Id, data);
+		AudioPlayerChanged();
+	}
+
+	private void AudioPlayerChanged()
+	{
+		GD.Print("audio player changed count:" + audioDatas.Count);
+		AudioPlayerEvents.OnAudioPlayerChange?.Invoke(audioDatas);
+	}
+
 	public override void _Input(InputEvent e)
 	{
 		base._Input(e);
@@ -61,7 +89,7 @@ public class AudioPlayer : AudioStreamPlayer
 	}
 	public void End()
 	{
-		if(Playing)
+		if (Playing)
 		{
 			OnFinished += () =>
 			{
@@ -87,4 +115,25 @@ public class AudioPlayer : AudioStreamPlayer
 			AudioPlayerEvents.OnAudioPlayerFinished?.Invoke();
 		}
 	}
+
+	public void OnSave(SaveData data)
+	{
+		data.collectibleData.AudioIds.Clear();
+		foreach (var audioData in audioDatas)
+		{
+			data.collectibleData.AudioIds.Add(audioData.Value.Id);
+		}
+	}
+
+	public void OnLoad(SaveData data)
+	{
+		audioDatas.Clear();
+		foreach (var id in data.collectibleData.AudioIds)
+		{
+			var audioData = ResourceDatabase.AudioDatas[id];
+			audioDatas.Add(id, audioData);
+			audioData.IsCollected = true;
+		}
+	}
+
 }

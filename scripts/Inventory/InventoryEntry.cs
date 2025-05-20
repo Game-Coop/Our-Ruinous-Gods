@@ -1,9 +1,9 @@
 using Godot;
 using System;
 
-public class InventoryItem : Button
+public class InventoryEntry : Button
 {
-	public event Action<InventoryItem> OnFocus;
+	public event Action<InventoryEntry> OnFocus;
 	[Export] private NodePath textureRectPath;
 	[Export] private NodePath labelPath;
 	[Export] public ItemData itemData;

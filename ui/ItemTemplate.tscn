@@ -1,7 +1,8 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://resources/ItemDatas/KeyItem1Data.tres" type="Resource" id=1]
-[ext_resource path="res://scripts/Inventory/InventoryItem.cs" type="Script" id=2]
+[ext_resource path="res://scripts/Inventory/InventoryEntry.cs" type="Script" id=2]
+
 
 [sub_resource type="StyleBoxFlat" id=5]
 draw_center = false

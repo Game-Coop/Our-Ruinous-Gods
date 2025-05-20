@@ -26,12 +26,15 @@ default_bus_layout="res://audio_mixer.tres"
 
 [autoload]
 
+SaveManager="*res://resources/SaveManager.tscn"
 ResourceDatabase="*res://resources/ResourceDatabase.tscn"
 EventBus="*res://scripts/EventBus.cs"
 AudioSettings="*res://resources/AudioMixer.tscn"
-GlobalAudioStreamPlayer="*res://resources/AudioStreamPlayer.tscn"
 InputBindings="*res://resources/InputBindings.tscn"
 InputLayoutTracker="*res://resources/InputLayoutTracker.tscn"
+AudioPlayer="*res://resources/AudioPlayer.tscn"
+Inventory="*res://resources/Inventory.tscn"
+Journal="*res://resources/Journal.tscn"
 VersionInfo="*res://scripts/VersionInfo.cs"
 
 [display]

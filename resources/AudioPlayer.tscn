@@ -2,7 +2,7 @@
 
 [ext_resource path="res://scripts/AudioPlayer/AudioPlayer.cs" type="Script" id=1]
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer"]
+[node name="AudioPlayer" type="AudioStreamPlayer"]
 pause_mode = 2
 bus = "Dialog"
 script = ExtResource( 1 )

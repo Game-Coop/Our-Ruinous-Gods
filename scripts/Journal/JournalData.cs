@@ -8,6 +8,7 @@ public class JournalData : Resource
     [Export] public string Name { get; set; }
     [Export(PropertyHint.MultilineText)] public string Content { get; set; }
     [Export] public JournalCategory Category { get; set; }
+    public bool IsCollected { get; set; }
     public JournalData()
     {
         Id = 0;

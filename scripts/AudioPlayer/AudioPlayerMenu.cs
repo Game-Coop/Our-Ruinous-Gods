@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Godot;
 
 public class AudioPlayerMenu : Page
@@ -49,15 +50,45 @@ public class AudioPlayerMenu : Page
 		rewindButton.Connect("pressed", this, nameof(RewindButtonPressed));
 		fastForwardButton.Connect("pressed", this, nameof(FastForwardButtonPressed));
 
-		AudioPlayerEvents.OnAudioCollect += OnEntryCollect;
+		AudioPlayerEvents.OnUpdateRequest.Invoke();
+	}
+	public override void _EnterTree()
+	{
+		base._EnterTree();
+		AudioPlayerEvents.OnAudioPlayerChange += OnAudioPlayerChange;
 		AudioPlayerEvents.OnAudioPlayerStoped += OnAudioPlayerStoped;
 	}
+	public override void _ExitTree()
+	{
+		base._ExitTree();
+		AudioPlayerEvents.OnAudioPlayerChange -= OnAudioPlayerChange;
+		AudioPlayerEvents.OnAudioPlayerStoped -= OnAudioPlayerStoped;
+	}
+	private void OnAudioPlayerChange(Dictionary<int, AudioData> audioDatas)
+	{
+		var entriesToRemove = entries.Where(pair => !audioDatas.ContainsKey(pair.Key));
+		foreach (var entry in entriesToRemove)
+		{
+			RemoveEntry(entry.Value.audioData);
+		}
 
+		var entriesToAdd = audioDatas.Where(pair => !entries.ContainsKey(pair.Key));
+
+		foreach (var item in entriesToAdd)
+		{
+			AddEntry(item.Value);
+		}
+	}
+
+	private void RemoveEntry(AudioData audioData)
+	{
+		// TODO: Theoretically we won't be removing audio entries from audio player but its here
+		throw new NotImplementedException();
+	}
 	private void OnAudioPlayerStoped()
 	{
 		UpdatePlayImage();
 	}
-
 	private void StopButtonPressed()
 	{
 		AudioPlayer.Instance.End();
