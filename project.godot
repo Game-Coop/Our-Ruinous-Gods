@@ -17,7 +17,7 @@ ResourceScriptDirectories=[ "res://" ]
 [application]
 
 config/name="Our Ruinous Gods"
-run/main_scene="res://scenes/Elysia.tscn"
+run/main_scene="res://menus/StartMenu.tscn"
 config/icon="res://icon.png"
 
 [audio]
@@ -35,6 +35,7 @@ InputLayoutTracker="*res://resources/InputLayoutTracker.tscn"
 AudioPlayer="*res://resources/AudioPlayer.tscn"
 Inventory="*res://resources/Inventory.tscn"
 Journal="*res://resources/Journal.tscn"
+VersionInfo="*res://scripts/VersionInfo.cs"
 
 [display]
 
@@ -45,7 +46,7 @@ window/stretch/aspect="keep_height"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/Godot-Mono-CustomResourceRegistry-godot-3.x/addons/MonoCustomResourceRegistry/plugin.cfg" )
+enabled=PoolStringArray(  )
 
 [global]
 
