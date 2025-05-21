@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://assets/models/DockingbayBlockout.fbx" type="PackedScene" id=1]
 [ext_resource path="res://entities/player.tscn" type="PackedScene" id=2]
@@ -15,6 +15,7 @@
 [ext_resource path="res://ui/Hint.tscn" type="PackedScene" id=13]
 [ext_resource path="res://scripts/Objects/CollectableItem.cs" type="Script" id=14]
 [ext_resource path="res://scripts/Objects/JournalEntryItem.cs" type="Script" id=15]
+[ext_resource path="res://objects/LadderCollision.tscn" type="PackedScene" id=16]
 [ext_resource path="res://scripts/AudioPlayer/AudioEntryItem.cs" type="Script" id=17]
 [ext_resource path="res://scripts/Objects/SlidingDoor.cs" type="Script" id=18]
 [ext_resource path="res://assets/models/standardSurface1.material" type="Material" id=19]
@@ -72,6 +73,9 @@ use_collision = true
 transform = Transform( 2.96124, 0, 0, 0, 3.4166, 0, 0, 0, 1, 0.447214, 2.92033, -2.10941 )
 width = 3.10349
 height = 3.1661
+
+[node name="Area" parent="DockingbayBlockout" instance=ExtResource( 16 )]
+transform = Transform( 0.630093, 0, 0, 0, 3.75424, 0, 0, 0, 0.637943, 18.6135, -3.62043, 24.8233 )
 
 [node name="PowerSwitch(Upstairs)" parent="." instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.529503, 0.230173, 28.464 )
