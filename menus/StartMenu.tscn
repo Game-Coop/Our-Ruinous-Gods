@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://assets/audio/88 horroramb2.wav" type="AudioStream" id=1]
 [ext_resource path="res://assets/ui/startmenu-generated.webp" type="Texture" id=2]
 [ext_resource path="res://fonts/Chakra_Petch/ChakraPetch-Regular.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://scripts/UI/StartMenu.cs" type="Script" id=4]
+[ext_resource path="res://scripts/UI/ButtonManager.cs" type="Script" id=5]
 
 [sub_resource type="StyleBoxTexture" id=1]
 texture = ExtResource( 2 )
@@ -44,9 +45,9 @@ custom_constants/separation = 10
 alignment = 1
 
 [node name="Start Button" type="Button" parent="Panel/Panel2/Panel"]
-margin_top = 435.0
+margin_top = 325.0
 margin_right = 362.0
-margin_bottom = 535.0
+margin_bottom = 425.0
 rect_min_size = Vector2( 0, 100 )
 size_flags_horizontal = 3
 flat = true
@@ -59,11 +60,46 @@ size_flags_vertical = 3
 custom_fonts/font = SubResource( 3 )
 text = "START"
 valign = 1
+script = ExtResource( 5 )
 
-[node name="Exit Button" type="Button" parent="Panel/Panel2/Panel"]
+[node name="Continue" type="Button" parent="Panel/Panel2/Panel"]
+margin_top = 435.0
+margin_right = 362.0
+margin_bottom = 535.0
+rect_min_size = Vector2( 0, 100 )
+size_flags_horizontal = 3
+flat = true
+
+[node name="Label" type="Label" parent="Panel/Panel2/Panel/Continue"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = SubResource( 3 )
+text = "CONTINUE"
+valign = 1
+
+[node name="Options" type="Button" parent="Panel/Panel2/Panel"]
 margin_top = 545.0
 margin_right = 362.0
 margin_bottom = 645.0
+rect_min_size = Vector2( 0, 100 )
+size_flags_horizontal = 3
+flat = true
+
+[node name="Label" type="Label" parent="Panel/Panel2/Panel/Options"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = SubResource( 3 )
+text = "OPTIONS"
+valign = 1
+
+[node name="Exit Button" type="Button" parent="Panel/Panel2/Panel"]
+margin_top = 655.0
+margin_right = 362.0
+margin_bottom = 755.0
 rect_min_size = Vector2( 0, 100 )
 size_flags_horizontal = 3
 flat = true
