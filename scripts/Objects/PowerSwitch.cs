@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class PowerSwitch : Interactable
+public partial class PowerSwitch : Interactable
 {
     [Export] public int Zone { get; set; }
 

@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using Godot;
 
-public class AudioPlayer : AudioStreamPlayer, ISavable<SaveData>
+public partial class AudioPlayer : AudioStreamPlayer, ISavable<SaveData>
 {
 	public Dictionary<int, AudioData> audioDatas = new Dictionary<int, AudioData>();
 	public static AudioPlayer Instance { get; private set; }
@@ -51,7 +51,7 @@ public class AudioPlayer : AudioStreamPlayer, ISavable<SaveData>
 			PausePlay(Playing);
 		}
 	}
-	public void Setup(AudioStreamSample sample)
+	public void Setup(AudioStreamWAV sample)
 	{
 		if (Playing)
 		{

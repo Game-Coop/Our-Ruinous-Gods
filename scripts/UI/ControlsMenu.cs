@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using Godot;
 
-public class ControlsMenu : Page
+public partial class ControlsMenu : Page
 {
 	[Export] private PackedScene paginationTemplate;
 	[Export] private NodePath navBarPath;

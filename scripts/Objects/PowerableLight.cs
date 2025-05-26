@@ -1,16 +1,16 @@
 using Godot;
 using System;
 
-public class PowerableLight : Spatial, IPower
+public partial class PowerableLight : Node3D, IPower
 {
     [Export] public int Charge { get; set; }
     [Export] public int Zone { get; set; }
-    private Spatial light;
+    private Node3D light;
     [Export]public PowerState State { get; set; }
 
     public override void _Ready()
     {
-        light = GetNode<Spatial>("Light");
+        light = GetNode<Node3D>("Light3D");
 
         if(this.State == PowerState.On) {
             light.Show();
@@ -19,7 +19,7 @@ public class PowerableLight : Spatial, IPower
         }
 
         EventBus EventBusHandler = GetNode<EventBus>("/root/EventBus");
-        EventBusHandler.Connect("PowerEventHandler", this, "OnPowerEvent");
+        EventBusHandler.Connect("PowerEventHandler", new Callable(this, "OnPowerEvent"));
     }
     
     public void OnPowerEvent(int zone) {

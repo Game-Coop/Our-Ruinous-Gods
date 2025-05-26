@@ -1,6 +1,6 @@
 using Godot;
 
-public class PowerEvent : Object
+public partial class PowerEvent : GodotObject 
 {
     public PowerState State;
     public int Charge;

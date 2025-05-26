@@ -1,15 +1,15 @@
 using System;
 using Godot;
 
-public class InteractionRaycaster : Spatial
+public partial class InteractionRaycaster : Node3D
 {
 	[Export] private NodePath rayCastPath;
-	private RayCast rayCast;
+	private RayCast3D rayCast;
 	private IInteractable focusedInteractable;
 	public override void _Ready()
 	{
 		base._Ready();
-		rayCast = GetNode<RayCast>(rayCastPath);
+		rayCast = GetNode<RayCast3D>(rayCastPath);
 	}
 	public override void _Input(InputEvent e)
 	{
@@ -18,7 +18,7 @@ public class InteractionRaycaster : Spatial
 			focusedInteractable?.Interact();
 		}
 	}
-	public override void _Process(float delta)
+	public override void _Process(double delta)
 	{
 		base._Process(delta);
 		if (rayCast.IsColliding())

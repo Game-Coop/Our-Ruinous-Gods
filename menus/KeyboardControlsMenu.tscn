@@ -25,101 +25,101 @@ swapLabelPath = NodePath("ScrollContainer/Panel/Label")
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = 200.0
+offset_top = 200.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource( 1 )
 scroll_horizontal_enabled = false
 
 [node name="Panel" type="Panel" parent="ScrollContainer"]
-margin_right = 1920.0
-margin_bottom = 880.0
+offset_right = 1920.0
+offset_bottom = 880.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_styles/panel = SubResource( 14 )
+theme_override_styles/panel = SubResource( 14 )
 
 [node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/Panel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-rect_min_size = Vector2( 0, 100 )
+custom_minimum_size = Vector2( 0, 100 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_constants/separation = 200
+theme_override_constants/separation = 200
 alignment = 1
 
 [node name="Input Names Column" type="VBoxContainer" parent="ScrollContainer/Panel/HBoxContainer"]
-margin_left = 705.0
-margin_right = 914.0
-margin_bottom = 880.0
+offset_left = 705.0
+offset_right = 914.0
+offset_bottom = 880.0
 size_flags_vertical = 3
 
 [node name="Title" type="Label" parent="ScrollContainer/Panel/HBoxContainer/Input Names Column"]
-margin_right = 209.0
-margin_bottom = 48.0
+offset_right = 209.0
+offset_bottom = 48.0
 
 [node name="Inventory" type="Label" parent="ScrollContainer/Panel/HBoxContainer/Input Names Column"]
-margin_top = 52.0
-margin_right = 209.0
-margin_bottom = 100.0
+offset_top = 52.0
+offset_right = 209.0
+offset_bottom = 100.0
 text = "Inventory"
 
 [node name="Journal" type="Label" parent="ScrollContainer/Panel/HBoxContainer/Input Names Column"]
-margin_top = 104.0
-margin_right = 209.0
-margin_bottom = 152.0
+offset_top = 104.0
+offset_right = 209.0
+offset_bottom = 152.0
 text = "Journal"
 
 [node name="Audio Player" type="Label" parent="ScrollContainer/Panel/HBoxContainer/Input Names Column"]
-margin_top = 156.0
-margin_right = 209.0
-margin_bottom = 204.0
+offset_top = 156.0
+offset_right = 209.0
+offset_bottom = 204.0
 text = "Audio Player"
 
 [node name="Pause" type="Label" parent="ScrollContainer/Panel/HBoxContainer/Input Names Column"]
-margin_top = 208.0
-margin_right = 209.0
-margin_bottom = 256.0
+offset_top = 208.0
+offset_right = 209.0
+offset_bottom = 256.0
 text = "Pause"
 
 [node name="Interact" type="Label" parent="ScrollContainer/Panel/HBoxContainer/Input Names Column"]
-margin_top = 260.0
-margin_right = 209.0
-margin_bottom = 308.0
+offset_top = 260.0
+offset_right = 209.0
+offset_bottom = 308.0
 text = "Interact"
 
 [node name="Inputs Column" type="VBoxContainer" parent="ScrollContainer/Panel/HBoxContainer"]
-margin_left = 1114.0
-margin_right = 1214.0
-margin_bottom = 880.0
+offset_left = 1114.0
+offset_right = 1214.0
+offset_bottom = 880.0
 
 [node name="Label" type="Label" parent="ScrollContainer/Panel/HBoxContainer/Inputs Column"]
-margin_right = 100.0
-margin_bottom = 48.0
+offset_right = 100.0
+offset_bottom = 48.0
 
 [node name="Inventory Button" parent="ScrollContainer/Panel/HBoxContainer/Inputs Column" instance=ExtResource( 4 )]
 keyInfo = ExtResource( 7 )
 
 [node name="Journal Button" parent="ScrollContainer/Panel/HBoxContainer/Inputs Column" instance=ExtResource( 4 )]
-margin_top = 104.0
-margin_bottom = 152.0
+offset_top = 104.0
+offset_bottom = 152.0
 text = "J"
 keyInfo = ExtResource( 5 )
 
 [node name="Audio Player Button" parent="ScrollContainer/Panel/HBoxContainer/Inputs Column" instance=ExtResource( 4 )]
-margin_top = 156.0
-margin_bottom = 204.0
+offset_top = 156.0
+offset_bottom = 204.0
 text = "O"
 keyInfo = ExtResource( 8 )
 
 [node name="Pause Button" parent="ScrollContainer/Panel/HBoxContainer/Inputs Column" instance=ExtResource( 4 )]
-margin_top = 208.0
-margin_bottom = 256.0
+offset_top = 208.0
+offset_bottom = 256.0
 text = "Esc"
 keyInfo = ExtResource( 6 )
 
 [node name="Interact Button" parent="ScrollContainer/Panel/HBoxContainer/Inputs Column" instance=ExtResource( 4 )]
-margin_top = 260.0
-margin_bottom = 308.0
+offset_top = 260.0
+offset_bottom = 308.0
 text = "E"
 keyInfo = ExtResource( 9 )
 
@@ -129,16 +129,16 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -272.0
-margin_top = -363.0
-margin_right = 272.0
+offset_left = -272.0
+offset_top = -363.0
+offset_right = 272.0
 text = "Select the binding you want to swap"
 align = 1
 autowrap = true
 
 [node name="Panel Tweener" type="Control" parent="."]
-margin_top = 200.0
-margin_bottom = 200.0
+offset_top = 200.0
+offset_bottom = 200.0
 script = ExtResource( 2 )
 foregroundPath = NodePath("../ScrollContainer")
 direction = 1

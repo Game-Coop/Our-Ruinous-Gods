@@ -19,7 +19,7 @@ public static class InputRebinder
 
         InputEventKey newKeyEvent = new InputEventKey
         {
-            Scancode = (uint)newKey
+            Keycode = (uint)newKey
         };
 
         InputMap.ActionAddEvent(actionName, newKeyEvent);
@@ -61,7 +61,7 @@ public static class InputRebinder
 
         var eventsToRemove = new List<InputEvent>();
 
-        foreach (InputEvent evt in InputMap.GetActionList(actionName))
+        foreach (InputEvent evt in InputMap.ActionGetEvents(actionName))
         {
             if (eventType.IsInstanceOfType(evt))
             {
@@ -97,21 +97,21 @@ public static class InputRebinder
         }
 
         // Convert Godot Array to IEnumerable<InputEvent>, filter by type, and duplicate
-        var actionOneEvents = InputMap.GetActionList(actionOne)
+        var actionOneEvents = InputMap.ActionGetEvents(actionOne)
             .Cast<InputEvent>()
             .Where(e => e is T)
             .Select(e => e.Duplicate() as InputEvent)
             .ToList();
 
-        var actionTwoEvents = InputMap.GetActionList(actionTwo)
+        var actionTwoEvents = InputMap.ActionGetEvents(actionTwo)
             .Cast<InputEvent>()
             .Where(e => e is T)
             .Select(e => e.Duplicate() as InputEvent)
             .ToList();
 
         // Remove only the selected type of events
-        InputMap.GetActionList(actionOne).Cast<InputEvent>().Where(e => e is T).ToList().ForEach(e => InputMap.ActionEraseEvent(actionOne, e));
-        InputMap.GetActionList(actionTwo).Cast<InputEvent>().Where(e => e is T).ToList().ForEach(e => InputMap.ActionEraseEvent(actionTwo, e));
+        InputMap.ActionGetEvents(actionOne).Cast<InputEvent>().Where(e => e is T).ToList().ForEach(e => InputMap.ActionEraseEvent(actionOne, e));
+        InputMap.ActionGetEvents(actionTwo).Cast<InputEvent>().Where(e => e is T).ToList().ForEach(e => InputMap.ActionEraseEvent(actionTwo, e));
 
         // Swap bindings
         actionTwoEvents.ForEach(e => InputMap.ActionAddEvent(actionOne, e));

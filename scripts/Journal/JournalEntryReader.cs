@@ -1,7 +1,7 @@
 using System;
 using Godot;
 
-public class JournalEntryReader : Control
+public partial class JournalEntryReader : Control
 {
 	[Export] private PackedScene paginationTemplate;
 	[Export] private PackedScene pageTemplate;

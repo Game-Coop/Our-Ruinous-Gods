@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class PowerSwitchWithStaminaCost : Interactable
+public partial class PowerSwitchWithStaminaCost : Interactable
 {
     [Export] public int Zone { get; set; }
     [Export] public int Stamina { get; set; }

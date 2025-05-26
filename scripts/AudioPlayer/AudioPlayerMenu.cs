@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Godot;
 
-public class AudioPlayerMenu : Page
+public partial class AudioPlayerMenu : Page
 {
 	private SortedDictionary<int, AudioEntry> entries = new SortedDictionary<int, AudioEntry>();
 	[Export] private PackedScene audioEntryTemplate;
@@ -45,10 +45,10 @@ public class AudioPlayerMenu : Page
 		playImage = GetNode<TextureRect>(playImagePath);
 		pauseImage = GetNode<TextureRect>(pauseImagePath);
 
-		playButton.Connect("pressed", this, nameof(PlayButtonPressed));
-		stopButton.Connect("pressed", this, nameof(StopButtonPressed));
-		rewindButton.Connect("pressed", this, nameof(RewindButtonPressed));
-		fastForwardButton.Connect("pressed", this, nameof(FastForwardButtonPressed));
+		playButton.Connect("pressed", new Callable(this, nameof(PlayButtonPressed)));
+		stopButton.Connect("pressed", new Callable(this, nameof(StopButtonPressed)));
+		rewindButton.Connect("pressed", new Callable(this, nameof(RewindButtonPressed)));
+		fastForwardButton.Connect("pressed", new Callable(this, nameof(FastForwardButtonPressed)));
 
 		AudioPlayerEvents.OnUpdateRequest.Invoke();
 	}
@@ -168,21 +168,21 @@ public class AudioPlayerMenu : Page
 
 		if (topEntry != null)
 		{
-			entry.FocusNeighbourTop = topEntry.GetPath();
-			topEntry.FocusNeighbourBottom = entry.GetPath();
+			entry.FocusNeighborTop = topEntry.GetPath();
+			topEntry.FocusNeighborBottom = entry.GetPath();
 		}
 		if (bottomEntry != null)
 		{
-			entry.FocusNeighbourBottom = bottomEntry.GetPath();
-			bottomEntry.FocusNeighbourTop = entry.GetPath();
+			entry.FocusNeighborBottom = bottomEntry.GetPath();
+			bottomEntry.FocusNeighborTop = entry.GetPath();
 		}
 	}
 	private void OnAudioEntryFocus(AudioEntry entry)
 	{
 		entryNameLabel.Text = entry.audioData.Name;
-		AudioPlayer.Instance.Setup(entry.audioData.AudioStreamSample);
+		AudioPlayer.Instance.Setup(entry.audioData.AudioStreamWAV);
 	}
-	public override void _Process(float delta)
+	public override void _Process(double delta)
 	{
 		base._Process(delta);
 		if (isDragging || AudioPlayer.Instance.Stream == null) return;

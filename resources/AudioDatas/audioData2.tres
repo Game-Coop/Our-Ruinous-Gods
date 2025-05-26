@@ -8,4 +8,4 @@ script = ExtResource( 1 )
 Id = 1
 Name = "Console"
 Category = 1
-AudioStreamSample = ExtResource( 2 )
+AudioStreamWAV = ExtResource( 2 )

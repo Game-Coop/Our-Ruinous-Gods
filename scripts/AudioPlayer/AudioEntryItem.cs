@@ -1,7 +1,7 @@
 using System;
 using Godot;
 
-public class AudioEntryItem : Interactable
+public partial class AudioEntryItem : Interactable
 {
 	public event Action OnCollect;
 	public override string InteractionText => "Take";

@@ -3,10 +3,10 @@
 [ext_resource path="res://scripts/Journal/JournalPage.cs" type="Script" id=1]
 [ext_resource path="res://themes/inventoryScrollbarTheme.tres" type="Theme" id=2]
 [ext_resource path="res://ui/JournalEntryTemplate.tscn" type="PackedScene" id=3]
-[ext_resource path="res://fonts/Chakra_Petch/ChakraPetch-Regular.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://fonts/Chakra_Petch/ChakraPetch-Regular.ttf" type="FontFile" id=4]
 [ext_resource path="res://ui/Pagination.tscn" type="PackedScene" id=5]
 [ext_resource path="res://ui/EntryPageTemplate.tscn" type="PackedScene" id=6]
-[ext_resource path="res://assets/ui/right-arrow.png" type="Texture" id=7]
+[ext_resource path="res://assets/ui/right-arrow.png" type="Texture2D" id=7]
 [ext_resource path="res://scripts/UI/Navbar.cs" type="Script" id=8]
 [ext_resource path="res://scripts/UI/ScrollablePages.cs" type="Script" id=9]
 [ext_resource path="res://scripts/Journal/JournalEntryReader.cs" type="Script" id=10]
@@ -27,26 +27,26 @@ corner_radius_bottom_left = 30
 
 [sub_resource type="Theme" id=4]
 
-[sub_resource type="DynamicFont" id=5]
+[sub_resource type="FontFile" id=5]
 size = 50
 font_data = ExtResource( 4 )
 
 [sub_resource type="InputEventAction" id=12]
 action = "journal_left"
 
-[sub_resource type="ShortCut" id=9]
+[sub_resource type="Shortcut" id=9]
 shortcut = SubResource( 12 )
 
 [sub_resource type="InputEventAction" id=13]
 action = "journal_right"
 
-[sub_resource type="ShortCut" id=11]
+[sub_resource type="Shortcut" id=11]
 shortcut = SubResource( 13 )
 
 [node name="Journal" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-rect_min_size = Vector2( 1920, 0 )
+custom_minimum_size = Vector2( 1920, 0 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource( 1 )
@@ -67,50 +67,50 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -22.0
-margin_top = -278.0
-margin_right = 22.0
-margin_bottom = 278.0
-custom_styles/separator = SubResource( 7 )
+offset_left = -22.0
+offset_top = -278.0
+offset_right = 22.0
+offset_bottom = 278.0
+theme_override_styles/separator = SubResource( 7 )
 
 [node name="Item List Container" type="Panel" parent="Panel"]
-margin_left = 142.0
-margin_top = 301.0
-margin_right = 792.0
-margin_bottom = 777.0
+offset_left = 142.0
+offset_top = 301.0
+offset_right = 792.0
+offset_bottom = 777.0
 
 [node name="ScrollContainer" type="ScrollContainer" parent="Panel/Item List Container"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 20.0
-margin_top = 20.0
-margin_right = -20.0
-margin_bottom = -20.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
 theme = ExtResource( 2 )
 follow_focus = true
 scroll_horizontal_enabled = false
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Panel/Item List Container/ScrollContainer"]
-margin_right = 610.0
-margin_bottom = 436.0
+offset_right = 610.0
+offset_bottom = 436.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = SubResource( 4 )
-custom_constants/separation = 20
+theme_override_constants/separation = 20
 
 [node name="Title" type="Label" parent="Panel"]
-margin_left = 155.0
-margin_top = 231.0
-margin_right = 372.0
-margin_bottom = 297.0
-custom_fonts/font = SubResource( 5 )
+offset_left = 155.0
+offset_top = 231.0
+offset_right = 372.0
+offset_bottom = 297.0
+theme_override_fonts/font = SubResource( 5 )
 text = "Journal"
 
 [node name="Journal Reader" type="VBoxContainer" parent="Panel"]
-margin_left = 1096.0
-margin_top = 270.0
-margin_right = 1733.0
-margin_bottom = 797.0
+offset_left = 1096.0
+offset_top = 270.0
+offset_right = 1733.0
+offset_bottom = 797.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
@@ -122,17 +122,17 @@ scrollablePagesPath = NodePath("ScrollablePages")
 seperationString = "@"
 
 [node name="Entry Name" type="Label" parent="Panel/Journal Reader"]
-margin_right = 750.0
-margin_bottom = 48.0
+offset_right = 750.0
+offset_bottom = 48.0
 size_flags_vertical = 1
 align = 1
 valign = 1
 
 [node name="ScrollablePages" type="ScrollContainer" parent="Panel/Journal Reader"]
-margin_top = 52.0
-margin_right = 750.0
-margin_bottom = 469.0
-rect_min_size = Vector2( 750, 0 )
+offset_top = 52.0
+offset_right = 750.0
+offset_bottom = 469.0
+custom_minimum_size = Vector2( 750, 0 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource( 2 )
@@ -142,22 +142,22 @@ script = ExtResource( 9 )
 pageContainerPath = NodePath("HBoxContainer")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Panel/Journal Reader/ScrollablePages"]
-margin_right = 750.0
-margin_bottom = 417.0
-rect_clip_content = true
+offset_right = 750.0
+offset_bottom = 417.0
+clip_contents = true
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_constants/separation = 250
+theme_override_constants/separation = 250
 
 [node name="Navbar" type="HBoxContainer" parent="Panel/Journal Reader"]
-margin_left = 275.0
-margin_top = 473.0
-margin_right = 475.0
-margin_bottom = 527.0
+offset_left = 275.0
+offset_top = 473.0
+offset_right = 475.0
+offset_bottom = 527.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
-custom_constants/separation = 50
+theme_override_constants/separation = 50
 alignment = 1
 script = ExtResource( 8 )
 paginationsPath = NodePath("Paginations")
@@ -165,15 +165,15 @@ leftButtonPath = NodePath("Left Button")
 rightButtonPath = NodePath("Right Button")
 
 [node name="Left Button" type="Button" parent="Panel/Journal Reader/Navbar"]
-margin_right = 50.0
-margin_bottom = 54.0
+offset_right = 50.0
+offset_bottom = 54.0
 grow_horizontal = 2
 grow_vertical = 2
-rect_min_size = Vector2( 50, 50 )
+custom_minimum_size = Vector2( 50, 50 )
 focus_mode = 0
 shortcut = SubResource( 9 )
 flat = true
-icon_align = 1
+icon_alignment = 1
 expand_icon = true
 
 [node name="TextureRect" type="TextureRect" parent="Panel/Journal Reader/Navbar/Left Button"]
@@ -185,27 +185,27 @@ stretch_mode = 6
 flip_h = true
 
 [node name="Paginations" type="HBoxContainer" parent="Panel/Journal Reader/Navbar"]
-margin_left = 100.0
-margin_right = 100.0
-margin_bottom = 54.0
+offset_left = 100.0
+offset_right = 100.0
+offset_bottom = 54.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_constants/separation = 40
+theme_override_constants/separation = 40
 alignment = 1
 
 [node name="Right Button" type="Button" parent="Panel/Journal Reader/Navbar"]
-margin_left = 150.0
-margin_right = 200.0
-margin_bottom = 54.0
+offset_left = 150.0
+offset_right = 200.0
+offset_bottom = 54.0
 grow_horizontal = 2
 grow_vertical = 2
-rect_min_size = Vector2( 50, 50 )
+custom_minimum_size = Vector2( 50, 50 )
 focus_mode = 0
 shortcut = SubResource( 11 )
 flat = true
-icon_align = 1
+icon_alignment = 1
 expand_icon = true
 
 [node name="TextureRect" type="TextureRect" parent="Panel/Journal Reader/Navbar/Right Button"]

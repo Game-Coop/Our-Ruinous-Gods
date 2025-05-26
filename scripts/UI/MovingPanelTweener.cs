@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using Godot;
 
-public class MovingPanelTweener : PanelTweener
+public partial class MovingPanelTweener : PanelTweener
 {
 	[Export] private NodePath foregroundPath;
 	[Export] private Direction direction;
@@ -54,7 +54,7 @@ public class MovingPanelTweener : PanelTweener
 			var color = foreground.Modulate;
 			color.a = 1f;
 			foreground.Modulate = color;
-			foreground.RectPosition = appearPos;
+			foreground.Position = appearPos;
 			OnAppear();
 			return;
 		}
@@ -71,7 +71,7 @@ public class MovingPanelTweener : PanelTweener
 		.SetEase(appearEase)
 		.SetTrans(appearTransition);
 
-		tween.Connect("finished", this, nameof(OnAppearComplete));
+		tween.Connect("finished", new Callable(this, nameof(OnAppearComplete)));
 	}
 	public override void Disappear(bool instant = false)
 	{
@@ -85,7 +85,7 @@ public class MovingPanelTweener : PanelTweener
 			foreground.Modulate = color;
 
 			foreground.Visible = false;
-			foreground.RectPosition = disappearPos[direction]();
+			foreground.Position = disappearPos[direction]();
 			OnDisappear();
 			return;
 		}
@@ -102,7 +102,7 @@ public class MovingPanelTweener : PanelTweener
 		.SetEase(disappearEase)
 		.SetTrans(disappearTransition);
 
-		tween.Connect("finished", this, nameof(OnDisappearComplete));
+		tween.Connect("finished", new Callable(this, nameof(OnDisappearComplete)));
 	}
 	public override void SetReverse(bool isReverse)
 	{
@@ -110,7 +110,7 @@ public class MovingPanelTweener : PanelTweener
 		this.isReverse = isReverse;
 		if (IsHidden)
 		{
-			foreground.RectPosition = disappearPos[direction]();
+			foreground.Position = disappearPos[direction]();
 		}
 	}
 	private void OnDisappearComplete()

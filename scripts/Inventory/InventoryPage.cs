@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Godot;
 
-public class InventoryPage : Page
+public partial class InventoryPage : Page
 {
 	private Dictionary<int, InventoryEntry> inventoryEntries = new Dictionary<int, InventoryEntry>();
 	[Export] private PackedScene itemTemplate;
@@ -85,13 +85,13 @@ public class InventoryPage : Page
 		var bottomItem = index + 1 < childCount ? container.GetChildOrNull<InventoryEntry>(index + 1) : null;
 		if (topItem != null)
 		{
-			item.FocusNeighbourTop = topItem.GetPath();
-			topItem.FocusNeighbourBottom = item.GetPath();
+			item.FocusNeighborTop = topItem.GetPath();
+			topItem.FocusNeighborBottom = item.GetPath();
 		}
 		if (bottomItem != null)
 		{
-			item.FocusNeighbourBottom = bottomItem.GetPath();
-			bottomItem.FocusNeighbourTop = item.GetPath();
+			item.FocusNeighborBottom = bottomItem.GetPath();
+			bottomItem.FocusNeighborTop = item.GetPath();
 		}
 	}
 	public void RemoveEntry(ItemData itemData)
@@ -110,7 +110,7 @@ public class InventoryPage : Page
 	}
 	private void OnItemFocus(InventoryEntry item)
 	{
-		itemPreviewTextureRect.Texture = item.itemData.PreviewSprite;
+		itemPreviewTextureRect.Texture2D = item.itemData.PreviewSprite;
 		itemDescriptionLabel.Text = item.itemData.Description;
 		itemNameLabel.Text = item.itemData.Name;
 

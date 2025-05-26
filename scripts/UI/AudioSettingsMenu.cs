@@ -1,7 +1,7 @@
 
 using Godot;
 
-public class AudioSettingsMenu : Page
+public partial class AudioSettingsMenu : Page
 {
 	[Export] private NodePath masterSliderPath;
 	[Export] private NodePath dialogSliderPath;
@@ -25,11 +25,11 @@ public class AudioSettingsMenu : Page
 		_musicSlider = GetNode<Slider>(musicSliderPath);
 		_environmentSlider = GetNode<Slider>(envrionmentSliderPath);
 
-		_masterSlider.Connect("value_changed", this, nameof(MasterSliderChanged));
-		_dialogSlider.Connect("value_changed", this, nameof(DialogSliderChanged));
-		_sfxSlider.Connect("value_changed", this, nameof(SfxSliderSliderChanged));
-		_musicSlider.Connect("value_changed", this, nameof(MusicSliderChanged));
-		_environmentSlider.Connect("value_changed", this, nameof(EnvironmentSliderChanged));
+		_masterSlider.Connect("value_changed", new Callable(this, nameof(MasterSliderChanged)));
+		_dialogSlider.Connect("value_changed", new Callable(this, nameof(DialogSliderChanged)));
+		_sfxSlider.Connect("value_changed", new Callable(this, nameof(SfxSliderSliderChanged)));
+		_musicSlider.Connect("value_changed", new Callable(this, nameof(MusicSliderChanged)));
+		_environmentSlider.Connect("value_changed", new Callable(this, nameof(EnvironmentSliderChanged)));
 	}
 	public override void ShowPage(bool instant = false)
 	{

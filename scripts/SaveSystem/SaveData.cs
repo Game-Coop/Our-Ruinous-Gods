@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Numerics;
 
 [System.Serializable]
-public class SaveData
+public partial class SaveData
 {
     public Vector3 playerPos;
     public Vector3 playerRot;
@@ -13,7 +13,7 @@ public class SaveData
 }
 
 [System.Serializable]
-public class CollectibleData
+public partial class CollectibleData
 {
     public List<int> ItemIds = new List<int>();
     public List<int> JournalIds = new List<int>();

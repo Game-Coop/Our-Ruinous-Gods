@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using Godot;
 
-public class ScrollablePages : ScrollContainer
+public partial class ScrollablePages : ScrollContainer
 {
 	private List<Page> pages = new List<Page>();
 	[Export] private NodePath pageContainerPath;
@@ -12,7 +12,7 @@ public class ScrollablePages : ScrollContainer
 	private int targetScroll;
 	public int PageCount => pages.Count;
 	private int currentIndex;
-	SceneTreeTween tween;
+	Tween tween;
 	public override void _Ready()
 	{
 		base._Ready();
@@ -74,7 +74,7 @@ public class ScrollablePages : ScrollContainer
 	{
 		if (ScrollVerticalEnabled)
 		{
-			targetScroll = (int)((RectSize.y + separation) * pageIndex);
+			targetScroll = (int)((Size.y + separation) * pageIndex);
 			if (isInstant)
 			{
 				SetDeferred("scroll_vertical", targetScroll);
@@ -83,7 +83,7 @@ public class ScrollablePages : ScrollContainer
 		}
 		else
 		{
-			targetScroll = (int)((RectSize.x + separation) * pageIndex);
+			targetScroll = (int)((Size.x + separation) * pageIndex);
 			GD.Print("TargetScroll: " + targetScroll);
 			if (isInstant)
 			{

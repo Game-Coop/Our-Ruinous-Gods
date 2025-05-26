@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/88 horroramb2.wav-099ad1715b7debbc32d0f41bacb56467.sample"
+type="AudioStreamWAV"
+uid="uid://bfkc80yhg62qr"
+path="res://.godot/imported/88 horroramb2.wav-099ad1715b7debbc32d0f41bacb56467.sample"
 
 [deps]
 
 source_file="res://assets/audio/88 horroramb2.wav"
-dest_files=[ "res://.import/88 horroramb2.wav-099ad1715b7debbc32d0f41bacb56467.sample" ]
+dest_files=["res://.godot/imported/88 horroramb2.wav-099ad1715b7debbc32d0f41bacb56467.sample"]
 
 [params]
 

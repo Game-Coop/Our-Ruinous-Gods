@@ -2,7 +2,7 @@
 using System;
 using Godot;
 
-public class GraphicsMenu : Page
+public partial class GraphicsMenu : Page
 {
 	protected override void _Ready()
 	{

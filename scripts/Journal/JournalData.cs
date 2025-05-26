@@ -1,8 +1,7 @@
 using Godot;
-using MonoCustomResourceRegistry;
 
 [RegisteredType(nameof(JournalData), "", nameof(Resource))]
-public class JournalData : Resource
+public partial class JournalData : Resource
 {
     [Export] public int Id { get; set; }
     [Export] public string Name { get; set; }

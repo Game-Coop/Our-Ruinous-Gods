@@ -2,15 +2,15 @@
 using System;
 using Godot;
 
-public class Lamp : Spatial, ISwitchable
+public partial class Lamp : Node3D, ISwitchable
 {
 	public event Action<bool> OnStateChange;
 	public bool IsOn { get; private set; }
-	private Light light;
+	private Light3D light;
 	public override void _Ready()
 	{
 		base._Ready();
-		light = GetNode<SpotLight>("SpotLight");
+		light = GetNode<SpotLight3D>("SpotLight3D");
 	}
 	public void Toggle()
 	{
@@ -19,7 +19,7 @@ public class Lamp : Spatial, ISwitchable
 	}
 	public void TurnOff()
 	{
-		GD.Print("Light turned off!");
+		GD.Print("Light3D turned off!");
 		light.Visible = false;
 		IsOn = false;
 		OnStateChange?.Invoke(false);
@@ -27,7 +27,7 @@ public class Lamp : Spatial, ISwitchable
 
 	public void TurnOn()
 	{
-		GD.Print("Light turned on!");
+		GD.Print("Light3D turned on!");
 		light.Visible = true;
 		IsOn = true;
 		OnStateChange?.Invoke(true);

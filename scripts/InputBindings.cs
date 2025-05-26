@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Godot;
 
-public class InputBindings : Node
+public partial class InputBindings : Node
 {
 	[Export] private List<KeyInfo> keyInfos = new List<KeyInfo>();
 	private static Dictionary<InputLayout, Dictionary<string, KeyInfo>> inputKeysDict = new Dictionary<InputLayout, Dictionary<string, KeyInfo>>();

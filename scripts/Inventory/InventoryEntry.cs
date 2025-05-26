@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class InventoryEntry : Button
+public partial class InventoryEntry : Button
 {
 	public event Action<InventoryEntry> OnFocus;
 	[Export] private NodePath textureRectPath;
@@ -14,7 +14,7 @@ public class InventoryEntry : Button
 	public override void _Ready()
 	{
 		base._Ready();
-		GetNode<TextureRect>(textureRectPath).Texture = itemData.IconSprite;
+		GetNode<TextureRect>(textureRectPath).Texture2D = itemData.IconSprite;
 		GetNode<Label>(labelPath).Text = itemData.Name;
 	}
 

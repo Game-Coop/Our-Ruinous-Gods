@@ -22,7 +22,7 @@ public abstract class Page : Control
 			return _panelTweener;
 		}
 	}
-	protected virtual void _Ready()
+	protected virtual new void _Ready()
 	{
 		base._Ready();
 		OnHidden += Hide;

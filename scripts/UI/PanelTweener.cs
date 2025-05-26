@@ -15,7 +15,7 @@ public abstract class PanelTweener : Control
 	public event Action OnDisappeared;
 	public bool IsHidden { get; protected set; }
 	[Export] public bool isHiddenAtStart = true;
-	protected SceneTreeTween tween;
+	protected Tween tween;
 	protected bool isReverse;
 	public bool IsReverse => isReverse;
 	public override void _Ready()

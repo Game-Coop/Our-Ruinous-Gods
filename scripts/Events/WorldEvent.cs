@@ -1,6 +1,6 @@
 using Godot;
 
-public class WorldEvent : Object
+public partial class WorldEvent : GodotObject 
 {
     public string Name;
 }

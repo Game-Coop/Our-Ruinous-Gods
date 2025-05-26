@@ -1,7 +1,7 @@
 using System;
 using Godot;
 
-public class PauseMenu : Page
+public partial class PauseMenu : Page
 {
 	[Export] private NodePath navBarPath;
 	[Export] private NodePath orderedPagesPath;
@@ -81,7 +81,7 @@ public class PauseMenu : Page
 		var toggleAudioplayer = @event.IsActionPressed("audioplayer_toggle");
 
 		if (toggleInventory || toggleInventory || toggleAudioplayer)
-			GetTree().SetInputAsHandled();
+			GetViewport().SetInputAsHandled();
 
 		if (inventoryPage.Visible && toggleInventory)
 		{

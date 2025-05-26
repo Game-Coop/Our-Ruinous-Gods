@@ -1,6 +1,6 @@
 using Godot;
 
-public class SettingsMenu : Page
+public partial class SettingsMenu : Page
 {
 	[Export] private NodePath continueBtnPath;
 	[Export] private NodePath controlsBtnPath;
@@ -40,13 +40,13 @@ public class SettingsMenu : Page
 		_graphicsBtn = GetNode<Button>(graphicsBtnPath);
 		_audioBtn = GetNode<Button>(audioBtnPath);
 
-		_continueBtn.Connect("pressed", this, nameof(ContinuePressed));
-		_exitBtn.Connect("pressed", this, nameof(OnExitPressed));
+		_continueBtn.Connect("pressed", new Callable(this, nameof(ContinuePressed)));
+		_exitBtn.Connect("pressed", new Callable(this, nameof(OnExitPressed)));
 
-		_controlsBtn.Connect("pressed", this, nameof(ControlsPressed));
-		_gameplayBtn.Connect("pressed", this, nameof(GameplayPressed));
-		_graphicsBtn.Connect("pressed", this, nameof(GraphicsPressed));
-		_audioBtn.Connect("pressed", this, nameof(AudioPressed));
+		_controlsBtn.Connect("pressed", new Callable(this, nameof(ControlsPressed)));
+		_gameplayBtn.Connect("pressed", new Callable(this, nameof(GameplayPressed)));
+		_graphicsBtn.Connect("pressed", new Callable(this, nameof(GraphicsPressed)));
+		_audioBtn.Connect("pressed", new Callable(this, nameof(AudioPressed)));
 
 		OnHidden += Hidden;
 	}
@@ -69,7 +69,7 @@ public class SettingsMenu : Page
 	private void OnExitPressed()
 	{
 		// TODO: save and exit could be implemented here
-		GetTree().ChangeSceneTo(ResourceDatabase.StartMenuScene);
+		GetTree().ChangeSceneToPacked(ResourceDatabase.StartMenuScene);
 	}
 	private void ControlsPressed()
 	{
@@ -87,7 +87,7 @@ public class SettingsMenu : Page
 	{
 		SelectPage(audioMenuPage);
 	}
-	private void Hidden()
+	private new void Hidden()
 	{
 		if (currentPage != null && currentPage.Visible)
 		{
@@ -113,7 +113,7 @@ public class SettingsMenu : Page
 		if (@event.IsActionPressed("pause_toggle"))
 		{
 			HidePage();
-			GetTree().SetInputAsHandled();
+			GetViewport().SetInputAsHandled();
 		}
 	}
 

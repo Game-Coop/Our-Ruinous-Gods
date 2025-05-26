@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using Godot;
 
-public class OrderedPages : Control
+public partial class OrderedPages : Control
 {
 	public int PageCount => pages.Count;
 	private List<Page> pages = new List<Page>();

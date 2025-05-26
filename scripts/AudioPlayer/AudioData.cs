@@ -1,19 +1,18 @@
 using Godot;
-using MonoCustomResourceRegistry;
 
 [RegisteredType(nameof(AudioData), "", nameof(Resource))]
-public class AudioData : Resource
+public partial class AudioData : Resource
 {
     [Export] public int Id { get; set; }
     [Export] public string Name { get; set; }
     [Export] public AudioCategory Category { get; set; }
-    [Export] public AudioStreamSample AudioStreamSample { get; set; }
+    [Export] public AudioStreamWAV AudioStreamWAV { get; set; }
     public bool IsCollected { get; set; }
     public AudioData()
     {
         Id = 0;
         Name = "";
         Category = AudioCategory.AudioLogs;
-        AudioStreamSample = null;
+        AudioStreamWAV = null;
     }
 }

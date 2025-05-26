@@ -2,7 +2,7 @@
 using System;
 using Godot;
 
-public class FadingPanelTweener : PanelTweener
+public partial class FadingPanelTweener : PanelTweener
 {
     [Export] private NodePath foregroundPath;
     [Export] private float appearAlpha = 1f;
@@ -43,7 +43,7 @@ public class FadingPanelTweener : PanelTweener
         .FromCurrent()
         .SetEase(appearEase)
         .SetTrans(appearTransition);
-        tween.Connect("finished", this, nameof(OnAppearComplete));
+        tween.Connect("finished", new Callable(this, nameof(OnAppearComplete)));
     }
     public override void Disappear(bool instant = false)
     {
@@ -62,7 +62,7 @@ public class FadingPanelTweener : PanelTweener
         .FromCurrent()
         .SetEase(disappearEase)
         .SetTrans(disappearTransition);
-        tween.Connect("finished", this, nameof(OnDisappearComplete));
+        tween.Connect("finished", new Callable(this, nameof(OnDisappearComplete)));
     }
     private void OnDisappearComplete()
     {

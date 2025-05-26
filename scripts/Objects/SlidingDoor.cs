@@ -2,7 +2,7 @@
 using System;
 using Godot;
 
-public class SlidingDoor : Door
+public partial class SlidingDoor : Door
 {
     [Export] private NodePath rightDoorPath;
     [Export] private NodePath leftDoorPath;
@@ -14,14 +14,14 @@ public class SlidingDoor : Door
     [Export] private Vector3 rightLocalOpenPos = new Vector3(1f, 0, 0);
     [Export] private Vector3 rightLocalClosePos = new Vector3(0, 0, 0);
 
-    private Spatial rightDoor;
-    private Spatial leftDoor;
-    protected SceneTreeTween tween;
+    private Node3D rightDoor;
+    private Node3D leftDoor;
+    protected Tween tween;
     public override void _Ready()
     {
         base._Ready();
-        rightDoor = GetNode<Spatial>(rightDoorPath);
-        leftDoor = GetNode<Spatial>(leftDoorPath);
+        rightDoor = GetNode<Node3D>(rightDoorPath);
+        leftDoor = GetNode<Node3D>(leftDoorPath);
     }
     public override void TurnOn()
     {

@@ -2,11 +2,11 @@ using Godot;
 using System;
 using System.IO.Compression;
 
-public class player : KinematicBody
+public partial class Player : CharacterBody3D
 {
 	private Vector3 direction;
 	[Export] private float gamepad_sensitivity = (float)1;
-	private Spatial head;
+	private Node3D head;
 	[Export] private float mouse_sensitivity = (float)1;
     [Export] private float gravity = 9.8f;  
 	[Export] private float speed = 1;
@@ -18,14 +18,14 @@ public class player : KinematicBody
 
     public override void _Ready()
     {;
-        head = GetNode<Spatial>("Head");
+        head = GetNode<Node3D>("Head");
 
         Input.MouseMode = Input.MouseModeEnum.Captured;
 
         EventBus EventBusHandler = GetNode<EventBus>("/root/EventBus");
-        EventBusHandler.Connect("PowerChangedEventHandler", this, "OnPowerChange");
-        EventBusHandler.Connect("StaminaChangeEventHandler", this, "OnStaminaChange");
-        EventBusHandler.Connect("WorldEventHandler", this, "OnWorldEvent");
+        EventBusHandler.Connect("PowerChangedEventHandler", new Callable(this, "OnPowerChange"));
+        EventBusHandler.Connect("StaminaChangeEventHandler", new Callable(this, "OnStaminaChange"));
+        EventBusHandler.Connect("WorldEventHandler", new Callable(this, "OnWorldEvent"));
     }
 	
 	public override void _Input(InputEvent e)
@@ -59,7 +59,7 @@ public class player : KinematicBody
 		GD.Print("current stamina: " + this.Stamina);
 	}
 
-	public override void _PhysicsProcess(float delta) {
+	public override void _PhysicsProcess(double delta) {
 		float turnHorizontal = (Input.GetActionStrength("look_right") - Input.GetActionStrength("look_left")) * gamepad_sensitivity;
 		float turnVertical = (Input.GetActionStrength("look_down") - Input.GetActionStrength("look_up")) * gamepad_sensitivity;
 
@@ -77,7 +77,7 @@ public class player : KinematicBody
 		direction = direction.Rotated(Vector3.Up, horizontalRotion).Normalized();
 
         velocity += Vector3.Down * gravity * delta;
-		velocity = velocity.LinearInterpolate(direction * speed, delta / inertia);
+		velocity = velocity.Lerp(direction * speed, delta / inertia);
 
 		MoveAndSlideWithSnap(velocity, Vector3.Down, Vector3.Up, true, 1);
 	}
@@ -85,10 +85,10 @@ public class player : KinematicBody
 	private void HandelTurn(float x, float y) {
 		float clampDegrees = 90;
 
-		RotateY(Mathf.Deg2Rad(-x));
+		RotateY(Mathf.DegToRad(-x));
 		
-		head.RotateX(Mathf.Deg2Rad(-y));
-		head.Rotation = new Vector3(Mathf.Clamp(head.Rotation.x, Mathf.Deg2Rad(-clampDegrees), Mathf.Deg2Rad(clampDegrees)), head.Rotation.y, head.Rotation.z);
+		head.RotateX(Mathf.DegToRad(-y));
+		head.Rotation = new Vector3(Mathf.Clamp(head.Rotation.x, Mathf.DegToRad(-clampDegrees), Mathf.DegToRad(clampDegrees)), head.Rotation.y, head.Rotation.z);
 	}
 
 	private void handleMouseLook(InputEventMouseMotion e) {

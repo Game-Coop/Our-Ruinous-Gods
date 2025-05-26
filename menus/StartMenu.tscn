@@ -1,95 +1,106 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=8 format=3 uid="uid://jsmom37esqfc"]
 
-[ext_resource path="res://assets/audio/88 horroramb2.wav" type="AudioStream" id=1]
-[ext_resource path="res://assets/ui/startmenu-generated.webp" type="Texture" id=2]
-[ext_resource path="res://fonts/Chakra_Petch/ChakraPetch-Regular.ttf" type="DynamicFontData" id=3]
-[ext_resource path="res://scripts/UI/StartMenu.cs" type="Script" id=4]
+[ext_resource type="AudioStream" uid="uid://bfkc80yhg62qr" path="res://assets/audio/88 horroramb2.wav" id="1"]
+[ext_resource type="Texture2D" uid="uid://c3amvo1kvgiii" path="res://assets/ui/startmenu-generated.webp" id="2"]
+[ext_resource type="FontFile" uid="uid://djxjfdocobiaf" path="res://fonts/Chakra_Petch/ChakraPetch-Regular.ttf" id="3"]
+[ext_resource type="Script" uid="uid://dtcloosmxo5fu" path="res://scripts/UI/StartMenu.cs" id="4"]
 
-[sub_resource type="StyleBoxTexture" id=1]
-texture = ExtResource( 2 )
-region_rect = Rect2( 0, 0, 1792, 1024 )
+[sub_resource type="StyleBoxTexture" id="1"]
+texture = ExtResource("2")
+region_rect = Rect2(0, 0, 1792, 1024)
 
-[sub_resource type="StyleBoxFlat" id=2]
+[sub_resource type="StyleBoxFlat" id="2"]
 
-[sub_resource type="DynamicFont" id=3]
-size = 70
-font_data = ExtResource( 3 )
+[sub_resource type="FontFile" id="3"]
+fallbacks = Array[Font]([ExtResource("3"), ExtResource("3")])
+subpixel_positioning = 0
+msdf_pixel_range = 14
+msdf_size = 128
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
 
 [node name="Start Menu" type="Control"]
-pause_mode = 2
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-script = ExtResource( 4 )
+script = ExtResource("4")
 startBtnPath = NodePath("Panel/Panel2/Panel/Start Button")
 exitBtnPath = NodePath("Panel/Panel2/Panel/Exit Button")
 musicPlayerPath = NodePath("AudioStreamPlayer")
 versionLabelPath = NodePath("Panel/Version Label")
 
 [node name="Panel" type="Panel" parent="."]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_styles/panel = SubResource( 1 )
+theme_override_styles/panel = SubResource("1")
 
 [node name="Panel2" type="Panel" parent="Panel"]
-self_modulate = Color( 0, 0, 0, 0.5 )
+self_modulate = Color(0, 0, 0, 0.5)
+layout_mode = 0
 anchor_bottom = 1.0
-margin_right = 382.0
-custom_styles/panel = SubResource( 2 )
+offset_right = 382.0
+theme_override_styles/panel = SubResource("2")
 
 [node name="Panel" type="VBoxContainer" parent="Panel/Panel2"]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 20.0
-custom_constants/separation = 10
+offset_left = 20.0
+theme_override_constants/separation = 10
 alignment = 1
 
 [node name="Start Button" type="Button" parent="Panel/Panel2/Panel"]
-margin_top = 435.0
-margin_right = 362.0
-margin_bottom = 535.0
-rect_min_size = Vector2( 0, 100 )
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
 size_flags_horizontal = 3
 flat = true
 
 [node name="Label" type="Label" parent="Panel/Panel2/Panel/Start Button"]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_fonts/font = SubResource( 3 )
+theme_override_fonts/font = SubResource("3")
 text = "START"
-valign = 1
+vertical_alignment = 1
 
 [node name="Exit Button" type="Button" parent="Panel/Panel2/Panel"]
-margin_top = 545.0
-margin_right = 362.0
-margin_bottom = 645.0
-rect_min_size = Vector2( 0, 100 )
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
 size_flags_horizontal = 3
 flat = true
 
 [node name="Label" type="Label" parent="Panel/Panel2/Panel/Exit Button"]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_fonts/font = SubResource( 3 )
+theme_override_fonts/font = SubResource("3")
 text = "EXIT"
-valign = 1
+vertical_alignment = 1
 
 [node name="Version Label" type="Label" parent="Panel"]
+layout_mode = 0
 anchor_left = 0.893
 anchor_top = 0.897
 anchor_right = 0.991
 anchor_bottom = 0.974
-margin_left = 0.439819
-margin_top = 0.23999
-margin_right = -0.720093
-margin_bottom = 0.0799561
-align = 1
-valign = 2
+offset_left = 0.439819
+offset_top = 0.23999
+offset_right = -0.720093
+offset_bottom = 0.0799561
+horizontal_alignment = 1
+vertical_alignment = 2
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 1 )
+stream = ExtResource("1")
 autoplay = true
-bus = "Music"
+bus = &"Music"

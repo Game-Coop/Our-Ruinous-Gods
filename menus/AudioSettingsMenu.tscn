@@ -8,10 +8,10 @@
 [node name="AudioSettingsMenu" type="Panel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-rect_clip_content = true
+clip_contents = true
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_styles/panel = SubResource( 1 )
+theme_override_styles/panel = SubResource( 1 )
 script = ExtResource( 2 )
 panelTweenerPath = NodePath("Panel Tweener")
 masterSliderPath = NodePath("Panel/Panel/Master Slider")
@@ -29,23 +29,23 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -300.0
-margin_top = -500.0
-margin_right = 300.0
-margin_bottom = 500.0
-custom_constants/separation = 50
+offset_left = -300.0
+offset_top = -500.0
+offset_right = 300.0
+offset_bottom = 500.0
+theme_override_constants/separation = 50
 alignment = 1
 
 [node name="Master Slider" type="HSlider" parent="Panel/Panel"]
-margin_top = 360.0
-margin_right = 600.0
-margin_bottom = 376.0
+offset_top = 360.0
+offset_right = 600.0
+offset_bottom = 376.0
 
 [node name="Label" type="Label" parent="Panel/Panel/Master Slider"]
 anchor_top = 0.5
 anchor_bottom = 0.5
-margin_top = -24.0
-margin_bottom = 24.0
+offset_top = -24.0
+offset_bottom = 24.0
 grow_horizontal = 0
 grow_vertical = 2
 text = "Master"
@@ -53,15 +53,15 @@ align = 2
 valign = 1
 
 [node name="Music Slider" type="HSlider" parent="Panel/Panel"]
-margin_top = 426.0
-margin_right = 600.0
-margin_bottom = 442.0
+offset_top = 426.0
+offset_right = 600.0
+offset_bottom = 442.0
 
 [node name="Label" type="Label" parent="Panel/Panel/Music Slider"]
 anchor_top = 0.5
 anchor_bottom = 0.5
-margin_top = -24.0
-margin_bottom = 24.0
+offset_top = -24.0
+offset_bottom = 24.0
 grow_horizontal = 0
 grow_vertical = 2
 text = "Music"
@@ -69,15 +69,15 @@ align = 2
 valign = 1
 
 [node name="Dialog Slider" type="HSlider" parent="Panel/Panel"]
-margin_top = 492.0
-margin_right = 600.0
-margin_bottom = 508.0
+offset_top = 492.0
+offset_right = 600.0
+offset_bottom = 508.0
 
 [node name="Label" type="Label" parent="Panel/Panel/Dialog Slider"]
 anchor_top = 0.5
 anchor_bottom = 0.5
-margin_top = -24.0
-margin_bottom = 24.0
+offset_top = -24.0
+offset_bottom = 24.0
 grow_horizontal = 0
 grow_vertical = 2
 text = "Dialog"
@@ -85,15 +85,15 @@ align = 2
 valign = 1
 
 [node name="Sfx Slider" type="HSlider" parent="Panel/Panel"]
-margin_top = 558.0
-margin_right = 600.0
-margin_bottom = 574.0
+offset_top = 558.0
+offset_right = 600.0
+offset_bottom = 574.0
 
 [node name="Label" type="Label" parent="Panel/Panel/Sfx Slider"]
 anchor_top = 0.5
 anchor_bottom = 0.5
-margin_top = -24.0
-margin_bottom = 24.0
+offset_top = -24.0
+offset_bottom = 24.0
 grow_horizontal = 0
 grow_vertical = 2
 text = "Sound Effects"
@@ -101,15 +101,15 @@ align = 2
 valign = 1
 
 [node name="Environment Slider" type="HSlider" parent="Panel/Panel"]
-margin_top = 624.0
-margin_right = 600.0
-margin_bottom = 640.0
+offset_top = 624.0
+offset_right = 600.0
+offset_bottom = 640.0
 
 [node name="Label" type="Label" parent="Panel/Panel/Environment Slider"]
 anchor_top = 0.5
 anchor_bottom = 0.5
-margin_top = -24.0
-margin_bottom = 24.0
+offset_top = -24.0
+offset_bottom = 24.0
 grow_horizontal = 0
 grow_vertical = 2
 text = "Environment"
@@ -119,10 +119,10 @@ valign = 1
 [node name="Label" type="Label" parent="Panel"]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -129.5
-margin_top = 100.0
-margin_right = 129.5
-margin_bottom = 48.0
+offset_left = -129.5
+offset_top = 100.0
+offset_right = 129.5
+offset_bottom = 48.0
 text = "Audio"
 align = 1
 

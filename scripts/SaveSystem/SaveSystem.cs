@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using Godot;
 
-public class SaveSystem : ISaveSystem
+public partial class SaveSystem : ISaveSystem
 {
 	private static IDecoder _decoder;
 	private static ISaver _saver;

@@ -2,7 +2,7 @@
 using System;
 using Godot;
 
-public class CollectableItem : Interactable
+public partial class CollectableItem : Interactable
 {
 	public event Action OnCollect;
 	public override string InteractionText => "Take";

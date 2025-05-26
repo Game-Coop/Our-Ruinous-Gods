@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using Godot;
 
-public class Navbar : Control
+public partial class Navbar : Control
 {
 	private List<Pagination> paginations = new List<Pagination>();
 	public event Action<int, int> OnNavigate;
@@ -76,8 +76,8 @@ public class Navbar : Control
 		leftButton = GetNode<Button>(leftButtonPath);
 		rightButton = GetNode<Button>(rightButtonPath);
 
-		leftButton.Connect("pressed", this, nameof(LeftButtonPressed));
-		rightButton.Connect("pressed", this, nameof(RightButtonPressed));
+		leftButton.Connect("pressed", new Callable(this, nameof(LeftButtonPressed)));
+		rightButton.Connect("pressed", new Callable(this, nameof(RightButtonPressed)));
 
 		Clear();
 		for (int i = 0; i < paginationContainer.GetChildCount(); i++)

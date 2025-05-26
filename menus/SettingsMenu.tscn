@@ -2,7 +2,7 @@
 
 [ext_resource path="res://menus/GameplayMenu.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scripts/UI/MovingPanelTweener.cs" type="Script" id=2]
-[ext_resource path="res://fonts/Chakra_Petch/ChakraPetch-Regular.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://fonts/Chakra_Petch/ChakraPetch-Regular.ttf" type="FontFile" id=3]
 [ext_resource path="res://scripts/UI/SettingsMenu.cs" type="Script" id=4]
 [ext_resource path="res://menus/ControlsMenu.tscn" type="PackedScene" id=5]
 [ext_resource path="res://menus/GraphicsMenu.tscn" type="PackedScene" id=6]
@@ -12,7 +12,7 @@
 
 [sub_resource type="StyleBoxFlat" id=2]
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="FontFile" id=3]
 size = 60
 font_data = ExtResource( 3 )
 
@@ -42,28 +42,28 @@ audioMenuPath = NodePath("Panel/Content/Frame/AudioSettingsMenu")
 self_modulate = Color( 1, 1, 1, 0.392157 )
 anchor_right = 1.0
 anchor_bottom = 1.0
-rect_clip_content = true
-custom_styles/panel = SubResource( 6 )
+clip_contents = true
+theme_override_styles/panel = SubResource( 6 )
 
 [node name="Header" type="Panel" parent="Panel"]
 self_modulate = Color( 0, 0, 0, 0.5 )
 anchor_bottom = 1.0
-margin_right = 350.0
-rect_min_size = Vector2( 350, 0 )
-custom_styles/panel = SubResource( 2 )
+offset_right = 350.0
+custom_minimum_size = Vector2( 350, 0 )
+theme_override_styles/panel = SubResource( 2 )
 
 [node name="Panel" type="VBoxContainer" parent="Panel/Header"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 20.0
-custom_constants/separation = 10
+offset_left = 20.0
+theme_override_constants/separation = 10
 alignment = 1
 
 [node name="Controls Button" type="Button" parent="Panel/Header/Panel"]
-margin_top = 160.0
-margin_right = 330.0
-margin_bottom = 260.0
-rect_min_size = Vector2( 0, 100 )
+offset_top = 160.0
+offset_right = 330.0
+offset_bottom = 260.0
+custom_minimum_size = Vector2( 0, 100 )
 size_flags_horizontal = 3
 flat = true
 
@@ -72,15 +72,15 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_fonts/font = SubResource( 3 )
+theme_override_fonts/font = SubResource( 3 )
 text = "CONTROLS"
 valign = 1
 
 [node name="Gameplay Button" type="Button" parent="Panel/Header/Panel"]
-margin_top = 270.0
-margin_right = 330.0
-margin_bottom = 370.0
-rect_min_size = Vector2( 0, 100 )
+offset_top = 270.0
+offset_right = 330.0
+offset_bottom = 370.0
+custom_minimum_size = Vector2( 0, 100 )
 size_flags_horizontal = 3
 flat = true
 
@@ -89,15 +89,15 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_fonts/font = SubResource( 3 )
+theme_override_fonts/font = SubResource( 3 )
 text = "GAMEPLAY"
 valign = 1
 
 [node name="Audio Button" type="Button" parent="Panel/Header/Panel"]
-margin_top = 380.0
-margin_right = 330.0
-margin_bottom = 480.0
-rect_min_size = Vector2( 0, 100 )
+offset_top = 380.0
+offset_right = 330.0
+offset_bottom = 480.0
+custom_minimum_size = Vector2( 0, 100 )
 size_flags_horizontal = 3
 flat = true
 
@@ -106,15 +106,15 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_fonts/font = SubResource( 3 )
+theme_override_fonts/font = SubResource( 3 )
 text = "AUDIO"
 valign = 1
 
 [node name="Graphics Button" type="Button" parent="Panel/Header/Panel"]
-margin_top = 490.0
-margin_right = 330.0
-margin_bottom = 590.0
-rect_min_size = Vector2( 0, 100 )
+offset_top = 490.0
+offset_right = 330.0
+offset_bottom = 590.0
+custom_minimum_size = Vector2( 0, 100 )
 size_flags_horizontal = 3
 flat = true
 
@@ -123,15 +123,15 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_fonts/font = SubResource( 3 )
+theme_override_fonts/font = SubResource( 3 )
 text = "GRAPHICS"
 valign = 1
 
 [node name="Empty Space" type="Button" parent="Panel/Header/Panel"]
-margin_top = 600.0
-margin_right = 330.0
-margin_bottom = 700.0
-rect_min_size = Vector2( 0, 100 )
+offset_top = 600.0
+offset_right = 330.0
+offset_bottom = 700.0
+custom_minimum_size = Vector2( 0, 100 )
 size_flags_horizontal = 3
 disabled = true
 flat = true
@@ -141,14 +141,14 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_fonts/font = SubResource( 3 )
+theme_override_fonts/font = SubResource( 3 )
 valign = 1
 
 [node name="Continue Button" type="Button" parent="Panel/Header/Panel"]
-margin_top = 710.0
-margin_right = 330.0
-margin_bottom = 810.0
-rect_min_size = Vector2( 0, 100 )
+offset_top = 710.0
+offset_right = 330.0
+offset_bottom = 810.0
+custom_minimum_size = Vector2( 0, 100 )
 size_flags_horizontal = 3
 flat = true
 
@@ -157,15 +157,15 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_fonts/font = SubResource( 3 )
+theme_override_fonts/font = SubResource( 3 )
 text = "CONTINUE"
 valign = 1
 
 [node name="Exit Button" type="Button" parent="Panel/Header/Panel"]
-margin_top = 820.0
-margin_right = 330.0
-margin_bottom = 920.0
-rect_min_size = Vector2( 0, 100 )
+offset_top = 820.0
+offset_right = 330.0
+offset_bottom = 920.0
+custom_minimum_size = Vector2( 0, 100 )
 size_flags_horizontal = 3
 flat = true
 
@@ -174,7 +174,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_fonts/font = SubResource( 3 )
+theme_override_fonts/font = SubResource( 3 )
 text = "MAIN MENU"
 valign = 1
 
@@ -182,21 +182,21 @@ valign = 1
 self_modulate = Color( 1, 1, 1, 0 )
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 350.0
+offset_left = 350.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_styles/panel = SubResource( 4 )
+theme_override_styles/panel = SubResource( 4 )
 
 [node name="Frame" type="Panel" parent="Panel/Content"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 50.0
-margin_top = 50.0
-margin_right = -50.0
-margin_bottom = -50.0
+offset_left = 50.0
+offset_top = 50.0
+offset_right = -50.0
+offset_bottom = -50.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_styles/panel = SubResource( 5 )
+theme_override_styles/panel = SubResource( 5 )
 
 [node name="ControlsMenu" parent="Panel/Content/Frame" instance=ExtResource( 5 )]
 

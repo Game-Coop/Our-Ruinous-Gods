@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using Godot;
 
-public class Inventory : Node, ISavable<SaveData>
+public partial class Inventory : Node, ISavable<SaveData>
 {
     public Dictionary<int, ItemData> itemDatas = new Dictionary<int, ItemData>();
     public override void _EnterTree()
