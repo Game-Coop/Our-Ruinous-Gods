@@ -67,19 +67,24 @@ public partial class Player : CharacterBody3D
 		HandelTurn(turnHorizontal, turnVertical);
 	}
 
-	private void HandelMove(float delta) {
-		float horizontalRotion = GlobalTransform.basis.GetEuler().y;
+	private void HandelMove(double delta) {
+		float horizontalRotion = GlobalTransform.Basis.GetEuler().Y;
 		float movement = Input.GetActionStrength("move_backward") - Input.GetActionStrength("move_forward");
 		float strafe = Input.GetActionStrength("move_right") - Input.GetActionStrength("move_left");
+
+		Vector3 playerVelocity = Velocity;
 
 		direction = Vector3.Zero;
 		direction = new Vector3(strafe, 0, movement);
 		direction = direction.Rotated(Vector3.Up, horizontalRotion).Normalized();
+		
+        playerVelocity += Vector3.Down * gravity * (float)delta;
+		playerVelocity = velocity.Lerp(direction * speed, (float)delta / inertia);
 
-        velocity += Vector3.Down * gravity * delta;
-		velocity = velocity.Lerp(direction * speed, delta / inertia);
+		Velocity = playerVelocity;
 
-		MoveAndSlideWithSnap(velocity, Vector3.Down, Vector3.Up, true, 1);
+
+		MoveAndSlide();
 	}
 
 	private void HandelTurn(float x, float y) {
@@ -88,10 +93,10 @@ public partial class Player : CharacterBody3D
 		RotateY(Mathf.DegToRad(-x));
 		
 		head.RotateX(Mathf.DegToRad(-y));
-		head.Rotation = new Vector3(Mathf.Clamp(head.Rotation.x, Mathf.DegToRad(-clampDegrees), Mathf.DegToRad(clampDegrees)), head.Rotation.y, head.Rotation.z);
+		head.Rotation = new Vector3(Mathf.Clamp(head.Rotation.X, Mathf.DegToRad(-clampDegrees), Mathf.DegToRad(clampDegrees)), head.Rotation.Y, head.Rotation.Z);
 	}
 
 	private void handleMouseLook(InputEventMouseMotion e) {
-		HandelTurn(e.Relative.x * mouse_sensitivity, e.Relative.y * mouse_sensitivity);
+		HandelTurn(e.Relative.X * mouse_sensitivity, e.Relative.Y * mouse_sensitivity);
 	}
 }
