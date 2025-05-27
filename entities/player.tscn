@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://iwonbg6yjb0e"]
 
-[ext_resource type="Script" uid="uid://ddcu5eocmt6x" path="res://scripts/player.cs" id="1"]
+[ext_resource type="Script" uid="uid://ddcu5eocmt6x" path="res://scripts/Player.cs" id="1"]
 [ext_resource type="Script" uid="uid://dky7j2woivwl6" path="res://scripts/InteractionRaycaster.cs" id="2"]
 
 [sub_resource type="CapsuleMesh" id="1"]
@@ -9,10 +9,6 @@
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1")
-gamepad_sensitivity = 2.0
-mouse_sensitivity = 0.1
-speed = 6.0
-inertia = 0.1
 
 [node name="Head" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
