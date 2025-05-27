@@ -5,11 +5,15 @@ using Godot;
 public class StartMenu : Control
 {
 	[Export] private NodePath startBtnPath;
+	[Export] private NodePath contBtnPath;
+	[Export] private NodePath optionsBtnPath;
 	[Export] private NodePath exitBtnPath;
 	[Export] private NodePath musicPlayerPath;
 	[Export] private NodePath versionLabelPath;
 
 	private Button _startBtn;
+	private Button _contBtn;
+	private Button _optionsBtn;
 	private Button _exitBtn;
 	private AudioStreamPlayer _musicPlayer;
 	private Label _versionLabel;
@@ -18,6 +22,8 @@ public class StartMenu : Control
 	{
 		base._Ready();
 		_startBtn = GetNode<Button>(startBtnPath);
+		_contBtn = GetNode<Button>(contBtnPath);
+		_optionsBtn = GetNode<Button>(optionsBtnPath);
 		_exitBtn = GetNode<Button>(exitBtnPath);
 		_versionLabel = GetNode<Label>(versionLabelPath);
 
@@ -41,6 +47,23 @@ public class StartMenu : Control
 		_startBtn.Disabled = true;
 		await FadeOutMusic();
 		GetTree().Paused = false;
+		GetTree().ChangeSceneTo(ResourceDatabase.GameScene);
+	}
+	
+	private async void OnSettingsPressed()
+	{
+		_optionsBtn.Disabled = true;
+		await FadeOutMusic();
+		GetTree().Paused = true;
+		GetTree().ChangeSceneTo(ResourceDatabase.GameScene);
+	}
+	
+	private async void OnContinuePressed()
+	{
+		_contBtn.Disabled = true;
+		await FadeOutMusic();
+		GetTree().Paused = true;
+		// Placeholder
 		GetTree().ChangeSceneTo(ResourceDatabase.GameScene);
 	}
 

@@ -51,6 +51,7 @@ margin_bottom = 425.0
 rect_min_size = Vector2( 0, 100 )
 size_flags_horizontal = 3
 flat = true
+script = ExtResource( 5 )
 
 [node name="Label" type="Label" parent="Panel/Panel2/Panel/Start Button"]
 anchor_right = 1.0
@@ -69,6 +70,7 @@ margin_bottom = 535.0
 rect_min_size = Vector2( 0, 100 )
 size_flags_horizontal = 3
 flat = true
+script = ExtResource( 5 )
 
 [node name="Label" type="Label" parent="Panel/Panel2/Panel/Continue"]
 anchor_right = 1.0
@@ -86,6 +88,7 @@ margin_bottom = 645.0
 rect_min_size = Vector2( 0, 100 )
 size_flags_horizontal = 3
 flat = true
+script = ExtResource( 5 )
 
 [node name="Label" type="Label" parent="Panel/Panel2/Panel/Options"]
 anchor_right = 1.0
@@ -103,6 +106,7 @@ margin_bottom = 755.0
 rect_min_size = Vector2( 0, 100 )
 size_flags_horizontal = 3
 flat = true
+script = ExtResource( 5 )
 
 [node name="Label" type="Label" parent="Panel/Panel2/Panel/Exit Button"]
 anchor_right = 1.0
