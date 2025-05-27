@@ -14,12 +14,11 @@ public partial class PauseMenu : Page
 	private Page audioPlayerPage;
 	private Navbar navbar;
 	private OrderedPages orderedPages;
-	protected override void _Ready()
+	public override void _Ready()
 	{
 		base._Ready();
 		navbar = GetNode<Navbar>(navBarPath);
 		orderedPages = GetNode<OrderedPages>(orderedPagesPath);
-
 		inventoryPage = GetNode<Page>(inventoryPagePath);
 		journalPage = GetNode<Page>(journalPagePath);
 		audioPlayerPage = GetNode<Page>(audioPlayerPagePath);
@@ -69,6 +68,11 @@ public partial class PauseMenu : Page
 	public override void _Input(InputEvent @event)
 	{
 		base._Input(@event);
+		if (inventoryPage == null || journalPage == null || audioPlayerPage == null)
+		{
+			GD.PrintErr("Pages are not initialized properly.");
+			return;
+		}
 		if (!Visible) return;
 
 		if (@event.IsActionPressed("pause_toggle"))

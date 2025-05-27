@@ -15,7 +15,7 @@ public partial class AudioSettingsMenu : Page
 	private Slider _musicSlider;
 	private Slider _environmentSlider;
 
-	protected override void _Ready()
+	public override void _Ready()
 	{
 		base._Ready();
 

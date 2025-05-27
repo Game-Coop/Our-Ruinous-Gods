@@ -24,7 +24,7 @@ public partial class SettingsMenu : Page
 	private Page audioMenuPage;
 
 	private Page currentPage;
-	protected override void _Ready()
+	public override void _Ready()
 	{
 		base._Ready();
 		controlsMenuPage = GetNode<Page>(controlsMenuPath);

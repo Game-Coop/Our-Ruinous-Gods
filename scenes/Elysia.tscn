@@ -1,7 +1,6 @@
-[gd_scene load_steps=12 format=3 uid="uid://eaur2wqbevho"]
+[gd_scene load_steps=11 format=3 uid="uid://ch5k8ob3wvc0w"]
 
 [ext_resource type="PackedScene" uid="uid://iwonbg6yjb0e" path="res://entities/Player.tscn" id="1"]
-[ext_resource type="Script" uid="uid://ddcu5eocmt6x" path="res://scripts/player.cs" id="2_fwvl5"]
 [ext_resource type="Texture2D" uid="uid://0ckjhg2p8cya" path="res://assets/textures/grid.png" id="3"]
 [ext_resource type="PackedScene" path="res://objects/PowerSwitch.tscn" id="4"]
 [ext_resource type="PackedScene" path="res://objects/PowerableLight.tscn" id="5"]
@@ -27,7 +26,6 @@ environment = SubResource("4")
 
 [node name="Player" parent="." instance=ExtResource("1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.182181, 1.76786, 0.00218105)
-script = ExtResource("2_fwvl5")
 speed = 7.0
 
 [node name="Level" type="CSGCombiner3D" parent="."]

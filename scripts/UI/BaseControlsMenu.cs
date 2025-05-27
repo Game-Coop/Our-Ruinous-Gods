@@ -14,7 +14,7 @@ public abstract partial class BaseControlsMenu : Page
 		inputBinding1.Text = inputBinding2.Text;
 		inputBinding2.Text = text1;
 	}
-	protected override void _Ready()
+	public override void _Ready()
 	{
 		base._Ready();
 		swapLabel = GetNode<Label>(swapLabelPath);

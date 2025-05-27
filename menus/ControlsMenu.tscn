@@ -1,52 +1,48 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=12 format=3 uid="uid://4dxr6g5g1sxw"]
 
-[ext_resource path="res://scripts/UI/MovingPanelTweener.cs" type="Script" id=1]
-[ext_resource path="res://scripts/UI/ControlsMenu.cs" type="Script" id=2]
-[ext_resource path="res://menus/KeyboardControlsMenu.tscn" type="PackedScene" id=3]
-[ext_resource path="res://scripts/UI/Navbar.cs" type="Script" id=4]
-[ext_resource path="res://assets/ui/right-arrow.png" type="Texture2D" id=5]
-[ext_resource path="res://ui/Titled Pagination.tscn" type="PackedScene" id=6]
-[ext_resource path="res://scripts/UI/OrderedPages.cs" type="Script" id=7]
-[ext_resource path="res://menus/GamepadControlsMenu.tscn" type="PackedScene" id=8]
+[ext_resource type="Script" uid="uid://bbwa3gfr35dgg" path="res://scripts/UI/MovingPanelTweener.cs" id="1"]
+[ext_resource type="Script" uid="uid://0ag37exh3h4n" path="res://scripts/UI/ControlsMenu.cs" id="2"]
+[ext_resource type="PackedScene" uid="uid://dxnu41k0cg5y4" path="res://menus/KeyboardControlsMenu.tscn" id="3"]
+[ext_resource type="Script" uid="uid://dgho8w6pyyanf" path="res://scripts/UI/Navbar.cs" id="4"]
+[ext_resource type="Texture2D" uid="uid://chdxvbrmjswds" path="res://assets/ui/right-arrow.png" id="5"]
+[ext_resource type="PackedScene" path="res://ui/Titled Pagination.tscn" id="6"]
+[ext_resource type="Script" uid="uid://c4uk0vikv0xhg" path="res://scripts/UI/OrderedPages.cs" id="7"]
+[ext_resource type="PackedScene" uid="uid://cc2x222go4i8e" path="res://menus/GamepadControlsMenu.tscn" id="8"]
 
-[sub_resource type="StyleBoxEmpty" id=1]
+[sub_resource type="StyleBoxEmpty" id="1"]
 
-[sub_resource type="InputEventAction" id=8]
-action = "pause_menu_left"
+[sub_resource type="Shortcut" id="11"]
 
-[sub_resource type="Shortcut" id=11]
-shortcut = SubResource( 8 )
-
-[sub_resource type="InputEventAction" id=10]
-action = "pause_menu_right"
-
-[sub_resource type="Shortcut" id=12]
-shortcut = SubResource( 10 )
+[sub_resource type="Shortcut" id="12"]
 
 [node name="ControlsMenu" type="Panel"]
+clip_contents = true
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-clip_contents = true
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_styles/panel = SubResource( 1 )
-script = ExtResource( 2 )
-panelTweenerPath = NodePath("Panel Tweener")
-paginationTemplate = ExtResource( 6 )
+theme_override_styles/panel = SubResource("1")
+script = ExtResource("2")
+paginationTemplate = ExtResource("6")
 navBarPath = NodePath("Panel/Panel/Navigation Bar")
 orderedPagesPath = NodePath("Panel/Ordered Pages")
 keyboardMenuPath = NodePath("Panel/Ordered Pages/KeyboardControlsMenu")
 gamepadMenuPath = NodePath("Panel/Ordered Pages/GamepadControlsMenu")
+panelTweenerPath = NodePath("Panel Tweener")
 
 [node name="Panel" type="Panel" parent="."]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="Panel" type="Panel" parent="Panel"]
+layout_mode = 0
 anchor_right = 1.0
 offset_top = 200.0
 
 [node name="Navigation Bar" type="HBoxContainer" parent="Panel/Panel"]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -60,76 +56,71 @@ grow_vertical = 2
 size_flags_horizontal = 4
 theme_override_constants/separation = 50
 alignment = 1
-script = ExtResource( 4 )
+script = ExtResource("4")
 paginationsPath = NodePath("Paginations")
 leftButtonPath = NodePath("Left Button")
 rightButtonPath = NodePath("Right Button")
 
 [node name="Left Button" type="Button" parent="Panel/Panel/Navigation Bar"]
-offset_right = 50.0
-offset_bottom = 54.0
-grow_horizontal = 2
-grow_vertical = 2
-custom_minimum_size = Vector2( 50, 50 )
-shortcut = SubResource( 11 )
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+shortcut = SubResource("11")
 flat = true
 icon_alignment = 1
 expand_icon = true
 
 [node name="TextureRect" type="TextureRect" parent="Panel/Panel/Navigation Bar/Left Button"]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
-texture = ExtResource( 5 )
-expand = true
+texture = ExtResource("5")
+expand_mode = 1
 stretch_mode = 6
 flip_h = true
 
 [node name="Paginations" type="HBoxContainer" parent="Panel/Panel/Navigation Bar"]
-offset_left = 100.0
-offset_right = 100.0
-offset_bottom = 54.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 40
 alignment = 1
 
 [node name="Right Button" type="Button" parent="Panel/Panel/Navigation Bar"]
-offset_left = 150.0
-offset_right = 200.0
-offset_bottom = 54.0
-grow_horizontal = 2
-grow_vertical = 2
-custom_minimum_size = Vector2( 50, 50 )
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
 focus_mode = 0
 disabled = true
-shortcut = SubResource( 12 )
+shortcut = SubResource("12")
 flat = true
 icon_alignment = 1
 expand_icon = true
 
 [node name="TextureRect" type="TextureRect" parent="Panel/Panel/Navigation Bar/Right Button"]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
-texture = ExtResource( 5 )
-expand = true
+texture = ExtResource("5")
+expand_mode = 1
 stretch_mode = 6
 
 [node name="Ordered Pages" type="Control" parent="Panel"]
+anchors_preset = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_top = 200.0
-script = ExtResource( 7 )
+script = ExtResource("7")
 pageContainerPath = NodePath(".")
 
-[node name="KeyboardControlsMenu" parent="Panel/Ordered Pages" instance=ExtResource( 3 )]
+[node name="KeyboardControlsMenu" parent="Panel/Ordered Pages" instance=ExtResource("3")]
+layout_mode = 1
 
-[node name="GamepadControlsMenu" parent="Panel/Ordered Pages" instance=ExtResource( 8 )]
+[node name="GamepadControlsMenu" parent="Panel/Ordered Pages" instance=ExtResource("8")]
 visible = false
+layout_mode = 1
 
 [node name="Panel Tweener" type="Control" parent="."]
-script = ExtResource( 1 )
+anchors_preset = 0
+script = ExtResource("1")
 foregroundPath = NodePath("../Panel")
 direction = 3
 appearTime = 0.2

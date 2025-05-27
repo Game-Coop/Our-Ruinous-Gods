@@ -43,7 +43,7 @@ public partial class FadingPanelTweener : PanelTweener
         .FromCurrent()
         .SetEase(appearEase)
         .SetTrans(appearTransition);
-        tween.Connect("finished", new Callable(this, nameof(OnAppearComplete)));
+        tween.Finished += OnAppearComplete;
     }
     public override void Disappear(bool instant = false)
     {
@@ -62,7 +62,7 @@ public partial class FadingPanelTweener : PanelTweener
         .FromCurrent()
         .SetEase(disappearEase)
         .SetTrans(disappearTransition);
-        tween.Connect("finished", new Callable(this, nameof(OnDisappearComplete)));
+        tween.Finished += OnDisappearComplete;
     }
     private void OnDisappearComplete()
     {

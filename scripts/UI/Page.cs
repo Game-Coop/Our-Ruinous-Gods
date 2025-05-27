@@ -3,7 +3,7 @@
 using System;
 using Godot;
 
-public abstract partial class Page : Control
+public partial class Page : Control
 {
 	[Export] private NodePath panelTweenerPath;
 	public event Action OnShow;
@@ -22,7 +22,7 @@ public abstract partial class Page : Control
 			return _panelTweener;
 		}
 	}
-	protected virtual new void _Ready()
+	public override void _Ready()
 	{
 		base._Ready();
 		OnHidden += Hide;

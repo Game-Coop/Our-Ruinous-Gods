@@ -14,7 +14,7 @@ public partial class ControlsMenu : Page
 	private OrderedPages orderedPages;
 	private Page keyboardMenu;
 	private Page gamepadMenu;
-	protected override void _Ready()
+	public override void _Ready()
 	{
 		base._Ready();
 		navbar = GetNode<Navbar>(navBarPath);
