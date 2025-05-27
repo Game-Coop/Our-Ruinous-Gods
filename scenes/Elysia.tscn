@@ -1,12 +1,12 @@
-[gd_scene load_steps=11 format=3 uid="uid://ch5k8ob3wvc0w"]
+[gd_scene load_steps=11 format=3 uid="uid://eaur2wqbevho"]
 
 [ext_resource type="PackedScene" uid="uid://iwonbg6yjb0e" path="res://entities/Player.tscn" id="1"]
 [ext_resource type="Texture2D" uid="uid://0ckjhg2p8cya" path="res://assets/textures/grid.png" id="3"]
-[ext_resource type="PackedScene" path="res://objects/PowerSwitch.tscn" id="4"]
-[ext_resource type="PackedScene" path="res://objects/PowerableLight.tscn" id="5"]
-[ext_resource type="PackedScene" path="res://objects/PowerCollisionTrigger.tscn" id="6"]
-[ext_resource type="PackedScene" path="res://objects/WorldEventCollisionTrigger.tscn" id="7"]
-[ext_resource type="PackedScene" path="res://objects/PowerSwitchWithStaminaCost.tscn" id="8"]
+[ext_resource type="PackedScene" uid="uid://bbtlh1kjqcs54" path="res://objects/PowerSwitch.tscn" id="4"]
+[ext_resource type="PackedScene" uid="uid://bmyx37pp63kbo" path="res://objects/PowerableLight.tscn" id="5"]
+[ext_resource type="PackedScene" uid="uid://cbdgjnsddvyc5" path="res://objects/PowerCollisionTrigger.tscn" id="6"]
+[ext_resource type="PackedScene" uid="uid://cpmoe4yxkm0ip" path="res://objects/WorldEventCollisionTrigger.tscn" id="7"]
+[ext_resource type="PackedScene" uid="uid://bceai1j7uspj7" path="res://objects/PowerSwitchWithStaminaCost.tscn" id="8"]
 
 [sub_resource type="Sky" id="6"]
 

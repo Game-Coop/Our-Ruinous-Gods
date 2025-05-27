@@ -1,6 +1,6 @@
-[gd_scene load_steps=27 format=3 uid="uid://ct1nwm5wa001n"]
+[gd_scene load_steps=27 format=3 uid="uid://5ju312o65nch"]
 
-[ext_resource type="PackedScene" uid="uid://iwonbg6yjb0e" path="res://entities/player.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://iwonbg6yjb0e" path="res://entities/Player.tscn" id="2"]
 [ext_resource type="PackedScene" uid="uid://bbtlh1kjqcs54" path="res://objects/PowerSwitch.tscn" id="4"]
 [ext_resource type="PackedScene" uid="uid://bmyx37pp63kbo" path="res://objects/PowerableLight.tscn" id="5"]
 [ext_resource type="PackedScene" uid="uid://cbdgjnsddvyc5" path="res://objects/PowerCollisionTrigger.tscn" id="6"]
@@ -193,8 +193,11 @@ pauseMenuPagePath = NodePath("Pause Menu")
 settingsMenuPagePath = NodePath("Settings Menu")
 
 [node name="Pause Menu" parent="CanvasLayer" instance=ExtResource("7")]
+anchors_preset = 15
 
 [node name="Settings Menu" parent="CanvasLayer" instance=ExtResource("9")]
+layout_mode = 3
+anchors_preset = 15
 
 [node name="Collectable Item 1" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.87988, -10.7633, 48.6081)

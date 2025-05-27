@@ -4,15 +4,10 @@ using System.Data.Common;
 using System.IO.Compression;
 public partial class Player : CharacterBody3D
 {
-	private Vector3 direction;
-	[Export] private float gamepad_sensitivity = (float)1;
+    [Export] public float gravity = 9.8f;  
+	[Export] private float speed = 1.42f;
 	private Node3D _head;
 	private Node3D _camera;
-	[Export] private float mouse_sensitivity = (float)0.001;
-    [Export] public float gravity = 9.8f;  
-	[Export] private float speed = 1;
-	[Export] private float inertia = 1;
-	private Vector3 velocity;
     private int Power = 0;
     private int MaxPower = 100;
     private int Stamina = 100;
@@ -32,21 +27,31 @@ public partial class Player : CharacterBody3D
 	
 	public override void _Input(InputEvent @event)
 	{
-		if (@event is InputEventMouseMotion e)
+		if (@event is InputEventJoypadMotion || @event is InputEventMouseMotion)
 		{
-			_head.RotateY(-e.Relative.X * mouse_sensitivity);
+			Vector2 look_direction = Vector2.Zero;
 
-			_camera.RotateX(-e.Relative.Y * mouse_sensitivity);
-			_camera.Rotation = new Vector3(Mathf.Clamp(_camera.Rotation.X, Mathf.DegToRad(-80f), Mathf.DegToRad(90f)), _camera.Rotation.Y, _camera.Rotation.Z);
+			if (@event is InputEventJoypadMotion)
+			{
+				look_direction.X = (Input.GetActionStrength("look_right") - Input.GetActionStrength("look_left")) * (float)0.01;
+				look_direction.Y = (Input.GetActionStrength("look_down") - Input.GetActionStrength("look_up")) * (float)0.01;
+			}
+
+			if (@event is InputEventMouseMotion mouse)
+			{
+				look_direction.X = mouse.Relative.X * (float)0.001;
+				look_direction.Y = mouse.Relative.Y * (float)0.001;
+			}
+
+			_head.RotateY(-look_direction.X);
+
+			_camera.RotateX(-look_direction.Y);
+			_camera.Rotation = new Vector3(Mathf.Clamp(_camera.Rotation.X, Mathf.DegToRad(-75f), Mathf.DegToRad(80f)), _camera.Rotation.Y, _camera.Rotation.Z);
 		}
-
-		if (@event.IsActionPressed("quit")) GetTree().Quit();
 	}
-	public override void _PhysicsProcess(double delta) {
-		//float turnHorizontal = (Input.GetActionStrength("look_right") - Input.GetActionStrength("look_left")) * gamepad_sensitivity;
-		//float turnVertical = (Input.GetActionStrength("look_down") - Input.GetActionStrength("look_up")) * gamepad_sensitivity;
-		//HandelTurn(turnHorizontal, turnVertical);
-
+	
+	public override void _PhysicsProcess(double delta)
+	{
 		Vector3 velocity = Velocity;
 
 		if (!IsOnFloor())
@@ -57,7 +62,7 @@ public partial class Player : CharacterBody3D
 
 		if (playerDirection != Vector3.Zero)
 		{
-			velocity.X = playerDirection.X * speed * (Input.GetActionStrength("move_right") - Input.GetActionStrength("move_left"));
+			velocity.X = playerDirection.X * speed;
 			velocity.Z = playerDirection.Z * speed;
 		}
 		else
