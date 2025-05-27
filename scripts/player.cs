@@ -2,10 +2,25 @@ using Godot;
 using System;
 using System.Data.Common;
 using System.IO.Compression;
+public struct CameraClamp
+{
+	public CameraClamp(float min, float max)
+	{
+		Min = min;
+		Max = max;
+	}
+
+	public float Min { get; }
+	public float Max { get; }
+
+	public override string ToString() => $"({Min} - {Max})";
+}
+
 public partial class Player : CharacterBody3D
 {
     [Export] public float gravity = 9.8f;  
 	[Export] private float speed = 1.42f;
+	private CameraClamp cameraClamp = new CameraClamp(-75f, 80f);
 	private Node3D _head;
 	private Node3D _camera;
     private int Power = 0;
@@ -29,24 +44,14 @@ public partial class Player : CharacterBody3D
 	{
 		if (@event is InputEventJoypadMotion || @event is InputEventMouseMotion)
 		{
-			Vector2 look_direction = Vector2.Zero;
-
-			if (@event is InputEventJoypadMotion)
-			{
-				look_direction.X = (Input.GetActionStrength("look_right") - Input.GetActionStrength("look_left")) * (float)0.01;
-				look_direction.Y = (Input.GetActionStrength("look_down") - Input.GetActionStrength("look_up")) * (float)0.01;
-			}
-
 			if (@event is InputEventMouseMotion mouse)
 			{
-				look_direction.X = mouse.Relative.X * (float)0.001;
-				look_direction.Y = mouse.Relative.Y * (float)0.001;
+				_head.RotateY(-mouse.Relative.X * (float)0.001);
+
+				_camera.RotateX(-mouse.Relative.Y * (float)0.001);
+				_camera.Rotation = new Vector3(Mathf.Clamp(_camera.Rotation.X, Mathf.DegToRad(cameraClamp.Min), Mathf.DegToRad(cameraClamp.Max)), _camera.Rotation.Y, _camera.Rotation.Z);
 			}
 
-			_head.RotateY(-look_direction.X);
-
-			_camera.RotateX(-look_direction.Y);
-			_camera.Rotation = new Vector3(Mathf.Clamp(_camera.Rotation.X, Mathf.DegToRad(-75f), Mathf.DegToRad(80f)), _camera.Rotation.Y, _camera.Rotation.Z);
 		}
 	}
 	
@@ -56,6 +61,12 @@ public partial class Player : CharacterBody3D
 
 		if (!IsOnFloor())
 			velocity.Y -= gravity * (float)delta;
+
+		
+		_head.RotateY(-(Input.GetActionStrength("look_right") - Input.GetActionStrength("look_left")) * (float)0.02);
+
+		_camera.RotateX(-(Input.GetActionStrength("look_down") - Input.GetActionStrength("look_up")) * (float)0.02);
+		_camera.Rotation = new Vector3(Mathf.Clamp(_camera.Rotation.X, Mathf.DegToRad(cameraClamp.Min), Mathf.DegToRad(cameraClamp.Max)), _camera.Rotation.Y, _camera.Rotation.Z);
 
 		Vector2 inputDirection = Input.GetVector("move_left", "move_right", "move_forward", "move_backward");
 		Vector3 playerDirection = (_head.GlobalTransform.Basis * new Vector3(inputDirection.X, 0, inputDirection.Y)).Normalized();
