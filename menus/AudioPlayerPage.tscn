@@ -1,28 +1,35 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=13 format=3 uid="uid://cfakrk2aortcg"]
 
-[ext_resource path="res://scripts/AudioPlayer/AudioPlayerMenu.cs" type="Script" id=1]
-[ext_resource path="res://themes/inventoryScrollbarTheme.tres" type="Theme" id=2]
-[ext_resource path="res://ui/AudioEntryTemplate.tscn" type="PackedScene" id=3]
-[ext_resource path="res://fonts/Chakra_Petch/ChakraPetch-Regular.ttf" type="FontFile" id=4]
-[ext_resource path="res://assets/ui/play-buttton.png" type="Texture2D" id=5]
-[ext_resource path="res://assets/ui/stop-button.png" type="Texture2D" id=6]
-[ext_resource path="res://assets/ui/pause.png" type="Texture2D" id=7]
-[ext_resource path="res://assets/ui/rewind.png" type="Texture2D" id=8]
-[ext_resource path="res://scripts/UI/MovingPanelTweener.cs" type="Script" id=11]
+[ext_resource type="Script" uid="uid://cmu23utnjs2k3" path="res://scripts/AudioPlayer/AudioPlayerMenu.cs" id="1"]
+[ext_resource type="Theme" path="res://themes/inventoryScrollbarTheme.tres" id="2"]
+[ext_resource type="PackedScene" path="res://ui/AudioEntryTemplate.tscn" id="3"]
+[ext_resource type="FontFile" uid="uid://djxjfdocobiaf" path="res://fonts/Chakra_Petch/ChakraPetch-Regular.ttf" id="4"]
+[ext_resource type="Texture2D" uid="uid://bor1s2ap53ksj" path="res://assets/ui/play-buttton.png" id="5"]
+[ext_resource type="Texture2D" uid="uid://bsogpgegkrcdl" path="res://assets/ui/stop-button.png" id="6"]
+[ext_resource type="Texture2D" uid="uid://bgd1130n21i2o" path="res://assets/ui/pause.png" id="7"]
+[ext_resource type="Texture2D" uid="uid://cpdpc16msi3v3" path="res://assets/ui/rewind.png" id="8"]
+[ext_resource type="Script" uid="uid://bbwa3gfr35dgg" path="res://scripts/UI/MovingPanelTweener.cs" id="11"]
 
-[sub_resource type="FontFile" id=5]
-size = 50
-font_data = ExtResource( 4 )
+[sub_resource type="FontFile" id="5"]
+fallbacks = Array[Font]([ExtResource("4"), ExtResource("4")])
+subpixel_positioning = 0
+msdf_pixel_range = 14
+msdf_size = 128
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
 
-[sub_resource type="Theme" id=4]
+[sub_resource type="Theme" id="4"]
 
-[sub_resource type="StyleBoxFlat" id=7]
-bg_color = Color( 0.87451, 0.87451, 0.87451, 0.266667 )
+[sub_resource type="StyleBoxFlat" id="7"]
+bg_color = Color(0.87451, 0.87451, 0.87451, 0.266667)
 border_width_left = 10
 border_width_top = 10
 border_width_right = 10
 border_width_bottom = 10
-border_color = Color( 0.160784, 0.160784, 0.160784, 0 )
+border_color = Color(0.160784, 0.160784, 0.160784, 0)
 border_blend = true
 corner_radius_top_left = 30
 corner_radius_top_right = 30
@@ -30,14 +37,17 @@ corner_radius_bottom_right = 30
 corner_radius_bottom_left = 30
 
 [node name="AudioPlayerMenu" type="Control"]
+custom_minimum_size = Vector2(1920, 0)
+layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_minimum_size = Vector2( 1920, 0 )
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-script = ExtResource( 1 )
-panelTweenerPath = NodePath("Panel Tweener")
-audioEntryTemplate = ExtResource( 3 )
+script = ExtResource("1")
+audioEntryTemplate = ExtResource("3")
 controlPanelPath = NodePath("Panel/Control Panel")
 entryContainerPath = NodePath("Panel/Item List Container/ScrollContainer/VBoxContainer")
 entryNameLabelPath = NodePath("Panel/Control Panel/Entry Name")
@@ -48,47 +58,51 @@ rewindButtonPath = NodePath("Panel/Control Panel/HBoxContainer/Rewind")
 fastForwardButtonPath = NodePath("Panel/Control Panel/HBoxContainer/Fast Forward")
 playImagePath = NodePath("Panel/Control Panel/HBoxContainer/Play Pause/Play")
 pauseImagePath = NodePath("Panel/Control Panel/HBoxContainer/Play Pause/Pause")
+panelTweenerPath = NodePath("Panel Tweener")
 
 [node name="Panel" type="Panel" parent="."]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Title" type="Label" parent="Panel"]
+layout_mode = 0
 offset_left = 155.0
 offset_top = 231.0
 offset_right = 442.0
 offset_bottom = 297.0
-theme_override_fonts/font = SubResource( 5 )
+theme_override_fonts/font = SubResource("5")
 text = "Audio Player"
 
 [node name="Item List Container" type="Panel" parent="Panel"]
+layout_mode = 0
 offset_left = 142.0
 offset_top = 301.0
 offset_right = 792.0
 offset_bottom = 777.0
 
 [node name="ScrollContainer" type="ScrollContainer" parent="Panel/Item List Container"]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 20.0
 offset_top = 20.0
 offset_right = -20.0
 offset_bottom = -20.0
-theme = ExtResource( 2 )
+theme = ExtResource("2")
 follow_focus = true
-scroll_horizontal_enabled = false
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Panel/Item List Container/ScrollContainer"]
-offset_right = 610.0
-offset_bottom = 436.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme = SubResource( 4 )
+theme = SubResource("4")
 theme_override_constants/separation = 20
 
 [node name="VSeparator" type="VSeparator" parent="Panel"]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -97,14 +111,16 @@ offset_left = -22.0
 offset_top = -278.0
 offset_right = 22.0
 offset_bottom = 278.0
-theme_override_styles/separator = SubResource( 7 )
+theme_override_styles/separator = SubResource("7")
 
 [node name="Control Panel" type="Control" parent="Panel"]
 visible = false
+anchors_preset = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="HSlider" type="HSlider" parent="Panel/Control Panel"]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -115,6 +131,7 @@ offset_right = 659.0
 offset_bottom = 293.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Panel/Control Panel"]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -126,13 +143,13 @@ offset_bottom = 215.0
 theme_override_constants/separation = 20
 
 [node name="Rewind" type="Button" parent="Panel/Control Panel/HBoxContainer"]
-offset_right = 50.0
-offset_bottom = 54.0
-custom_minimum_size = Vector2( 50, 50 )
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="TextureRect" type="TextureRect" parent="Panel/Control Panel/HBoxContainer/Rewind"]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 5.0
@@ -141,19 +158,18 @@ offset_right = -5.0
 offset_bottom = -5.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-texture = ExtResource( 8 )
-expand = true
+texture = ExtResource("8")
+expand_mode = 1
 stretch_mode = 6
 
 [node name="Play Pause" type="Button" parent="Panel/Control Panel/HBoxContainer"]
-offset_left = 70.0
-offset_right = 120.0
-offset_bottom = 54.0
-custom_minimum_size = Vector2( 50, 50 )
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Play" type="TextureRect" parent="Panel/Control Panel/HBoxContainer/Play Pause"]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 5.0
@@ -162,12 +178,13 @@ offset_right = -5.0
 offset_bottom = -5.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-texture = ExtResource( 5 )
-expand = true
+texture = ExtResource("5")
+expand_mode = 1
 stretch_mode = 6
 
 [node name="Pause" type="TextureRect" parent="Panel/Control Panel/HBoxContainer/Play Pause"]
 visible = false
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 5.0
@@ -176,19 +193,18 @@ offset_right = -5.0
 offset_bottom = -5.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-texture = ExtResource( 7 )
-expand = true
+texture = ExtResource("7")
+expand_mode = 1
 stretch_mode = 6
 
 [node name="Stop" type="Button" parent="Panel/Control Panel/HBoxContainer"]
-offset_left = 140.0
-offset_right = 190.0
-offset_bottom = 54.0
-custom_minimum_size = Vector2( 50, 50 )
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="TextureRect" type="TextureRect" parent="Panel/Control Panel/HBoxContainer/Stop"]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 5.0
@@ -197,19 +213,18 @@ offset_right = -5.0
 offset_bottom = -5.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-texture = ExtResource( 6 )
-expand = true
+texture = ExtResource("6")
+expand_mode = 1
 stretch_mode = 6
 
 [node name="Fast Forward" type="Button" parent="Panel/Control Panel/HBoxContainer"]
-offset_left = 210.0
-offset_right = 260.0
-offset_bottom = 54.0
-custom_minimum_size = Vector2( 50, 50 )
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="TextureRect" type="TextureRect" parent="Panel/Control Panel/HBoxContainer/Fast Forward"]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 5.0
@@ -218,12 +233,13 @@ offset_right = -5.0
 offset_bottom = -5.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-texture = ExtResource( 8 )
-expand = true
+texture = ExtResource("8")
+expand_mode = 1
 stretch_mode = 6
 flip_h = true
 
 [node name="Entry Name" type="Label" parent="Panel/Control Panel"]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -235,7 +251,8 @@ offset_bottom = 212.0
 clip_text = true
 
 [node name="Panel Tweener" type="Control" parent="."]
-script = ExtResource( 11 )
+anchors_preset = 0
+script = ExtResource("11")
 foregroundPath = NodePath("../Panel")
 direction = 1
 appearTransition = 1

@@ -16,7 +16,7 @@ public partial class InventoryPage : Page
 	private Label itemNameLabel;
 	private Label itemDescriptionLabel;
 	private TextureRect itemPreviewTextureRect;
-	protected override void _Ready()
+	public override void _Ready()
 	{
 		base._Ready();
 		container = GetNode(itemsContainerPath);

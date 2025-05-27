@@ -66,12 +66,11 @@ public partial class MovingPanelTweener : PanelTweener
 		.SetEase(appearEase)
 		.SetTrans(appearTransition);
 
-		tween.TweenProperty(foreground, "rect_position", appearPos, appearTime)
+		tween.TweenProperty(foreground, "position", appearPos, appearTime)
 		.FromCurrent()
 		.SetEase(appearEase)
 		.SetTrans(appearTransition);
-
-		tween.Connect("finished", new Callable(this, nameof(OnAppearComplete)));
+		tween.Finished += OnAppearComplete;
 	}
 	public override void Disappear(bool instant = false)
 	{
@@ -97,12 +96,12 @@ public partial class MovingPanelTweener : PanelTweener
 		.SetEase(disappearEase)
 		.SetTrans(disappearTransition);
 
-		tween.TweenProperty(foreground, "rect_position", disappearPos[direction](), disappearTime)
+		tween.TweenProperty(foreground, "position", disappearPos[direction](), disappearTime)
 		.FromCurrent()
 		.SetEase(disappearEase)
 		.SetTrans(disappearTransition);
 
-		tween.Connect("finished", new Callable(this, nameof(OnDisappearComplete)));
+		tween.Finished += OnDisappearComplete;
 	}
 	public override void SetReverse(bool isReverse)
 	{

@@ -62,8 +62,7 @@ public partial class ScrollablePages : ScrollContainer
 		isReady = true;
 
 		pageContainer = GetNode<BoxContainer>(pageContainerPath);
-		object seperationValue = pageContainer.Get("custom_constants/separation");
-		separation = seperationValue == null ? 0 : (int)seperationValue;
+		separation = pageContainer.GetThemeConstant("separation");
 		for (int i = 0; i < pageContainer.GetChildCount(); i++)
 		{
 			var page = pageContainer.GetChild(i) as Page;
@@ -84,7 +83,7 @@ public partial class ScrollablePages : ScrollContainer
 		}
 		else
 		{
-			targetScroll = (int)((Size.Y + separation) * pageIndex);
+			targetScroll = (int)((Size.X + separation) * pageIndex);
 			GD.Print("TargetScroll: " + targetScroll);
 			if (isInstant)
 			{

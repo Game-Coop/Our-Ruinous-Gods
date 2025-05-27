@@ -29,7 +29,7 @@ public partial class AudioPlayerMenu : Page
 	private bool isDragging = false;
 	private AudioEntry focusedEntry;
 
-	protected override void _Ready()
+	public override void _Ready()
 	{
 		base._Ready();
 

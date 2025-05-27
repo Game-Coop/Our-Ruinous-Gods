@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=2 format=3 uid="uid://bhq7gofs3bs2s"]
 
-[ext_resource path="res://scripts/Journal/Journal.cs" type="Script" id=1]
+[ext_resource type="Script" uid="uid://d27govk5611c3" path="res://scripts/Journal/Journal.cs" id="1"]
 
 [node name="Journal" type="Node"]
-script = ExtResource( 1 )
+script = ExtResource("1")

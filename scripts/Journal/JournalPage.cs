@@ -13,7 +13,7 @@ public partial class JournalPage : Page
 	private JournalEntryReader entryReader;
 	private Label entryNameLabel;
 	private Node entryContainer;
-	protected override void _Ready()
+	public override void _Ready()
 	{
 		base._Ready();
 
