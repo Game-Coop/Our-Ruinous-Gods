@@ -11,11 +11,11 @@ public partial class FileSaver : ISaver
     private string extension;
     public void Save(string saveName, string content)
     {
-        if (!DirAccess.Exists(path))
+        if (!Directory.Exists(path))
         {
-            DirAccess.CreateDirectory(path);
+            Directory.CreateDirectory(path);
         }
-        using (var sw = new StreamWriter(Path3D.Combine(path, $"{saveName}.{extension}")))
+        using (var sw = new StreamWriter(Path.Combine(path, $"{saveName}.{extension}")))
         {
             sw.Write(content);
         }
@@ -24,11 +24,11 @@ public partial class FileSaver : ISaver
     public string Load(string saveName)
     {
         string content = "";
-        if (!DirAccess.Exists(path))
+        if (!Directory.Exists(path))
         {
-            DirAccess.CreateDirectory(path);
+            Directory.CreateDirectory(path);
         }
-        using (FileStream fs = new FileStream(Path3D.Combine(path, $"{saveName}.{extension}"), FileMode.OpenOrCreate))
+        using (FileStream fs = new FileStream(Path.Combine(path, $"{saveName}.{extension}"), FileMode.OpenOrCreate))
         {
             if (fs != null)
             {
@@ -45,7 +45,7 @@ public partial class FileSaver : ISaver
     }
     public bool HasSave(string saveName)
     {
-        if (File.Exists(Path3D.Combine(path, $"{saveName}.{extension}")))
+        if (File.Exists(Path.Combine(path, $"{saveName}.{extension}")))
         {
             return true;
         }
@@ -53,7 +53,7 @@ public partial class FileSaver : ISaver
     }
     public void Delete(string saveName)
     {
-        string filePath = Path3D.Combine(path, $"{saveName}.{extension}");
+        string filePath = Path.Combine(path, $"{saveName}.{extension}");
         if (File.Exists(filePath))
         {
             File.Delete(filePath);

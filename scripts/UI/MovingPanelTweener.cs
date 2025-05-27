@@ -37,10 +37,10 @@ public partial class MovingPanelTweener : PanelTweener
 		isReady = true;
 
 		float scaleFactor = 1;
-		disappearPos.Add(Direction.LeftToRight, () => new Vector2(-GetViewport().Size.x / scaleFactor * (isReverse ? -1f : 1f), 0));
-		disappearPos.Add(Direction.RightToLeft, () => new Vector2(GetViewport().Size.x / scaleFactor * (isReverse ? -1f : 1f), 0));
-		disappearPos.Add(Direction.UpToDown, () => new Vector2(0, GetViewport().Size.y / scaleFactor * (isReverse ? -1f : 1f)));
-		disappearPos.Add(Direction.DownToUp, () => new Vector2(0, -GetViewport().Size.y / scaleFactor * (isReverse ? -1f : 1f)));
+		disappearPos.Add(Direction.LeftToRight, () => new Vector2(-GetViewport().GetVisibleRect().Size.X / scaleFactor * (isReverse ? -1f : 1f), 0));
+		disappearPos.Add(Direction.RightToLeft, () => new Vector2(GetViewport().GetVisibleRect().Size.X / scaleFactor * (isReverse ? -1f : 1f), 0));
+		disappearPos.Add(Direction.UpToDown, () => new Vector2(0, GetViewport().GetVisibleRect().Size.Y / scaleFactor * (isReverse ? -1f : 1f)));
+		disappearPos.Add(Direction.DownToUp, () => new Vector2(0, -GetViewport().GetVisibleRect().Size.Y / scaleFactor * (isReverse ? -1f : 1f)));
 		originalDirection = direction;
 	}
 	public override void Appear(bool instant = false)
@@ -52,7 +52,7 @@ public partial class MovingPanelTweener : PanelTweener
 		if (instant)
 		{
 			var color = foreground.Modulate;
-			color.a = 1f;
+			color.A = 1f;
 			foreground.Modulate = color;
 			foreground.Position = appearPos;
 			OnAppear();
@@ -81,7 +81,7 @@ public partial class MovingPanelTweener : PanelTweener
 		if (instant)
 		{
 			var color = foreground.Modulate;
-			color.a = 0f;
+			color.A = 0f;
 			foreground.Modulate = color;
 
 			foreground.Visible = false;

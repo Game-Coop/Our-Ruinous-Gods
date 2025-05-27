@@ -68,7 +68,7 @@ public partial class InventoryPage : Page
 			GD.PrintErr("Item is already in inventory!");
 			return;
 		}
-		var item = itemTemplate.Instance() as InventoryEntry;
+		var item = itemTemplate.Instantiate() as InventoryEntry;
 		item.Setup(itemData);
 		item.OnFocus += OnItemFocus;
 		inventoryEntries.Add(itemData.Id, item);
@@ -110,7 +110,7 @@ public partial class InventoryPage : Page
 	}
 	private void OnItemFocus(InventoryEntry item)
 	{
-		itemPreviewTextureRect.Texture2D = item.itemData.PreviewSprite;
+		itemPreviewTextureRect.Texture = item.itemData.PreviewSprite;
 		itemDescriptionLabel.Text = item.itemData.Description;
 		itemNameLabel.Text = item.itemData.Name;
 

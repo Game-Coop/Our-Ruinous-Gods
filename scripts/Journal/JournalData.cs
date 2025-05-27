@@ -1,6 +1,6 @@
 using Godot;
 
-[RegisteredType(nameof(JournalData), "", nameof(Resource))]
+[GlobalClass]
 public partial class JournalData : Resource
 {
     [Export] public int Id { get; set; }

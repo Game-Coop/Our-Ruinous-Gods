@@ -1,12 +1,12 @@
 using Godot;
 
-[RegisteredType(nameof(AudioData), "", nameof(Resource))]
+[GlobalClass]
 public partial class AudioData : Resource
 {
     [Export] public int Id { get; set; }
     [Export] public string Name { get; set; }
     [Export] public AudioCategory Category { get; set; }
-    [Export] public AudioStreamWAV AudioStreamWAV { get; set; }
+    [Export] public AudioStreamWav AudioStreamWAV { get; set; }
     public bool IsCollected { get; set; }
     public AudioData()
     {

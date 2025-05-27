@@ -1,12 +1,12 @@
 using Godot;
 
-[RegisteredType(nameof(ItemData), "", nameof(Resource))]
+[GlobalClass]
 public partial class ItemData : Resource
 {
     [Export] public int Id { get; set; }
     [Export] public string Name { get; set; }
-    [Export] public ItemCategory Category{ get; set; }
-    [Export] public string Description{ get; set; }
+    [Export] public ItemCategory Category { get; set; }
+    [Export] public string Description { get; set; }
     [Export] public int Count { get; set; }
     [Export] public Texture2D IconSprite { get; set; }
     [Export] public Texture2D PreviewSprite { get; set; }

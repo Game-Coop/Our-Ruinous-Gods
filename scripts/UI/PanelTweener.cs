@@ -2,7 +2,7 @@
 using System;
 using Godot;
 
-public abstract class PanelTweener : Control
+public abstract partial class PanelTweener : Control
 {
 	public enum Direction
 	{

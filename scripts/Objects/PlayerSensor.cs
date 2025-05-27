@@ -14,14 +14,14 @@ public partial class PlayerSensor : Area3D
     }
     public void OnBodyEntered(Node body)
     {
-        if (body is player)
+        if (body is Player)
         {
             switchable.TurnOn();
         }
     }
     public void OnBodyExited(Node body)
     {
-        if (body is player)
+        if (body is Player)
         {
             switchable.TurnOff();
         }

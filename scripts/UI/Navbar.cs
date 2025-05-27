@@ -23,7 +23,7 @@ public partial class Navbar : Control
 	{
 		Init();
 
-		var pagination = paginationTemplate.Instance() as Pagination;
+		var pagination = paginationTemplate.Instantiate() as Pagination;
 		pagination.OnClick += () => Select(index, pagination.GetIndex());
 
 		paginationContainer.AddChild(pagination);
@@ -121,11 +121,11 @@ public partial class Navbar : Control
 		rightButton.Disabled = index >= (paginations.Count - 1);
 
 		var leftButtonColor = leftButton.Modulate;
-		leftButtonColor.a = leftButton.Disabled ? 0f : 1f;
+		leftButtonColor.A = leftButton.Disabled ? 0f : 1f;
 		leftButton.Modulate = leftButtonColor;
 
 		var rightButtonColor = rightButton.Modulate;
-		rightButtonColor.a = rightButton.Disabled ? 0f : 1f;
+		rightButtonColor.A = rightButton.Disabled ? 0f : 1f;
 		rightButton.Modulate = rightButtonColor;
 	}
    

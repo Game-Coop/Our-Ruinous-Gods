@@ -69,7 +69,7 @@ public partial class JournalPage : Page
 			GD.PrintErr("Item is already in inventory!");
 			return;
 		}
-		var entry = journalEntryTemplate.Instance() as JournalEntry;
+		var entry = journalEntryTemplate.Instantiate() as JournalEntry;
 		entry.Setup(entryData);
 		entry.OnFocus += OnEntryFocus;
 		entries.Add(entryData.Id, entry);

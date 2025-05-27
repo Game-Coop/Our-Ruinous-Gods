@@ -1,57 +1,68 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=10 format=3 uid="uid://bw2bssnv641ff"]
 
-[ext_resource path="res://scripts/Inventory/InventoryPage.cs" type="Script" id=1]
-[ext_resource path="res://themes/inventoryScrollbarTheme.tres" type="Theme" id=2]
-[ext_resource path="res://ui/ItemTemplate.tscn" type="PackedScene" id=3]
-[ext_resource path="res://fonts/Chakra_Petch/ChakraPetch-Regular.ttf" type="FontFile" id=4]
-[ext_resource path="res://scripts/UI/MovingPanelTweener.cs" type="Script" id=5]
+[ext_resource type="Script" uid="uid://d1yty5c3d8hde" path="res://scripts/Inventory/InventoryPage.cs" id="1"]
+[ext_resource type="Theme" path="res://themes/inventoryScrollbarTheme.tres" id="2"]
+[ext_resource type="PackedScene" path="res://ui/ItemTemplate.tscn" id="3"]
+[ext_resource type="FontFile" uid="uid://djxjfdocobiaf" path="res://fonts/Chakra_Petch/ChakraPetch-Regular.ttf" id="4"]
+[ext_resource type="Script" uid="uid://bbwa3gfr35dgg" path="res://scripts/UI/MovingPanelTweener.cs" id="5"]
 
-[sub_resource type="StyleBoxFlat" id=1]
-bg_color = Color( 0.87451, 0.87451, 0.87451, 0.266667 )
+[sub_resource type="StyleBoxFlat" id="1"]
+bg_color = Color(0.87451, 0.87451, 0.87451, 0.266667)
 border_width_left = 10
 border_width_top = 10
 border_width_right = 10
 border_width_bottom = 10
-border_color = Color( 0.160784, 0.160784, 0.160784, 0 )
+border_color = Color(0.160784, 0.160784, 0.160784, 0)
 border_blend = true
 corner_radius_top_left = 30
 corner_radius_top_right = 30
 corner_radius_bottom_right = 30
 corner_radius_bottom_left = 30
 
-[sub_resource type="StyleBoxFlat" id=2]
-bg_color = Color( 0.196078, 0.196078, 0.196078, 0.380392 )
+[sub_resource type="StyleBoxFlat" id="2"]
+bg_color = Color(0.196078, 0.196078, 0.196078, 0.380392)
 draw_center = false
 border_width_left = 10
 border_width_top = 10
 border_width_right = 10
 border_width_bottom = 10
-border_color = Color( 0.419608, 0.419608, 0.419608, 1 )
+border_color = Color(0.419608, 0.419608, 0.419608, 1)
 border_blend = true
 
-[sub_resource type="Theme" id=4]
+[sub_resource type="Theme" id="4"]
 
-[sub_resource type="FontFile" id=5]
-size = 50
-font_data = ExtResource( 4 )
+[sub_resource type="FontFile" id="5"]
+fallbacks = Array[Font]([ExtResource("4"), ExtResource("4")])
+subpixel_positioning = 0
+msdf_pixel_range = 14
+msdf_size = 128
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
 
 [node name="Inventory" type="Control"]
+custom_minimum_size = Vector2(1920, 0)
+layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_minimum_size = Vector2( 1920, 0 )
-script = ExtResource( 1 )
+script = ExtResource("1")
 panelTweenerPath = NodePath("Panel Tweener")
-itemTemplate = ExtResource( 3 )
+itemTemplate = ExtResource("3")
 itemsContainerPath = NodePath("Panel/Item List Container/ScrollContainer/VBoxContainer")
 itemPreviewRectPath = NodePath("Panel/VBoxContainer/Item Preview")
 itemNameLabelPath = NodePath("Panel/VBoxContainer/Name Label")
 itemDescriptionLabelPath = NodePath("Panel/VBoxContainer/Description Label")
 
 [node name="Panel" type="Panel" parent="."]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="VSeparator" type="VSeparator" parent="Panel"]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -60,35 +71,37 @@ offset_left = -22.0
 offset_top = -278.0
 offset_right = 22.0
 offset_bottom = 278.0
-theme_override_styles/separator = SubResource( 1 )
+theme_override_styles/separator = SubResource("1")
 
 [node name="Item List Container" type="Panel" parent="Panel"]
+layout_mode = 0
 offset_left = 150.0
 offset_top = 312.0
 offset_right = 800.0
 offset_bottom = 788.0
-theme_override_styles/panel = SubResource( 2 )
+theme_override_styles/panel = SubResource("2")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="Panel/Item List Container"]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 20.0
 offset_top = 20.0
 offset_right = -20.0
 offset_bottom = -20.0
-theme = ExtResource( 2 )
+theme = ExtResource("2")
 follow_focus = true
-scroll_horizontal_enabled = false
+horizontal_scroll_mode = 0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Panel/Item List Container/ScrollContainer"]
-offset_right = 610.0
-offset_bottom = 436.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme = SubResource( 4 )
+theme = SubResource("4")
 theme_override_constants/separation = 20
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -101,39 +114,35 @@ theme_override_constants/separation = 20
 alignment = 1
 
 [node name="Item Preview" type="TextureRect" parent="Panel/VBoxContainer"]
-offset_right = 650.0
-offset_bottom = 408.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 10.0
 stretch_mode = 6
 
 [node name="Name Label" type="Label" parent="Panel/VBoxContainer"]
-offset_top = 428.0
-offset_right = 650.0
-offset_bottom = 476.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
 
 [node name="Description Label" type="Label" parent="Panel/VBoxContainer"]
-offset_top = 496.0
-offset_right = 650.0
-offset_bottom = 700.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 5.0
-autowrap = true
 
 [node name="Label" type="Label" parent="Panel"]
+layout_mode = 0
 offset_left = 155.0
 offset_top = 231.0
 offset_right = 372.0
 offset_bottom = 297.0
-theme_override_fonts/font = SubResource( 5 )
+theme_override_fonts/font = SubResource("5")
 text = "Inventory"
 
 [node name="Panel Tweener" type="Control" parent="."]
-script = ExtResource( 5 )
+anchors_preset = 0
+script = ExtResource("5")
 foregroundPath = NodePath("../Panel")
 direction = 1
 appearTransition = 1

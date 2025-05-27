@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
 using Godot;
-public abstract class BaseControlsMenu : Page
+public abstract partial class BaseControlsMenu : Page
 {
-	[Export] private List<NodePath> inputBindingPaths = new List<NodePath>();
+	[Export] private NodePath[] inputBindingPaths;
 	[Export] private NodePath swapLabelPath;
 	private List<InputBindingButton> inputBindings = new List<InputBindingButton>();
 	private InputBindingButton selectedBinding;

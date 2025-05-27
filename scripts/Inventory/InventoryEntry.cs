@@ -14,7 +14,7 @@ public partial class InventoryEntry : Button
 	public override void _Ready()
 	{
 		base._Ready();
-		GetNode<TextureRect>(textureRectPath).Texture2D = itemData.IconSprite;
+		GetNode<TextureRect>(textureRectPath).Texture = itemData.IconSprite;
 		GetNode<Label>(labelPath).Text = itemData.Name;
 	}
 

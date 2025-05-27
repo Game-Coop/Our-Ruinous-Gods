@@ -33,7 +33,7 @@ public partial class FadingPanelTweener : PanelTweener
         if (instant)
         {
             var color = foreground.Modulate;
-            color.a = 1f;
+            color.A = 1f;
             foreground.Modulate = color;
             OnAppear();
             return;
@@ -51,7 +51,7 @@ public partial class FadingPanelTweener : PanelTweener
         if (instant)
         {
             var color = Modulate;
-            color.a = 0f;
+            color.A = 0f;
             Modulate = color;
             foreground.Visible = false;
             OnDisappear();

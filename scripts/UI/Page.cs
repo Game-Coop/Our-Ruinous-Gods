@@ -3,7 +3,7 @@
 using System;
 using Godot;
 
-public abstract class Page : Control
+public abstract partial class Page : Control
 {
 	[Export] private NodePath panelTweenerPath;
 	public event Action OnShow;

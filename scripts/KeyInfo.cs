@@ -1,6 +1,6 @@
 using Godot;
 
-[RegisteredType(nameof(KeyInfo), "", nameof(Resource))]
+[GlobalClass]
 public partial class KeyInfo : Resource
 {
 	[Export] public string Name { get; set; }

@@ -142,7 +142,7 @@ public partial class AudioPlayerMenu : Page
 			GD.PrintErr("Item is already in inventory!");
 			return;
 		}
-		var entry = audioEntryTemplate.Instance() as AudioEntry;
+		var entry = audioEntryTemplate.Instantiate() as AudioEntry;
 		entry.Setup(audioData);
 		entry.OnFocus += OnAudioEntryFocus;
 		entries.Add(audioData.Id, entry);

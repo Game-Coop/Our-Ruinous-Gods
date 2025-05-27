@@ -17,8 +17,8 @@ public partial class Hint : Label3D
 		float aspect = texture.GetHeight() / (float)texture.GetWidth();
 		var scaleFactor = referenceScale / texture.GetSize();
 
-		sprite.Scale = new Vector3(scaleFactor.x, scaleFactor.x * aspect, 1f);
-		sprite.Texture2D = texture;
+		sprite.Scale = new Vector3(scaleFactor.X, scaleFactor.X * aspect, 1f);
+		sprite.Texture = texture;
 		Text = text;
 	}
 }

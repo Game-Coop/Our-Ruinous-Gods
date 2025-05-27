@@ -37,7 +37,7 @@ public partial class ScrollablePages : ScrollContainer
 	public Page AddPage(PackedScene pageTemplate)
 	{
 		Init();
-		var page = pageTemplate.Instance() as Page;
+		var page = pageTemplate.Instantiate() as Page;
 		return AddPage(page);
 	}
 	public Page AddPage(Page page)
@@ -72,9 +72,10 @@ public partial class ScrollablePages : ScrollContainer
 	}
 	private void AnimateScroll(int pageIndex, bool isInstant)
 	{
-		if (ScrollVerticalEnabled)
+		bool isVertical = VerticalScrollMode == ScrollMode.Auto;
+		if (isVertical)
 		{
-			targetScroll = (int)((Size.y + separation) * pageIndex);
+			targetScroll = (int)((Size.Y + separation) * pageIndex);
 			if (isInstant)
 			{
 				SetDeferred("scroll_vertical", targetScroll);
@@ -83,7 +84,7 @@ public partial class ScrollablePages : ScrollContainer
 		}
 		else
 		{
-			targetScroll = (int)((Size.x + separation) * pageIndex);
+			targetScroll = (int)((Size.Y + separation) * pageIndex);
 			GD.Print("TargetScroll: " + targetScroll);
 			if (isInstant)
 			{
@@ -97,7 +98,7 @@ public partial class ScrollablePages : ScrollContainer
 			tween.Kill();
 		}
 		tween = CreateTween();
-		tween.TweenProperty(this, ScrollVerticalEnabled ? "scroll_vertical" : "scroll_horizontal", targetScroll, 0.3f)
+		tween.TweenProperty(this, isVertical ? "scroll_vertical" : "scroll_horizontal", targetScroll, 0.3f)
 		.FromCurrent()
 		.SetTrans(Tween.TransitionType.Cubic)
 		.SetEase(Tween.EaseType.Out);

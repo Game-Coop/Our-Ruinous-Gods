@@ -14,7 +14,7 @@ public partial class PowerCollisionTrigger : Node3D
 	}
 	public void OnBodyEntered(Node body)
 	{
-		if(body is player) {
+		if(body is Player) {
 			EventBus EventBusHandler = GetNode<EventBus>("/root/EventBus");      
 			EventBusHandler.OnPowerEvent(this.Zone);
 

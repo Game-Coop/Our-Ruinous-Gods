@@ -50,7 +50,7 @@ public partial class OrderedPages : Control
 	public Page AddPage(PackedScene pageTemplate)
 	{
 		Init();
-		var page = pageTemplate.Instance() as Page;
+		var page = pageTemplate.Instantiate() as Page;
 		return AddPage(page);
 	}
 	public Page AddPage(Page page)
