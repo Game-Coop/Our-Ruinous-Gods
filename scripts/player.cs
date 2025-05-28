@@ -4,27 +4,28 @@ using System.Data.Common;
 using System.IO.Compression;
 public partial class Player : CharacterBody3D
 {
-    [Export] public float gravity = 9.8f;  
+	[Export] public float gravity = 9.8f;
 	[Export] private float speed = 1.42f;
 	private Node3D _head;
 	private Node3D _camera;
-    private int Power = 0;
-    private int MaxPower = 100;
-    private int Stamina = 100;
+	private int Power = 0;
+	private int MaxPower = 100;
+	private int Stamina = 100;
 
-    public override void _Ready()
-    {;
-        _head = GetNode<Node3D>("Head");
-        _camera = GetNode<Node3D>("Head/Camera3D");
+	public override void _Ready()
+	{
+		;
+		_head = GetNode<Node3D>("Head");
+		_camera = GetNode<Node3D>("Head/Camera3D");
 
 		Input.MouseMode = Input.MouseModeEnum.Captured;
 
-        EventBus EventBusHandler = GetNode<EventBus>("/root/EventBus");
-        EventBusHandler.Connect("PowerChangedEventHandler", new Callable(this, "OnPowerChange"));
-        EventBusHandler.Connect("StaminaChangeEventHandler", new Callable(this, "OnStaminaChange"));
-        EventBusHandler.Connect("WorldEventHandler", new Callable(this, "OnWorldEvent"));
-    }
-	
+		EventBus EventBusHandler = GetNode<EventBus>("/root/EventBus");
+		EventBusHandler.PowerChanged += OnPowerChange;
+		EventBusHandler.StaminaChange += OnStaminaChange;
+		EventBusHandler.World += OnWorldEvent;
+	}
+
 	public override void _Input(InputEvent @event)
 	{
 		if (@event is InputEventJoypadMotion || @event is InputEventMouseMotion)
@@ -49,7 +50,7 @@ public partial class Player : CharacterBody3D
 			_camera.Rotation = new Vector3(Mathf.Clamp(_camera.Rotation.X, Mathf.DegToRad(-75f), Mathf.DegToRad(80f)), _camera.Rotation.Y, _camera.Rotation.Z);
 		}
 	}
-	
+
 	public override void _PhysicsProcess(double delta)
 	{
 		Vector3 velocity = Velocity;
@@ -74,7 +75,7 @@ public partial class Player : CharacterBody3D
 		Velocity = velocity;
 		MoveAndSlide();
 	}
-	
+
 	public void OnPowerChange(PowerEvent e)
 	{
 		int currentPower = Power;
@@ -95,11 +96,13 @@ public partial class Player : CharacterBody3D
 		GD.Print("current power use is: " + Power);
 	}
 
-	public void OnWorldEvent(string name) {
+	public void OnWorldEvent(string name)
+	{
 		GD.Print("event has occured: " + name);
 	}
 
-	public void OnStaminaChange(int cost) {
+	public void OnStaminaChange(int cost)
+	{
 		this.Stamina -= cost;
 		GD.Print("current stamina: " + this.Stamina);
 	}
