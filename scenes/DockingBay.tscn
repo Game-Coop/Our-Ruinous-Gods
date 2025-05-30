@@ -1,6 +1,8 @@
-[gd_scene load_steps=27 format=3 uid="uid://5ju312o65nch"]
+[gd_scene load_steps=31 format=3 uid="uid://5ju312o65nch"]
 
-[ext_resource type="PackedScene" uid="uid://iwonbg6yjb0e" path="res://entities/Player.tscn" id="2"]
+[ext_resource type="Texture2D" uid="uid://cpdlyofeispi2" path="res://assets/textures/skybox.jpg" id="1_kqgya"]
+[ext_resource type="PackedScene" uid="uid://iwonbg6yjb0e" path="res://entities/player.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://brhnnl368syqk" path="res://assets/models/RootNode.scn" id="2_2heu7"]
 [ext_resource type="PackedScene" uid="uid://bbtlh1kjqcs54" path="res://objects/PowerSwitch.tscn" id="4"]
 [ext_resource type="PackedScene" uid="uid://bmyx37pp63kbo" path="res://objects/PowerableLight.tscn" id="5"]
 [ext_resource type="PackedScene" uid="uid://cbdgjnsddvyc5" path="res://objects/PowerCollisionTrigger.tscn" id="6"]
@@ -18,7 +20,11 @@
 [ext_resource type="Material" path="res://assets/models/standardSurface1.material" id="19"]
 [ext_resource type="Script" uid="uid://g8p6u6edsqu" path="res://scripts/Objects/PlayerSensor.cs" id="20"]
 
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_kfrdm"]
+panorama = ExtResource("1_kqgya")
+
 [sub_resource type="Sky" id="3"]
+sky_material = SubResource("PanoramaSkyMaterial_kfrdm")
 
 [sub_resource type="Environment" id="4"]
 background_mode = 2
@@ -40,21 +46,22 @@ height = 7.47521
 [sub_resource type="BoxShape3D" id="14"]
 size = Vector3(6.58246, 7.02236, 9.24394)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_kfrdm"]
+
 [node name="DockingBay" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("4")
 
 [node name="Player" parent="." instance=ExtResource("2")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.501679, 1.74876, 2.80733)
-gravity = 40.0
+transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 0, 1.41686, 1.73652)
 
-[node name="DockingbayBlockout#CSGCombiner3D" type="CSGCombiner3D" parent="."]
-transform = Transform3D(0.714286, 0, 0, 0, 0.714286, 0, 0, 0, 0.714286, 0.0245799, 0.807751, -0.000456401)
-use_collision = true
+[node name="RootNode" parent="." instance=ExtResource("2_2heu7")]
+transform = Transform3D(1.395, 0, 0, 0, 1.395, 0, 0, 0, 1.395, 0, 0, 0)
 
 [node name="DockingbayBlockout_CSGCombiner3D#CSGBox3D" type="CSGBox3D" parent="."]
 transform = Transform3D(2.96124, 0, 0, 0, 3.4166, 0, 0, 0, 1, 0.447214, 2.92033, -2.10941)
+use_collision = true
 size = Vector3(3.10349, 3.1661, 1)
 
 [node name="PowerSwitch(Upstairs)" parent="." instance=ExtResource("4")]
@@ -101,21 +108,18 @@ State = 1
 
 [node name="OmniLight5" type="OmniLight3D" parent="Ambient Lights/Docking"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 2, 4)
-visible = false
 light_color = Color(1, 0, 0, 1)
 light_energy = 0.25
 omni_range = 10.0
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Ambient Lights/Docking"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 7, 4)
-visible = false
 light_color = Color(1, 0, 0, 1)
 light_energy = 0.25
 omni_range = 10.0
 
 [node name="OmniLight6" type="OmniLight3D" parent="Ambient Lights/Docking"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 2, 4)
-visible = false
 light_color = Color(1, 0, 0, 1)
 light_energy = 0.25
 omni_range = 10.0
@@ -128,28 +132,24 @@ omni_range = 10.0
 
 [node name="OmniLight7" type="OmniLight3D" parent="Ambient Lights/Docking"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 2, 14)
-visible = false
 light_color = Color(1, 0, 0, 1)
 light_energy = 0.25
 omni_range = 10.0
 
 [node name="OmniLight3" type="OmniLight3D" parent="Ambient Lights/Docking"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 7, 14)
-visible = false
 light_color = Color(1, 0, 0, 1)
 light_energy = 0.25
 omni_range = 10.0
 
 [node name="OmniLight8" type="OmniLight3D" parent="Ambient Lights/Docking"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 2, 14)
-visible = false
 light_color = Color(1, 0, 0, 1)
 light_energy = 0.25
 omni_range = 10.0
 
 [node name="OmniLight4" type="OmniLight3D" parent="Ambient Lights/Docking"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 7, 14)
-visible = false
 light_color = Color(1, 0, 0, 1)
 light_energy = 0.25
 omni_range = 10.0
@@ -193,11 +193,8 @@ pauseMenuPagePath = NodePath("Pause Menu")
 settingsMenuPagePath = NodePath("Settings Menu")
 
 [node name="Pause Menu" parent="CanvasLayer" instance=ExtResource("7")]
-anchors_preset = 15
 
 [node name="Settings Menu" parent="CanvasLayer" instance=ExtResource("9")]
-layout_mode = 3
-anchors_preset = 15
 
 [node name="Collectable Item 1" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.87988, -10.7633, 48.6081)
@@ -288,3 +285,27 @@ switchablePath = NodePath("../Sliding Door")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Door Sensor"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.57936, 1.74968)
 shape = SubResource("14")
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 0.0965926, -1.2941, 0, 0.0258819, 4.82963, 0.594981, -0.0590178, 20.305)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D2"]
+shape = SubResource("BoxShape3D_kfrdm")
+
+[node name="StaticBody3D3" type="StaticBody3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 0.0996378, 0.425172, 0, -0.00850343, 4.98189, 0.594981, 0.367756, 15.3814)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D3"]
+shape = SubResource("BoxShape3D_kfrdm")
+
+[node name="StaticBody3D4" type="StaticBody3D" parent="."]
+transform = Transform3D(3.70488, 0, 0, 0, 0.0827685, -1.16484, 0, 0.0341942, 2.81955, 0.603499, -10.4625, 38.8494)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D4"]
+shape = SubResource("BoxShape3D_kfrdm")
+
+[node name="StaticBody3D5" type="StaticBody3D" parent="."]
+transform = Transform3D(3.70488, 0, 0, 0, 0.0975966, 0.989858, 0, -0.0342505, 2.82059, 0.603499, -10.3941, 36.0546)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D5"]
+shape = SubResource("BoxShape3D_kfrdm")
