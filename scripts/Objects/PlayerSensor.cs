@@ -1,7 +1,7 @@
 
 using Godot;
 
-public class PlayerSensor : Area
+public partial class PlayerSensor : Area3D
 {
     [Export] private NodePath switchablePath;
     private ISwitchable switchable;
@@ -9,19 +9,19 @@ public class PlayerSensor : Area
     {
         switchable = GetNode<ISwitchable>(switchablePath);
         Monitoring = true;
-        Connect("body_entered", this, "OnBodyEntered");
-        Connect("body_exited", this, "OnBodyExited");
+        Connect("body_entered", new Callable(this, "OnBodyEntered"));
+        Connect("body_exited", new Callable(this, "OnBodyExited"));
     }
     public void OnBodyEntered(Node body)
     {
-        if (body is player)
+        if (body is Player)
         {
             switchable.TurnOn();
         }
     }
     public void OnBodyExited(Node body)
     {
-        if (body is player)
+        if (body is Player)
         {
             switchable.TurnOff();
         }

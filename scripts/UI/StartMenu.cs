@@ -2,7 +2,7 @@ using System;
 using System.Threading.Tasks;
 using Godot;
 
-public class StartMenu : Control
+public partial class StartMenu : Control
 {
 	[Export] private NodePath startBtnPath;
 	[Export] private NodePath exitBtnPath;
@@ -27,13 +27,13 @@ public class StartMenu : Control
 		timer.WaitTime = _musicPlayer.Stream.GetLength();
 		timer.Autostart = true;
 		timer.OneShot = false;
-		timer.Connect("timeout", this, nameof(OnMusicTimerTimeout));
+		timer.Connect("timeout", new Callable(this, nameof(OnMusicTimerTimeout)));
 		AddChild(timer);
 
 		_versionLabel.Text = VersionInfo.Version;
 
-		_startBtn.Connect("pressed", this, nameof(OnStartPressed));
-		_exitBtn.Connect("pressed", this, nameof(OnExitPressed));
+		_startBtn.Connect("pressed", new Callable(this, nameof(OnStartPressed)));
+		_exitBtn.Connect("pressed", new Callable(this, nameof(OnExitPressed)));
 	}
 
 	private async void OnStartPressed()
@@ -41,7 +41,7 @@ public class StartMenu : Control
 		_startBtn.Disabled = true;
 		await FadeOutMusic();
 		GetTree().Paused = false;
-		GetTree().ChangeSceneTo(ResourceDatabase.GameScene);
+		GetTree().ChangeSceneToPacked(ResourceDatabase.GameScene);
 	}
 
 	private void OnExitPressed()

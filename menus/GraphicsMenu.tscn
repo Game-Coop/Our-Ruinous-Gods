@@ -1,41 +1,52 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=6 format=3 uid="uid://drbibq7jlokco"]
 
-[ext_resource path="res://scripts/UI/MovingPanelTweener.cs" type="Script" id=1]
-[ext_resource path="res://scripts/UI/GraphicsMenu.cs" type="Script" id=2]
-[ext_resource path="res://fonts/Chakra_Petch/ChakraPetch-Regular.ttf" type="DynamicFontData" id=3]
+[ext_resource type="Script" uid="uid://bbwa3gfr35dgg" path="res://scripts/UI/MovingPanelTweener.cs" id="1"]
+[ext_resource type="Script" uid="uid://cy84ikjgg580p" path="res://scripts/UI/GraphicsMenu.cs" id="2"]
+[ext_resource type="FontFile" uid="uid://djxjfdocobiaf" path="res://fonts/Chakra_Petch/ChakraPetch-Regular.ttf" id="3"]
 
-[sub_resource type="StyleBoxEmpty" id=1]
+[sub_resource type="StyleBoxEmpty" id="1"]
 
-[sub_resource type="DynamicFont" id=2]
-size = 60
-font_data = ExtResource( 3 )
+[sub_resource type="FontFile" id="2"]
+fallbacks = Array[Font]([ExtResource("3"), ExtResource("3")])
+subpixel_positioning = 0
+msdf_pixel_range = 14
+msdf_size = 128
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
 
 [node name="GraphicsMenu" type="Panel"]
+clip_contents = true
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-rect_clip_content = true
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_styles/panel = SubResource( 1 )
-script = ExtResource( 2 )
+theme_override_styles/panel = SubResource("1")
+script = ExtResource("2")
 panelTweenerPath = NodePath("Panel Tweener")
 
 [node name="Panel" type="Panel" parent="."]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="Label" type="Label" parent="Panel"]
+layout_mode = 0
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -114.0
-margin_top = 108.0
-margin_right = 127.0
-margin_bottom = 187.0
-custom_fonts/font = SubResource( 2 )
+offset_left = -114.0
+offset_top = 108.0
+offset_right = 127.0
+offset_bottom = 187.0
+theme_override_fonts/font = SubResource("2")
 text = "Graphics"
 
 [node name="Panel Tweener" type="Control" parent="."]
-script = ExtResource( 1 )
+anchors_preset = 0
+script = ExtResource("1")
 foregroundPath = NodePath("../Panel")
 direction = 3
 appearTime = 0.2

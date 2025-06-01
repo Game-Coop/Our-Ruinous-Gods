@@ -1,6 +1,6 @@
 using System;
 using Godot;
-public class UIManager : CanvasLayer
+public partial class UIManager : CanvasLayer
 {
 	[Export] private NodePath pauseMenuPagePath;
 	[Export] private NodePath settingsMenuPagePath;
@@ -23,22 +23,22 @@ public class UIManager : CanvasLayer
 			// TODO: if we want to lock opening these pages with progression we can do it here
 			if (@event.IsActionPressed("inventory_toggle"))
 			{
-				GetTree().SetInputAsHandled();
+				GetViewport().SetInputAsHandled();
 				pauseMenuPage.OpenInventory();
 			}
 			else if (@event.IsActionPressed("journal_toggle"))
 			{
-				GetTree().SetInputAsHandled();
+				GetViewport().SetInputAsHandled();
 				pauseMenuPage.OpenJournal();
 			}
 			else if (@event.IsActionPressed("audioplayer_toggle"))
 			{
-				GetTree().SetInputAsHandled();
+				GetViewport().SetInputAsHandled();
 				pauseMenuPage.OpenAudioPlayer();
 			}
 			else if (@event.IsActionPressed("pause_toggle"))
 			{
-				GetTree().SetInputAsHandled();
+				GetViewport().SetInputAsHandled();
 				settingsMenuPage.OpenSettings();
 			}
 		}

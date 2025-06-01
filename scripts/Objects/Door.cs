@@ -2,7 +2,7 @@
 using System;
 using Godot;
 
-public class Door : Spatial, ISwitchable
+public partial class Door : Node3D, ISwitchable
 {
     public event Action<bool> OnStateChange;
 	[Export] public bool IsOn { get; private set; }

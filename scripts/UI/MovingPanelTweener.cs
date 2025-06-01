@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using Godot;
 
-public class MovingPanelTweener : PanelTweener
+public partial class MovingPanelTweener : PanelTweener
 {
 	[Export] private NodePath foregroundPath;
 	[Export] private Direction direction;
@@ -37,10 +37,10 @@ public class MovingPanelTweener : PanelTweener
 		isReady = true;
 
 		float scaleFactor = 1;
-		disappearPos.Add(Direction.LeftToRight, () => new Vector2(-GetViewport().Size.x / scaleFactor * (isReverse ? -1f : 1f), 0));
-		disappearPos.Add(Direction.RightToLeft, () => new Vector2(GetViewport().Size.x / scaleFactor * (isReverse ? -1f : 1f), 0));
-		disappearPos.Add(Direction.UpToDown, () => new Vector2(0, GetViewport().Size.y / scaleFactor * (isReverse ? -1f : 1f)));
-		disappearPos.Add(Direction.DownToUp, () => new Vector2(0, -GetViewport().Size.y / scaleFactor * (isReverse ? -1f : 1f)));
+		disappearPos.Add(Direction.LeftToRight, () => new Vector2(-GetViewport().GetVisibleRect().Size.X / scaleFactor * (isReverse ? -1f : 1f), 0));
+		disappearPos.Add(Direction.RightToLeft, () => new Vector2(GetViewport().GetVisibleRect().Size.X / scaleFactor * (isReverse ? -1f : 1f), 0));
+		disappearPos.Add(Direction.UpToDown, () => new Vector2(0, GetViewport().GetVisibleRect().Size.Y / scaleFactor * (isReverse ? -1f : 1f)));
+		disappearPos.Add(Direction.DownToUp, () => new Vector2(0, -GetViewport().GetVisibleRect().Size.Y / scaleFactor * (isReverse ? -1f : 1f)));
 		originalDirection = direction;
 	}
 	public override void Appear(bool instant = false)
@@ -52,9 +52,9 @@ public class MovingPanelTweener : PanelTweener
 		if (instant)
 		{
 			var color = foreground.Modulate;
-			color.a = 1f;
+			color.A = 1f;
 			foreground.Modulate = color;
-			foreground.RectPosition = appearPos;
+			foreground.Position = appearPos;
 			OnAppear();
 			return;
 		}
@@ -66,12 +66,11 @@ public class MovingPanelTweener : PanelTweener
 		.SetEase(appearEase)
 		.SetTrans(appearTransition);
 
-		tween.TweenProperty(foreground, "rect_position", appearPos, appearTime)
+		tween.TweenProperty(foreground, "position", appearPos, appearTime)
 		.FromCurrent()
 		.SetEase(appearEase)
 		.SetTrans(appearTransition);
-
-		tween.Connect("finished", this, nameof(OnAppearComplete));
+		tween.Finished += OnAppearComplete;
 	}
 	public override void Disappear(bool instant = false)
 	{
@@ -81,11 +80,11 @@ public class MovingPanelTweener : PanelTweener
 		if (instant)
 		{
 			var color = foreground.Modulate;
-			color.a = 0f;
+			color.A = 0f;
 			foreground.Modulate = color;
 
 			foreground.Visible = false;
-			foreground.RectPosition = disappearPos[direction]();
+			foreground.Position = disappearPos[direction]();
 			OnDisappear();
 			return;
 		}
@@ -97,12 +96,12 @@ public class MovingPanelTweener : PanelTweener
 		.SetEase(disappearEase)
 		.SetTrans(disappearTransition);
 
-		tween.TweenProperty(foreground, "rect_position", disappearPos[direction](), disappearTime)
+		tween.TweenProperty(foreground, "position", disappearPos[direction](), disappearTime)
 		.FromCurrent()
 		.SetEase(disappearEase)
 		.SetTrans(disappearTransition);
 
-		tween.Connect("finished", this, nameof(OnDisappearComplete));
+		tween.Finished += OnDisappearComplete;
 	}
 	public override void SetReverse(bool isReverse)
 	{
@@ -110,7 +109,7 @@ public class MovingPanelTweener : PanelTweener
 		this.isReverse = isReverse;
 		if (IsHidden)
 		{
-			foreground.RectPosition = disappearPos[direction]();
+			foreground.Position = disappearPos[direction]();
 		}
 	}
 	private void OnDisappearComplete()

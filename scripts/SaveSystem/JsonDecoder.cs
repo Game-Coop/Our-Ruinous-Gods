@@ -1,6 +1,6 @@
 using Godot;
 using Newtonsoft.Json;
-public class JsonDecoder : IDecoder
+public partial class JsonDecoder : IDecoder
 {
     public string Encode<T>(T content)
     {

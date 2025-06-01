@@ -1,222 +1,212 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=17 format=3 uid="uid://nvsajw008gtm"]
 
-[ext_resource path="res://scripts/Journal/JournalPage.cs" type="Script" id=1]
-[ext_resource path="res://themes/inventoryScrollbarTheme.tres" type="Theme" id=2]
-[ext_resource path="res://ui/JournalEntryTemplate.tscn" type="PackedScene" id=3]
-[ext_resource path="res://fonts/Chakra_Petch/ChakraPetch-Regular.ttf" type="DynamicFontData" id=4]
-[ext_resource path="res://ui/Pagination.tscn" type="PackedScene" id=5]
-[ext_resource path="res://ui/EntryPageTemplate.tscn" type="PackedScene" id=6]
-[ext_resource path="res://assets/ui/right-arrow.png" type="Texture" id=7]
-[ext_resource path="res://scripts/UI/Navbar.cs" type="Script" id=8]
-[ext_resource path="res://scripts/UI/ScrollablePages.cs" type="Script" id=9]
-[ext_resource path="res://scripts/Journal/JournalEntryReader.cs" type="Script" id=10]
-[ext_resource path="res://scripts/UI/MovingPanelTweener.cs" type="Script" id=11]
+[ext_resource type="Script" uid="uid://cb3tdx4fpgcey" path="res://scripts/Journal/JournalPage.cs" id="1"]
+[ext_resource type="Theme" path="res://themes/inventoryScrollbarTheme.tres" id="2"]
+[ext_resource type="PackedScene" path="res://ui/JournalEntryTemplate.tscn" id="3"]
+[ext_resource type="FontFile" uid="uid://djxjfdocobiaf" path="res://fonts/Chakra_Petch/ChakraPetch-Regular.ttf" id="4"]
+[ext_resource type="PackedScene" path="res://ui/Pagination.tscn" id="5"]
+[ext_resource type="PackedScene" uid="uid://dubuq4fr54oik" path="res://ui/EntryPageTemplate.tscn" id="6"]
+[ext_resource type="Texture2D" uid="uid://chdxvbrmjswds" path="res://assets/ui/right-arrow.png" id="7"]
+[ext_resource type="Script" uid="uid://dgho8w6pyyanf" path="res://scripts/UI/Navbar.cs" id="8"]
+[ext_resource type="Script" uid="uid://qulipl1i05lq" path="res://scripts/UI/ScrollablePages.cs" id="9"]
+[ext_resource type="Script" uid="uid://t3d0v78qqjm" path="res://scripts/Journal/JournalEntryReader.cs" id="10"]
+[ext_resource type="Script" uid="uid://bbwa3gfr35dgg" path="res://scripts/UI/MovingPanelTweener.cs" id="11"]
 
-[sub_resource type="StyleBoxFlat" id=7]
-bg_color = Color( 0.87451, 0.87451, 0.87451, 0.266667 )
+[sub_resource type="StyleBoxFlat" id="7"]
+bg_color = Color(0.87451, 0.87451, 0.87451, 0.266667)
 border_width_left = 10
 border_width_top = 10
 border_width_right = 10
 border_width_bottom = 10
-border_color = Color( 0.160784, 0.160784, 0.160784, 0 )
+border_color = Color(0.160784, 0.160784, 0.160784, 0)
 border_blend = true
 corner_radius_top_left = 30
 corner_radius_top_right = 30
 corner_radius_bottom_right = 30
 corner_radius_bottom_left = 30
 
-[sub_resource type="Theme" id=4]
+[sub_resource type="Theme" id="4"]
 
-[sub_resource type="DynamicFont" id=5]
-size = 50
-font_data = ExtResource( 4 )
+[sub_resource type="FontFile" id="5"]
+fallbacks = Array[Font]([ExtResource("4"), ExtResource("4")])
+subpixel_positioning = 0
+msdf_pixel_range = 14
+msdf_size = 128
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
 
-[sub_resource type="InputEventAction" id=12]
-action = "journal_left"
+[sub_resource type="Shortcut" id="9"]
 
-[sub_resource type="ShortCut" id=9]
-shortcut = SubResource( 12 )
-
-[sub_resource type="InputEventAction" id=13]
-action = "journal_right"
-
-[sub_resource type="ShortCut" id=11]
-shortcut = SubResource( 13 )
+[sub_resource type="Shortcut" id="11"]
 
 [node name="Journal" type="Control"]
+custom_minimum_size = Vector2(1920, 0)
+layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-rect_min_size = Vector2( 1920, 0 )
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-script = ExtResource( 1 )
-panelTweenerPath = NodePath("Panel Tweener")
-journalEntryTemplate = ExtResource( 3 )
+script = ExtResource("1")
+journalEntryTemplate = ExtResource("3")
 entryContainerPath = NodePath("Panel/Item List Container/ScrollContainer/VBoxContainer")
 entryNameLabelPath = NodePath("Panel/Journal Reader/Entry Name")
 entryReaderPath = NodePath("Panel/Journal Reader")
+panelTweenerPath = NodePath("Panel Tweener")
 
 [node name="Panel" type="Panel" parent="."]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="VSeparator" type="VSeparator" parent="Panel"]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -22.0
-margin_top = -278.0
-margin_right = 22.0
-margin_bottom = 278.0
-custom_styles/separator = SubResource( 7 )
+offset_left = -22.0
+offset_top = -278.0
+offset_right = 22.0
+offset_bottom = 278.0
+theme_override_styles/separator = SubResource("7")
 
 [node name="Item List Container" type="Panel" parent="Panel"]
-margin_left = 142.0
-margin_top = 301.0
-margin_right = 792.0
-margin_bottom = 777.0
+layout_mode = 0
+offset_left = 142.0
+offset_top = 301.0
+offset_right = 792.0
+offset_bottom = 777.0
 
 [node name="ScrollContainer" type="ScrollContainer" parent="Panel/Item List Container"]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 20.0
-margin_top = 20.0
-margin_right = -20.0
-margin_bottom = -20.0
-theme = ExtResource( 2 )
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
+theme = ExtResource("2")
 follow_focus = true
-scroll_horizontal_enabled = false
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Panel/Item List Container/ScrollContainer"]
-margin_right = 610.0
-margin_bottom = 436.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme = SubResource( 4 )
-custom_constants/separation = 20
+theme = SubResource("4")
+theme_override_constants/separation = 20
 
 [node name="Title" type="Label" parent="Panel"]
-margin_left = 155.0
-margin_top = 231.0
-margin_right = 372.0
-margin_bottom = 297.0
-custom_fonts/font = SubResource( 5 )
+layout_mode = 0
+offset_left = 155.0
+offset_top = 231.0
+offset_right = 372.0
+offset_bottom = 297.0
+theme_override_fonts/font = SubResource("5")
 text = "Journal"
 
 [node name="Journal Reader" type="VBoxContainer" parent="Panel"]
-margin_left = 1096.0
-margin_top = 270.0
-margin_right = 1733.0
-margin_bottom = 797.0
+layout_mode = 0
+offset_left = 1096.0
+offset_top = 270.0
+offset_right = 1733.0
+offset_bottom = 797.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
-script = ExtResource( 10 )
-paginationTemplate = ExtResource( 5 )
-pageTemplate = ExtResource( 6 )
+script = ExtResource("10")
+paginationTemplate = ExtResource("5")
+pageTemplate = ExtResource("6")
 navBarPath = NodePath("Navbar")
 scrollablePagesPath = NodePath("ScrollablePages")
 seperationString = "@"
 
 [node name="Entry Name" type="Label" parent="Panel/Journal Reader"]
-margin_right = 750.0
-margin_bottom = 48.0
+layout_mode = 2
 size_flags_vertical = 1
-align = 1
-valign = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="ScrollablePages" type="ScrollContainer" parent="Panel/Journal Reader"]
-margin_top = 52.0
-margin_right = 750.0
-margin_bottom = 469.0
-rect_min_size = Vector2( 750, 0 )
+custom_minimum_size = Vector2(750, 0)
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme = ExtResource( 2 )
+theme = ExtResource("2")
 follow_focus = true
-scroll_vertical_enabled = false
-script = ExtResource( 9 )
+vertical_scroll_mode = 0
+script = ExtResource("9")
 pageContainerPath = NodePath("HBoxContainer")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Panel/Journal Reader/ScrollablePages"]
-margin_right = 750.0
-margin_bottom = 417.0
-rect_clip_content = true
+clip_contents = true
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_constants/separation = 250
+theme_override_constants/separation = 250
 
 [node name="Navbar" type="HBoxContainer" parent="Panel/Journal Reader"]
-margin_left = 275.0
-margin_top = 473.0
-margin_right = 475.0
-margin_bottom = 527.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 2
 size_flags_horizontal = 4
-custom_constants/separation = 50
+theme_override_constants/separation = 50
 alignment = 1
-script = ExtResource( 8 )
+script = ExtResource("8")
 paginationsPath = NodePath("Paginations")
 leftButtonPath = NodePath("Left Button")
 rightButtonPath = NodePath("Right Button")
 
 [node name="Left Button" type="Button" parent="Panel/Journal Reader/Navbar"]
-margin_right = 50.0
-margin_bottom = 54.0
-grow_horizontal = 2
-grow_vertical = 2
-rect_min_size = Vector2( 50, 50 )
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
 focus_mode = 0
-shortcut = SubResource( 9 )
+shortcut = SubResource("9")
 flat = true
-icon_align = 1
+icon_alignment = 1
 expand_icon = true
 
 [node name="TextureRect" type="TextureRect" parent="Panel/Journal Reader/Navbar/Left Button"]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
-texture = ExtResource( 7 )
-expand = true
+texture = ExtResource("7")
+expand_mode = 1
 stretch_mode = 6
 flip_h = true
 
 [node name="Paginations" type="HBoxContainer" parent="Panel/Journal Reader/Navbar"]
-margin_left = 100.0
-margin_right = 100.0
-margin_bottom = 54.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_constants/separation = 40
+theme_override_constants/separation = 40
 alignment = 1
 
 [node name="Right Button" type="Button" parent="Panel/Journal Reader/Navbar"]
-margin_left = 150.0
-margin_right = 200.0
-margin_bottom = 54.0
-grow_horizontal = 2
-grow_vertical = 2
-rect_min_size = Vector2( 50, 50 )
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
 focus_mode = 0
-shortcut = SubResource( 11 )
+shortcut = SubResource("11")
 flat = true
-icon_align = 1
+icon_alignment = 1
 expand_icon = true
 
 [node name="TextureRect" type="TextureRect" parent="Panel/Journal Reader/Navbar/Right Button"]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
-texture = ExtResource( 7 )
-expand = true
+texture = ExtResource("7")
+expand_mode = 1
 stretch_mode = 6
 
 [node name="Panel Tweener" type="Control" parent="."]
-script = ExtResource( 11 )
+anchors_preset = 0
+script = ExtResource("11")
 foregroundPath = NodePath("../Panel")
 direction = 1
 appearTransition = 1

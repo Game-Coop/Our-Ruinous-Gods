@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Godot;
 
-public class JournalPage : Page
+public partial class JournalPage : Page
 {
 	private SortedDictionary<int, JournalEntry> entries = new SortedDictionary<int, JournalEntry>();
 	[Export] private PackedScene journalEntryTemplate;
@@ -13,7 +13,7 @@ public class JournalPage : Page
 	private JournalEntryReader entryReader;
 	private Label entryNameLabel;
 	private Node entryContainer;
-	protected override void _Ready()
+	public override void _Ready()
 	{
 		base._Ready();
 
@@ -69,7 +69,7 @@ public class JournalPage : Page
 			GD.PrintErr("Item is already in inventory!");
 			return;
 		}
-		var entry = journalEntryTemplate.Instance() as JournalEntry;
+		var entry = journalEntryTemplate.Instantiate() as JournalEntry;
 		entry.Setup(entryData);
 		entry.OnFocus += OnEntryFocus;
 		entries.Add(entryData.Id, entry);
@@ -95,13 +95,13 @@ public class JournalPage : Page
 
 		if (topEntry != null)
 		{
-			entry.FocusNeighbourTop = topEntry.GetPath();
-			topEntry.FocusNeighbourBottom = entry.GetPath();
+			entry.FocusNeighborTop = topEntry.GetPath();
+			topEntry.FocusNeighborBottom = entry.GetPath();
 		}
 		if (bottomEntry != null)
 		{
-			entry.FocusNeighbourBottom = bottomEntry.GetPath();
-			bottomEntry.FocusNeighbourTop = entry.GetPath();
+			entry.FocusNeighborBottom = bottomEntry.GetPath();
+			bottomEntry.FocusNeighborTop = entry.GetPath();
 		}
 	}
 	private void OnEntryFocus(JournalEntry entry)

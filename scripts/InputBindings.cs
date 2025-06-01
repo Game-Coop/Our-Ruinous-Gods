@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using Godot;
 
-public class InputBindings : Node
+public partial class InputBindings : Node
 {
-	[Export] private List<KeyInfo> keyInfos = new List<KeyInfo>();
+	[Export] private KeyInfo[] keyInfos;
 	private static Dictionary<InputLayout, Dictionary<string, KeyInfo>> inputKeysDict = new Dictionary<InputLayout, Dictionary<string, KeyInfo>>();
 	public static InputLayout CurrentLayout => InputLayoutTracker.CurrentLayout;
 	public override void _Ready()
@@ -15,7 +15,7 @@ public class InputBindings : Node
 		InputLayoutTracker.OnLayoutChanged += OnLayoutChanged;
 		// LoadInputBindings();
 	}
-	
+
 
 	private void OnLayoutChanged(InputLayout layout)
 	{
@@ -50,10 +50,6 @@ public class InputBindings : Node
 				inputKeysDict[InputLayout.Xbox].Add(keyInfo.InputName, keyInfo);
 			}
 		}
-
-		//Temporary
-		var jsonText = JSON.Print(inputKeysDict);
-		GD.Print(jsonText);
 	}
 
 	private void LoadInputBindings()

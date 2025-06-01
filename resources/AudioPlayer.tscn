@@ -1,10 +1,10 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=2 format=3 uid="uid://bpljoe0p6jmb2"]
 
-[ext_resource path="res://scripts/AudioPlayer/AudioPlayer.cs" type="Script" id=1]
+[ext_resource type="Script" uid="uid://b2g0hymjcjavm" path="res://scripts/AudioPlayer/AudioPlayer.cs" id="1"]
 
 [node name="AudioPlayer" type="AudioStreamPlayer"]
-pause_mode = 2
-bus = "Dialog"
-script = ExtResource( 1 )
+process_mode = 3
+bus = &"Dialog"
+script = ExtResource("1")
 
 [connection signal="finished" from="." to="." method="OnStreamFinished"]

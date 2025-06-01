@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using Godot;
 
-public class SaveManager : Node
+public partial class SaveManager : Node
 {
 	public static event Action OnBeforeLoad;
 	public static event Action OnAfterLoad;

@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class InventoryEntry : Button
+public partial class InventoryEntry : Button
 {
 	public event Action<InventoryEntry> OnFocus;
 	[Export] private NodePath textureRectPath;

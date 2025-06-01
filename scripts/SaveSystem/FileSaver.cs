@@ -1,6 +1,6 @@
 using System.IO;
 
-public class FileSaver : ISaver
+public partial class FileSaver : ISaver
 {
     public FileSaver(string path, string extension)
     {

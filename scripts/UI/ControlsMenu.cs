@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using Godot;
 
-public class ControlsMenu : Page
+public partial class ControlsMenu : Page
 {
 	[Export] private PackedScene paginationTemplate;
 	[Export] private NodePath navBarPath;
@@ -14,7 +14,7 @@ public class ControlsMenu : Page
 	private OrderedPages orderedPages;
 	private Page keyboardMenu;
 	private Page gamepadMenu;
-	protected override void _Ready()
+	public override void _Ready()
 	{
 		base._Ready();
 		navbar = GetNode<Navbar>(navBarPath);

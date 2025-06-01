@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using Godot;
 
-public class Journal : Node, ISavable<SaveData>
+public partial class Journal : Node, ISavable<SaveData>
 {
 	public Dictionary<int, JournalData> journalDatas = new Dictionary<int, JournalData>();
 	public override void _EnterTree()

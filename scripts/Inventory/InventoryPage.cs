@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Godot;
 
-public class InventoryPage : Page
+public partial class InventoryPage : Page
 {
 	private Dictionary<int, InventoryEntry> inventoryEntries = new Dictionary<int, InventoryEntry>();
 	[Export] private PackedScene itemTemplate;
@@ -16,7 +16,7 @@ public class InventoryPage : Page
 	private Label itemNameLabel;
 	private Label itemDescriptionLabel;
 	private TextureRect itemPreviewTextureRect;
-	protected override void _Ready()
+	public override void _Ready()
 	{
 		base._Ready();
 		container = GetNode(itemsContainerPath);
@@ -68,7 +68,7 @@ public class InventoryPage : Page
 			GD.PrintErr("Item is already in inventory!");
 			return;
 		}
-		var item = itemTemplate.Instance() as InventoryEntry;
+		var item = itemTemplate.Instantiate() as InventoryEntry;
 		item.Setup(itemData);
 		item.OnFocus += OnItemFocus;
 		inventoryEntries.Add(itemData.Id, item);
@@ -85,13 +85,13 @@ public class InventoryPage : Page
 		var bottomItem = index + 1 < childCount ? container.GetChildOrNull<InventoryEntry>(index + 1) : null;
 		if (topItem != null)
 		{
-			item.FocusNeighbourTop = topItem.GetPath();
-			topItem.FocusNeighbourBottom = item.GetPath();
+			item.FocusNeighborTop = topItem.GetPath();
+			topItem.FocusNeighborBottom = item.GetPath();
 		}
 		if (bottomItem != null)
 		{
-			item.FocusNeighbourBottom = bottomItem.GetPath();
-			bottomItem.FocusNeighbourTop = item.GetPath();
+			item.FocusNeighborBottom = bottomItem.GetPath();
+			bottomItem.FocusNeighborTop = item.GetPath();
 		}
 	}
 	public void RemoveEntry(ItemData itemData)
