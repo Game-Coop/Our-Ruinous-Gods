@@ -3,7 +3,7 @@ using System;
 
 public partial class PowerSwitch : Interactable
 {
-    [Export] public int Zone { get; set; }
+	[Export] public int Zone { get; set; }
 
 	[Export] private NodePath switchableObjectPath;
 	public override string InteractionText => "Push";
@@ -15,7 +15,7 @@ public partial class PowerSwitch : Interactable
 	{
 		base.Interact();
 
-        EventBus EventBusHandler = GetNode<EventBus>("/root/EventBus");        
-        EventBusHandler.OnPowerEvent(this.Zone);
+		EventBus EventBusHandler = GetNode<EventBus>("/root/EventBus");        
+		EventBusHandler.OnPowerEvent(this.Zone);
 	}
 }
