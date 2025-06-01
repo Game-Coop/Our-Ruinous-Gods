@@ -19,7 +19,7 @@ public struct CameraClamp
 public partial class Player : CharacterBody3D
 {
 	[Export] public float gravity = 9.8f;
-	[Export] private float speed = 1.42f;
+	[Export] public float speed = 1.42f;
 	private CameraClamp cameraClamp = new CameraClamp(-75f, 80f);
 	private Node3D _head;
 	private Node3D _camera;
@@ -29,7 +29,6 @@ public partial class Player : CharacterBody3D
 
 	public override void _Ready()
 	{
-		;
 		_head = GetNode<Node3D>("Head");
 		_camera = GetNode<Node3D>("Head/Camera3D");
 
@@ -63,7 +62,6 @@ public partial class Player : CharacterBody3D
 		if (!IsOnFloor())
 			velocity.Y -= gravity * (float)delta;
 
-		
 		_head.RotateY(-(Input.GetActionStrength("look_right") - Input.GetActionStrength("look_left")) * (float)0.02);
 
 		_camera.RotateX(-(Input.GetActionStrength("look_down") - Input.GetActionStrength("look_up")) * (float)0.02);
@@ -74,8 +72,8 @@ public partial class Player : CharacterBody3D
 
 		if (playerDirection != Vector3.Zero)
 		{
-			velocity.X = playerDirection.X * speed;
-			velocity.Z = playerDirection.Z * speed;
+			velocity.X = playerDirection.X * (speed * 2);
+			velocity.Z = playerDirection.Z * (speed * 2);
 		}
 		else
 		{

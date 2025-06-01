@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://eaur2wqbevho"]
 
-[ext_resource type="PackedScene" uid="uid://iwonbg6yjb0e" path="res://entities/Player.tscn" id="1"]
+[ext_resource type="PackedScene" uid="uid://b1lng8ngwsx8o" path="res://entities/Player.tscn" id="1"]
 [ext_resource type="Texture2D" uid="uid://0ckjhg2p8cya" path="res://assets/textures/grid.png" id="3"]
 [ext_resource type="PackedScene" uid="uid://bbtlh1kjqcs54" path="res://objects/PowerSwitch.tscn" id="4"]
 [ext_resource type="PackedScene" uid="uid://bmyx37pp63kbo" path="res://objects/PowerableLight.tscn" id="5"]
@@ -25,8 +25,7 @@ uv1_triplanar = true
 environment = SubResource("4")
 
 [node name="Player" parent="." instance=ExtResource("1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.182181, 1.76786, 0.00218105)
-speed = 7.0
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0.182181, 1.76786, 0.00218105)
 
 [node name="Level" type="CSGCombiner3D" parent="."]
 material_overlay = SubResource("5")
@@ -37,7 +36,7 @@ transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 1.7, 0)
 size = Vector3(40, 15, 40)
 
 [node name="Light3D" type="OmniLight3D" parent="Level/Room 1"]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 4.99402, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.99402, 0)
 light_color = Color(0.85098, 0.796078, 1, 1)
 omni_range = 30.0
 
