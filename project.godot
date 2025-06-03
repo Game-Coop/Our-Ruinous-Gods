@@ -37,6 +37,7 @@ AudioPlayer="*res://resources/AudioPlayer.tscn"
 Inventory="*res://resources/Inventory.tscn"
 Journal="*res://resources/Journal.tscn"
 VersionInfo="*res://scripts/VersionInfo.cs"
+WwiseRuntimeManager="*res://addons/Wwise/runtime/wwise_runtime_manager.gd"
 
 [display]
 
