@@ -10,7 +10,7 @@
     "Type": "User",
     "GUID": "{F75AC381-7702-431C-BF06-15F893912A7E}",
     "Language": "SFX",
-    "Hash": "{D20D703D-F6D2-C244-3B5D-DFF9287B9D8A}",
+    "Hash": "{EBC4E9BE-A67F-A6EB-4262-5BF354BD544F}",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\Test_Bank",
     "ShortName": "Test_Bank",
     "Path": "Test_Bank.bnk",
@@ -22,6 +22,14 @@
       "Location": "Memory",
       "ShortName": "ttsmaker-file-2025-6-9-10-37-26.wav",
       "CachePath": "98/{98143B11-B523-E2ED-B184-E8F1B9CFCE53}.wem"
+     },
+     {
+      "Id": "1006946054",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "ttsmaker-file-2025-6-9-13-47-48.wav",
+      "CachePath": "46/{46E8E1A1-1BB7-F69C-78FB-8B32C0F1C4B6}.wem"
      }
     ],
     "Events": [
@@ -31,17 +39,71 @@
       "ObjectPath": "\\Events\\Default Work Unit\\Play_Test",
       "GUID": "{910A6D2B-9B33-4E83-A609-55EC170EBCAE}",
       "DurationType": "OneShot",
-      "DurationMin": "1.464",
+      "DurationMin": "0.8932083",
       "DurationMax": "1.464",
-      "MediaRefs": [
+      "SwitchContainers": [
        {
-        "Id": "753485969"
+        "SwitchValue": {
+         "GroupType": "Switch",
+         "GroupId": "1993586446",
+         "Id": "3982860346",
+         "GUID": "{A102C407-071F-4ACC-BE60-036B687FD137}",
+         "Default": "true"
+        },
+        "MediaRefs": [
+         {
+          "Id": "1006946054"
+         }
+        ]
+       },
+       {
+        "SwitchValue": {
+         "GroupType": "Switch",
+         "GroupId": "1993586446",
+         "Id": "3908775632",
+         "GUID": "{3BEB703F-C31B-49AA-B95F-8038E6549AAF}"
+        },
+        "MediaRefs": [
+         {
+          "Id": "753485969"
+         }
+        ]
+       }
+      ]
+     }
+    ],
+    "GameParameters": [
+     {
+      "Id": "686920922",
+      "Name": "Testing_RTIPC",
+      "ObjectPath": "\\Game Parameters\\Default Work Unit\\Testing_RTIPC",
+      "GUID": "{B205323F-C078-43F1-8F92-7026FFEB7DB0}"
+     }
+    ],
+    "SwitchGroups": [
+     {
+      "Id": "1993586446",
+      "Name": "Testing_Switch_Group",
+      "ObjectPath": "\\Switches\\Default Work Unit\\Testing_Switch_Group",
+      "GUID": "{1F3ED06F-4BFC-44D3-B135-EF16117F724B}",
+      "Switches": [
+       {
+        "Id": "3908775632",
+        "Name": "Testing_Switch_Off",
+        "ObjectPath": "\\Switches\\Default Work Unit\\Testing_Switch_Group\\Testing_Switch_Off",
+        "GUID": "{3BEB703F-C31B-49AA-B95F-8038E6549AAF}"
+       },
+       {
+        "Id": "3982860346",
+        "Name": "Testing_Switch_On",
+        "ObjectPath": "\\Switches\\Default Work Unit\\Testing_Switch_Group\\Testing_Switch_On",
+        "GUID": "{A102C407-071F-4ACC-BE60-036B687FD137}"
        }
       ]
      }
     ]
    }
   ],
-  "FileHash": "{45287F7B-EE34-EA67-CE3A-8D3F4135CA2E}"
+  "FileHash": "{FE899555-E62A-FAA9-D6D1-14A4CE059A3D}"
  }
 }

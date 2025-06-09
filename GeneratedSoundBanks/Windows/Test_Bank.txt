@@ -1,6 +1,25 @@
 Event	ID	Name			Wwise Object Path	Notes
 	3187507146	Play_Test			\Default Work Unit\Play_Test	
 
+Switch Group	ID	Name			Wwise Object Path	Notes
+	1993586446	Testing_Switch_Group			\Default Work Unit\Testing_Switch_Group	
+
+Switch	ID	Name	Switch Group			Notes
+	3908775632	Testing_Switch_Off	Testing_Switch_Group			
+	3982860346	Testing_Switch_On	Testing_Switch_Group			
+
+State Group	ID	Name			Wwise Object Path	Notes
+	1146584329	Testing_State			\Default Work Unit\Testing_State	
+
+State	ID	Name	State Group			Notes
+	748895195	None	Testing_State			
+	2680282971	Testing_State_Off	Testing_State			
+	3822738919	Testing_State_On	Testing_State			
+
+Game Parameter	ID	Name			Wwise Object Path	Notes
+	686920922	Testing_RTIPC			\Default Work Unit\Testing_RTIPC	
+
 In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
-	753485969	Test	L:\ORG\ORG WWise\ORG\.cache\98\{98143B11-B523-E2ED-B184-E8F1B9CFCE53}.wem		\Actor-Mixer Hierarchy\Default Work Unit\Test		70368
+	753485969	Test_Female	L:\ORG\ORG WWise\ORG\.cache\98\{98143B11-B523-E2ED-B184-E8F1B9CFCE53}.wem		\Actor-Mixer Hierarchy\Default Work Unit\Test_Switch_Container\Test_Female		70368
+	1006946054	Test_Male	L:\ORG\ORG WWise\ORG\.cache\46\{46E8E1A1-1BB7-F69C-78FB-8B32C0F1C4B6}.wem		\Actor-Mixer Hierarchy\Default Work Unit\Test_Switch_Container\Test_Male		42970
 

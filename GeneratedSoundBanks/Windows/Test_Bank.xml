@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <SoundBanksInfo Platform="Windows" BasePlatform="Windows" SchemaVersion="16" SoundBankVersion="154">
 	<SoundBanks>
-		<SoundBank Id="2314467862" Type="User" GUID="{F75AC381-7702-431C-BF06-15F893912A7E}" Language="SFX" Hash="{D20D703D-F6D2-C244-3B5D-DFF9287B9D8A}">
+		<SoundBank Id="2314467862" Type="User" GUID="{F75AC381-7702-431C-BF06-15F893912A7E}" Language="SFX" Hash="{EBC4E9BE-A67F-A6EB-4262-5BF354BD544F}">
 			<ObjectPath>\SoundBanks\Default Work Unit\Test_Bank</ObjectPath>
 			<ShortName>Test_Bank</ShortName>
 			<Path>Test_Bank.bnk</Path>
@@ -10,15 +10,41 @@
 					<ShortName>ttsmaker-file-2025-6-9-10-37-26.wav</ShortName>
 					<CachePath>98/{98143B11-B523-E2ED-B184-E8F1B9CFCE53}.wem</CachePath>
 				</File>
+				<File Id="1006946054" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>ttsmaker-file-2025-6-9-13-47-48.wav</ShortName>
+					<CachePath>46/{46E8E1A1-1BB7-F69C-78FB-8B32C0F1C4B6}.wem</CachePath>
+				</File>
 			</Media>
 			<Events>
-				<Event Id="3187507146" Name="Play_Test" ObjectPath="\Events\Default Work Unit\Play_Test" GUID="{910A6D2B-9B33-4E83-A609-55EC170EBCAE}" DurationType="OneShot" DurationMin="1.464" DurationMax="1.464">
-					<MediaRefs>
-						<MediaRef Id="753485969"/>
-					</MediaRefs>
+				<Event Id="3187507146" Name="Play_Test" ObjectPath="\Events\Default Work Unit\Play_Test" GUID="{910A6D2B-9B33-4E83-A609-55EC170EBCAE}" DurationType="OneShot" DurationMin="0.8932083" DurationMax="1.464">
+					<SwitchContainers>
+						<SwitchContainer>
+							<SwitchValue GroupType="Switch" GroupId="1993586446" Id="3982860346" GUID="{A102C407-071F-4ACC-BE60-036B687FD137}" Default="true"/>
+							<MediaRefs>
+								<MediaRef Id="1006946054"/>
+							</MediaRefs>
+						</SwitchContainer>
+						<SwitchContainer>
+							<SwitchValue GroupType="Switch" GroupId="1993586446" Id="3908775632" GUID="{3BEB703F-C31B-49AA-B95F-8038E6549AAF}"/>
+							<MediaRefs>
+								<MediaRef Id="753485969"/>
+							</MediaRefs>
+						</SwitchContainer>
+					</SwitchContainers>
 				</Event>
 			</Events>
+			<GameParameters>
+				<GameParameter Id="686920922" Name="Testing_RTIPC" ObjectPath="\Game Parameters\Default Work Unit\Testing_RTIPC" GUID="{B205323F-C078-43F1-8F92-7026FFEB7DB0}"/>
+			</GameParameters>
+			<SwitchGroups>
+				<SwitchGroup Id="1993586446" Name="Testing_Switch_Group" ObjectPath="\Switches\Default Work Unit\Testing_Switch_Group" GUID="{1F3ED06F-4BFC-44D3-B135-EF16117F724B}">
+					<Switches>
+						<Switch Id="3908775632" Name="Testing_Switch_Off" ObjectPath="\Switches\Default Work Unit\Testing_Switch_Group\Testing_Switch_Off" GUID="{3BEB703F-C31B-49AA-B95F-8038E6549AAF}"/>
+						<Switch Id="3982860346" Name="Testing_Switch_On" ObjectPath="\Switches\Default Work Unit\Testing_Switch_Group\Testing_Switch_On" GUID="{A102C407-071F-4ACC-BE60-036B687FD137}"/>
+					</Switches>
+				</SwitchGroup>
+			</SwitchGroups>
 		</SoundBank>
 	</SoundBanks>
-	<FileHash>{F516ACF8-DA30-AC04-E180-A1D83389F0E8}</FileHash>
+	<FileHash>{0E613F1E-0715-7673-5653-3CFDD8FC556E}</FileHash>
 </SoundBanksInfo>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PlatformInfo>
-	<Platform Name="Windows" BasePlatform="Windows" Generator="2024.1.1.8691"/>
+	<Platform Name="Windows" BasePlatform="Windows" Generator="2024.1.5.8803"/>
 	<RootPaths>
 		<ProjectRoot>../../../ORG/ORG WWise/ORG</ProjectRoot>
 		<SourceFilesRoot>../../../ORG/ORG WWise/ORG/.cache</SourceFilesRoot>
@@ -29,5 +29,5 @@
 		<PrintObjectPath>true</PrintObjectPath>
 		<PrintObjectColor>true</PrintObjectColor>
 	</Settings>
-	<FileHash>{B89076A0-6AEC-43E0-A48E-9A286F1B79A6}</FileHash>
+	<FileHash>{4F712EA0-DAD8-3073-3BE5-6E8FB139CF92}</FileHash>
 </PlatformInfo>

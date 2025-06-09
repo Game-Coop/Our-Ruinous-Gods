@@ -3,7 +3,7 @@
   "Platform": {
    "Name": "Windows",
    "BasePlatform": "Windows",
-   "Generator": "2024.1.1.8691"
+   "Generator": "2024.1.5.8803"
   },
   "RootPaths": {
    "ProjectRoot": "../../../ORG/ORG WWise/ORG",
@@ -33,6 +33,6 @@
    "PrintObjectPath": "true",
    "PrintObjectColor": "true"
   },
-  "FileHash": "{934ACF5C-5B49-6657-5E81-47FB00B28EDA}"
+  "FileHash": "{3792A122-48F3-EAA9-EE53-D07DE39E3E40}"
  }
 }

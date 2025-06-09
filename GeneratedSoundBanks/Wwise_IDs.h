@@ -16,6 +16,42 @@ namespace AK
         static const AkUniqueID PLAY_TEST = 3187507146U;
     } // namespace EVENTS
 
+    namespace STATES
+    {
+        namespace TESTING_STATE
+        {
+            static const AkUniqueID GROUP = 1146584329U;
+
+            namespace STATE
+            {
+                static const AkUniqueID NONE = 748895195U;
+                static const AkUniqueID TESTING_STATE_OFF = 2680282971U;
+                static const AkUniqueID TESTING_STATE_ON = 3822738919U;
+            } // namespace STATE
+        } // namespace TESTING_STATE
+
+    } // namespace STATES
+
+    namespace SWITCHES
+    {
+        namespace TESTING_SWITCH_GROUP
+        {
+            static const AkUniqueID GROUP = 1993586446U;
+
+            namespace SWITCH
+            {
+                static const AkUniqueID TESTING_SWITCH_OFF = 3908775632U;
+                static const AkUniqueID TESTING_SWITCH_ON = 3982860346U;
+            } // namespace SWITCH
+        } // namespace TESTING_SWITCH_GROUP
+
+    } // namespace SWITCHES
+
+    namespace GAME_PARAMETERS
+    {
+        static const AkUniqueID TESTING_RTIPC = 686920922U;
+    } // namespace GAME_PARAMETERS
+
     namespace BANKS
     {
         static const AkUniqueID INIT = 1355168291U;
