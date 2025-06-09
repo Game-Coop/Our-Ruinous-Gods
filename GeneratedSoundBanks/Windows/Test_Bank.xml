@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SoundBanksInfo Platform="Windows" BasePlatform="Windows" SchemaVersion="16" SoundBankVersion="154">
+	<SoundBanks>
+		<SoundBank Id="2314467862" Type="User" GUID="{F75AC381-7702-431C-BF06-15F893912A7E}" Language="SFX" Hash="{D20D703D-F6D2-C244-3B5D-DFF9287B9D8A}">
+			<ObjectPath>\SoundBanks\Default Work Unit\Test_Bank</ObjectPath>
+			<ShortName>Test_Bank</ShortName>
+			<Path>Test_Bank.bnk</Path>
+			<Media>
+				<File Id="753485969" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>ttsmaker-file-2025-6-9-10-37-26.wav</ShortName>
+					<CachePath>98/{98143B11-B523-E2ED-B184-E8F1B9CFCE53}.wem</CachePath>
+				</File>
+			</Media>
+			<Events>
+				<Event Id="3187507146" Name="Play_Test" ObjectPath="\Events\Default Work Unit\Play_Test" GUID="{910A6D2B-9B33-4E83-A609-55EC170EBCAE}" DurationType="OneShot" DurationMin="1.464" DurationMax="1.464">
+					<MediaRefs>
+						<MediaRef Id="753485969"/>
+					</MediaRefs>
+				</Event>
+			</Events>
+		</SoundBank>
+	</SoundBanks>
+	<FileHash>{F516ACF8-DA30-AC04-E180-A1D83389F0E8}</FileHash>
+</SoundBanksInfo>
