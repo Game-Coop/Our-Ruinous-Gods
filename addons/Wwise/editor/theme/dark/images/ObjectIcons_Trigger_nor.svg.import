@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ot840ranbpl3"
-path="res://.godot/imported/ObjectIcons_Trigger_nor.svg-320bee69461bfe167fdc6afe370a490f.ctex"
+path="res://.godot/imported/ObjectIcons_Trigger_nor.svg-938311c5deeee64b88444a829b30c02f.ctex"
 metadata={
 "has_editor_variant": true,
 "vram_texture": false
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://addons/Wwise/editor/theme/dark/images/ObjectIcons_Trigger_nor.svg"
-dest_files=["res://.godot/imported/ObjectIcons_Trigger_nor.svg-320bee69461bfe167fdc6afe370a490f.ctex"]
+source_file="res://addons/wwise/editor/theme/dark/images/ObjectIcons_Trigger_nor.svg"
+dest_files=["res://.godot/imported/ObjectIcons_Trigger_nor.svg-938311c5deeee64b88444a829b30c02f.ctex"]
 
 [params]
 

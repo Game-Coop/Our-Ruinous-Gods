@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://m42gwb03fnad"
-path="res://.godot/imported/ObjectIcons_AuxBus_nor.svg-59b9d3f3743c093b30eb1f2630e7805a.ctex"
+path="res://.godot/imported/ObjectIcons_AuxBus_nor.svg-4b2bfa222cf9fcd6b1e9551af80d1ff1.ctex"
 metadata={
 "has_editor_variant": true,
 "vram_texture": false
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://addons/Wwise/editor/theme/dark/images/ObjectIcons_AuxBus_nor.svg"
-dest_files=["res://.godot/imported/ObjectIcons_AuxBus_nor.svg-59b9d3f3743c093b30eb1f2630e7805a.ctex"]
+source_file="res://addons/wwise/editor/theme/dark/images/ObjectIcons_AuxBus_nor.svg"
+dest_files=["res://.godot/imported/ObjectIcons_AuxBus_nor.svg-4b2bfa222cf9fcd6b1e9551af80d1ff1.ctex"]
 
 [params]
 

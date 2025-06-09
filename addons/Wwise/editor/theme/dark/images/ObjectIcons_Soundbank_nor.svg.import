@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://pgdtgo8kjxyl"
-path="res://.godot/imported/ObjectIcons_Soundbank_nor.svg-316f115109e1ce6e0094bd212982a333.ctex"
+path="res://.godot/imported/ObjectIcons_Soundbank_nor.svg-9a3b9f2df9727aabdca9cb3f170d68bd.ctex"
 metadata={
 "has_editor_variant": true,
 "vram_texture": false
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://addons/Wwise/editor/theme/dark/images/ObjectIcons_Soundbank_nor.svg"
-dest_files=["res://.godot/imported/ObjectIcons_Soundbank_nor.svg-316f115109e1ce6e0094bd212982a333.ctex"]
+source_file="res://addons/wwise/editor/theme/dark/images/ObjectIcons_Soundbank_nor.svg"
+dest_files=["res://.godot/imported/ObjectIcons_Soundbank_nor.svg-9a3b9f2df9727aabdca9cb3f170d68bd.ctex"]
 
 [params]
 

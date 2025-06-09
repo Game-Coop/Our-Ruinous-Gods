@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b6ubes1vljs80"
-path="res://.godot/imported/ObjectIcons_GameParameter_nor.svg-05e92e0437e214f7f561b47cd6e011db.ctex"
+path="res://.godot/imported/ObjectIcons_GameParameter_nor.svg-02cac1f893203e4c5e78c29ccf80b4cf.ctex"
 metadata={
 "has_editor_variant": true,
 "vram_texture": false
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://addons/Wwise/editor/theme/dark/images/ObjectIcons_GameParameter_nor.svg"
-dest_files=["res://.godot/imported/ObjectIcons_GameParameter_nor.svg-05e92e0437e214f7f561b47cd6e011db.ctex"]
+source_file="res://addons/wwise/editor/theme/dark/images/ObjectIcons_GameParameter_nor.svg"
+dest_files=["res://.godot/imported/ObjectIcons_GameParameter_nor.svg-02cac1f893203e4c5e78c29ccf80b4cf.ctex"]
 
 [params]
 

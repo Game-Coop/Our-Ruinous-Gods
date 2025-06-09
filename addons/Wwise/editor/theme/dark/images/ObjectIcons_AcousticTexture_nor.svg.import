@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ccsyahd8ek2oc"
-path="res://.godot/imported/ObjectIcons_AcousticTexture_nor.svg-bc45b88be2f4e46cc1734dba49a1aaaa.ctex"
+path="res://.godot/imported/ObjectIcons_AcousticTexture_nor.svg-31591a7edc03e5f0fbece4985db34fb0.ctex"
 metadata={
 "has_editor_variant": true,
 "vram_texture": false
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://addons/Wwise/editor/theme/dark/images/ObjectIcons_AcousticTexture_nor.svg"
-dest_files=["res://.godot/imported/ObjectIcons_AcousticTexture_nor.svg-bc45b88be2f4e46cc1734dba49a1aaaa.ctex"]
+source_file="res://addons/wwise/editor/theme/dark/images/ObjectIcons_AcousticTexture_nor.svg"
+dest_files=["res://.godot/imported/ObjectIcons_AcousticTexture_nor.svg-31591a7edc03e5f0fbece4985db34fb0.ctex"]
 
 [params]
 
