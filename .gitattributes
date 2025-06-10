@@ -5,5 +5,9 @@
 *.cs text eol=crlf
 
 # Denote all files that should not be modified.
-*.png binary
 *.jpg binary
+*.material binary
+*.png binary
+*.tff binary
+*.wav binary
+*.webp binary
