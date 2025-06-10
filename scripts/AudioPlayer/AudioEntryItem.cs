@@ -1,12 +1,19 @@
 using System;
 using Godot;
 
-public class AudioEntryItem : Interactable
+public partial class AudioEntryItem : Interactable
 {
 	public event Action OnCollect;
 	public override string InteractionText => "Take";
-	[Export] protected virtual AudioData audioData { get; set;}
-
+	[Export] protected virtual AudioData audioData { get; set; }
+	public override void _Ready()
+	{
+		base._Ready();
+		if (audioData.IsCollected)
+		{
+			QueueFree();
+		}
+	}
 	public override void Interact()
 	{
 		base.Interact();

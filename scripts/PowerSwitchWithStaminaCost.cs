@@ -1,13 +1,12 @@
 using Godot;
 using System;
 
-public class PowerSwitchWithStaminaCost : Interactable
+public partial class PowerSwitchWithStaminaCost : Interactable
 {
     [Export] public int Zone { get; set; }
     [Export] public int Stamina { get; set; }
 
 	[Export] private NodePath switchableObjectPath;
-	private ISwitchable switchable;
 	public override string InteractionText => "Push";
 	public override void _Ready()
 	{

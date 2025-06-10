@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/audiologtest.wav-fc15f8e629ca1fb5e7b1866d960eab55.sample"
+type="AudioStreamWAV"
+uid="uid://btmb8hc8hbk2l"
+path="res://.godot/imported/audiologtest.wav-fc15f8e629ca1fb5e7b1866d960eab55.sample"
 
 [deps]
 
 source_file="res://assets/audio/audiologtest.wav"
-dest_files=[ "res://.import/audiologtest.wav-fc15f8e629ca1fb5e7b1866d960eab55.sample" ]
+dest_files=["res://.godot/imported/audiologtest.wav-fc15f8e629ca1fb5e7b1866d960eab55.sample"]
 
 [params]
 

@@ -1,8 +1,9 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Godot;
 
-public class AudioPlayerMenu : Page
+public partial class AudioPlayerMenu : Page
 {
 	private SortedDictionary<int, AudioEntry> entries = new SortedDictionary<int, AudioEntry>();
 	[Export] private PackedScene audioEntryTemplate;
@@ -28,7 +29,7 @@ public class AudioPlayerMenu : Page
 	private bool isDragging = false;
 	private AudioEntry focusedEntry;
 
-	protected override void _Ready()
+	public override void _Ready()
 	{
 		base._Ready();
 
@@ -44,20 +45,50 @@ public class AudioPlayerMenu : Page
 		playImage = GetNode<TextureRect>(playImagePath);
 		pauseImage = GetNode<TextureRect>(pauseImagePath);
 
-		playButton.Connect("pressed", this, nameof(PlayButtonPressed));
-		stopButton.Connect("pressed", this, nameof(StopButtonPressed));
-		rewindButton.Connect("pressed", this, nameof(RewindButtonPressed));
-		fastForwardButton.Connect("pressed", this, nameof(FastForwardButtonPressed));
+		playButton.Connect("pressed", new Callable(this, nameof(PlayButtonPressed)));
+		stopButton.Connect("pressed", new Callable(this, nameof(StopButtonPressed)));
+		rewindButton.Connect("pressed", new Callable(this, nameof(RewindButtonPressed)));
+		fastForwardButton.Connect("pressed", new Callable(this, nameof(FastForwardButtonPressed)));
 
-		AudioPlayerEvents.OnAudioCollect += OnEntryCollect;
+		AudioPlayerEvents.OnUpdateRequest.Invoke();
+	}
+	public override void _EnterTree()
+	{
+		base._EnterTree();
+		AudioPlayerEvents.OnAudioPlayerChange += OnAudioPlayerChange;
 		AudioPlayerEvents.OnAudioPlayerStoped += OnAudioPlayerStoped;
 	}
+	public override void _ExitTree()
+	{
+		base._ExitTree();
+		AudioPlayerEvents.OnAudioPlayerChange -= OnAudioPlayerChange;
+		AudioPlayerEvents.OnAudioPlayerStoped -= OnAudioPlayerStoped;
+	}
+	private void OnAudioPlayerChange(Dictionary<int, AudioData> audioDatas)
+	{
+		var entriesToRemove = entries.Where(pair => !audioDatas.ContainsKey(pair.Key));
+		foreach (var entry in entriesToRemove)
+		{
+			RemoveEntry(entry.Value.audioData);
+		}
 
+		var entriesToAdd = audioDatas.Where(pair => !entries.ContainsKey(pair.Key));
+
+		foreach (var item in entriesToAdd)
+		{
+			AddEntry(item.Value);
+		}
+	}
+
+	private void RemoveEntry(AudioData audioData)
+	{
+		// TODO: Theoretically we won't be removing audio entries from audio player but its here
+		throw new NotImplementedException();
+	}
 	private void OnAudioPlayerStoped()
 	{
 		UpdatePlayImage();
 	}
-
 	private void StopButtonPressed()
 	{
 		AudioPlayer.Instance.End();
@@ -111,7 +142,7 @@ public class AudioPlayerMenu : Page
 			GD.PrintErr("Item is already in inventory!");
 			return;
 		}
-		var entry = audioEntryTemplate.Instance() as AudioEntry;
+		var entry = audioEntryTemplate.Instantiate() as AudioEntry;
 		entry.Setup(audioData);
 		entry.OnFocus += OnAudioEntryFocus;
 		entries.Add(audioData.Id, entry);
@@ -137,21 +168,21 @@ public class AudioPlayerMenu : Page
 
 		if (topEntry != null)
 		{
-			entry.FocusNeighbourTop = topEntry.GetPath();
-			topEntry.FocusNeighbourBottom = entry.GetPath();
+			entry.FocusNeighborTop = topEntry.GetPath();
+			topEntry.FocusNeighborBottom = entry.GetPath();
 		}
 		if (bottomEntry != null)
 		{
-			entry.FocusNeighbourBottom = bottomEntry.GetPath();
-			bottomEntry.FocusNeighbourTop = entry.GetPath();
+			entry.FocusNeighborBottom = bottomEntry.GetPath();
+			bottomEntry.FocusNeighborTop = entry.GetPath();
 		}
 	}
 	private void OnAudioEntryFocus(AudioEntry entry)
 	{
 		entryNameLabel.Text = entry.audioData.Name;
-		AudioPlayer.Instance.Setup(entry.audioData.AudioStreamSample);
+		AudioPlayer.Instance.Setup(entry.audioData.AudioStreamWAV);
 	}
-	public override void _Process(float delta)
+	public override void _Process(double delta)
 	{
 		base._Process(delta);
 		if (isDragging || AudioPlayer.Instance.Stream == null) return;

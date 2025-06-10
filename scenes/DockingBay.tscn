@@ -1,25 +1,24 @@
-[gd_scene load_steps=32 format=3 uid="uid://5ju312o65nch"]
+[gd_scene load_steps=31 format=3 uid="uid://5ju312o65nch"]
 
-[ext_resource type="Texture2D" uid="uid://b7hax0l88hgft" path="res://assets/textures/skybox.jpg" id="1_kqgya"]
-[ext_resource type="PackedScene" path="res://entities/player.tscn" id="2"]
-[ext_resource type="PackedScene" uid="uid://brhnnl368syqk" path="res://assets/models/RootNode.scn" id="2_2heu7"]
+[ext_resource type="Texture2D" uid="uid://cpdlyofeispi2" path="res://assets/textures/skybox.jpg" id="1_kqgya"]
+[ext_resource type="PackedScene" uid="uid://b1lng8ngwsx8o" path="res://entities/Player.tscn" id="2"]
+[ext_resource type="PackedScene" path="res://assets/models/RootNode.scn" id="2_2heu7"]
 [ext_resource type="PackedScene" uid="uid://bbtlh1kjqcs54" path="res://objects/PowerSwitch.tscn" id="4"]
 [ext_resource type="PackedScene" uid="uid://bmyx37pp63kbo" path="res://objects/PowerableLight.tscn" id="5"]
 [ext_resource type="PackedScene" uid="uid://cbdgjnsddvyc5" path="res://objects/PowerCollisionTrigger.tscn" id="6"]
-[ext_resource type="PackedScene" path="res://menus/PauseMenu.tscn" id="7"]
-[ext_resource type="Script" uid="uid://ds827ypare3o4" path="res://scripts/UI/UIManager.cs" id="8"]
-[ext_resource type="PackedScene" path="res://menus/SettingsMenu.tscn" id="9"]
-[ext_resource type="Resource" uid="uid://bxtv764bsb6u7" path="res://resources/AudioDatas/audioData2.tres" id="10"]
-[ext_resource type="Resource" uid="uid://1l7nbfbi7up1" path="res://resources/ItemDatas/KeyItem1Data.tres" id="11"]
+[ext_resource type="PackedScene" uid="uid://df6qkrb2qch0n" path="res://menus/PauseMenu.tscn" id="7"]
+[ext_resource type="Script" uid="uid://cfw1mkbeulv24" path="res://scripts/UI/UIManager.cs" id="8"]
+[ext_resource type="PackedScene" uid="uid://bud1h1sxl0q8n" path="res://menus/SettingsMenu.tscn" id="9"]
+[ext_resource type="Resource" path="res://resources/AudioDatas/audioData2.tres" id="10"]
+[ext_resource type="Resource" path="res://resources/ItemDatas/KeyItem1Data.tres" id="11"]
 [ext_resource type="Resource" path="res://resources/JournalDatas/JornalEntryData1.tres" id="12"]
 [ext_resource type="PackedScene" path="res://ui/Hint.tscn" id="13"]
-[ext_resource type="Script" uid="uid://c8vsxm3elffgw" path="res://scripts/Objects/CollectableItem.cs" id="14"]
-[ext_resource type="Script" uid="uid://2lj1g6lokbg1" path="res://scripts/Objects/JournalEntryItem.cs" id="15"]
-[ext_resource type="PackedScene" uid="uid://c85rc41hsn055" path="res://objects/LadderCollision.tscn" id="16"]
-[ext_resource type="Script" uid="uid://crorilekhuomq" path="res://scripts/AudioPlayer/AudioEntryItem.cs" id="17"]
-[ext_resource type="Script" uid="uid://butfslm7et1s1" path="res://scripts/Objects/SlidingDoor.cs" id="18"]
+[ext_resource type="Script" uid="uid://fo2tpi6p37ic" path="res://scripts/Objects/CollectableItem.cs" id="14"]
+[ext_resource type="Script" uid="uid://duk6pgl6mv3j3" path="res://scripts/Objects/JournalEntryItem.cs" id="15"]
+[ext_resource type="Script" uid="uid://baxay73tmwvmy" path="res://scripts/AudioPlayer/AudioEntryItem.cs" id="17"]
+[ext_resource type="Script" uid="uid://ckqja6geconlm" path="res://scripts/Objects/SlidingDoor.cs" id="18"]
 [ext_resource type="Material" path="res://assets/models/standardSurface1.material" id="19"]
-[ext_resource type="Script" uid="uid://cd3wkw413gmni" path="res://scripts/Objects/PlayerSensor.cs" id="20"]
+[ext_resource type="Script" uid="uid://g8p6u6edsqu" path="res://scripts/Objects/PlayerSensor.cs" id="20"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_kfrdm"]
 panorama = ExtResource("1_kqgya")
@@ -310,11 +309,3 @@ transform = Transform3D(3.70488, 0, 0, 0, 0.0975966, 0.989858, 0, -0.0342505, 2.
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D5"]
 shape = SubResource("BoxShape3D_kfrdm")
-
-[node name="Area" parent="." instance=ExtResource("16")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.2029, -0.960412, 35.3233)
-
-[node name="CollisionShape" parent="Area" index="0"]
-transform = Transform3D(1.28924, 0, 0, 0, 9.97082, 0, 0, 0, 2.56737, -0.0937824, -4.3859, -0.549591)
-
-[editable path="Area"]

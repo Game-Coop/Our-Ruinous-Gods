@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/Console.wav-de8de947605ebd7929f22d66f9ecd8e8.sample"
+type="AudioStreamWAV"
+uid="uid://cwjjx3borj4kq"
+path="res://.godot/imported/Console.wav-de8de947605ebd7929f22d66f9ecd8e8.sample"
 
 [deps]
 
 source_file="res://assets/audio/Console.wav"
-dest_files=[ "res://.import/Console.wav-de8de947605ebd7929f22d66f9ecd8e8.sample" ]
+dest_files=["res://.godot/imported/Console.wav-de8de947605ebd7929f22d66f9ecd8e8.sample"]
 
 [params]
 

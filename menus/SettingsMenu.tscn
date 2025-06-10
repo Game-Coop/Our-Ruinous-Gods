@@ -1,32 +1,42 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=13 format=3 uid="uid://bud1h1sxl0q8n"]
 
-[ext_resource path="res://menus/GameplayMenu.tscn" type="PackedScene" id=1]
-[ext_resource path="res://scripts/UI/MovingPanelTweener.cs" type="Script" id=2]
-[ext_resource path="res://fonts/Chakra_Petch/ChakraPetch-Regular.ttf" type="DynamicFontData" id=3]
-[ext_resource path="res://scripts/UI/SettingsMenu.cs" type="Script" id=4]
-[ext_resource path="res://menus/ControlsMenu.tscn" type="PackedScene" id=5]
-[ext_resource path="res://menus/GraphicsMenu.tscn" type="PackedScene" id=6]
-[ext_resource path="res://menus/AudioSettingsMenu.tscn" type="PackedScene" id=7]
+[ext_resource type="PackedScene" uid="uid://cnmwwa4ae8420" path="res://menus/GameplayMenu.tscn" id="1"]
+[ext_resource type="Script" uid="uid://bbwa3gfr35dgg" path="res://scripts/UI/MovingPanelTweener.cs" id="2"]
+[ext_resource type="FontFile" uid="uid://djxjfdocobiaf" path="res://fonts/Chakra_Petch/ChakraPetch-Regular.ttf" id="3"]
+[ext_resource type="Script" uid="uid://dkqtrg8fwurs8" path="res://scripts/UI/SettingsMenu.cs" id="4"]
+[ext_resource type="PackedScene" uid="uid://4dxr6g5g1sxw" path="res://menus/ControlsMenu.tscn" id="5"]
+[ext_resource type="PackedScene" uid="uid://drbibq7jlokco" path="res://menus/GraphicsMenu.tscn" id="6"]
+[ext_resource type="PackedScene" uid="uid://bv3x50trujqnr" path="res://menus/AudioSettingsMenu.tscn" id="7"]
 
-[sub_resource type="StyleBoxEmpty" id=6]
+[sub_resource type="StyleBoxEmpty" id="6"]
 
-[sub_resource type="StyleBoxFlat" id=2]
+[sub_resource type="StyleBoxFlat" id="2"]
 
-[sub_resource type="DynamicFont" id=3]
-size = 60
-font_data = ExtResource( 3 )
+[sub_resource type="FontFile" id="3"]
+fallbacks = Array[Font]([ExtResource("3"), ExtResource("3")])
+subpixel_positioning = 0
+msdf_pixel_range = 14
+msdf_size = 128
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
 
-[sub_resource type="StyleBoxEmpty" id=4]
+[sub_resource type="StyleBoxEmpty" id="4"]
 
-[sub_resource type="StyleBoxEmpty" id=5]
+[sub_resource type="StyleBoxEmpty" id="5"]
 
 [node name="Settings Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-script = ExtResource( 4 )
-panelTweenerPath = NodePath("Panel Tweener")
+script = ExtResource("4")
 continueBtnPath = NodePath("Panel/Header/Panel/Continue Button")
 controlsBtnPath = NodePath("Panel/Header/Panel/Controls Button")
 gameplayBtnPath = NodePath("Panel/Header/Panel/Gameplay Button")
@@ -37,177 +47,189 @@ controlsMenuPath = NodePath("Panel/Content/Frame/ControlsMenu")
 gameplayMenuPath = NodePath("Panel/Content/Frame/GameplayMenu")
 graphicsMenuPath = NodePath("Panel/Content/Frame/GraphicsMenu")
 audioMenuPath = NodePath("Panel/Content/Frame/AudioSettingsMenu")
+panelTweenerPath = NodePath("Panel Tweener")
 
 [node name="Panel" type="Panel" parent="."]
-self_modulate = Color( 1, 1, 1, 0.392157 )
+self_modulate = Color(1, 1, 1, 0.392157)
+clip_contents = true
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
-rect_clip_content = true
-custom_styles/panel = SubResource( 6 )
+theme_override_styles/panel = SubResource("6")
 
 [node name="Header" type="Panel" parent="Panel"]
-self_modulate = Color( 0, 0, 0, 0.5 )
+self_modulate = Color(0, 0, 0, 0.5)
+custom_minimum_size = Vector2(350, 0)
+layout_mode = 0
 anchor_bottom = 1.0
-margin_right = 350.0
-rect_min_size = Vector2( 350, 0 )
-custom_styles/panel = SubResource( 2 )
+offset_right = 350.0
+theme_override_styles/panel = SubResource("2")
 
 [node name="Panel" type="VBoxContainer" parent="Panel/Header"]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 20.0
-custom_constants/separation = 10
+offset_left = 20.0
+theme_override_constants/separation = 10
 alignment = 1
 
 [node name="Controls Button" type="Button" parent="Panel/Header/Panel"]
-margin_top = 160.0
-margin_right = 330.0
-margin_bottom = 260.0
-rect_min_size = Vector2( 0, 100 )
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
 size_flags_horizontal = 3
 flat = true
 
 [node name="Label" type="Label" parent="Panel/Header/Panel/Controls Button"]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_fonts/font = SubResource( 3 )
+theme_override_fonts/font = SubResource("3")
 text = "CONTROLS"
-valign = 1
+vertical_alignment = 1
 
 [node name="Gameplay Button" type="Button" parent="Panel/Header/Panel"]
-margin_top = 270.0
-margin_right = 330.0
-margin_bottom = 370.0
-rect_min_size = Vector2( 0, 100 )
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
 size_flags_horizontal = 3
 flat = true
 
 [node name="Label" type="Label" parent="Panel/Header/Panel/Gameplay Button"]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_fonts/font = SubResource( 3 )
+theme_override_fonts/font = SubResource("3")
 text = "GAMEPLAY"
-valign = 1
+vertical_alignment = 1
 
 [node name="Audio Button" type="Button" parent="Panel/Header/Panel"]
-margin_top = 380.0
-margin_right = 330.0
-margin_bottom = 480.0
-rect_min_size = Vector2( 0, 100 )
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
 size_flags_horizontal = 3
 flat = true
 
 [node name="Label" type="Label" parent="Panel/Header/Panel/Audio Button"]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_fonts/font = SubResource( 3 )
+theme_override_fonts/font = SubResource("3")
 text = "AUDIO"
-valign = 1
+vertical_alignment = 1
 
 [node name="Graphics Button" type="Button" parent="Panel/Header/Panel"]
-margin_top = 490.0
-margin_right = 330.0
-margin_bottom = 590.0
-rect_min_size = Vector2( 0, 100 )
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
 size_flags_horizontal = 3
 flat = true
 
 [node name="Label" type="Label" parent="Panel/Header/Panel/Graphics Button"]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_fonts/font = SubResource( 3 )
+theme_override_fonts/font = SubResource("3")
 text = "GRAPHICS"
-valign = 1
+vertical_alignment = 1
 
 [node name="Empty Space" type="Button" parent="Panel/Header/Panel"]
-margin_top = 600.0
-margin_right = 330.0
-margin_bottom = 700.0
-rect_min_size = Vector2( 0, 100 )
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
 size_flags_horizontal = 3
 disabled = true
 flat = true
 
 [node name="Label" type="Label" parent="Panel/Header/Panel/Empty Space"]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_fonts/font = SubResource( 3 )
-valign = 1
+theme_override_fonts/font = SubResource("3")
+vertical_alignment = 1
 
 [node name="Continue Button" type="Button" parent="Panel/Header/Panel"]
-margin_top = 710.0
-margin_right = 330.0
-margin_bottom = 810.0
-rect_min_size = Vector2( 0, 100 )
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
 size_flags_horizontal = 3
 flat = true
 
 [node name="Label" type="Label" parent="Panel/Header/Panel/Continue Button"]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_fonts/font = SubResource( 3 )
+theme_override_fonts/font = SubResource("3")
 text = "CONTINUE"
-valign = 1
+vertical_alignment = 1
 
 [node name="Exit Button" type="Button" parent="Panel/Header/Panel"]
-margin_top = 820.0
-margin_right = 330.0
-margin_bottom = 920.0
-rect_min_size = Vector2( 0, 100 )
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
 size_flags_horizontal = 3
 flat = true
 
 [node name="Label" type="Label" parent="Panel/Header/Panel/Exit Button"]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_fonts/font = SubResource( 3 )
+theme_override_fonts/font = SubResource("3")
 text = "MAIN MENU"
-valign = 1
+vertical_alignment = 1
 
 [node name="Content" type="Panel" parent="Panel"]
-self_modulate = Color( 1, 1, 1, 0 )
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 350.0
+offset_left = 350.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_styles/panel = SubResource( 4 )
+theme_override_styles/panel = SubResource("4")
 
 [node name="Frame" type="Panel" parent="Panel/Content"]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 50.0
-margin_top = 50.0
-margin_right = -50.0
-margin_bottom = -50.0
+offset_left = 50.0
+offset_top = 50.0
+offset_right = -50.0
+offset_bottom = -50.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_styles/panel = SubResource( 5 )
+theme_override_styles/panel = SubResource("5")
 
-[node name="ControlsMenu" parent="Panel/Content/Frame" instance=ExtResource( 5 )]
+[node name="ControlsMenu" parent="Panel/Content/Frame" instance=ExtResource("5")]
+layout_mode = 1
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="GraphicsMenu" parent="Panel/Content/Frame" instance=ExtResource( 6 )]
+[node name="GraphicsMenu" parent="Panel/Content/Frame" instance=ExtResource("6")]
+layout_mode = 1
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="GameplayMenu" parent="Panel/Content/Frame" instance=ExtResource( 1 )]
+[node name="GameplayMenu" parent="Panel/Content/Frame" instance=ExtResource("1")]
+layout_mode = 1
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="AudioSettingsMenu" parent="Panel/Content/Frame" instance=ExtResource( 7 )]
+[node name="AudioSettingsMenu" parent="Panel/Content/Frame" instance=ExtResource("7")]
+layout_mode = 1
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Panel Tweener" type="Control" parent="."]
-script = ExtResource( 2 )
+anchors_preset = 0
+script = ExtResource("2")
 foregroundPath = NodePath("../Panel")
 appearTransition = 1
 disappearEase = 0

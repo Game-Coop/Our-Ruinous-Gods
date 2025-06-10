@@ -1,7 +1,7 @@
 using System;
 using Godot;
 
-public class Interactable : Spatial, IInteractable
+public partial class Interactable : Node3D, IInteractable
 {
 	public virtual event Action<BaseEventData> OnInteract;
 	public virtual string InteractionText => "Interact";

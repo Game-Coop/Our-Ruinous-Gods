@@ -1,12 +1,11 @@
 using Godot;
 using System;
 
-public class PowerSwitch : Interactable
+public partial class PowerSwitch : Interactable
 {
-    [Export] public int Zone { get; set; }
+	[Export] public int Zone { get; set; }
 
 	[Export] private NodePath switchableObjectPath;
-	private ISwitchable switchable;
 	public override string InteractionText => "Push";
 	public override void _Ready()
 	{
@@ -16,7 +15,7 @@ public class PowerSwitch : Interactable
 	{
 		base.Interact();
 
-        EventBus EventBusHandler = GetNode<EventBus>("/root/EventBus");        
-        EventBusHandler.OnPowerEvent(this.Zone);
+		EventBus EventBusHandler = GetNode<EventBus>("/root/EventBus");        
+		EventBusHandler.OnPowerEvent(this.Zone);
 	}
 }

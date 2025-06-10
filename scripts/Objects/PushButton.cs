@@ -2,7 +2,7 @@
 using System;
 using Godot;
 
-public class PushButton : Interactable
+public partial class PushButton : Interactable
 {
 	[Export] private NodePath switchableObjectPath;
 	private ISwitchable switchable;
