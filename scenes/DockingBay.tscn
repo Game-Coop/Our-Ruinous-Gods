@@ -1,8 +1,8 @@
-[gd_scene load_steps=31 format=3 uid="uid://5ju312o65nch"]
+[gd_scene load_steps=33 format=3 uid="uid://5ju312o65nch"]
 
 [ext_resource type="Texture2D" uid="uid://cpdlyofeispi2" path="res://assets/textures/skybox.jpg" id="1_kqgya"]
-[ext_resource type="PackedScene" uid="uid://b1lng8ngwsx8o" path="res://entities/Player.tscn" id="2"]
-[ext_resource type="PackedScene" path="res://assets/models/RootNode.scn" id="2_2heu7"]
+[ext_resource type="PackedScene" path="res://entities/Player.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://brhnnl368syqk" path="res://assets/models/RootNode.scn" id="2_2heu7"]
 [ext_resource type="PackedScene" uid="uid://bbtlh1kjqcs54" path="res://objects/PowerSwitch.tscn" id="4"]
 [ext_resource type="PackedScene" uid="uid://bmyx37pp63kbo" path="res://objects/PowerableLight.tscn" id="5"]
 [ext_resource type="PackedScene" uid="uid://cbdgjnsddvyc5" path="res://objects/PowerCollisionTrigger.tscn" id="6"]
@@ -19,6 +19,7 @@
 [ext_resource type="Script" uid="uid://ckqja6geconlm" path="res://scripts/Objects/SlidingDoor.cs" id="18"]
 [ext_resource type="Material" path="res://assets/models/standardSurface1.material" id="19"]
 [ext_resource type="Script" uid="uid://g8p6u6edsqu" path="res://scripts/Objects/PlayerSensor.cs" id="20"]
+[ext_resource type="PackedScene" uid="uid://c85rc41hsn055" path="res://objects/LadderCollision.tscn" id="20_kfrdm"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_kfrdm"]
 panorama = ExtResource("1_kqgya")
@@ -29,6 +30,10 @@ sky_material = SubResource("PanoramaSkyMaterial_kfrdm")
 [sub_resource type="Environment" id="4"]
 background_mode = 2
 sky = SubResource("3")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kfrdm"]
+radius = 0.724904
+height = 3.00492
 
 [sub_resource type="CylinderShape3D" id="5"]
 height = 7.47521
@@ -55,6 +60,16 @@ environment = SubResource("4")
 
 [node name="Player" parent="." instance=ExtResource("2")]
 transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 0, 1.41686, 1.73652)
+collision_layer = 3
+collision_mask = 3
+
+[node name="LadderDetector" type="Area3D" parent="Player"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player/LadderDetector"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.535686, 0)
+shape = SubResource("CapsuleShape3D_kfrdm")
 
 [node name="RootNode" parent="." instance=ExtResource("2_2heu7")]
 transform = Transform3D(1.395, 0, 0, 0, 1.395, 0, 0, 0, 1.395, 0, 0, 0)
@@ -309,3 +324,15 @@ transform = Transform3D(3.70488, 0, 0, 0, 0.0975966, 0.989858, 0, -0.0342505, 2.
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D5"]
 shape = SubResource("BoxShape3D_kfrdm")
+
+[node name="LadderCollision" parent="." instance=ExtResource("20_kfrdm")]
+
+[node name="CollisionShape" parent="LadderCollision" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.7785, -4.9624, 34.6688)
+
+[connection signal="PlayerEnterLadder" from="LadderCollision" to="Player" method="OnAreaEntered"]
+[connection signal="PlayerExitLadder" from="LadderCollision" to="Player" method="OnAreaExited"]
+[connection signal="body_entered" from="LadderCollision" to="LadderCollision" method="_on_body_entered"]
+[connection signal="body_exited" from="LadderCollision" to="LadderCollision" method="_on_body_exited"]
+
+[editable path="LadderCollision"]

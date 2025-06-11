@@ -51,10 +51,6 @@ window/size/height=1080
 
 project/assembly_name="Our Ruinous Gods"
 
-[dotnet]
-
-project/assembly_name="Our Ruinous Gods"
-
 [editor_plugins]
 
 enabled=PackedStringArray()

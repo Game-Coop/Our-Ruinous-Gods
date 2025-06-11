@@ -1,34 +1,34 @@
 using Godot;
 using System;
 
-public class LadderCollision : Area
+public partial class LadderCollision : Area3D
 {
     [Signal]
-    public delegate void PlayerEnterLadder();
-
+    public delegate void PlayerEnterLadderEventHandler();
+    
     [Signal]
-    public delegate void PlayerExitLadder();
+    public delegate void PlayerExitLadderEventHandler();
 
-    // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
-        Connect("body_entered", this, nameof(OnBodyEntered));
-        Connect("body_exited", this, nameof(OnBodyExited));
+        this.BodyEntered += OnBodyEntered;
+        this.BodyExited += OnBodyExited;
     }
 
-    private void OnBodyEntered(Node body)
+    private void OnBodyEntered(Node3D body)
     {
-        if (body is player)
+        if (body is Player player)
         {
-            EmitSignal(nameof(PlayerEnterLadder));
+            EmitSignal("PlayerEnterLadder");
         }
     }
 
-    private void OnBodyExited(Node body)
+    private void OnBodyExited(Node3D body)
     {
-        if (body is player)
+        if (body is Player player)
         {
-            EmitSignal(nameof(PlayerExitLadder));
+            GD.Print("Player exited ladder detected in ladder script");
+            EmitSignal("PlayerExitLadder");
         }
     }
 }

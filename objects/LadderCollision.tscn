@@ -1,10 +1,11 @@
 [gd_scene load_steps=3 format=3 uid="uid://c85rc41hsn055"]
 
-[ext_resource type="Script" uid="uid://cm4mcpqpf4rfv" path="res://scripts/Objects/LadderCollision.cs" id="1"]
+[ext_resource type="Script" uid="uid://k1qbweei0hby" path="res://scripts/Objects/LadderCollision.cs" id="1"]
 
 [sub_resource type="BoxShape3D" id="1"]
+size = Vector3(1, 10.9248, 1.48938)
 
-[node name="Area" type="Area3D"]
+[node name="LadderCollision" type="Area3D"]
 collision_layer = 2
 collision_mask = 2
 script = ExtResource("1")
