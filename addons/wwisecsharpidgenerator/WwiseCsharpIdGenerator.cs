@@ -104,7 +104,6 @@ public partial class WwiseCsharpIdGenerator : EditorPlugin
 
 		foreach (XmlNode node in nodes)
 		{
-			GD.Print("node:" + node);
 			var name = node.Attributes?[attr]?.Value;
 			var id = node.Attributes?["Id"]?.Value;
 
@@ -115,11 +114,12 @@ public partial class WwiseCsharpIdGenerator : EditorPlugin
 			if (!uniqueNames.Add(safeName))
 				continue;
 
-			writer.WriteLine($"        public const uint {safeName} = {id}u;");
+			writer.WriteLine($"        public static readonly (string Name, uint Id) {safeName} = (\"{name}\", {id}u);");
 		}
 
 		writer.WriteLine("    }");
 	}
+
 	private void WriteSoundBanks(StreamWriter writer, XmlDocument xml)
 	{
 		var nodes = xml.SelectNodes("//SoundBank");
@@ -143,11 +143,12 @@ public partial class WwiseCsharpIdGenerator : EditorPlugin
 			if (!uniqueNames.Add(safeName))
 				continue;
 
-			writer.WriteLine($"        public const uint {safeName} = {id}u;");
+			writer.WriteLine($"        public static readonly (string Name, uint Id) {safeName} = (\"{name}\", {id}u);");
 		}
 
 		writer.WriteLine("    }");
 	}
+
 	private void WriteAudioDevices(StreamWriter writer, XmlDocument xml)
 	{
 		var audioDeviceNodes = new List<XmlNode>();
@@ -184,7 +185,7 @@ public partial class WwiseCsharpIdGenerator : EditorPlugin
 			if (!uniqueNames.Add(safeName))
 				continue;
 
-			writer.WriteLine($"        public const uint {safeName} = {id}u;");
+			writer.WriteLine($"        public static readonly (string Name, uint Id) {safeName} = (\"{name}\", {id}u);");
 		}
 
 		writer.WriteLine("    }");

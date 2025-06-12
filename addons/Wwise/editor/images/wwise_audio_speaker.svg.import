@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bvltdosfhfsrt"
-path="res://.godot/imported/wwise_audio_speaker.svg-ab980bdf8dd6fe533322947ea88f18c3.ctex"
+path="res://.godot/imported/wwise_audio_speaker.svg-c8bbeea5359204d3be2da0640c91add2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/wwise/editor/images/wwise_audio_speaker.svg"
-dest_files=["res://.godot/imported/wwise_audio_speaker.svg-ab980bdf8dd6fe533322947ea88f18c3.ctex"]
+source_file="res://addons/Wwise/editor/images/wwise_audio_speaker.svg"
+dest_files=["res://.godot/imported/wwise_audio_speaker.svg-c8bbeea5359204d3be2da0640c91add2.ctex"]
 
 [params]
 

@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ct2g8igdlioxl"
-path="res://.godot/imported/ObjectIcons_StateGroup_nor.svg-1b3a34d44d491cf1e1c9323adab7fff0.ctex"
+path="res://.godot/imported/ObjectIcons_StateGroup_nor.svg-138badbb85d41621a38411e8fc4a6a15.ctex"
 metadata={
 "has_editor_variant": true,
 "vram_texture": false
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://addons/wwise/editor/theme/dark/images/ObjectIcons_StateGroup_nor.svg"
-dest_files=["res://.godot/imported/ObjectIcons_StateGroup_nor.svg-1b3a34d44d491cf1e1c9323adab7fff0.ctex"]
+source_file="res://addons/Wwise/editor/theme/dark/images/ObjectIcons_StateGroup_nor.svg"
+dest_files=["res://.godot/imported/ObjectIcons_StateGroup_nor.svg-138badbb85d41621a38411e8fc4a6a15.ctex"]
 
 [params]
 

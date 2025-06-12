@@ -15,7 +15,7 @@
 [ext_resource type="Resource" path="res://resources/AudioDatas/audioData1.tres" id="16"]
 [ext_resource type="Script" uid="uid://baxay73tmwvmy" path="res://scripts/AudioPlayer/AudioEntryItem.cs" id="17"]
 [ext_resource type="PackedScene" uid="uid://bud1h1sxl0q8n" path="res://menus/SettingsMenu.tscn" id="18"]
-[ext_resource type="Script" uid="uid://dgomxhfymunnt" path="res://scripts/Wwise/WwiseTest.cs" id="18_3oxe2"]
+[ext_resource type="Script" uid="uid://dgomxhfymunnt" path="res://scripts/Wwise/WwiseTest.cs" id="18_qw05f"]
 [ext_resource type="Script" uid="uid://cfw1mkbeulv24" path="res://scripts/UI/UIManager.cs" id="19"]
 [ext_resource type="Resource" path="res://resources/AudioDatas/audioData2.tres" id="20"]
 
@@ -237,4 +237,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.53142, 0)
 [node name="AkListener3D" type="AkListener3D" parent="."]
 
 [node name="Node" type="Node" parent="."]
-script = ExtResource("18_3oxe2")
+script = ExtResource("18_qw05f")

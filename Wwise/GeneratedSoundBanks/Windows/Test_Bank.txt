@@ -22,4 +22,3 @@ Game Parameter	ID	Name			Wwise Object Path	Notes
 In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	753485969	Test_Female	L:\ORG\ORG WWise\ORG\.cache\98\{98143B11-B523-E2ED-B184-E8F1B9CFCE53}.wem		\Actor-Mixer Hierarchy\Default Work Unit\Test_Switch_Container\Test_Female		70368
 	1006946054	Test_Male	L:\ORG\ORG WWise\ORG\.cache\46\{46E8E1A1-1BB7-F69C-78FB-8B32C0F1C4B6}.wem		\Actor-Mixer Hierarchy\Default Work Unit\Test_Switch_Container\Test_Male		42970
-
