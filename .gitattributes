@@ -1,0 +1,13 @@
+# Set default behavior to automatically normalize line endings.
+* text=auto
+
+# Force CRLF line endings for C# files
+*.cs text eol=crlf
+
+# Denote all files that should not be modified.
+*.jpg binary
+*.material binary
+*.png binary
+*.tff binary
+*.wav binary
+*.webp binary
