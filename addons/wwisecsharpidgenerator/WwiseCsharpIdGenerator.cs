@@ -3,6 +3,7 @@ using Godot;
 using System.IO;
 using System.Xml;
 using System.Collections.Generic;
+using System;
 
 [Tool]
 public partial class WwiseCsharpIdGenerator : EditorPlugin
@@ -52,13 +53,15 @@ public partial class WwiseCsharpIdGenerator : EditorPlugin
 		writer.WriteLine("namespace AK");
 		writer.WriteLine("{");
 
-		WriteIdConstants(writer, "EVENTS", xml.SelectNodes("//Event"), "Name");
 		WriteSoundBanks(writer, xml);
-		WriteIdConstants(writer, "BUSSES", xml.SelectNodes("//Bus"), "Name");
+
+		WriteIdConstants(writer, "EVENTS", xml.SelectNodes("//Event"));
+		WriteIdConstants(writer, "BUSSES", xml.SelectNodes("//Bus"));
+		WriteIdConstants(writer, "RTPCS", xml.SelectNodes("//GameParameter"));
+
 		WriteAudioDevices(writer, xml);
 		WriteSwitchGroups(writer, xml);
 		WriteStateGroups(writer, xml);
-		WriteIdConstants(writer, "RTPCS", xml.SelectNodes("//GameParameter"), "Name");
 
 		writer.WriteLine("} // namespace AK");
 	}
@@ -92,32 +95,30 @@ public partial class WwiseCsharpIdGenerator : EditorPlugin
 		return null;
 	}
 
-	private void WriteIdConstants(StreamWriter writer, string category, XmlNodeList nodes, string attr)
+	private void WriteIdConstants(StreamWriter writer, string category, XmlNodeList nodes)
 	{
 		if (nodes == null || nodes.Count == 0)
 			return;
 
 		var uniqueNames = new HashSet<string>();
 
-		writer.WriteLine($"\n    public static class {category}");
-		writer.WriteLine("    {");
-
-		foreach (XmlNode node in nodes)
+		WriteClass(writer, category, () =>
 		{
-			var name = node.Attributes?[attr]?.Value;
-			var id = node.Attributes?["Id"]?.Value;
+			foreach (XmlNode node in nodes)
+			{
+				var name = node.Attributes?["Name"]?.Value;
+				var id = node.Attributes?["Id"]?.Value;
 
-			if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(id))
-				continue;
+				if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(id))
+					continue;
 
-			var safeName = MakeSafe(name).ToUpperInvariant();
-			if (!uniqueNames.Add(safeName))
-				continue;
+				var safeName = MakeSafe(name).ToUpperInvariant();
+				if (!uniqueNames.Add(safeName))
+					continue;
 
-			writer.WriteLine($"        public static readonly (string Name, uint Id) {safeName} = (\"{name}\", {id}u);");
-		}
-
-		writer.WriteLine("    }");
+				writer.WriteLine($"        public static readonly (string Name, uint Id) {safeName} = (\"{name}\", {id}U);");
+			}
+		});
 	}
 
 	private void WriteSoundBanks(StreamWriter writer, XmlDocument xml)
@@ -128,27 +129,33 @@ public partial class WwiseCsharpIdGenerator : EditorPlugin
 
 		var uniqueNames = new HashSet<string>();
 
-		writer.WriteLine("\n    public static class BANKS");
-		writer.WriteLine("    {");
-
-		foreach (XmlNode node in nodes)
+		WriteClass(writer, "BANKS", () =>
 		{
-			var id = node.Attributes?["Id"]?.Value;
-			var shortNameNode = node.SelectSingleNode("ShortName");
-			if (string.IsNullOrEmpty(id) || shortNameNode == null)
-				continue;
+			foreach (XmlNode node in nodes)
+			{
+				var id = node.Attributes?["Id"]?.Value;
+				var shortNameNode = node.SelectSingleNode("ShortName");
+				if (string.IsNullOrEmpty(id) || shortNameNode == null)
+					continue;
 
-			var name = shortNameNode.InnerText;
-			var safeName = MakeSafe(name).ToUpperInvariant();
-			if (!uniqueNames.Add(safeName))
-				continue;
+				var name = shortNameNode.InnerText;
+				var safeName = MakeSafe(name).ToUpperInvariant();
+				if (!uniqueNames.Add(safeName))
+					continue;
 
-			writer.WriteLine($"        public static readonly (string Name, uint Id) {safeName} = (\"{name}\", {id}u);");
-		}
-
-		writer.WriteLine("    }");
+				writer.WriteLine($"        public static readonly (string Name, uint Id) {safeName} = (\"{name}\", {id}U);");
+			}
+		});
 	}
 
+	private static void WriteClass(StreamWriter writer, string className, Action body, int tabCount = 1)
+	{
+		var tabString = string.Concat(System.Linq.Enumerable.Repeat("\t", tabCount));
+		writer.WriteLine($"{tabString}public static class {className}");
+		writer.WriteLine($"{tabString}{{");
+		body.Invoke();
+		writer.WriteLine($"{tabString}}}");
+	}
 	private void WriteAudioDevices(StreamWriter writer, XmlDocument xml)
 	{
 		var audioDeviceNodes = new List<XmlNode>();
@@ -169,26 +176,23 @@ public partial class WwiseCsharpIdGenerator : EditorPlugin
 			return;
 
 		var uniqueNames = new HashSet<string>();
-
-		writer.WriteLine("\n    public static class AUDIO_DEVICES");
-		writer.WriteLine("    {");
-
-		foreach (var node in audioDeviceNodes)
+		WriteClass(writer, "AUDIO_DEVICES", () =>
 		{
-			var id = node.Attributes?["Id"]?.Value;
-			var name = node.Attributes?["Name"]?.Value;
+			foreach (var node in audioDeviceNodes)
+			{
+				var id = node.Attributes?["Id"]?.Value;
+				var name = node.Attributes?["Name"]?.Value;
 
-			if (string.IsNullOrEmpty(id) || string.IsNullOrEmpty(name))
-				continue;
+				if (string.IsNullOrEmpty(id) || string.IsNullOrEmpty(name))
+					continue;
 
-			var safeName = MakeSafe(name).ToUpperInvariant();
-			if (!uniqueNames.Add(safeName))
-				continue;
+				var safeName = MakeSafe(name).ToUpperInvariant();
+				if (!uniqueNames.Add(safeName))
+					continue;
 
-			writer.WriteLine($"        public static readonly (string Name, uint Id) {safeName} = (\"{name}\", {id}u);");
-		}
-
-		writer.WriteLine("    }");
+				writer.WriteLine($"        public static readonly (string Name, uint Id) {safeName} = (\"{name}\", {id}U);");
+			}
+		});
 	}
 	private void WriteSwitchGroups(StreamWriter writer, XmlDocument xml)
 	{
@@ -198,46 +202,41 @@ public partial class WwiseCsharpIdGenerator : EditorPlugin
 
 		var writtenGroups = new HashSet<string>(); // Track written group names
 
-		writer.WriteLine("\n    public static class SWITCHES");
-		writer.WriteLine("    {");
-
-		foreach (XmlNode group in groups)
+		WriteClass(writer, "SWITCHES", () =>
 		{
-			var groupName = MakeSafe(group.Attributes?["Name"]?.Value);
-			var groupId = group.Attributes?["Id"]?.Value;
-
-			if (string.IsNullOrEmpty(groupName) || string.IsNullOrEmpty(groupId))
-				continue;
-
-			if (writtenGroups.Contains(groupName))
-				continue; // Skip if already written
-
-			writtenGroups.Add(groupName);
-
-			writer.WriteLine($"        public static class {groupName.ToUpperInvariant()}");
-			writer.WriteLine("        {");
-			writer.WriteLine($"            public const uint GROUP = {groupId}U;");
-			writer.WriteLine("            public static class SWITCH");
-			writer.WriteLine("            {");
-
-			var switches = group.SelectNodes("Switches/Switch");
-			foreach (XmlNode sw in switches)
+			foreach (XmlNode group in groups)
 			{
-				var switchName = MakeSafe(sw.Attributes?["Name"]?.Value);
-				var switchId = sw.Attributes?["Id"]?.Value;
+				var groupName = MakeSafe(group.Attributes?["Name"]?.Value);
+				var groupId = group.Attributes?["Id"]?.Value;
 
-				if (string.IsNullOrEmpty(switchName) || string.IsNullOrEmpty(switchId))
+				if (string.IsNullOrEmpty(groupName) || string.IsNullOrEmpty(groupId))
 					continue;
 
-				writer.WriteLine($"                public const uint {switchName.ToUpperInvariant()} = {switchId}U;");
+				if (writtenGroups.Contains(groupName))
+					continue; // Skip if already written
+
+				writtenGroups.Add(groupName);
+
+				WriteClass(writer, groupName.ToUpperInvariant(), () =>
+				{
+					writer.WriteLine($"            public const uint GROUP = {groupId}U;");
+					WriteClass(writer, "SWITCH", () =>
+					{
+						var switches = group.SelectNodes("Switches/Switch");
+						foreach (XmlNode sw in switches)
+						{
+							var switchName = MakeSafe(sw.Attributes?["Name"]?.Value);
+							var switchId = sw.Attributes?["Id"]?.Value;
+
+							if (string.IsNullOrEmpty(switchName) || string.IsNullOrEmpty(switchId))
+								continue;
+
+							writer.WriteLine($"                public const uint {switchName.ToUpperInvariant()} = {switchId}U;");
+						}
+					}, 3);
+				}, 2);
 			}
-
-			writer.WriteLine("            } // class SWITCH");
-			writer.WriteLine("        } // class " + groupName.ToUpperInvariant());
-			writer.WriteLine();
-		}
-
-		writer.WriteLine("    } // class SWITCHES");
+		});
 	}
 	private void WriteStateGroups(StreamWriter writer, XmlDocument xml)
 	{
@@ -247,44 +246,39 @@ public partial class WwiseCsharpIdGenerator : EditorPlugin
 
 		var writtenGroups = new HashSet<string>();
 
-		writer.WriteLine("\n    public static class STATES");
-		writer.WriteLine("    {");
-
-		foreach (XmlNode group in groups)
+		WriteClass(writer, "STATES", () =>
 		{
-			var groupName = MakeSafe(group.Attributes?["Name"]?.Value);
-			var groupId = group.Attributes?["Id"]?.Value;
-			if (string.IsNullOrEmpty(groupName) || string.IsNullOrEmpty(groupId))
-				continue;
-
-			if (writtenGroups.Contains(groupName))
-				continue;
-
-			writtenGroups.Add(groupName);
-
-			writer.WriteLine($"        public static class {groupName.ToUpperInvariant()}");
-			writer.WriteLine("        {");
-			writer.WriteLine($"            public const uint GROUP = {groupId}U;");
-			writer.WriteLine("            public static class STATE");
-			writer.WriteLine("            {");
-
-			var states = group.SelectNodes("States/State");
-			foreach (XmlNode state in states)
+			foreach (XmlNode group in groups)
 			{
-				var stateName = MakeSafe(state.Attributes?["Name"]?.Value);
-				var stateId = state.Attributes?["Id"]?.Value;
-				if (string.IsNullOrEmpty(stateName) || string.IsNullOrEmpty(stateId))
+				var groupName = MakeSafe(group.Attributes?["Name"]?.Value);
+				var groupId = group.Attributes?["Id"]?.Value;
+				if (string.IsNullOrEmpty(groupName) || string.IsNullOrEmpty(groupId))
 					continue;
 
-				writer.WriteLine($"                public const uint {stateName.ToUpperInvariant()} = {stateId}U;");
+				if (writtenGroups.Contains(groupName))
+					continue;
+
+				writtenGroups.Add(groupName);
+
+				WriteClass(writer, groupName.ToUpperInvariant(), () =>
+				{
+					writer.WriteLine($"            public const uint GROUP = {groupId}U;");
+					WriteClass(writer, "STATE", () =>
+					{
+						var states = group.SelectNodes("States/State");
+						foreach (XmlNode state in states)
+						{
+							var stateName = MakeSafe(state.Attributes?["Name"]?.Value);
+							var stateId = state.Attributes?["Id"]?.Value;
+							if (string.IsNullOrEmpty(stateName) || string.IsNullOrEmpty(stateId))
+								continue;
+
+							writer.WriteLine($"                public const uint {stateName.ToUpperInvariant()} = {stateId}U;");
+						}
+					}, 3);
+				}, 2);
 			}
-
-			writer.WriteLine("            } // class STATE");
-			writer.WriteLine("        } // class " + groupName.ToUpperInvariant());
-			writer.WriteLine();
-		}
-
-		writer.WriteLine("    } // class STATES");
+		});
 	}
 	private string MakeSafe(string input)
 	{
