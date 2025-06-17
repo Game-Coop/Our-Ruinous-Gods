@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://de66317sm5j75"]
+
+[ext_resource type="Script" uid="uid://wmqyykce8j0a" path="res://scripts/Wwise/wwise_bridge.gd" id="1_ncg6c"]
+
+[node name="WwiseBridge" type="Node"]
+script = ExtResource("1_ncg6c")

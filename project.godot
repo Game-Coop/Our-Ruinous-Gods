@@ -30,6 +30,7 @@ buses/default_bus_layout="res://audio_mixer.tres"
 SaveManager="*res://resources/SaveManager.tscn"
 ResourceDatabase="*res://resources/ResourceDatabase.tscn"
 EventBus="*res://scripts/EventBus.cs"
+WwiseBridge="*res://resources/wwise_bridge.tscn"
 AudioSettings="*res://resources/AudioMixer.tscn"
 InputBindings="*res://resources/InputBindings.tscn"
 InputLayoutTracker="*res://resources/InputLayoutTracker.tscn"
@@ -37,6 +38,7 @@ AudioPlayer="*res://resources/AudioPlayer.tscn"
 Inventory="*res://resources/Inventory.tscn"
 Journal="*res://resources/Journal.tscn"
 VersionInfo="*res://scripts/VersionInfo.cs"
+WwiseRuntimeManager="*res://addons/Wwise/runtime/wwise_runtime_manager.gd"
 
 [display]
 
@@ -51,7 +53,7 @@ project/assembly_name="Our Ruinous Gods"
 
 [editor_plugins]
 
-enabled=PackedStringArray()
+enabled=PackedStringArray("res://addons/wwisecsharpidgenerator/plugin.cfg")
 
 [global]
 
@@ -187,3 +189,9 @@ common/enable_pause_aware_picking=true
 [rendering]
 
 environment/defaults/default_environment="res://default_env.tres"
+
+[wwise]
+
+common_user_settings/root_output_path="res://wwise/GeneratedSoundBanks"
+project_settings/create_subfolders_for_generated_files=true
+project_settings/windows_platform_info="res://Wwise/resources/Windows.tres"

@@ -1,6 +1,6 @@
-[gd_scene load_steps=23 format=3 uid="uid://cwqqorn7gsw7"]
+[gd_scene load_steps=24 format=3 uid="uid://cwqqorn7gsw7"]
 
-[ext_resource type="PackedScene" uid="uid://b1lng8ngwsx8o" path="res://entities/Player.tscn" id="1"]
+[ext_resource type="PackedScene" uid="uid://b1lng8ngwsx8o" path="res://entities/player.tscn" id="1"]
 [ext_resource type="Texture2D" uid="uid://0ckjhg2p8cya" path="res://assets/textures/grid.png" id="3"]
 [ext_resource type="PackedScene" uid="uid://dvs2e4tks7nim" path="res://objects/PushButton.tscn" id="4"]
 [ext_resource type="PackedScene" path="res://ui/Hint.tscn" id="5"]
@@ -15,6 +15,7 @@
 [ext_resource type="Resource" path="res://resources/AudioDatas/audioData1.tres" id="16"]
 [ext_resource type="Script" uid="uid://baxay73tmwvmy" path="res://scripts/AudioPlayer/AudioEntryItem.cs" id="17"]
 [ext_resource type="PackedScene" uid="uid://bud1h1sxl0q8n" path="res://menus/SettingsMenu.tscn" id="18"]
+[ext_resource type="Script" uid="uid://dgomxhfymunnt" path="res://scripts/Wwise/WwiseTest.cs" id="18_qw05f"]
 [ext_resource type="Script" uid="uid://cfw1mkbeulv24" path="res://scripts/UI/UIManager.cs" id="19"]
 [ext_resource type="Resource" path="res://resources/AudioDatas/audioData2.tres" id="20"]
 
@@ -163,6 +164,7 @@ settingsMenuPagePath = NodePath("Settings Menu")
 visible = false
 
 [node name="Settings Menu" parent="CanvasLayer" instance=ExtResource("18")]
+visible = false
 
 [node name="JournalEntry Item 1" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.35019, -1.36535, 8.32227)
@@ -231,3 +233,8 @@ mesh = SubResource("7")
 
 [node name="Hint" parent="Audio Entry Item 2" instance=ExtResource("5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.53142, 0)
+
+[node name="AkListener3D" type="AkListener3D" parent="."]
+
+[node name="Node" type="Node" parent="."]
+script = ExtResource("18_qw05f")
