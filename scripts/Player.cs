@@ -19,14 +19,11 @@ public partial class Player : CharacterBody3D
 {
 	[Export] public float gravity = 9.8f;
 	[Export] public float speed = 1.42f;
-	[Export] public float mouseSensitivity = 0.001f;
-	[Export] public float inertia = 1.0f;
     
 	private CameraClamp cameraClamp = new CameraClamp(-75f, 80f);
 	
 	private Node3D _head;
 	private Node3D _camera;
-	private Vector3 _direction = Vector3.Zero;
 
 	private int _ladderOverlapCount = 0;
     private bool _isOnLadder => _ladderOverlapCount > 0;
