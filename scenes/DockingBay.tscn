@@ -1,8 +1,8 @@
 [gd_scene load_steps=31 format=3 uid="uid://5ju312o65nch"]
 
 [ext_resource type="Texture2D" uid="uid://cpdlyofeispi2" path="res://assets/textures/skybox.jpg" id="1_kqgya"]
-[ext_resource type="PackedScene" uid="uid://b1lng8ngwsx8o" path="res://entities/Player.tscn" id="2"]
-[ext_resource type="PackedScene" path="res://assets/models/RootNode.scn" id="2_2heu7"]
+[ext_resource type="PackedScene" uid="uid://b1lng8ngwsx8o" path="res://entities/player.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://brhnnl368syqk" path="res://assets/models/RootNode.scn" id="2_2heu7"]
 [ext_resource type="PackedScene" uid="uid://bbtlh1kjqcs54" path="res://objects/PowerSwitch.tscn" id="4"]
 [ext_resource type="PackedScene" uid="uid://bmyx37pp63kbo" path="res://objects/PowerableLight.tscn" id="5"]
 [ext_resource type="PackedScene" uid="uid://cbdgjnsddvyc5" path="res://objects/PowerCollisionTrigger.tscn" id="6"]
@@ -309,3 +309,6 @@ transform = Transform3D(3.70488, 0, 0, 0, 0.0975966, 0.989858, 0, -0.0342505, 2.
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D5"]
 shape = SubResource("BoxShape3D_kfrdm")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.6809, -0.0729938, 0.72873, 0.604828, -0.505049, -0.615718, 0.412988, 0.859999, -0.299739, 25.8281, 30.6139, -41.3749)

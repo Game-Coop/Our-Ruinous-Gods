@@ -32,8 +32,6 @@ public partial class Player : CharacterBody3D
 		_head = GetNode<Node3D>("Head");
 		_camera = GetNode<Node3D>("Head/Camera3D");
 
-		Input.MouseMode = Input.MouseModeEnum.Captured;
-
 		EventBus EventBusHandler = GetNode<EventBus>("/root/EventBus");
 		EventBusHandler.PowerChanged += OnPowerChange;
 		EventBusHandler.StaminaChange += OnStaminaChange;

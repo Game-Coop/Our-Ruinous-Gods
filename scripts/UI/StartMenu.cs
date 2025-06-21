@@ -8,12 +8,14 @@ public partial class StartMenu : Control
 	[Export] private NodePath exitBtnPath;
 	[Export] private NodePath musicPlayerPath;
 	[Export] private NodePath versionLabelPath;
-
+	[Export] private SceneTransitioner sceneTransitioner;
+	[Export] private Camera3D camera;
 	private Button _startBtn;
 	private Button _exitBtn;
 	private AudioStreamPlayer _musicPlayer;
 	private Label _versionLabel;
-
+	private Node3D firstScene;
+	private bool IsFirstTime { get; set; } = true;
 	public override void _Ready()
 	{
 		base._Ready();
@@ -34,6 +36,11 @@ public partial class StartMenu : Control
 
 		_startBtn.Connect("pressed", new Callable(this, nameof(OnStartPressed)));
 		_exitBtn.Connect("pressed", new Callable(this, nameof(OnExitPressed)));
+		if (IsFirstTime)
+		{
+			firstScene = ResourceDatabase.GameScene.Instantiate() as Node3D;
+			GetTree().Root.CallDeferred("add_child", firstScene);
+		}
 	}
 
 	private async void OnStartPressed()
@@ -41,7 +48,22 @@ public partial class StartMenu : Control
 		_startBtn.Disabled = true;
 		await FadeOutMusic();
 		GetTree().Paused = false;
-		GetTree().ChangeSceneToPacked(ResourceDatabase.GameScene);
+		Input.MouseMode = Input.MouseModeEnum.Captured;
+		LoadScene();
+	}
+
+	private void LoadScene()
+	{
+		if (IsFirstTime)
+		{
+			var fadeTween = CreateTween();
+			fadeTween.TweenProperty(this, "modulate", new Color(0f, 0f, 0f, 0f), 0.3f);
+			sceneTransitioner.TransitionTo(firstScene, camera, 20);
+		}
+		else
+		{
+			GetTree().ChangeSceneToPacked(ResourceDatabase.GameScene);
+		}
 	}
 
 	private void OnExitPressed()
