@@ -8,7 +8,7 @@ public partial class SceneTransitioner : Path3D
 	[Export] private PathFollow3D pathFollow3D;
 	[Export] private Tween.TransitionType transitionType = Tween.TransitionType.Sine;
 	[Export] private Tween.EaseType easeType = Tween.EaseType.InOut;
-	public async void TransitionTo(Node3D newScene, Node3D objectToMove, float duration = -1)
+	public async Task TransitionTo(Node3D newScene, Node3D objectToMove, float duration = -1)
 	{
 		if (duration != -1) _duration = duration;
 
@@ -17,7 +17,7 @@ public partial class SceneTransitioner : Path3D
 			await ObjectPathTween(objectToMove);
 		});
 	}
-	public async void TransitionTo(PackedScene newScene, Node3D objectToMove, float duration = -1)
+	public async Task TransitionTo(PackedScene newScene, Node3D objectToMove, float duration = -1)
 	{
 		if (duration != -1) _duration = duration;
 

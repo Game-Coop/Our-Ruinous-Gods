@@ -16,7 +16,7 @@ public struct CameraClamp
 	public override string ToString() => $"({Min} - {Max})";
 }
 
-public partial class Player : CharacterBody3D
+public partial class Player : CharacterBody3D, ISavable<SaveData>
 {
 	[Export] public float gravity = 9.8f;
 	[Export] public float speed = 1.42f;
@@ -36,6 +36,14 @@ public partial class Player : CharacterBody3D
 		EventBusHandler.PowerChanged += OnPowerChange;
 		EventBusHandler.StaminaChange += OnStaminaChange;
 		EventBusHandler.World += OnWorldEvent;
+
+		var playerData = SaveManager.SaveData?.playerData;
+		GD.Print("player data:", playerData);
+		if (playerData != null)
+		{
+			GlobalPosition = playerData.position;
+			GlobalRotation = playerData.rotation;
+		}
 	}
 
 	public override void _Input(InputEvent @event)
@@ -112,5 +120,21 @@ public partial class Player : CharacterBody3D
 	{
 		this.Stamina -= cost;
 		GD.Print("current stamina: " + this.Stamina);
+	}
+
+	public void OnSave(SaveData data)
+	{
+		GD.Print("on save player");
+		if (data.playerData == null)
+		{
+			data.playerData = new PlayerData();
+		}
+		data.playerData.position = GlobalPosition;
+		data.playerData.rotation = GlobalRotation;
+	}
+
+	public void OnLoad(SaveData data)
+	{
+
 	}
 }

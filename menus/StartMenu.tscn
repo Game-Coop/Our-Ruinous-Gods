@@ -126,7 +126,7 @@ cache/0/54/0/underline_position = 0.0
 cache/0/54/0/underline_thickness = 0.0
 cache/0/54/0/scale = 1.0
 
-[node name="Start Menu" type="Control" node_paths=PackedStringArray("sceneTransitioner", "camera")]
+[node name="Start Menu" type="Control" node_paths=PackedStringArray("sceneTransitioner", "camera", "_newGameBtn", "_continueBtn", "_exitBtn", "_versionLabel", "_musicPlayer")]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15
@@ -135,12 +135,13 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("4")
-startBtnPath = NodePath("Panel/Panel2/Panel/Start Button")
-exitBtnPath = NodePath("Panel/Panel2/Panel/Exit Button")
-musicPlayerPath = NodePath("AudioStreamPlayer")
-versionLabelPath = NodePath("Panel/Version Label")
 sceneTransitioner = NodePath("Scene Transitioner")
 camera = NodePath("Camera3D")
+_newGameBtn = NodePath("Panel/Panel2/Panel/New Game Button")
+_continueBtn = NodePath("Panel/Panel2/Panel/Continue Button")
+_exitBtn = NodePath("Panel/Panel2/Panel/Exit Button")
+_versionLabel = NodePath("Panel/Version Label")
+_musicPlayer = NodePath("AudioStreamPlayer")
 
 [node name="Panel" type="Panel" parent="."]
 self_modulate = Color(1, 1, 1, 0)
@@ -162,13 +163,13 @@ offset_left = 20.0
 theme_override_constants/separation = 10
 alignment = 1
 
-[node name="Start Button" type="Button" parent="Panel/Panel2/Panel"]
+[node name="New Game Button" type="Button" parent="Panel/Panel2/Panel"]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 size_flags_horizontal = 3
 flat = true
 
-[node name="Label" type="Label" parent="Panel/Panel2/Panel/Start Button"]
+[node name="Label" type="Label" parent="Panel/Panel2/Panel/New Game Button"]
 layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -176,7 +177,24 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_fonts/font = SubResource("3")
 theme_override_font_sizes/font_size = 54
-text = "START"
+text = "NEW GAME"
+vertical_alignment = 1
+
+[node name="Continue Button" type="Button" parent="Panel/Panel2/Panel"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+flat = true
+
+[node name="Label" type="Label" parent="Panel/Panel2/Panel/Continue Button"]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_fonts/font = SubResource("3")
+theme_override_font_sizes/font_size = 54
+text = "CONTINUE"
 vertical_alignment = 1
 
 [node name="Exit Button" type="Button" parent="Panel/Panel2/Panel"]

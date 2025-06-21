@@ -4,26 +4,18 @@ using Godot;
 
 public partial class StartMenu : Control
 {
-	[Export] private NodePath startBtnPath;
-	[Export] private NodePath exitBtnPath;
-	[Export] private NodePath musicPlayerPath;
-	[Export] private NodePath versionLabelPath;
 	[Export] private SceneTransitioner sceneTransitioner;
 	[Export] private Camera3D camera;
-	private Button _startBtn;
-	private Button _exitBtn;
-	private AudioStreamPlayer _musicPlayer;
-	private Label _versionLabel;
+	[Export] private Button _newGameBtn;
+	[Export] private Button _continueBtn;
+	[Export] private Button _exitBtn;
+	[Export] private Label _versionLabel;
+	[Export] private AudioStreamPlayer _musicPlayer;
 	private Node3D firstScene;
-	private bool IsFirstTime { get; set; } = true;
 	public override void _Ready()
 	{
 		base._Ready();
-		_startBtn = GetNode<Button>(startBtnPath);
-		_exitBtn = GetNode<Button>(exitBtnPath);
-		_versionLabel = GetNode<Label>(versionLabelPath);
 
-		_musicPlayer = GetNode<AudioStreamPlayer>(musicPlayerPath);
 		_musicPlayer.Play();
 		Timer timer = new Timer();
 		timer.WaitTime = _musicPlayer.Stream.GetLength();
@@ -34,34 +26,60 @@ public partial class StartMenu : Control
 
 		_versionLabel.Text = VersionInfo.Version;
 
-		_startBtn.Connect("pressed", new Callable(this, nameof(OnStartPressed)));
+		_newGameBtn.Connect("pressed", new Callable(this, nameof(NewGamePressed)));
+		_continueBtn.Connect("pressed", new Callable(this, nameof(ContinueGamePressed)));
 		_exitBtn.Connect("pressed", new Callable(this, nameof(OnExitPressed)));
-		if (IsFirstTime)
-		{
-			firstScene = ResourceDatabase.GameScene.Instantiate() as Node3D;
-			GetTree().Root.CallDeferred("add_child", firstScene);
-		}
-	}
 
-	private async void OnStartPressed()
-	{
-		_startBtn.Disabled = true;
-		await FadeOutMusic();
-		GetTree().Paused = false;
-		Input.MouseMode = Input.MouseModeEnum.Captured;
-		LoadScene();
-	}
+		firstScene = GetTree().LoadScene(ResourceDatabase.GameScene, true, true) as Node3D;
 
-	private void LoadScene()
-	{
-		if (IsFirstTime)
+		if (!SaveManager.HasSave)
 		{
-			var fadeTween = CreateTween();
-			fadeTween.TweenProperty(this, "modulate", new Color(0f, 0f, 0f, 0f), 0.3f);
-			sceneTransitioner.TransitionTo(firstScene, camera, 20);
+			_newGameBtn.Visible = true;
+			_continueBtn.Visible = false;
 		}
 		else
 		{
+			_newGameBtn.Visible = false;
+			_continueBtn.Visible = true;
+			if (SaveManager.HasSpecialSave)
+			{
+				//after death situation
+			}
+		}
+	}
+	private async void ContinueGamePressed()
+	{
+		_continueBtn.Disabled = true;
+		SaveManager.ContinueGame();
+		await StartLoadGame();
+	}
+	private async void NewGamePressed()
+	{
+		_newGameBtn.Disabled = true;
+		SaveManager.NewGame();
+		await StartLoadGame();
+	}
+
+	private async System.Threading.Tasks.Task StartLoadGame()
+	{
+		await FadeOutMusic();
+		GetTree().Paused = false;
+		Input.MouseMode = Input.MouseModeEnum.Captured;
+		await LoadScene();
+	}
+
+	private async Task LoadScene()
+	{
+		if (!SaveManager.HasSave)
+		{
+			var fadeTween = CreateTween();
+			fadeTween.TweenProperty(this, "modulate", new Color(0f, 0f, 0f, 0f), 0.3f);
+			await sceneTransitioner.TransitionTo(firstScene, camera, 20);
+		}
+		else
+		{
+			GD.Print("CHANGE SCENE TO PACKED");
+			firstScene.QueueFree();
 			GetTree().ChangeSceneToPacked(ResourceDatabase.GameScene);
 		}
 	}

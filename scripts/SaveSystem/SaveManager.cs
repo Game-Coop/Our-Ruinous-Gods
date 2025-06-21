@@ -14,6 +14,7 @@ public partial class SaveManager : Node
 	private static string savePath => OS.GetUserDataDir();
 	private static ISaveSystem saveSystem;
 	private static SaveData saveData;
+	public static SaveData SaveData => saveData;
 	public static bool HasSave => saveSystem.HasSave(defaultSaveName);
 	public static bool HasSpecialSave
 	{
