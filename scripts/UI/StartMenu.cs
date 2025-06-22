@@ -65,12 +65,12 @@ public partial class StartMenu : Control
 
 	private async System.Threading.Tasks.Task StartLoadGame()
 	{
-		GameManager.Instance.InStartMenu = false;
 		await FadeOutMusic();
 		GetTree().Paused = false;
 		Input.MouseMode = Input.MouseModeEnum.Captured;
 		var fadeTween = CreateTween();
 		fadeTween.TweenProperty(this, "modulate", new Color(0f, 0f, 0f, 0f), 0.3f);
+		GameManager.Instance.InStartMenu = false;
 		await LoadGame();
 	}
 
@@ -78,9 +78,11 @@ public partial class StartMenu : Control
 	{
 		if (!SaveManager.HasSave)
 		{
-
 			GameManager.Instance.InCutscene = true;
-			await sceneTransitioner.TransitionTo(firstScene, camera, 20);
+			GameManager.Instance.Player.SetPhysicsProcess(false);
+			camera.Current = false;
+			await sceneTransitioner.TransitionTo(firstScene, GameManager.Instance.Player, 20);
+			GameManager.Instance.Player.SetPhysicsProcess(true);
 			GameManager.Instance.InCutscene = false;
 		}
 		else

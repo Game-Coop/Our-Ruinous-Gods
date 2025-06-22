@@ -37,8 +37,8 @@ public partial class Player : CharacterBody3D, ISavable<SaveData>
 		EventBusHandler.StaminaChange += OnStaminaChange;
 		EventBusHandler.World += OnWorldEvent;
 
+		GameEvents.OnRegisterPlayer.Invoke(this);
 		var playerData = SaveManager.SaveData?.playerData;
-		GD.Print("player data:", playerData);
 		if (playerData != null)
 		{
 			GlobalPosition = playerData.position;
@@ -48,6 +48,7 @@ public partial class Player : CharacterBody3D, ISavable<SaveData>
 
 	public override void _Input(InputEvent @event)
 	{
+		if (GameManager.Instance.InCutscene || GameManager.Instance.InStartMenu) return;
 		if (@event is InputEventJoypadMotion || @event is InputEventMouseMotion)
 		{
 			if (@event is InputEventMouseMotion mouse)
