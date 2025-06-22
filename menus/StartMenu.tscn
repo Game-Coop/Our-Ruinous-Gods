@@ -233,8 +233,10 @@ autoplay = true
 bus = &"Music"
 
 [node name="Camera3D" type="Camera3D" parent="."]
+process_mode = 1
 transform = Transform3D(-0.714412, -0.224214, 0.66283, -1.49012e-08, 0.947272, 0.320431, -0.699726, 0.22892, -0.676742, 121.254, 46.0335, -7.69838)
 fov = 60.0
 
 [node name="Scene Transitioner" parent="." instance=ExtResource("4_wns2j")]
+process_mode = 1
 transform = Transform3D(-0.714412, -0.224214, 0.66283, -1.49012e-08, 0.947272, 0.320431, -0.699726, 0.22892, -0.676742, 121.254, 46.0335, -7.69838)

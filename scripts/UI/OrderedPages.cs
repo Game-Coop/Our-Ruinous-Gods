@@ -56,7 +56,7 @@ public partial class OrderedPages : Control
 	public Page AddPage(Page page)
 	{
 		Init();
-		GD.Print("Added page");
+		// GD.Print("Added page");
 		pages.Add(page);
 		if (page.GetParent() != pageContainer)
 		{

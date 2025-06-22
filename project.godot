@@ -27,6 +27,7 @@ buses/default_bus_layout="res://audio_mixer.tres"
 
 [autoload]
 
+GameManager="*res://scripts/GameManager.cs"
 SaveManager="*res://resources/SaveManager.tscn"
 ResourceDatabase="*res://resources/ResourceDatabase.tscn"
 EventBus="*res://scripts/EventBus.cs"

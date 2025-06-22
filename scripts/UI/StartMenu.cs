@@ -30,8 +30,11 @@ public partial class StartMenu : Control
 		_continueBtn.Connect("pressed", new Callable(this, nameof(ContinueGamePressed)));
 		_exitBtn.Connect("pressed", new Callable(this, nameof(OnExitPressed)));
 
-		firstScene = GetTree().LoadScene(ResourceDatabase.GameScene, true, true) as Node3D;
+		GameManager.Instance.InStartMenu = true;
+		GameManager.Instance.InCutscene = false;
 
+		firstScene = GetTree().LoadScene(ResourceDatabase.GameScene, true, true) as Node3D;
+		camera.Current = true;
 		if (!SaveManager.HasSave)
 		{
 			_newGameBtn.Visible = true;
@@ -62,25 +65,28 @@ public partial class StartMenu : Control
 
 	private async System.Threading.Tasks.Task StartLoadGame()
 	{
+		GameManager.Instance.InStartMenu = false;
 		await FadeOutMusic();
 		GetTree().Paused = false;
 		Input.MouseMode = Input.MouseModeEnum.Captured;
-		await LoadScene();
+		var fadeTween = CreateTween();
+		fadeTween.TweenProperty(this, "modulate", new Color(0f, 0f, 0f, 0f), 0.3f);
+		await LoadGame();
 	}
 
-	private async Task LoadScene()
+	private async Task LoadGame()
 	{
 		if (!SaveManager.HasSave)
 		{
-			var fadeTween = CreateTween();
-			fadeTween.TweenProperty(this, "modulate", new Color(0f, 0f, 0f, 0f), 0.3f);
+
+			GameManager.Instance.InCutscene = true;
 			await sceneTransitioner.TransitionTo(firstScene, camera, 20);
+			GameManager.Instance.InCutscene = false;
 		}
 		else
 		{
-			GD.Print("CHANGE SCENE TO PACKED");
 			firstScene.QueueFree();
-			GetTree().ChangeSceneToPacked(ResourceDatabase.GameScene);
+			GetTree().LoadScene(ResourceDatabase.GameScene);
 		}
 	}
 

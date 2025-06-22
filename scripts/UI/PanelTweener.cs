@@ -24,7 +24,7 @@ public abstract partial class PanelTweener : Control
 		if (isHiddenAtStart)
 		{
 			Disappear(true);
-			GD.Print("disappear called on start");
+			// GD.Print("disappear called on start");
 		}
 	}
 	public virtual void Appear(bool instant = false)
