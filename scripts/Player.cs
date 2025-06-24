@@ -1,17 +1,16 @@
 using Godot;
 using System;
-using System.Data.Common;
-using System.IO.Compression;
+
 public struct CameraClamp
 {
+	public float Min { get; }
+	public float Max { get; }
+	
 	public CameraClamp(float min, float max)
 	{
 		Min = min;
 		Max = max;
 	}
-
-	public float Min { get; }
-	public float Max { get; }
 
 	public override string ToString() => $"({Min} - {Max})";
 }
@@ -20,10 +19,17 @@ public partial class Player : CharacterBody3D, ISavable<SaveData>
 {
 	[Export] public float gravity = 9.8f;
 	[Export] public float speed = 1.42f;
+    
 	private CameraClamp cameraClamp = new CameraClamp(-75f, 80f);
+	
 	private Node3D _head;
 	private Node3D _camera;
-	private int Power = 0;
+
+	private int _ladderOverlapCount = 0;
+    private bool _isOnLadder => _ladderOverlapCount > 0;
+	private RayCast3D _rayDown;
+
+    private int Power = 0;
 	private int MaxPower = 100;
 	private int Stamina = 100;
 
@@ -31,6 +37,7 @@ public partial class Player : CharacterBody3D, ISavable<SaveData>
 	{
 		_head = GetNode<Node3D>("Head");
 		_camera = GetNode<Node3D>("Head/Camera3D");
+		_rayDown = GetNode<RayCast3D>("Head/Camera3D/RayCast3D");
 
 		EventBus EventBusHandler = GetNode<EventBus>("/root/EventBus");
 		EventBusHandler.PowerChanged += OnPowerChange;
@@ -66,10 +73,35 @@ public partial class Player : CharacterBody3D, ISavable<SaveData>
 	{
 		Vector3 velocity = Velocity;
 
+        if (_isOnLadder)
+		{
+			float climbInput = 0f;
+			if(Input.IsActionPressed("move_forward"))
+				climbInput = 1f; // Climb up
+			else if(Input.IsActionPressed("move_backward"))
+				climbInput = -1f; // Climb down
+
+			if(climbInput < 0 && IsOnFloor() && _rayDown.IsColliding())
+			{
+				_ladderOverlapCount = 0;
+            }
+			else
+			{
+				velocity.X = 0;
+				velocity.Z = 0;
+				velocity.Y = climbInput * speed;
+				Velocity = velocity;
+				MoveAndSlide();
+				return;
+			}
+        }
+
 		if (!IsOnFloor())
 			velocity.Y -= gravity * (float)delta;
+		else
+			velocity.Y = 0;
 
-		_head.RotateY(-(Input.GetActionStrength("look_right") - Input.GetActionStrength("look_left")) * (float)0.02);
+        _head.RotateY(-(Input.GetActionStrength("look_right") - Input.GetActionStrength("look_left")) * (float)0.02);
 
 		_camera.RotateX(-(Input.GetActionStrength("look_down") - Input.GetActionStrength("look_up")) * (float)0.02);
 		_camera.Rotation = new Vector3(Mathf.Clamp(_camera.Rotation.X, Mathf.DegToRad(cameraClamp.Min), Mathf.DegToRad(cameraClamp.Max)), _camera.Rotation.Y, _camera.Rotation.Z);
@@ -138,4 +170,16 @@ public partial class Player : CharacterBody3D, ISavable<SaveData>
 	{
 
 	}
+    private void OnAreaEntered()
+    {
+		_ladderOverlapCount++;
+        GD.Print("Player entered ladder");
+    }
+
+    private void OnAreaExited()
+    {
+		_ladderOverlapCount--;
+		if (_ladderOverlapCount < 0) _ladderOverlapCount = 0; // Prevent negative count
+        GD.Print("Player exited ladder");
+    }
 }

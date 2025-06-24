@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://b1lng8ngwsx8o"]
+[gd_scene load_steps=5 format=3 uid="uid://ditkme4k3jpy0"]
 
 [ext_resource type="Script" uid="uid://ddcu5eocmt6x" path="res://scripts/Player.cs" id="1"]
 [ext_resource type="Script" uid="uid://dky7j2woivwl6" path="res://scripts/InteractionRaycaster.cs" id="2"]
