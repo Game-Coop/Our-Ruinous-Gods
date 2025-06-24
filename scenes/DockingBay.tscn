@@ -325,6 +325,9 @@ transform = Transform3D(3.70488, 0, 0, 0, 0.0975966, 0.989858, 0, -0.0342505, 2.
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D5"]
 shape = SubResource("BoxShape3D_kfrdm")
 
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.6809, -0.0729938, 0.72873, 0.604828, -0.505049, -0.615718, 0.412988, 0.859999, -0.299739, 25.8281, 30.6139, -41.3749)
+
 [node name="LadderCollision" parent="." instance=ExtResource("20_kfrdm")]
 
 [node name="CollisionShape" parent="LadderCollision" index="0"]
@@ -336,3 +339,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.7785, -4.9624, 34.6688)
 [connection signal="body_exited" from="LadderCollision" to="LadderCollision" method="_on_body_exited"]
 
 [editable path="LadderCollision"]
+

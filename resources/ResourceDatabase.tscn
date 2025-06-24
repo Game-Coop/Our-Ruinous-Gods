@@ -1,8 +1,8 @@
 [gd_scene load_steps=10 format=3 uid="uid://cam06nid85jji"]
 
 [ext_resource type="Script" uid="uid://fx4hkj1rkc02" path="res://scripts/ResourceDatabase.cs" id="1"]
-[ext_resource type="PackedScene" path="res://scenes/world_test.tscn" id="2"]
 [ext_resource type="Resource" path="res://resources/JournalDatas/JornalEntryData2.tres" id="3"]
+[ext_resource type="PackedScene" uid="uid://5ju312o65nch" path="res://scenes/DockingBay.tscn" id="3_c8eqv"]
 [ext_resource type="Resource" path="res://resources/AudioDatas/audioData1.tres" id="4"]
 [ext_resource type="Resource" path="res://resources/JournalDatas/JornalEntryData1.tres" id="5"]
 [ext_resource type="PackedScene" uid="uid://jsmom37esqfc" path="res://menus/StartMenu.tscn" id="6"]
@@ -13,7 +13,7 @@
 [node name="ResourceDatabase" type="Node"]
 script = ExtResource("1")
 startMenuScene = ExtResource("6")
-gameScene = ExtResource("2")
+gameScene = ExtResource("3_c8eqv")
 itemDatas = [ExtResource("8"), ExtResource("9")]
 journalDatas = [ExtResource("5"), ExtResource("3")]
 audioDatas = [ExtResource("4"), ExtResource("7")]

@@ -15,7 +15,7 @@ public struct CameraClamp
 	public override string ToString() => $"({Min} - {Max})";
 }
 
-public partial class Player : CharacterBody3D
+public partial class Player : CharacterBody3D, ISavable<SaveData>
 {
 	[Export] public float gravity = 9.8f;
 	[Export] public float speed = 1.42f;
@@ -39,16 +39,23 @@ public partial class Player : CharacterBody3D
 		_camera = GetNode<Node3D>("Head/Camera3D");
 		_rayDown = GetNode<RayCast3D>("Head/Camera3D/RayCast3D");
 
-        Input.MouseMode = Input.MouseModeEnum.Captured;
-
 		EventBus EventBusHandler = GetNode<EventBus>("/root/EventBus");
 		EventBusHandler.PowerChanged += OnPowerChange;
 		EventBusHandler.StaminaChange += OnStaminaChange;
 		EventBusHandler.World += OnWorldEvent;
-    }
+
+		GameEvents.OnRegisterPlayer.Invoke(this);
+		var playerData = SaveManager.SaveData?.playerData;
+		if (playerData != null)
+		{
+			GlobalPosition = playerData.position;
+			GlobalRotation = playerData.rotation;
+		}
+	}
 
 	public override void _Input(InputEvent @event)
 	{
+		if (GameManager.Instance.InCutscene || GameManager.Instance.InStartMenu) return;
 		if (@event is InputEventJoypadMotion || @event is InputEventMouseMotion)
 		{
 			if (@event is InputEventMouseMotion mouse)
@@ -148,6 +155,21 @@ public partial class Player : CharacterBody3D
 		GD.Print("current stamina: " + this.Stamina);
 	}
 
+	public void OnSave(SaveData data)
+	{
+		GD.Print("on save player");
+		if (data.playerData == null)
+		{
+			data.playerData = new PlayerData();
+		}
+		data.playerData.position = GlobalPosition;
+		data.playerData.rotation = GlobalRotation;
+	}
+
+	public void OnLoad(SaveData data)
+	{
+
+	}
     private void OnAreaEntered()
     {
 		_ladderOverlapCount++;
