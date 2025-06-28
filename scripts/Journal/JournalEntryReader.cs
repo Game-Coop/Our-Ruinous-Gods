@@ -22,7 +22,7 @@ public partial class JournalEntryReader : Control
 
 	private void Navbar_OnNavigate(int from, int to)
 	{
-		GD.Print("Navigate");
+		// GD.Print("Navigate");
 		scrollablePages.SelectPage(to, false);
 	}
 

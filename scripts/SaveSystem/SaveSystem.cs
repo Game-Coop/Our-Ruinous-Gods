@@ -28,20 +28,16 @@ public partial class SaveSystem : ISaveSystem
 	public void Load<T>(string saveFileName, out T data, bool notify = true) where T : new()
 	{
 		data = _decoder.Decode<T>(_saver.Load(saveFileName));
-		if (data != null)
-		{
-			T val = data;
-			if (notify)
-			{
-				ForEachSavable<T>((savable) =>
-				{
-					savable.OnLoad(val);
-				});
-			}
-		}
-		else
-		{
+		if (data == null)
 			data = new T();
+			
+		T val = data;
+		if (notify)
+		{
+			ForEachSavable<T>((savable) =>
+			{
+				savable.OnLoad(val);
+			});
 		}
 	}
 	public List<string> GetValidSaves(SaveFormat format)

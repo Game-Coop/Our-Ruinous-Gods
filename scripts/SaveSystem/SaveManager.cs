@@ -22,10 +22,11 @@ public partial class SaveManager : Node
 		{
 			if (!HasSave) return false;
 
+			var checkedSave = saveData;
 			if (saveData == null)
-				saveSystem.Load(defaultSaveName, out saveData, false);
+				saveSystem.Load(defaultSaveName, out checkedSave, false);
 
-			return saveData.playerDiedBefore; // this could be a game state check as well
+			return checkedSave.playerDiedBefore; // this could be a game state check as well
 		}
 	}
 	public override void _Ready()
@@ -34,7 +35,7 @@ public partial class SaveManager : Node
 		saveSystem = SaveFactory.CreateLocalSaveSystem(this, savePath, SaveFormat.Json);
 	}
 
-	public static void NewGame()
+	public static void NewSave()
 	{
 		if (HasSave)
 		{
@@ -42,14 +43,8 @@ public partial class SaveManager : Node
 		}
 		saveData = new SaveData();
 	}
-	public static void ContinueGame()
+	public static void Load()
 	{
-		if (!HasSave)
-		{
-			GD.PrintErr("There is no save to continue!");
-			NewGame();
-			return;
-		}
 		OnBeforeLoad?.Invoke();
 		saveSystem.Load(defaultSaveName, out saveData);
 		OnAfterLoad?.Invoke();

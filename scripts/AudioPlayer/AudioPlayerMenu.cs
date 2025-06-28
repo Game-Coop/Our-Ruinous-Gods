@@ -66,25 +66,98 @@ public partial class AudioPlayerMenu : Page
 	}
 	private void OnAudioPlayerChange(Dictionary<int, AudioData> audioDatas)
 	{
-		var entriesToRemove = entries.Where(pair => !audioDatas.ContainsKey(pair.Key));
+		var entriesToRemove = entries.Where(pair => !audioDatas.ContainsKey(pair.Key)).Select(item => item.Value).ToList();
 		foreach (var entry in entriesToRemove)
 		{
-			RemoveEntry(entry.Value.audioData);
+			RemoveEntry(entry.audioData, false);
 		}
 
 		var entriesToAdd = audioDatas.Where(pair => !entries.ContainsKey(pair.Key));
 
 		foreach (var item in entriesToAdd)
 		{
-			AddEntry(item.Value);
+			AddEntry(item.Value, false);
+		}
+
+		ReOrderChilds();
+		ConfigureFocusAll();
+	}
+	private void OnEntryCollect(AudioData data)
+	{
+		AddEntry(data);
+	}
+	public void AddEntry(AudioData audioData, bool updateOrder = true)
+	{
+		if (entries.ContainsKey(audioData.Id))
+		{
+			GD.PrintErr("Item is already in inventory!");
+			return;
+		}
+		var entry = audioEntryTemplate.Instantiate() as AudioEntry;
+		entry.Setup(audioData);
+		entry.OnFocus += OnAudioEntryFocus;
+		entries.Add(audioData.Id, entry);
+
+		entryContainer.AddChild(entry);
+		if (updateOrder)
+		{
+			ReOrderChilds();
+			ConfigureFocusAll();
+		}
+	}
+	private void RemoveEntry(AudioData entryData, bool updateOrder = true)
+	{
+		if (entries.ContainsKey(entryData.Id))
+		{
+			var entry = entries[entryData.Id];
+			entry.OnFocus -= OnAudioEntryFocus;
+			entries.Remove(entryData.Id);
+			entry.QueueFree();
+			if (updateOrder)
+			{
+				ReOrderChilds();
+				ConfigureFocusAll();
+			}
+		}
+		else
+		{
+			GD.PrintErr("Item does not registered!");
+		}
+	}
+	private void ReOrderChilds()
+	{
+		int index = 0;
+		foreach (var entry in entries)
+		{
+			entryContainer.MoveChild(entry.Value, index++);
+		}
+	}
+	private void ConfigureFocusAll()
+	{
+		foreach (var item in entries)
+		{
+			ConfigureFocus(item.Value);
+		}
+	}
+	public void ConfigureFocus(AudioEntry entry)
+	{
+		var childCount = entryContainer.GetChildCount();
+		int index = entry.GetIndex();
+		var topEntry = index - 1 >= 0 ? entryContainer.GetChildOrNull<AudioEntry>(index - 1) : null;
+		var bottomEntry = index + 1 < childCount ? entryContainer.GetChildOrNull<AudioEntry>(index + 1) : null;
+
+		if (topEntry != null)
+		{
+			entry.FocusNeighborTop = topEntry.GetPath();
+			topEntry.FocusNeighborBottom = entry.GetPath();
+		}
+		if (bottomEntry != null)
+		{
+			entry.FocusNeighborBottom = bottomEntry.GetPath();
+			bottomEntry.FocusNeighborTop = entry.GetPath();
 		}
 	}
 
-	private void RemoveEntry(AudioData audioData)
-	{
-		// TODO: Theoretically we won't be removing audio entries from audio player but its here
-		throw new NotImplementedException();
-	}
 	private void OnAudioPlayerStoped()
 	{
 		UpdatePlayImage();
@@ -131,52 +204,7 @@ public partial class AudioPlayerMenu : Page
 			GetNode<Control>(controlPanelPath).Visible = true;
 		}
 	}
-	private void OnEntryCollect(AudioData data)
-	{
-		AddEntry(data);
-	}
-	public void AddEntry(AudioData audioData)
-	{
-		if (entries.ContainsKey(audioData.Id))
-		{
-			GD.PrintErr("Item is already in inventory!");
-			return;
-		}
-		var entry = audioEntryTemplate.Instantiate() as AudioEntry;
-		entry.Setup(audioData);
-		entry.OnFocus += OnAudioEntryFocus;
-		entries.Add(audioData.Id, entry);
 
-		entryContainer.AddChild(entry);
-		ReOrderChilds();
-		// ConfigureFocus(entry);
-	}
-	private void ReOrderChilds()
-	{
-		int index = 0;
-		foreach (var entry in entries)
-		{
-			entryContainer.MoveChild(entry.Value, index++);
-		}
-	}
-	public void ConfigureFocus(AudioEntry entry)
-	{
-		var childCount = entryContainer.GetChildCount();
-		int index = entry.GetIndex();
-		var topEntry = index - 1 >= 0 ? entryContainer.GetChildOrNull<AudioEntry>(index - 1) : null;
-		var bottomEntry = index + 1 < childCount ? entryContainer.GetChildOrNull<AudioEntry>(index + 1) : null;
-
-		if (topEntry != null)
-		{
-			entry.FocusNeighborTop = topEntry.GetPath();
-			topEntry.FocusNeighborBottom = entry.GetPath();
-		}
-		if (bottomEntry != null)
-		{
-			entry.FocusNeighborBottom = bottomEntry.GetPath();
-			bottomEntry.FocusNeighborTop = entry.GetPath();
-		}
-	}
 	private void OnAudioEntryFocus(AudioEntry entry)
 	{
 		entryNameLabel.Text = entry.audioData.Name;

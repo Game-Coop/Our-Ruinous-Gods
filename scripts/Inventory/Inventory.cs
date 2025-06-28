@@ -21,7 +21,7 @@ public partial class Inventory : Node, ISavable<SaveData>
     }
     private void AddData(ItemData data)
     {
-        GD.Print("Item collected to inventory: " + data.Name);
+        // GD.Print("Item collected to inventory: " + data.Name);
         itemDatas.Add(data.Id, data);
         InventoryChanged();
     }
@@ -60,5 +60,6 @@ public partial class Inventory : Node, ISavable<SaveData>
             itemDatas.Add(id, itemData);
             itemData.IsCollected = true;
         }
+        InventoryChanged();
     }
 }

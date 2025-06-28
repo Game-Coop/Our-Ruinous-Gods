@@ -170,23 +170,6 @@ offset_left = 20.0
 theme_override_constants/separation = 10
 alignment = 1
 
-[node name="New Game Button" type="Button" parent="Panel/Panel2/Panel"]
-custom_minimum_size = Vector2(0, 100)
-layout_mode = 2
-size_flags_horizontal = 3
-flat = true
-
-[node name="Label" type="Label" parent="Panel/Panel2/Panel/New Game Button"]
-layout_mode = 0
-anchor_right = 1.0
-anchor_bottom = 1.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_fonts/font = SubResource("3")
-theme_override_font_sizes/font_size = 54
-text = "NEW GAME"
-vertical_alignment = 1
-
 [node name="Continue Button" type="Button" parent="Panel/Panel2/Panel"]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
@@ -202,6 +185,23 @@ size_flags_vertical = 3
 theme_override_fonts/font = SubResource("3")
 theme_override_font_sizes/font_size = 54
 text = "CONTINUE"
+vertical_alignment = 1
+
+[node name="New Game Button" type="Button" parent="Panel/Panel2/Panel"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+flat = true
+
+[node name="Label" type="Label" parent="Panel/Panel2/Panel/New Game Button"]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_fonts/font = SubResource("3")
+theme_override_font_sizes/font_size = 54
+text = "NEW GAME"
 vertical_alignment = 1
 
 [node name="Exit Button" type="Button" parent="Panel/Panel2/Panel"]
