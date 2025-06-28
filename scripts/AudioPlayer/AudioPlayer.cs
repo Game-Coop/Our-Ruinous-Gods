@@ -18,13 +18,14 @@ public partial class AudioPlayer : AudioStreamPlayer, ISavable<SaveData>
 		base._EnterTree();
 		AudioPlayerEvents.OnAudioCollect += AddData;
 		AudioPlayerEvents.OnUpdateRequest += AudioPlayerChanged;
+		GameEvents.OnStartMenuLoad += Stop;
 	}
 	public override void _ExitTree()
 	{
 		base._ExitTree();
 		AudioPlayerEvents.OnAudioCollect -= AddData;
 		AudioPlayerEvents.OnUpdateRequest -= AudioPlayerChanged;
-
+		GameEvents.OnStartMenuLoad -= Stop;
 	}
 	private void AddData(AudioData data)
 	{
