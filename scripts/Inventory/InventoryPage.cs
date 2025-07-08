@@ -47,21 +47,23 @@ public partial class InventoryPage : Page
 	}
 	private void UpdateInventory(Dictionary<int, ItemData> itemDatas)
 	{
-		var entriesToRemove = inventoryEntries.Where(pair => !itemDatas.ContainsKey(pair.Key));
+		var entriesToRemove = inventoryEntries.Where(pair => !itemDatas.ContainsKey(pair.Key)).Select(item => item.Value).ToList();
 		foreach (var entry in entriesToRemove)
 		{
-			RemoveEntry(entry.Value.itemData);
+			RemoveEntry(entry.itemData, false);
 		}
 
 		var entriesToAdd = itemDatas.Where(pair => !inventoryEntries.ContainsKey(pair.Key));
 
 		foreach (var item in entriesToAdd)
 		{
-			AddEntry(item.Value);
+			AddEntry(item.Value, false);
 		}
+		// ReOrderChilds();
+		// ConfigureFocusAll();
 	}
 
-	public void AddEntry(ItemData itemData)
+	public void AddEntry(ItemData itemData, bool updateOrder = true)
 	{
 		if (inventoryEntries.ContainsKey(itemData.Id))
 		{
@@ -75,7 +77,37 @@ public partial class InventoryPage : Page
 
 		container.AddChild(item);
 		container.MoveChild(item, container.GetChildCount());
-		// ConfigureFocus(item);
+		if (updateOrder)
+		{
+			// ReOrderChilds();
+			// ConfigureFocusAll();
+		}
+	}
+	public void RemoveEntry(ItemData itemData, bool updateOrder = true)
+	{
+		if (inventoryEntries.ContainsKey(itemData.Id))
+		{
+			var entry = inventoryEntries[itemData.Id];
+			entry.OnFocus -= OnItemFocus;
+			inventoryEntries.Remove(itemData.Id);
+			entry.QueueFree();
+			if (updateOrder)
+			{
+				// ReOrderChilds();
+				// ConfigureFocusAll();
+			}
+		}
+		else
+		{
+			GD.PrintErr("Item does not registered!");
+		}
+	}
+	private void ConfigureFocusAll()
+	{
+		foreach (var item in inventoryEntries)
+		{
+			ConfigureFocus(item.Value);
+		}
 	}
 	public void ConfigureFocus(InventoryEntry item)
 	{
@@ -92,20 +124,6 @@ public partial class InventoryPage : Page
 		{
 			item.FocusNeighborBottom = bottomItem.GetPath();
 			bottomItem.FocusNeighborTop = item.GetPath();
-		}
-	}
-	public void RemoveEntry(ItemData itemData)
-	{
-		if (inventoryEntries.ContainsKey(itemData.Id))
-		{
-			var entry = inventoryEntries[itemData.Id];
-			entry.OnFocus -= OnItemFocus;
-			inventoryEntries.Remove(itemData.Id);
-			entry.QueueFree();
-		}
-		else
-		{
-			GD.PrintErr("Item does not registered!");
 		}
 	}
 	private void OnItemFocus(InventoryEntry item)

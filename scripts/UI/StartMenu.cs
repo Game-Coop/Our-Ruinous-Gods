@@ -42,7 +42,6 @@ public partial class StartMenu : Control
 		}
 		else
 		{
-			_newGameBtn.Visible = false;
 			_continueBtn.Visible = true;
 			if (SaveManager.HasSpecialSave)
 			{
@@ -53,17 +52,16 @@ public partial class StartMenu : Control
 	private async void ContinueGamePressed()
 	{
 		_continueBtn.Disabled = true;
-		SaveManager.ContinueGame();
-		await StartLoadGame();
+		await StartLoadGame(false);
 	}
 	private async void NewGamePressed()
 	{
 		_newGameBtn.Disabled = true;
-		SaveManager.NewGame();
-		await StartLoadGame();
+		SaveManager.NewSave();
+		await StartLoadGame(true);
 	}
 
-	private async System.Threading.Tasks.Task StartLoadGame()
+	private async System.Threading.Tasks.Task StartLoadGame(bool newGame)
 	{
 		await FadeOutMusic();
 		GetTree().Paused = false;
@@ -71,12 +69,13 @@ public partial class StartMenu : Control
 		var fadeTween = CreateTween();
 		fadeTween.TweenProperty(this, "modulate", new Color(0f, 0f, 0f, 0f), 0.3f);
 		GameManager.Instance.InStartMenu = false;
-		await LoadGame();
+		await LoadGame(newGame);
 	}
 
-	private async Task LoadGame()
+	private async Task LoadGame(bool newGame)
 	{
-		if (!SaveManager.HasSave)
+		SaveManager.Load();
+		if (newGame)
 		{
 			GameManager.Instance.InCutscene = true;
 			GameManager.Instance.Player.SetPhysicsProcess(false);

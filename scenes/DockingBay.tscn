@@ -1,7 +1,7 @@
 [gd_scene load_steps=33 format=3 uid="uid://5ju312o65nch"]
 
 [ext_resource type="Texture2D" uid="uid://cpdlyofeispi2" path="res://assets/textures/skybox.jpg" id="1_kqgya"]
-[ext_resource type="PackedScene" path="res://entities/Player.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://ditkme4k3jpy0" path="res://entities/Player.tscn" id="2"]
 [ext_resource type="PackedScene" uid="uid://brhnnl368syqk" path="res://assets/models/RootNode.scn" id="2_2heu7"]
 [ext_resource type="PackedScene" uid="uid://bbtlh1kjqcs54" path="res://objects/PowerSwitch.tscn" id="4"]
 [ext_resource type="PackedScene" uid="uid://bmyx37pp63kbo" path="res://objects/PowerableLight.tscn" id="5"]
@@ -339,4 +339,3 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.7785, -4.9624, 34.6688)
 [connection signal="body_exited" from="LadderCollision" to="LadderCollision" method="_on_body_exited"]
 
 [editable path="LadderCollision"]
-

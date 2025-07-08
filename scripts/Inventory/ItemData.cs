@@ -1,3 +1,4 @@
+using System;
 using Godot;
 
 [GlobalClass]
@@ -11,7 +12,21 @@ public partial class ItemData : Resource
     [Export] public Texture2D IconSprite { get; set; }
     [Export] public Texture2D PreviewSprite { get; set; }
     [Export] public Resource PreviewModel { get; set; }
-    public bool IsCollected { get; set; }
+    public event Action OnCollected;
+    private bool _isCollected;
+    public bool IsCollected
+    {
+        get { return _isCollected; }
+        set
+        {
+            if (value != _isCollected)
+            {
+                _isCollected = value;
+                if(_isCollected)
+                    OnCollected?.Invoke();
+            }
+        }
+    }
     public ItemData()
     {
         Id = 0;

@@ -28,6 +28,13 @@ public partial class GameManager : Node
             Player.GlobalRotation = (Vector3)rotation;
     }
 
+    public void LoadStartMenu()
+    {
+        GameEvents.OnStartMenuLoad?.Invoke();
+        SaveManager.Save();
+        GetTree().LoadScene(ResourceDatabase.StartMenuScene);
+    }
+
     public bool InCutscene { get; set; }
     public bool InStartMenu { get; set; }
 
