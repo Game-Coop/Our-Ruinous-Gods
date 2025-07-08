@@ -79,9 +79,9 @@ public partial class QuestsManager : Node, ISavable<SaveData>
 			activeQuest.objectives.Add(new QuestObjective(objective));
 		}
 	}
-	private void OnQuestEvent(string questVariable, Variant value)
+	private void OnQuestEvent(QuestEvent questEvent)
 	{
-		SetValue(questVariable, value);
+		SetValue(questEvent.variableName, questEvent.variable);
 		Questify.UpdateQuests();
 	}
 

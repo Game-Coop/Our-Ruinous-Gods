@@ -10,7 +10,7 @@ public partial class EventBus : Node
 	[Signal]
 	public delegate void WorldEventHandler(string name);
 	[Signal]
-	public delegate void QuestEventHandler(string name, Variant value);
+	public delegate void QuestEventHandler(QuestEvent questEvent);
 	public void OnPowerEvent(int zone)
 	{
 		EmitSignal(SignalName.Power, zone);
@@ -27,8 +27,8 @@ public partial class EventBus : Node
 	{
 		EmitSignal(SignalName.World, name);
 	}
-	public void OnQuestEvent(string questVariable, Variant value)
+	public void OnQuestEvent(QuestEvent questEvent)
 	{
-		EmitSignal(SignalName.Quest, questVariable, value);
+		EmitSignal(SignalName.Quest, questEvent);
 	}
 }

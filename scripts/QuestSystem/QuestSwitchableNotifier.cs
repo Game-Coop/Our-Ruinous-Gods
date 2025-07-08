@@ -24,6 +24,6 @@ public partial class QuestSwitchableNotifier : Node
     }
     private void OnStateChange(bool state)
     {
-        eventBus.OnQuestEvent(questVariable, state);
+        eventBus.OnQuestEvent(new QuestEvent(questVariable, state));
     }
 }

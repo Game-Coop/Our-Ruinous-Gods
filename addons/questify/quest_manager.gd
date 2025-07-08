@@ -19,7 +19,7 @@ func _ready() -> void:
 
 
 func start_quest(quest_resource: QuestResource) -> void:
-	_quests.append(quest_resource)
+	add_quest(quest_resource)
 	quest_resource.start()
 
 
@@ -54,11 +54,15 @@ func get_completed_quests() -> Array[QuestResource]:
 	return result
 
 
-func set_quests(quests: Array) -> void:
+## Add quest to the list without starting it.
+func add_quest(quest_resource: QuestResource) -> void:
+	_quests.append(quest_resource)
+
+
+func set_quests(quests: Array[QuestResource]) -> void:
 	clear()
-	for q in quests:
-		assert(q is QuestResource)
 	_quests.assign(quests)
+
 
 func serialize() -> Array:
 	var result := []

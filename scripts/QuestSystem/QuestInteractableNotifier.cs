@@ -24,6 +24,6 @@ public partial class QuestInteractableNotifier : Node
     }
     private void OnInteract(BaseEventData data)
     {
-        eventBus.OnQuestEvent(questVariable, true);
+        eventBus.OnQuestEvent(new QuestEvent(questVariable, true));
     }
 }

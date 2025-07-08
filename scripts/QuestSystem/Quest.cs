@@ -35,13 +35,6 @@ public partial class Quest : Resource
 		}
 		return false;
 	}
-	public void Save()
-	{
-
-	}
-	public void Load(Variant data)
-	{
-	}
 	public void Start()
 	{
 		GD.Print($"Starting quest: {Name}. Description: {Description}. Completed: {Completed}");
