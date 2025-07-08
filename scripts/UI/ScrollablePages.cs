@@ -84,7 +84,6 @@ public partial class ScrollablePages : ScrollContainer
 		else
 		{
 			targetScroll = (int)((Size.X + separation) * pageIndex);
-			GD.Print("TargetScroll: " + targetScroll);
 			if (isInstant)
 			{
 				SetDeferred("scroll_horizontal", targetScroll);

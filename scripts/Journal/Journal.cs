@@ -18,7 +18,6 @@ public partial class Journal : Node, ISavable<SaveData>
 	}
 	private void AddData(JournalData data)
 	{
-		// GD.Print("Journal entry added to journal: " + data.Name);
 		journalDatas.Add(data.Id, data);
 		JournalChanged();
 	}
