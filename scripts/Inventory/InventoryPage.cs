@@ -59,8 +59,6 @@ public partial class InventoryPage : Page
 		{
 			AddEntry(item.Value, false);
 		}
-		// ReOrderChilds();
-		// ConfigureFocusAll();
 	}
 
 	public void AddEntry(ItemData itemData, bool updateOrder = true)
@@ -77,11 +75,6 @@ public partial class InventoryPage : Page
 
 		container.AddChild(item);
 		container.MoveChild(item, container.GetChildCount());
-		if (updateOrder)
-		{
-			// ReOrderChilds();
-			// ConfigureFocusAll();
-		}
 	}
 	public void RemoveEntry(ItemData itemData, bool updateOrder = true)
 	{
@@ -91,11 +84,6 @@ public partial class InventoryPage : Page
 			entry.OnFocus -= OnItemFocus;
 			inventoryEntries.Remove(itemData.Id);
 			entry.QueueFree();
-			if (updateOrder)
-			{
-				// ReOrderChilds();
-				// ConfigureFocusAll();
-			}
 		}
 		else
 		{

@@ -20,7 +20,6 @@ public partial class OrderedPages : Control
 		if (toIndex > currentIndex)
 		{
 			//forward
-			// GD.Print("forward");
 			pages[currentIndex].TweenerSetReverse(true);
 			pages[toIndex].TweenerSetReverse(false);
 			pages[currentIndex].HidePage(isInstant);
@@ -29,7 +28,6 @@ public partial class OrderedPages : Control
 		else
 		{
 			//backward
-			// GD.Print("backward");
 			pages[toIndex].TweenerSetReverse(true);
 			pages[currentIndex].TweenerSetReverse(false);
 			pages[currentIndex].HidePage(isInstant);
@@ -56,7 +54,6 @@ public partial class OrderedPages : Control
 	public Page AddPage(Page page)
 	{
 		Init();
-		// GD.Print("Added page");
 		pages.Add(page);
 		if (page.GetParent() != pageContainer)
 		{
