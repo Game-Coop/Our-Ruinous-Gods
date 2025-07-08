@@ -19,6 +19,11 @@ public partial class JournalEntryReader : Control
 		
 		navbar.OnNavigate += Navbar_OnNavigate;
 	}
+	protected override void Dispose(bool disposing)
+	{
+		base.Dispose(disposing);
+		navbar.OnNavigate -= Navbar_OnNavigate;
+    }
 
 	private void Navbar_OnNavigate(int from, int to)
 	{

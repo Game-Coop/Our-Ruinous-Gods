@@ -32,23 +32,30 @@ public partial class Player : CharacterBody3D, ISavable<SaveData>
 	private int Power = 0;
 	private int MaxPower = 100;
 	private int Stamina = 100;
-
+	private EventBus eventBus;
 	public override void _Ready()
 	{
 		_head = GetNode<Node3D>("Head");
 		_camera = GetNode<Node3D>("Head/Camera3D");
 		_rayDown = GetNode<RayCast3D>("Head/Camera3D/RayCast3D");
 
-		EventBus EventBusHandler = GetNode<EventBus>("/root/EventBus");
-		EventBusHandler.PowerChanged += OnPowerChange;
-		EventBusHandler.StaminaChange += OnStaminaChange;
-		EventBusHandler.World += OnWorldEvent;
+		eventBus = GetNode<EventBus>("/root/EventBus");
+		eventBus.PowerChanged += OnPowerChange;
+		eventBus.StaminaChange += OnStaminaChange;
+		eventBus.World += OnWorldEvent;
 
 		GameEvents.OnRegisterPlayer.Invoke(this);
 
 		if (SaveManager.SaveData != null && !GameManager.Instance.InStartMenu)
 			OnLoad(SaveManager.SaveData);
 	}
+	protected override void Dispose(bool disposing)
+	{
+		base.Dispose(disposing);
+		eventBus.PowerChanged -= OnPowerChange;
+		eventBus.StaminaChange -= OnStaminaChange;
+		eventBus.World -= OnWorldEvent;
+    }
 
 	public override void _Input(InputEvent @event)
 	{
@@ -177,13 +184,11 @@ public partial class Player : CharacterBody3D, ISavable<SaveData>
 	private void OnAreaEntered()
 	{
 		_ladderOverlapCount++;
-		GD.Print("Player entered ladder");
 	}
 
 	private void OnAreaExited()
 	{
 		_ladderOverlapCount--;
 		if (_ladderOverlapCount < 0) _ladderOverlapCount = 0; // Prevent negative count
-		GD.Print("Player exited ladder");
 	}
 }
