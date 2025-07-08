@@ -161,7 +161,6 @@ public partial class Player : CharacterBody3D, ISavable<SaveData>
 
 	public void OnSave(SaveData data)
 	{
-		GD.Print("on save player");
 		if (data.playerData == null)
 		{
 			data.playerData = new PlayerData();
@@ -176,7 +175,6 @@ public partial class Player : CharacterBody3D, ISavable<SaveData>
 	{
 		if (data.playerData != null)
 		{
-			GD.Print("loadded player position");
 			GlobalPosition = data.playerData.position;
 			GlobalRotation = data.playerData.rotation;
 			_camera.Rotation = data.playerData.cameraRotation;

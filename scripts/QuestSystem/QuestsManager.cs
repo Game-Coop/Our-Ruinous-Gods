@@ -163,7 +163,6 @@ public partial class QuestsManager : Node, ISavable<SaveData>
 				if (variable.VariantType != Variant.Type.Float)
 					throw new InvalidOperationException("Incorrect variable type for quest condition query operator");
 				result = (float)variable > (float)value;
-				GD.Print("should enter here");
 				break;
 			case "gte":
 			case ">=":
