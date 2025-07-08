@@ -7,7 +7,7 @@ public partial class PowerableLight : Node3D, IPower
 	[Export] public int Zone { get; set; }
 	private Node3D light;
 	[Export] public PowerState State { get; set; }
-
+	EventBus eventBus;
 	public override void _Ready()
 	{
 		light = GetNode<Node3D>("Light3D");
@@ -21,9 +21,14 @@ public partial class PowerableLight : Node3D, IPower
 			light.Hide();
 		}
 
-		EventBus EventBusHandler = GetNode<EventBus>("/root/EventBus");
-		EventBusHandler.Power += OnPowerEvent;
+		eventBus = GetNode<EventBus>("/root/EventBus");
+		eventBus.Power += OnPowerEvent;
 	}
+	protected override void Dispose(bool disposing)
+	{
+		base.Dispose(disposing);
+		eventBus.Power -= OnPowerEvent; // I had to dispose this otherwise it gives error after reloading scene
+    }
 
 	public void OnPowerEvent(int zone)
 	{

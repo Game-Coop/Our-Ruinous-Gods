@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="QuestResource" load_steps=15 format=3 uid="uid://cpam64fvjxjvv"]
+[gd_resource type="Resource" script_class="QuestResource" load_steps=16 format=3 uid="uid://cpam64fvjxjvv"]
 
 [ext_resource type="Script" uid="uid://d4gmb2nftapl5" path="res://addons/questify/scripts/model/quest_edge.gd" id="1_w80ml"]
 [ext_resource type="Script" uid="uid://dtbofow3tdngk" path="res://addons/questify/scripts/model/quest_start.gd" id="2_7g6rw"]
@@ -60,7 +60,17 @@ from = SubResource("Resource_ptyqj")
 to = SubResource("Resource_p5u1k")
 edge_type = 1
 
+[sub_resource type="Resource" id="Resource_n1uwb"]
+script = ExtResource("5_l0rc1")
+type = "=="
+key = "someEventName"
+id = "6dgAf629bk"
+optional = false
+graph_editor_position = Vector2(100, 440)
+graph_editor_size = Vector2(377, 309)
+metadata/value = true
+
 [resource]
 script = ExtResource("7_knatu")
-nodes = Array[ExtResource("6_4moan")]([SubResource("Resource_wfqcc"), SubResource("Resource_ptyqj"), SubResource("Resource_f20yv"), SubResource("Resource_p5u1k")])
+nodes = Array[ExtResource("6_4moan")]([SubResource("Resource_wfqcc"), SubResource("Resource_ptyqj"), SubResource("Resource_f20yv"), SubResource("Resource_p5u1k"), SubResource("Resource_n1uwb")])
 edges = Array[ExtResource("1_w80ml")]([SubResource("Resource_sjgp2"), SubResource("Resource_s7j17"), SubResource("Resource_r107y")])

@@ -5,5 +5,5 @@
 
 [resource]
 script = ExtResource("2_yf8sv")
-prefab = ExtResource("1_phudy")
+ref = ExtResource("1_phudy")
 metadata/_custom_type_script = "uid://dsxcx3uacbtus"

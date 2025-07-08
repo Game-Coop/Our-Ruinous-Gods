@@ -3,11 +3,53 @@ using System;
 using System.Collections.Generic;
 using Godot;
 
-public partial class QuestsManager : Node
+public partial class QuestsManager : Node, ISavable<SaveData>
 {
-	[Export] public Quest activeQuest;
+	[Export] public Quest[] quests;
+	public Quest activeQuest;
 	private Dictionary<string, Variant> questVariables = new();
 	private EventBus eventBus;
+
+	public void OnSave(SaveData data)
+	{
+		data.questData = Questify.Serialize();
+	}
+
+	public void OnLoad(SaveData saveData)
+	{
+		ClearQuests();
+		
+		var questResources = new Godot.Collections.Array<Resource>();
+		foreach (var quest in quests)
+		{
+			questResources.Add(quest.Instance);
+		}
+		if (saveData.questData.Count == questResources.Count)
+		{
+			for (int i = 0; i < saveData.questData.Count; i++)
+			{
+				var data = saveData.questData[i];
+				questResources[i].Call("deserialize", data);
+			}
+		}
+		Questify.SetQuests(questResources);
+		if (Questify.GetActiveQuests().Count == 0)
+		{
+			activeQuest = quests[0];
+			activeQuest.Start();
+		}
+	}
+
+	private void ClearQuests()
+	{
+		questVariables.Clear();
+		Questify.Clear();
+		foreach (var quest in quests)
+		{
+			quest.DisposeInstance();
+		}
+	}
+
 	public override void _Ready()
 	{
 		base._Ready();
@@ -21,18 +63,7 @@ public partial class QuestsManager : Node
 		eventBus.PowerChanged += OnPowerChange;
 		eventBus.World += OnWorldEvent;
 		eventBus.Quest += OnQuestEvent;
-
-		activeQuest.Start();
 	}
-
-	private void ObjectiveAdded(Resource questResource, Resource objective)
-	{
-		if (activeQuest.Equals(questResource))
-		{
-			activeQuest.objectives.Add(new QuestObjective(objective));
-		}
-	}
-
 	protected override void Dispose(bool disposing)
 	{
 		base.Dispose(disposing);
@@ -40,6 +71,13 @@ public partial class QuestsManager : Node
 		eventBus.PowerChanged -= OnPowerChange;
 		eventBus.World -= OnWorldEvent;
 		eventBus.Quest -= OnQuestEvent;
+	}
+	private void ObjectiveAdded(Resource questResource, Resource objective)
+	{
+		if (activeQuest.Equals(questResource))
+		{
+			activeQuest.objectives.Add(new QuestObjective(objective));
+		}
 	}
 	private void OnQuestEvent(string questVariable, Variant value)
 	{

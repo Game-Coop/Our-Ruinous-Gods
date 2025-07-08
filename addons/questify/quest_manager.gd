@@ -54,10 +54,11 @@ func get_completed_quests() -> Array[QuestResource]:
 	return result
 
 
-func set_quests(quests: Array[QuestResource]) -> void:
+func set_quests(quests: Array) -> void:
 	clear()
+	for q in quests:
+		assert(q is QuestResource)
 	_quests.assign(quests)
-
 
 func serialize() -> Array:
 	var result := []

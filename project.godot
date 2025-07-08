@@ -193,9 +193,9 @@ common/enable_pause_aware_picking=true
 
 [questify]
 
-general/update_polling=true
-general/update_interval=0.5
 general/add_quests_to_pot_generation=false
+general/update_interval=0.5
+general/update_polling=false
 
 [rendering]
 
