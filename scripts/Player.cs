@@ -184,13 +184,11 @@ public partial class Player : CharacterBody3D, ISavable<SaveData>
 	private void OnAreaEntered()
 	{
 		_ladderOverlapCount++;
-		GD.Print("Player entered ladder");
 	}
 
 	private void OnAreaExited()
 	{
 		_ladderOverlapCount--;
 		if (_ladderOverlapCount < 0) _ladderOverlapCount = 0; // Prevent negative count
-		GD.Print("Player exited ladder");
 	}
 }
