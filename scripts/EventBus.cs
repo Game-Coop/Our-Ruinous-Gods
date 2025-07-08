@@ -9,6 +9,8 @@ public partial class EventBus : Node
 	public delegate void StaminaChangeEventHandler(int cost);
 	[Signal]
 	public delegate void WorldEventHandler(string name);
+	[Signal]
+	public delegate void QuestEventHandler(string name, Variant value);
 	public void OnPowerEvent(int zone)
 	{
 		EmitSignal(SignalName.Power, zone);
@@ -24,5 +26,9 @@ public partial class EventBus : Node
 	public void OnWorldEvent(string name)
 	{
 		EmitSignal(SignalName.World, name);
+	}
+	public void OnQuestEvent(string questVariable, Variant value)
+	{
+		EmitSignal(SignalName.Quest, questVariable, value);
 	}
 }

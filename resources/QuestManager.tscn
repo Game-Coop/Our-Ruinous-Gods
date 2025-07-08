@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://cnhal6j0x7nnm"]
+
+[ext_resource type="Script" uid="uid://dg1b1v2gva62h" path="res://scripts/QuestSystem/QuestsManager.cs" id="1_k7f01"]
+[ext_resource type="Resource" uid="uid://dpam3c5tukex3" path="res://resources/Quests/quest1.tres" id="2_1pgl1"]
+
+[node name="Node" type="Node"]
+script = ExtResource("1_k7f01")
+activeQuest = ExtResource("2_1pgl1")

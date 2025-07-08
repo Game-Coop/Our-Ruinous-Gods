@@ -1,0 +1,66 @@
+[gd_resource type="Resource" script_class="QuestResource" load_steps=15 format=3 uid="uid://cpam64fvjxjvv"]
+
+[ext_resource type="Script" uid="uid://d4gmb2nftapl5" path="res://addons/questify/scripts/model/quest_edge.gd" id="1_w80ml"]
+[ext_resource type="Script" uid="uid://dtbofow3tdngk" path="res://addons/questify/scripts/model/quest_start.gd" id="2_7g6rw"]
+[ext_resource type="Script" uid="uid://c23wdreelkkg4" path="res://addons/questify/scripts/model/quest_objective.gd" id="3_w6ssa"]
+[ext_resource type="Script" uid="uid://650crvoj707i" path="res://addons/questify/scripts/model/quest_end.gd" id="4_ola8t"]
+[ext_resource type="Script" uid="uid://cyotfkardp6i" path="res://addons/questify/scripts/model/quest_condition.gd" id="5_l0rc1"]
+[ext_resource type="Script" uid="uid://b37aev4imc074" path="res://addons/questify/scripts/model/quest_node.gd" id="6_4moan"]
+[ext_resource type="Script" uid="uid://bhqxygnm6kw4n" path="res://addons/questify/scripts/model/quest_resource.gd" id="7_knatu"]
+
+[sub_resource type="Resource" id="Resource_phc32"]
+script = ExtResource("2_7g6rw")
+name = "quest1"
+description = "Test Quest"
+id = "a1YSDEstfc"
+optional = false
+graph_editor_position = Vector2(-280, -320)
+graph_editor_size = Vector2(300, 516)
+
+[sub_resource type="Resource" id="Resource_kfxv2"]
+script = ExtResource("3_w6ssa")
+description = ""
+id = "W5-lMeTr83"
+optional = false
+graph_editor_position = Vector2(600, 0)
+graph_editor_size = Vector2(340, 540)
+
+[sub_resource type="Resource" id="Resource_lhfr7"]
+script = ExtResource("1_w80ml")
+from = SubResource("Resource_phc32")
+to = SubResource("Resource_kfxv2")
+edge_type = 0
+
+[sub_resource type="Resource" id="Resource_gf0vc"]
+script = ExtResource("4_ola8t")
+id = "ADXUlnAkyB"
+optional = false
+graph_editor_position = Vector2(1160, 0)
+graph_editor_size = Vector2(141, 78)
+
+[sub_resource type="Resource" id="Resource_eydi3"]
+script = ExtResource("1_w80ml")
+from = SubResource("Resource_kfxv2")
+to = SubResource("Resource_gf0vc")
+edge_type = 0
+
+[sub_resource type="Resource" id="Resource_28ng8"]
+script = ExtResource("5_l0rc1")
+type = "=="
+key = "interaction_main_door"
+id = "kpLDJ-Xwi3"
+optional = false
+graph_editor_position = Vector2(100, 100)
+graph_editor_size = Vector2(377, 309)
+metadata/value = true
+
+[sub_resource type="Resource" id="Resource_1o78l"]
+script = ExtResource("1_w80ml")
+from = SubResource("Resource_28ng8")
+to = SubResource("Resource_kfxv2")
+edge_type = 1
+
+[resource]
+script = ExtResource("7_knatu")
+nodes = Array[ExtResource("6_4moan")]([SubResource("Resource_gf0vc"), SubResource("Resource_28ng8"), SubResource("Resource_phc32"), SubResource("Resource_kfxv2")])
+edges = Array[ExtResource("1_w80ml")]([SubResource("Resource_lhfr7"), SubResource("Resource_eydi3"), SubResource("Resource_1o78l")])

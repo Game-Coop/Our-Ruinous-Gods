@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Quest" load_steps=3 format=3 uid="uid://d2wmasd7aqrbp"]
+
+[ext_resource type="Resource" uid="uid://cicijk5a6ytfi" path="res://resources/Quests/Quest Prefabs/quest2.tres" id="1_phudy"]
+[ext_resource type="Script" uid="uid://dsxcx3uacbtus" path="res://scripts/QuestSystem/Quest.cs" id="2_yf8sv"]
+
+[resource]
+script = ExtResource("2_yf8sv")
+prefab = ExtResource("1_phudy")
+metadata/_custom_type_script = "uid://dsxcx3uacbtus"
