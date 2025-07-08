@@ -2,7 +2,6 @@ using System;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Godot;
-using Godot.Collections;
 
 public class GodotCollectionsArrayConverter : JsonConverter<Godot.Collections.Array>
 {
@@ -21,14 +20,12 @@ public class GodotCollectionsArrayConverter : JsonConverter<Godot.Collections.Ar
 
 		foreach (var token in jArray)
 		{
-			// No cast is needed here anymore
 			godotArray.Add(ConvertToGodotCompatible(token));
 		}
 
 		return godotArray;
 	}
 
-	// ✅ Changed return type from 'object' to 'Variant'
 	private Variant ConvertToGodotCompatible(JToken token)
 	{
 		switch (token.Type)
@@ -37,33 +34,31 @@ public class GodotCollectionsArrayConverter : JsonConverter<Godot.Collections.Ar
 				return token.Value<bool>();
 
 			case JTokenType.Integer:
-				return token.Value<int>(); // Implicitly converted to Variant
+				return token.Value<int>();
 
 			case JTokenType.Float:
-				return token.Value<float>(); // Implicitly converted to Variant
+				return token.Value<float>();
 
 			case JTokenType.String:
-				return token.Value<string>(); // Implicitly converted to Variant
+				return token.Value<string>();
 
 			case JTokenType.Null:
-				return default; // A null Variant
+				return default;
 
 			case JTokenType.Array:
 			{
 				var innerArray = new Godot.Collections.Array();
 				foreach (var item in token)
-					// ✅ Recursive call now returns Variant, so no cast is needed
 					innerArray.Add(ConvertToGodotCompatible(item));
-				return innerArray; // Godot.Collections.Array is already a Variant-compatible type
+				return innerArray;
 			}
 
 			case JTokenType.Object:
 			{
 				var dict = new Godot.Collections.Dictionary();
 				foreach (var kvp in (JObject)token)
-					 // ✅ Recursive call now returns Variant, so no cast is needed
 					dict[kvp.Key] = ConvertToGodotCompatible(kvp.Value);
-				return dict; // Godot.Collections.Dictionary is already a Variant-compatible type
+				return dict;
 			}
 
 			default:
