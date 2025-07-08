@@ -8,59 +8,59 @@
 [ext_resource type="Script" uid="uid://b37aev4imc074" path="res://addons/questify/scripts/model/quest_node.gd" id="6_rfulm"]
 [ext_resource type="Script" uid="uid://bhqxygnm6kw4n" path="res://addons/questify/scripts/model/quest_resource.gd" id="7_s6nbq"]
 
-[sub_resource type="Resource" id="Resource_qmrnj"]
+[sub_resource type="Resource" id="Resource_i272p"]
 script = ExtResource("2_ewndb")
-name = "quest2"
-description = "Test Quest"
+name = "Turn On Power"
+description = "I need to turn on power. Or I won't be able to use the elevator."
 id = "a1YSDEstfc"
 optional = false
 graph_editor_position = Vector2(-280, -320)
 graph_editor_size = Vector2(300, 516)
 
-[sub_resource type="Resource" id="Resource_ewndb"]
+[sub_resource type="Resource" id="Resource_kvlcw"]
 script = ExtResource("3_3k6sh")
-description = ""
+description = "Turn the power switch on."
 id = "W5-lMeTr83"
 optional = false
 graph_editor_position = Vector2(600, 0)
 graph_editor_size = Vector2(340, 540)
 
-[sub_resource type="Resource" id="Resource_3k6sh"]
+[sub_resource type="Resource" id="Resource_bv5lm"]
 script = ExtResource("1_qmrnj")
-from = SubResource("Resource_qmrnj")
-to = SubResource("Resource_ewndb")
+from = SubResource("Resource_i272p")
+to = SubResource("Resource_kvlcw")
 edge_type = 0
 
-[sub_resource type="Resource" id="Resource_7v77g"]
+[sub_resource type="Resource" id="Resource_o4crt"]
 script = ExtResource("4_7v77g")
 id = "ADXUlnAkyB"
 optional = false
 graph_editor_position = Vector2(1160, 0)
 graph_editor_size = Vector2(141, 78)
 
-[sub_resource type="Resource" id="Resource_p40wc"]
+[sub_resource type="Resource" id="Resource_knwx4"]
 script = ExtResource("1_qmrnj")
-from = SubResource("Resource_ewndb")
-to = SubResource("Resource_7v77g")
+from = SubResource("Resource_kvlcw")
+to = SubResource("Resource_o4crt")
 edge_type = 0
 
-[sub_resource type="Resource" id="Resource_rfulm"]
+[sub_resource type="Resource" id="Resource_iov6b"]
 script = ExtResource("5_p40wc")
 type = "=="
-key = "test"
+key = "power_zone_state_0"
 id = "kpLDJ-Xwi3"
 optional = false
 graph_editor_position = Vector2(100, 100)
 graph_editor_size = Vector2(377, 309)
-metadata/value = 10.0
+metadata/value = true
 
-[sub_resource type="Resource" id="Resource_s6nbq"]
+[sub_resource type="Resource" id="Resource_kjec3"]
 script = ExtResource("1_qmrnj")
-from = SubResource("Resource_rfulm")
-to = SubResource("Resource_ewndb")
+from = SubResource("Resource_iov6b")
+to = SubResource("Resource_kvlcw")
 edge_type = 1
 
 [resource]
 script = ExtResource("7_s6nbq")
-nodes = Array[ExtResource("6_rfulm")]([SubResource("Resource_7v77g"), SubResource("Resource_rfulm"), SubResource("Resource_ewndb"), SubResource("Resource_qmrnj")])
-edges = Array[ExtResource("1_qmrnj")]([SubResource("Resource_3k6sh"), SubResource("Resource_p40wc"), SubResource("Resource_s6nbq")])
+nodes = Array[ExtResource("6_rfulm")]([SubResource("Resource_o4crt"), SubResource("Resource_iov6b"), SubResource("Resource_kvlcw"), SubResource("Resource_i272p")])
+edges = Array[ExtResource("1_qmrnj")]([SubResource("Resource_bv5lm"), SubResource("Resource_knwx4"), SubResource("Resource_kjec3")])

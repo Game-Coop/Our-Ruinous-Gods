@@ -85,7 +85,7 @@ public partial class QuestsManager : Node
 		{
 			activeQuest.Complete();
 			activeQuest = activeQuest.nextQuest;
-			activeQuest.Start();
+			activeQuest?.Start();
 		}
 	}
 	private void ConditionQuerry(string type, string key, Variant value, Resource resource)

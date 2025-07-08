@@ -33,13 +33,13 @@ public partial class Quest : Resource
     }
     public void Start()
     {
+        GD.Print($"Starting quest: {Name}. Description: {Description}");
         Questify.StartQuest(Instance);
         GameEvents.OnQuestStart?.Invoke(this);
     }
     public void Complete()
     {
-        if(nextQuest != null)
-            GD.Print($"Finished quest: {Name}. Will be starting quest: {(nextQuest != null ? nextQuest.Name : null)}");
+        GD.Print($"Finished quest: {Name}. Description: {Description}");
         GameEvents.OnQuestComplete?.Invoke(this);
     }
 }

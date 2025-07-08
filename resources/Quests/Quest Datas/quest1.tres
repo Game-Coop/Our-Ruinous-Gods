@@ -8,43 +8,43 @@
 [ext_resource type="Script" uid="uid://b37aev4imc074" path="res://addons/questify/scripts/model/quest_node.gd" id="6_4moan"]
 [ext_resource type="Script" uid="uid://bhqxygnm6kw4n" path="res://addons/questify/scripts/model/quest_resource.gd" id="7_knatu"]
 
-[sub_resource type="Resource" id="Resource_phc32"]
+[sub_resource type="Resource" id="Resource_f20yv"]
 script = ExtResource("2_7g6rw")
-name = "quest1"
-description = "Test Quest"
+name = "Enter Docking Bay"
+description = "Finally, I have managed to came to this place. Need to get pass that door first."
 id = "a1YSDEstfc"
 optional = false
 graph_editor_position = Vector2(-280, -320)
 graph_editor_size = Vector2(300, 516)
 
-[sub_resource type="Resource" id="Resource_kfxv2"]
+[sub_resource type="Resource" id="Resource_p5u1k"]
 script = ExtResource("3_w6ssa")
-description = ""
+description = "Pass through the door"
 id = "W5-lMeTr83"
 optional = false
 graph_editor_position = Vector2(600, 0)
 graph_editor_size = Vector2(340, 540)
 
-[sub_resource type="Resource" id="Resource_lhfr7"]
+[sub_resource type="Resource" id="Resource_sjgp2"]
 script = ExtResource("1_w80ml")
-from = SubResource("Resource_phc32")
-to = SubResource("Resource_kfxv2")
+from = SubResource("Resource_f20yv")
+to = SubResource("Resource_p5u1k")
 edge_type = 0
 
-[sub_resource type="Resource" id="Resource_gf0vc"]
+[sub_resource type="Resource" id="Resource_wfqcc"]
 script = ExtResource("4_ola8t")
 id = "ADXUlnAkyB"
 optional = false
 graph_editor_position = Vector2(1160, 0)
 graph_editor_size = Vector2(141, 78)
 
-[sub_resource type="Resource" id="Resource_eydi3"]
+[sub_resource type="Resource" id="Resource_s7j17"]
 script = ExtResource("1_w80ml")
-from = SubResource("Resource_kfxv2")
-to = SubResource("Resource_gf0vc")
+from = SubResource("Resource_p5u1k")
+to = SubResource("Resource_wfqcc")
 edge_type = 0
 
-[sub_resource type="Resource" id="Resource_28ng8"]
+[sub_resource type="Resource" id="Resource_ptyqj"]
 script = ExtResource("5_l0rc1")
 type = "=="
 key = "interaction_main_door"
@@ -54,13 +54,13 @@ graph_editor_position = Vector2(100, 100)
 graph_editor_size = Vector2(377, 309)
 metadata/value = true
 
-[sub_resource type="Resource" id="Resource_1o78l"]
+[sub_resource type="Resource" id="Resource_r107y"]
 script = ExtResource("1_w80ml")
-from = SubResource("Resource_28ng8")
-to = SubResource("Resource_kfxv2")
+from = SubResource("Resource_ptyqj")
+to = SubResource("Resource_p5u1k")
 edge_type = 1
 
 [resource]
 script = ExtResource("7_knatu")
-nodes = Array[ExtResource("6_4moan")]([SubResource("Resource_gf0vc"), SubResource("Resource_28ng8"), SubResource("Resource_phc32"), SubResource("Resource_kfxv2")])
-edges = Array[ExtResource("1_w80ml")]([SubResource("Resource_lhfr7"), SubResource("Resource_eydi3"), SubResource("Resource_1o78l")])
+nodes = Array[ExtResource("6_4moan")]([SubResource("Resource_wfqcc"), SubResource("Resource_ptyqj"), SubResource("Resource_f20yv"), SubResource("Resource_p5u1k")])
+edges = Array[ExtResource("1_w80ml")]([SubResource("Resource_sjgp2"), SubResource("Resource_s7j17"), SubResource("Resource_r107y")])

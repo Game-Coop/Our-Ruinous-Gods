@@ -2,7 +2,7 @@
 
 [ext_resource type="Resource" uid="uid://d2wmasd7aqrbp" path="res://resources/Quests/quest2.tres" id="1_botcw"]
 [ext_resource type="Script" uid="uid://dsxcx3uacbtus" path="res://scripts/QuestSystem/Quest.cs" id="1_yid5i"]
-[ext_resource type="Resource" uid="uid://cpam64fvjxjvv" path="res://resources/Quests/Quest Prefabs/quest1.tres" id="2_npts4"]
+[ext_resource type="Resource" uid="uid://cpam64fvjxjvv" path="res://resources/Quests/Quest Datas/quest1.tres" id="2_npts4"]
 
 [resource]
 script = ExtResource("1_yid5i")
