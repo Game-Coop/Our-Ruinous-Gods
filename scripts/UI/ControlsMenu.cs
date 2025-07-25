@@ -31,8 +31,12 @@ public partial class ControlsMenu : Page
 		paginationKeyboardMouse.SetTitle("Keyboard & Mouse");
 		paginationGamePad.SetTitle("Gamepad");
 		navbar.OnNavigate += OnNavigate;
-
 	}
+    protected override void Dispose(bool disposing)
+    {
+        base.Dispose(disposing);
+		navbar.OnNavigate -= OnNavigate;
+    }
 
 	private void OnNavigate(int from, int to)
 	{

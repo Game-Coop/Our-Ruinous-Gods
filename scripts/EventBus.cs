@@ -12,6 +12,7 @@ public partial class EventBus : Node
 	[Signal]
 	public delegate void PuzzleSolvedEventHandler(string puzzleId);
 
+	public delegate void QuestEventHandler(QuestEvent questEvent);
 	public void OnPowerEvent(int zone)
 	{
 		EmitSignal(SignalName.Power, zone);
@@ -31,5 +32,10 @@ public partial class EventBus : Node
 	public void OnPuzzleSolvedEvent(string puzzleId)
 	{
 		EmitSignal(SignalName.PuzzleSolved, puzzleId);
+	}
+}
+	public void OnQuestEvent(QuestEvent questEvent)
+	{
+		EmitSignal(SignalName.Quest, questEvent);
 	}
 }

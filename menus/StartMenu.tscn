@@ -1,15 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://jsmom37esqfc"]
+[gd_scene load_steps=7 format=3 uid="uid://jsmom37esqfc"]
 
 [ext_resource type="AudioStream" uid="uid://bfkc80yhg62qr" path="res://assets/audio/88 horroramb2.wav" id="1"]
-[ext_resource type="Texture2D" uid="uid://c3amvo1kvgiii" path="res://assets/ui/startmenu-generated.webp" id="2"]
 [ext_resource type="FontFile" uid="uid://djxjfdocobiaf" path="res://fonts/Chakra_Petch/ChakraPetch-Regular.ttf" id="3"]
 [ext_resource type="Script" uid="uid://dtcloosmxo5fu" path="res://scripts/UI/StartMenu.cs" id="4"]
-
-[sub_resource type="StyleBoxTexture" id="1"]
-texture = ExtResource("2")
-region_rect = Rect2(0, 0, 1792, 1024)
-
-[sub_resource type="StyleBoxFlat" id="2"]
+[ext_resource type="PackedScene" uid="uid://bxxhpppmwi4rt" path="res://prefabs/SceneTransitioner.tscn" id="4_wns2j"]
 
 [sub_resource type="FontFile" id="3"]
 fallbacks = Array[Font]([ExtResource("3"), ExtResource("3")])
@@ -21,8 +15,125 @@ cache/0/16/0/descent = 0.0
 cache/0/16/0/underline_position = 0.0
 cache/0/16/0/underline_thickness = 0.0
 cache/0/16/0/scale = 1.0
+cache/0/26/0/ascent = 0.0
+cache/0/26/0/descent = 0.0
+cache/0/26/0/underline_position = 0.0
+cache/0/26/0/underline_thickness = 0.0
+cache/0/26/0/scale = 1.0
+cache/0/31/0/ascent = 0.0
+cache/0/31/0/descent = 0.0
+cache/0/31/0/underline_position = 0.0
+cache/0/31/0/underline_thickness = 0.0
+cache/0/31/0/scale = 1.0
+cache/0/41/0/ascent = 0.0
+cache/0/41/0/descent = 0.0
+cache/0/41/0/underline_position = 0.0
+cache/0/41/0/underline_thickness = 0.0
+cache/0/41/0/scale = 1.0
+cache/0/46/0/ascent = 0.0
+cache/0/46/0/descent = 0.0
+cache/0/46/0/underline_position = 0.0
+cache/0/46/0/underline_thickness = 0.0
+cache/0/46/0/scale = 1.0
+cache/0/56/0/ascent = 0.0
+cache/0/56/0/descent = 0.0
+cache/0/56/0/underline_position = 0.0
+cache/0/56/0/underline_thickness = 0.0
+cache/0/56/0/scale = 1.0
+cache/0/61/0/ascent = 0.0
+cache/0/61/0/descent = 0.0
+cache/0/61/0/underline_position = 0.0
+cache/0/61/0/underline_thickness = 0.0
+cache/0/61/0/scale = 1.0
+cache/0/66/0/ascent = 0.0
+cache/0/66/0/descent = 0.0
+cache/0/66/0/underline_position = 0.0
+cache/0/66/0/underline_thickness = 0.0
+cache/0/66/0/scale = 1.0
+cache/0/76/0/ascent = 0.0
+cache/0/76/0/descent = 0.0
+cache/0/76/0/underline_position = 0.0
+cache/0/76/0/underline_thickness = 0.0
+cache/0/76/0/scale = 1.0
+cache/0/81/0/ascent = 0.0
+cache/0/81/0/descent = 0.0
+cache/0/81/0/underline_position = 0.0
+cache/0/81/0/underline_thickness = 0.0
+cache/0/81/0/scale = 1.0
+cache/0/91/0/ascent = 0.0
+cache/0/91/0/descent = 0.0
+cache/0/91/0/underline_position = 0.0
+cache/0/91/0/underline_thickness = 0.0
+cache/0/91/0/scale = 1.0
+cache/0/96/0/ascent = 0.0
+cache/0/96/0/descent = 0.0
+cache/0/96/0/underline_position = 0.0
+cache/0/96/0/underline_thickness = 0.0
+cache/0/96/0/scale = 1.0
+cache/0/106/0/ascent = 0.0
+cache/0/106/0/descent = 0.0
+cache/0/106/0/underline_position = 0.0
+cache/0/106/0/underline_thickness = 0.0
+cache/0/106/0/scale = 1.0
+cache/0/111/0/ascent = 0.0
+cache/0/111/0/descent = 0.0
+cache/0/111/0/underline_position = 0.0
+cache/0/111/0/underline_thickness = 0.0
+cache/0/111/0/scale = 1.0
+cache/0/121/0/ascent = 0.0
+cache/0/121/0/descent = 0.0
+cache/0/121/0/underline_position = 0.0
+cache/0/121/0/underline_thickness = 0.0
+cache/0/121/0/scale = 1.0
+cache/0/126/0/ascent = 0.0
+cache/0/126/0/descent = 0.0
+cache/0/126/0/underline_position = 0.0
+cache/0/126/0/underline_thickness = 0.0
+cache/0/126/0/scale = 1.0
+cache/0/131/0/ascent = 0.0
+cache/0/131/0/descent = 0.0
+cache/0/131/0/underline_position = 0.0
+cache/0/131/0/underline_thickness = 0.0
+cache/0/131/0/scale = 1.0
+cache/0/136/0/ascent = 0.0
+cache/0/136/0/descent = 0.0
+cache/0/136/0/underline_position = 0.0
+cache/0/136/0/underline_thickness = 0.0
+cache/0/136/0/scale = 1.0
+cache/0/116/0/ascent = 0.0
+cache/0/116/0/descent = 0.0
+cache/0/116/0/underline_position = 0.0
+cache/0/116/0/underline_thickness = 0.0
+cache/0/116/0/scale = 1.0
+cache/0/101/0/ascent = 0.0
+cache/0/101/0/descent = 0.0
+cache/0/101/0/underline_position = 0.0
+cache/0/101/0/underline_thickness = 0.0
+cache/0/101/0/scale = 1.0
+cache/0/86/0/ascent = 0.0
+cache/0/86/0/descent = 0.0
+cache/0/86/0/underline_position = 0.0
+cache/0/86/0/underline_thickness = 0.0
+cache/0/86/0/scale = 1.0
+cache/0/71/0/ascent = 0.0
+cache/0/71/0/descent = 0.0
+cache/0/71/0/underline_position = 0.0
+cache/0/71/0/underline_thickness = 0.0
+cache/0/71/0/scale = 1.0
+cache/0/54/0/ascent = 0.0
+cache/0/54/0/descent = 0.0
+cache/0/54/0/underline_position = 0.0
+cache/0/54/0/underline_thickness = 0.0
+cache/0/54/0/scale = 1.0
 
-[node name="Start Menu" type="Control"]
+[sub_resource type="Curve3D" id="Curve3D_rj5xk"]
+_data = {
+"points": PackedVector3Array(0.000740051, -0.0326281, 1.24332, -0.000740051, 0.0326281, -1.24332, -0.00119781, -0.150944, -0.0503235, -8.54184, 1.91289, 6.04514, 8.54184, -1.91289, -6.04514, 10.7636, 0.0969305, -14.1068, -23.6339, 6.43885, 7.64944, 23.6339, -6.43885, -7.64944, 50.7193, -11.4819, -29.5965, -7.45651, -0.46977, 12.0664, 7.45651, 0.46977, -12.0664, 91.6572, -19.0999, -56.1696, 2.58738, -0.472948, 6.22137, -2.58738, 0.472948, -6.22137, 93.6703, -15.4046, -85.1298, 0.305237, -0.0831327, 0.258453, 0, 0, 0, 80.0513, -13.7151, -101.316),
+"tilts": PackedFloat32Array(0, 0, 0, 0, -0.156507, -0.160829)
+}
+point_count = 6
+
+[node name="Start Menu" type="Control" node_paths=PackedStringArray("sceneTransitioner", "camera", "_newGameBtn", "_continueBtn", "_exitBtn", "_versionLabel", "_musicPlayer")]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15
@@ -31,23 +142,25 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("4")
-startBtnPath = NodePath("Panel/Panel2/Panel/Start Button")
-exitBtnPath = NodePath("Panel/Panel2/Panel/Exit Button")
-musicPlayerPath = NodePath("AudioStreamPlayer")
-versionLabelPath = NodePath("Panel/Version Label")
+sceneTransitioner = NodePath("Scene Transitioner")
+camera = NodePath("Camera3D")
+_newGameBtn = NodePath("Panel/Panel2/Panel/New Game Button")
+_continueBtn = NodePath("Panel/Panel2/Panel/Continue Button")
+_exitBtn = NodePath("Panel/Panel2/Panel/Exit Button")
+_versionLabel = NodePath("Panel/Version Label")
+_musicPlayer = NodePath("AudioStreamPlayer")
 
 [node name="Panel" type="Panel" parent="."]
+self_modulate = Color(1, 1, 1, 0)
 layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
-theme_override_styles/panel = SubResource("1")
 
 [node name="Panel2" type="Panel" parent="Panel"]
 self_modulate = Color(0, 0, 0, 0.5)
 layout_mode = 0
 anchor_bottom = 1.0
 offset_right = 382.0
-theme_override_styles/panel = SubResource("2")
 
 [node name="Panel" type="VBoxContainer" parent="Panel/Panel2"]
 layout_mode = 0
@@ -57,20 +170,38 @@ offset_left = 20.0
 theme_override_constants/separation = 10
 alignment = 1
 
-[node name="Start Button" type="Button" parent="Panel/Panel2/Panel"]
+[node name="Continue Button" type="Button" parent="Panel/Panel2/Panel"]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 size_flags_horizontal = 3
 flat = true
 
-[node name="Label" type="Label" parent="Panel/Panel2/Panel/Start Button"]
+[node name="Label" type="Label" parent="Panel/Panel2/Panel/Continue Button"]
 layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_fonts/font = SubResource("3")
-text = "START"
+theme_override_font_sizes/font_size = 54
+text = "CONTINUE"
+vertical_alignment = 1
+
+[node name="New Game Button" type="Button" parent="Panel/Panel2/Panel"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+flat = true
+
+[node name="Label" type="Label" parent="Panel/Panel2/Panel/New Game Button"]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_fonts/font = SubResource("3")
+theme_override_font_sizes/font_size = 54
+text = "NEW GAME"
 vertical_alignment = 1
 
 [node name="Exit Button" type="Button" parent="Panel/Panel2/Panel"]
@@ -86,6 +217,7 @@ anchor_bottom = 1.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_fonts/font = SubResource("3")
+theme_override_font_sizes/font_size = 54
 text = "EXIT"
 vertical_alignment = 1
 
@@ -106,3 +238,13 @@ vertical_alignment = 2
 stream = ExtResource("1")
 autoplay = true
 bus = &"Music"
+
+[node name="Camera3D" type="Camera3D" parent="."]
+process_mode = 1
+transform = Transform3D(-0.714412, -0.224214, 0.66283, -1.49012e-08, 0.947272, 0.320431, -0.699726, 0.22892, -0.676742, 121.254, 46.0335, -7.69838)
+visible = false
+
+[node name="Scene Transitioner" parent="." instance=ExtResource("4_wns2j")]
+process_mode = 1
+transform = Transform3D(-0.714412, -0.224214, 0.66283, -1.49012e-08, 0.947272, 0.320431, -0.699726, 0.22892, -0.676742, 121.254, 46.0335, -7.69838)
+curve = SubResource("Curve3D_rj5xk")

@@ -27,6 +27,7 @@ buses/default_bus_layout="res://audio_mixer.tres"
 
 [autoload]
 
+GameManager="*res://scripts/GameManager.cs"
 SaveManager="*res://resources/SaveManager.tscn"
 ResourceDatabase="*res://resources/ResourceDatabase.tscn"
 EventBus="*res://scripts/EventBus.cs"
@@ -39,6 +40,8 @@ Inventory="*res://resources/Inventory.tscn"
 Journal="*res://resources/Journal.tscn"
 VersionInfo="*res://scripts/VersionInfo.cs"
 WwiseRuntimeManager="*res://addons/Wwise/runtime/wwise_runtime_manager.gd"
+Questify="*res://addons/questify/quest_manager.gd"
+QuestManager="*res://resources/QuestManager.tscn"
 
 [display]
 
@@ -55,7 +58,7 @@ project/assembly_name="Our Ruinous Gods"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/wwisecsharpidgenerator/plugin.cfg")
+enabled=PackedStringArray("res://addons/quest_resource_translation_parser/plugin.cfg", "res://addons/questify/plugin.cfg", "res://addons/wwisecsharpidgenerator/plugin.cfg")
 
 [global]
 
@@ -187,6 +190,12 @@ project/assembly_name="Our Ruinous Gods"
 [physics]
 
 common/enable_pause_aware_picking=true
+
+[questify]
+
+general/add_quests_to_pot_generation=false
+general/update_interval=0.5
+general/update_polling=false
 
 [rendering]
 

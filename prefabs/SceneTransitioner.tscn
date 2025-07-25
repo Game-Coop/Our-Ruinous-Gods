@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://bxxhpppmwi4rt"]
+
+[ext_resource type="Script" uid="uid://beouhtg0xlotn" path="res://scripts/SceneTransitioner.cs" id="1_2cfxm"]
+
+[sub_resource type="Curve3D" id="Curve3D_0cgwn"]
+_data = {
+"points": PackedVector3Array(0.000740051, -0.0326281, 1.24332, -0.000740051, 0.0326281, -1.24332, -0.00119781, -0.150944, -0.0503235, -8.54184, 1.91289, 6.04514, 8.54184, -1.91289, -6.04514, 10.7636, 0.0969305, -14.1068, -23.6339, 6.43885, 7.64944, 23.6339, -6.43885, -7.64944, 50.7193, -11.4819, -29.5965, -7.45651, -0.46977, 12.0664, 7.45651, 0.46977, -12.0664, 91.6572, -19.0999, -56.1696, 2.64719, -0.683374, 6.28405, -2.64719, 0.683374, -6.28405, 93.6703, -15.4046, -85.1298, 0.305237, -0.0831327, 0.258453, -0.305237, 0.0831327, -0.258453, 81.6087, -12.3051, -98.4407),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0)
+}
+point_count = 6
+
+[node name="Scene Transitioner" type="Path3D" node_paths=PackedStringArray("pathFollow3D")]
+transform = Transform3D(-0.714412, -0.224214, 0.66283, -1.49012e-08, 0.947272, 0.320431, -0.699726, 0.22892, -0.676742, 0, 0, 0)
+curve = SubResource("Curve3D_0cgwn")
+script = ExtResource("1_2cfxm")
+pathFollow3D = NodePath("PathFollow3D")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="."]
+transform = Transform3D(0.999954, 1.56137e-05, 0.000594986, -9.09453e-13, 0.999584, -0.0262323, -0.000595194, 0.0262318, 0.999604, -0.00119781, -0.150944, -0.0503235)

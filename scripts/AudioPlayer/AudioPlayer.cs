@@ -18,24 +18,23 @@ public partial class AudioPlayer : AudioStreamPlayer, ISavable<SaveData>
 		base._EnterTree();
 		AudioPlayerEvents.OnAudioCollect += AddData;
 		AudioPlayerEvents.OnUpdateRequest += AudioPlayerChanged;
+		GameEvents.OnStartMenuLoad += Stop;
 	}
 	public override void _ExitTree()
 	{
 		base._ExitTree();
 		AudioPlayerEvents.OnAudioCollect -= AddData;
 		AudioPlayerEvents.OnUpdateRequest -= AudioPlayerChanged;
-
+		GameEvents.OnStartMenuLoad -= Stop;
 	}
 	private void AddData(AudioData data)
 	{
-		GD.Print("Audio entry added to AudioPlayer: " + data.Name);
 		audioDatas.Add(data.Id, data);
 		AudioPlayerChanged();
 	}
 
 	private void AudioPlayerChanged()
 	{
-		GD.Print("audio player changed count:" + audioDatas.Count);
 		AudioPlayerEvents.OnAudioPlayerChange?.Invoke(audioDatas);
 	}
 
@@ -134,6 +133,7 @@ public partial class AudioPlayer : AudioStreamPlayer, ISavable<SaveData>
 			audioDatas.Add(id, audioData);
 			audioData.IsCollected = true;
 		}
+		AudioPlayerChanged();
 	}
 
 }

@@ -20,7 +20,7 @@ public partial class JournalPage : Page
 		entryContainer = GetNode(entryContainerPath);
 		entryNameLabel = GetNode<Label>(entryNameLabelPath);
 		entryReader = GetNode<JournalEntryReader>(entryReaderPath);
-		
+
 		JournalEvents.OnUpdateRequest.Invoke();
 	}
 	public override void _EnterTree()
@@ -43,30 +43,27 @@ public partial class JournalPage : Page
 	}
 	private void OnJournalChange(Dictionary<int, JournalData> journalDatas)
 	{
-		var entriesToRemove = entries.Where(pair => !journalDatas.ContainsKey(pair.Key));
+		var entriesToRemove = entries.Where(pair => !journalDatas.ContainsKey(pair.Key)).Select(item => item.Value).ToList();
 		foreach (var entry in entriesToRemove)
 		{
-			RemoveEntry(entry.Value.journalData);
+			RemoveEntry(entry.journalData, false);
 		}
 
 		var entriesToAdd = journalDatas.Where(pair => !entries.ContainsKey(pair.Key));
 
 		foreach (var item in entriesToAdd)
 		{
-			AddEntry(item.Value);
+			AddEntry(item.Value, false);
 		}
-	}
-	private void RemoveEntry(JournalData journalData)
-	{
-		// TODO: Theoretically we won't be removing entries from journal but its here
-		throw new NotImplementedException();
+		ReOrderChilds();
+		ConfigureFocusAll();
 	}
 
-	public void AddEntry(JournalData entryData)
+	public void AddEntry(JournalData entryData, bool updateOrder = true)
 	{
 		if (entries.ContainsKey(entryData.Id))
 		{
-			GD.PrintErr("Item is already in inventory!");
+			GD.PrintErr("Journal entry is already in journal!");
 			return;
 		}
 		var entry = journalEntryTemplate.Instantiate() as JournalEntry;
@@ -75,8 +72,32 @@ public partial class JournalPage : Page
 		entries.Add(entryData.Id, entry);
 
 		entryContainer.AddChild(entry);
-		ReOrderChilds();
-		ConfigureFocus(entry);
+
+		if (updateOrder)
+		{
+			ReOrderChilds();
+			ConfigureFocusAll();
+		}
+	}
+	public void RemoveEntry(JournalData entryData, bool updateOrder = true)
+	{
+		if (entries.ContainsKey(entryData.Id))
+		{
+			var entry = entries[entryData.Id];
+			entry.OnFocus -= OnEntryFocus;
+			entries.Remove(entryData.Id);
+			entry.QueueFree();
+
+			if (updateOrder)
+			{
+				ReOrderChilds();
+				ConfigureFocusAll();
+			}
+		}
+		else
+		{
+			GD.PrintErr("Item does not registered!");
+		}
 	}
 	private void ReOrderChilds()
 	{
@@ -84,6 +105,13 @@ public partial class JournalPage : Page
 		foreach (var entry in entries)
 		{
 			entryContainer.MoveChild(entry.Value, index++);
+		}
+	}
+	private void ConfigureFocusAll()
+	{
+		foreach (var item in entries)
+		{
+			ConfigureFocus(item.Value);
 		}
 	}
 	public void ConfigureFocus(JournalEntry entry)

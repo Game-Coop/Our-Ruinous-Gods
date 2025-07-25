@@ -68,8 +68,7 @@ public partial class SettingsMenu : Page
 	}
 	private void OnExitPressed()
 	{
-		// TODO: save and exit could be implemented here
-		GetTree().ChangeSceneToPacked(ResourceDatabase.StartMenuScene);
+		GameManager.Instance.LoadStartMenu();
 	}
 	private void ControlsPressed()
 	{
