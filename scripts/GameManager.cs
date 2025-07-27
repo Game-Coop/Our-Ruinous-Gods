@@ -37,5 +37,6 @@ public partial class GameManager : Node
 
     public bool InCutscene { get; set; }
     public bool InStartMenu { get; set; }
+    public bool FocusedHandheld { get; set; }
 
 }

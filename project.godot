@@ -189,6 +189,11 @@ handheld_toggle={
 ]
 }
 
+[layer_names]
+
+3d_render/layer_20="FPS Visual Layer"
+3d_physics/layer_20="FPS Collision Layer"
+
 [mono]
 
 project/assembly_name="Our Ruinous Gods"

@@ -1,6 +1,6 @@
 using Godot;
 
-public partial class HandheldCamera : Camera3D
+public partial class FPSCamera : Camera3D
 {
 	[Export] private Camera3D mainCamera;
 
@@ -8,6 +8,5 @@ public partial class HandheldCamera : Camera3D
 	{
 		base._Process(delta);
 		GlobalTransform = mainCamera.GlobalTransform;
-		GlobalPosition = mainCamera.GlobalPosition;
 	}
 }

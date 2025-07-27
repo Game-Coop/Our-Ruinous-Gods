@@ -141,6 +141,9 @@ public partial class HandheldDevice : Node3D
     }
     private void FocusHandheld()
     {
+        Input.MouseMode = Input.MouseModeEnum.Visible;
+        GameManager.Instance.FocusedHandheld = true;
+
         KillTween();
 
         tween = CreateTween();
@@ -159,6 +162,9 @@ public partial class HandheldDevice : Node3D
 
     private void UnfocusHandheld()
     {
+        Input.MouseMode = Input.MouseModeEnum.Captured;
+        GameManager.Instance.FocusedHandheld = false;
+
         KillTween();
 
         tween = CreateTween();

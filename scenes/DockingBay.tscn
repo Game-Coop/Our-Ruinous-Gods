@@ -50,7 +50,7 @@ size = Vector3(6.58246, 7.02236, 9.24394)
 environment = ExtResource("1_jlvo6")
 
 [node name="Player" parent="." instance=ExtResource("2")]
-transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 0, 1.41686, 1.73652)
+transform = Transform3D(-1.2, 0, -1.81195e-07, 0, 1.2, 0, 1.81195e-07, 0, -1.2, 0, 1.41686, 1.73652)
 collision_layer = 3
 collision_mask = 3
 
