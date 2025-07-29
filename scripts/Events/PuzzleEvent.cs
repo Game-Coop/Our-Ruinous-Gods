@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class PuzzleEvent : GodotObject
+public partial class PuzzleEvent : BaseEventData
 {
     public string PuzzleId { get; }
     public bool IsSolved { get; }

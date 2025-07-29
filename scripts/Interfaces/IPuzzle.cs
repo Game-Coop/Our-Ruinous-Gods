@@ -1,5 +1,5 @@
+using Godot;
 using System;
-using System.Numerics;
 
 public interface IPuzzle : IInteractable
 {

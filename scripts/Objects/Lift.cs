@@ -36,7 +36,7 @@ public partial class Lift : Node3D
     {
         if (!isPuzzleSolved) return;
 
-        if(Input.IsActionJustPressed("interact") && IsPlayerInRange())
+        if (Input.IsActionJustPressed("interact") && IsPlayerInRange())
         {
             ToggleLift();
         }
@@ -44,7 +44,7 @@ public partial class Lift : Node3D
 
     private void ToggleLift()
     {
-        if(animationPlayer.IsPlaying()) return;
+        if (animationPlayer.IsPlaying()) return;
 
         if (isUp)
         {
@@ -72,3 +72,4 @@ public partial class Lift : Node3D
         }
         return false;
     }
+}
