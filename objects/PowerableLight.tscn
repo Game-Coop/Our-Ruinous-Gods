@@ -6,4 +6,5 @@
 script = ExtResource("1")
 
 [node name="Light3D" type="OmniLight3D" parent="."]
+layers = 3
 omni_range = 25.0
