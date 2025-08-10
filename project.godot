@@ -43,6 +43,9 @@ WwiseRuntimeManager="*res://addons/Wwise/runtime/wwise_runtime_manager.gd"
 Questify="*res://addons/questify/quest_manager.gd"
 QuestManager="*res://resources/QuestManager.tscn"
 GameTime="*res://scripts/GameTime.cs"
+Parley="*res://addons/parley/parley_runtime.gd"
+ParleyActions="*res://scripts/Parley/ParleyActions.cs"
+ParleyFacts="*res://scripts/Parley/ParleyFacts.cs"
 
 [display]
 
@@ -59,7 +62,7 @@ project/assembly_name="Our Ruinous Gods"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/quest_resource_translation_parser/plugin.cfg", "res://addons/questify/plugin.cfg", "res://addons/wwisecsharpidgenerator/plugin.cfg")
+enabled=PackedStringArray("res://addons/parley/plugin.cfg", "res://addons/quest_resource_translation_parser/plugin.cfg", "res://addons/questify/plugin.cfg", "res://addons/wwisecsharpidgenerator/plugin.cfg")
 
 [global]
 
@@ -197,6 +200,12 @@ handheld_toggle={
 [mono]
 
 project/assembly_name="Our Ruinous Gods"
+
+[parley]
+
+stores/character_store_path="uid://dks7iglsfui0y"
+stores/action_store_path="uid://daemtg0e6tdtt"
+stores/fact_store_path="uid://b10i0s5g0ue01"
 
 [physics]
 

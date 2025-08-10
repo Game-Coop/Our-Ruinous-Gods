@@ -29,6 +29,8 @@ public partial class HandheldDevice : Node3D
     public override void _EnterTree()
     {
         base._EnterTree();
+        Position = offPosition;
+        Visible = false;
         //maybe add show handheld event here
     }
     public override void _ExitTree()

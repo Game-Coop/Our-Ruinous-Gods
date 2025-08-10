@@ -51,6 +51,8 @@ public partial class SaveManager : Node
 	}
 	public static void Save()
 	{
+		if (saveData == null) return; //This can happen in testing when the game is started from the specific scene and not the start menu scene.
+		
 		OnBeforeSave?.Invoke();
 		saveSystem.Save(defaultSaveName, saveData);
 		OnAfterSave?.Invoke();

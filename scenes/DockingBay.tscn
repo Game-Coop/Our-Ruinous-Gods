@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://5ju312o65nch"]
+[gd_scene load_steps=33 format=3 uid="uid://5ju312o65nch"]
 
 [ext_resource type="Environment" uid="uid://ocaio2ownu0m" path="res://Envrionment.tres" id="1_jlvo6"]
 [ext_resource type="PackedScene" uid="uid://ditkme4k3jpy0" path="res://entities/player.tscn" id="2"]
@@ -21,6 +21,8 @@
 [ext_resource type="Script" uid="uid://g8p6u6edsqu" path="res://scripts/Objects/PlayerSensor.cs" id="20"]
 [ext_resource type="PackedScene" uid="uid://c85rc41hsn055" path="res://objects/LadderCollision.tscn" id="20_kfrdm"]
 [ext_resource type="Script" uid="uid://sle2j723kykw" path="res://scripts/QuestSystem/QuestSwitchableNotifier.cs" id="21_jlvo6"]
+[ext_resource type="Script" uid="uid://fdl1stm4m2w" path="res://scripts/Parley/ParleyTest.cs" id="22_bmc1d"]
+[ext_resource type="Resource" uid="uid://dg383wlfxj8ip" path="res://dialogue_sequences/new_dialogue.ds" id="23_uyjrd"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kfrdm"]
 radius = 0.724904
@@ -341,6 +343,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.7785, -4.9624, 34.6688)
 script = ExtResource("21_jlvo6")
 questVariable = "interaction_main_door"
 switchableNode = NodePath("../Sliding Door")
+
+[node name="Parley Test" type="Node" parent="."]
+script = ExtResource("22_bmc1d")
+dialog = ExtResource("23_uyjrd")
 
 [connection signal="PlayerEnterLadder" from="LadderCollision" to="Player" method="OnAreaEntered"]
 [connection signal="PlayerExitLadder" from="LadderCollision" to="Player" method="OnAreaExited"]
