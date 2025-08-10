@@ -1,0 +1,151 @@
+{
+  "title": "",
+  "nodes": [
+    {
+      "id": "node:1",
+      "type": "DIALOGUE",
+      "position": "(1440.0, 960.0)",
+      "character": "uid://dks7iglsfui0y::1",
+      "text": "This is a dialog"
+    },
+    {
+      "id": "node:3",
+      "type": "END",
+      "position": "(3560.0, 1500.0)"
+    },
+    {
+      "id": "node:5",
+      "type": "DIALOGUE_OPTION",
+      "position": "(1940.0, 1100.0)",
+      "character": "uid://dks7iglsfui0y::1",
+      "text": "Someone please help me!"
+    },
+    {
+      "id": "node:6",
+      "type": "START",
+      "position": "(1100.0, 940.0)"
+    },
+    {
+      "id": "node:7",
+      "type": "DIALOGUE",
+      "position": "(3080.0, 1080.0)",
+      "character": "uid://dks7iglsfui0y::1",
+      "text": "right"
+    },
+    {
+      "id": "node:8",
+      "type": "ACTION",
+      "position": "(2560.0, 780.0)",
+      "description": "",
+      "action_type": "SCRIPT",
+      "action_script_ref": "uid://dvj6kcf7errc6",
+      "values": [
+        "1\n2\n3"
+      ]
+    },
+    {
+      "id": "node:9",
+      "type": "CONDITION",
+      "position": "(2140.0, 1420.0)",
+      "description": "is alive?",
+      "combiner": "ALL",
+      "conditions": [
+        {
+          "fact_ref": "uid://d2q7e5e7shetd",
+          "operator": 0,
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "id": "node:10",
+      "type": "DIALOGUE",
+      "position": "(2691.0, 1503.0)",
+      "character": "uid://dks7iglsfui0y::1",
+      "text": "False"
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge:2",
+      "from_node": "node:4",
+      "from_slot": 0,
+      "to_node": "node:3",
+      "to_slot": 0,
+      "should_override_colour": false,
+      "colour_override": "(0.4118, 0.4118, 0.4118, 1.0)"
+    },
+    {
+      "id": "edge:3",
+      "from_node": "node:1",
+      "from_slot": 0,
+      "to_node": "node:5",
+      "to_slot": 0,
+      "should_override_colour": false,
+      "colour_override": "(0.4118, 0.4118, 0.4118, 1.0)"
+    },
+    {
+      "id": "edge:5",
+      "from_node": "node:6",
+      "from_slot": 0,
+      "to_node": "node:1",
+      "to_slot": 0,
+      "should_override_colour": false,
+      "colour_override": "(0.4118, 0.4118, 0.4118, 1.0)"
+    },
+    {
+      "id": "edge:7",
+      "from_node": "node:7",
+      "from_slot": 0,
+      "to_node": "node:3",
+      "to_slot": 0,
+      "should_override_colour": false,
+      "colour_override": "(0.4118, 0.4118, 0.4118, 1.0)"
+    },
+    {
+      "id": "edge:9",
+      "from_node": "node:8",
+      "from_slot": 0,
+      "to_node": "node:7",
+      "to_slot": 0,
+      "should_override_colour": false,
+      "colour_override": "(0.4118, 0.4118, 0.4118, 1.0)"
+    },
+    {
+      "id": "edge:10",
+      "from_node": "node:5",
+      "from_slot": 0,
+      "to_node": "node:9",
+      "to_slot": 0,
+      "should_override_colour": false,
+      "colour_override": "(0.4118, 0.4118, 0.4118, 1.0)"
+    },
+    {
+      "id": "edge:11",
+      "from_node": "node:9",
+      "from_slot": 0,
+      "to_node": "node:8",
+      "to_slot": 0,
+      "should_override_colour": false,
+      "colour_override": "(0.4118, 0.4118, 0.4118, 1.0)"
+    },
+    {
+      "id": "edge:12",
+      "from_node": "node:9",
+      "from_slot": 1,
+      "to_node": "node:10",
+      "to_slot": 0,
+      "should_override_colour": false,
+      "colour_override": "(0.4118, 0.4118, 0.4118, 1.0)"
+    },
+    {
+      "id": "edge:13",
+      "from_node": "node:10",
+      "from_slot": 0,
+      "to_node": "node:3",
+      "to_slot": 0,
+      "should_override_colour": false,
+      "colour_override": "(0.4118, 0.4118, 0.4118, 1.0)"
+    }
+  ]
+}

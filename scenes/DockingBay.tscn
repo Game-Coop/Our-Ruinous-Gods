@@ -342,6 +342,8 @@ script = ExtResource("21_jlvo6")
 questVariable = "interaction_main_door"
 switchableNode = NodePath("../Sliding Door")
 
+[node name="Node" type="Node" parent="."]
+
 [connection signal="PlayerEnterLadder" from="LadderCollision" to="Player" method="OnAreaEntered"]
 [connection signal="PlayerExitLadder" from="LadderCollision" to="Player" method="OnAreaExited"]
 [connection signal="body_entered" from="LadderCollision" to="LadderCollision" method="_on_body_entered"]
