@@ -11,21 +11,21 @@ public class player : KinematicBody
 	[Export] private float speed = 1;
 	[Export] private float inertia = 1;
 	private Vector3 velocity;
-    private int Power = 0;
-    private int MaxPower = 100;
-    private int Stamina = 100;
+	private int Power = 0;
+	private int MaxPower = 100;
+	private int Stamina = 100;
 
-    public override void _Ready()
-    {;
-        head = GetNode<Spatial>("Head");
+	public override void _Ready()
+	{;
+		head = GetNode<Spatial>("Head");
 
-        Input.MouseMode = Input.MouseModeEnum.Captured;
+		Input.MouseMode = Input.MouseModeEnum.Captured;
 
-        EventBus EventBusHandler = GetNode<EventBus>("/root/EventBus");
-        EventBusHandler.Connect("PowerChangedEventHandler", this, "OnPowerChange");
-        EventBusHandler.Connect("StaminaChangeEventHandler", this, "OnStaminaChange");
-        EventBusHandler.Connect("WorldEventHandler", this, "OnWorldEvent");
-    }
+		EventBus EventBusHandler = GetNode<EventBus>("/root/EventBus");
+		EventBusHandler.Connect("PowerChangedEventHandler", this, "OnPowerChange");
+		EventBusHandler.Connect("StaminaChangeEventHandler", this, "OnStaminaChange");
+		EventBusHandler.Connect("WorldEventHandler", this, "OnWorldEvent");
+	}
 	
 	public override void _Input(InputEvent e)
 	{
@@ -33,30 +33,30 @@ public class player : KinematicBody
 		if (e.IsActionPressed("quit")) GetTree().Quit();
 	}
 
-    public void OnPowerChange(PowerEvent e) {
-        int currentPower = Power;
+	public void OnPowerChange(PowerEvent e) {
+		int currentPower = Power;
 
-        if(e.State == PowerState.On) {
-            currentPower += e.Charge;
-        } else {
-            currentPower -= e.Charge;
-        }
+		if(e.State == PowerState.On) {
+			currentPower += e.Charge;
+		} else {
+			currentPower -= e.Charge;
+		}
 
-        if(currentPower < 0) currentPower = 0;
-        if(currentPower >= MaxPower) currentPower = MaxPower;
+		if(currentPower < 0) currentPower = 0;
+		if(currentPower >= MaxPower) currentPower = MaxPower;
 
-        Power = currentPower;
-        GD.Print("current power use is: " + Power);
-    }
+		Power = currentPower;
+		GD.Print("current power use is: " + Power);
+	}
 
-    public void OnWorldEvent(string name) {
-        GD.Print("event has occured: " + name);
-    }
+	public void OnWorldEvent(string name) {
+		GD.Print("event has occured: " + name);
+	}
 
-    public void OnStaminaChange(int cost) {
+	public void OnStaminaChange(int cost) {
 		this.Stamina -= cost;
-        GD.Print("current stamina: " + this.Stamina);
-    }
+		GD.Print("current stamina: " + this.Stamina);
+	}
 
 	public override void _PhysicsProcess(float delta) {
 		float turnHorizontal = (Input.GetActionStrength("look_right") - Input.GetActionStrength("look_left")) * gamepad_sensitivity;
@@ -64,6 +64,15 @@ public class player : KinematicBody
 
 		HandelMove(delta);
 		HandelTurn(turnHorizontal, turnVertical);
+	}
+	
+	private void Die()
+	{
+		GD.Print("Player has died.");
+		SetPhysicsProcess(false);
+		Input.MouseMode = Input.MouseModeEnum.Visible;
+		
+		CharacterEvents.OnDie?.Invoke();
 	}
 
 	private void HandelMove(float delta) {
