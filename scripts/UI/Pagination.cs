@@ -3,7 +3,7 @@
 using System;
 using Godot;
 
-public class Pagination : Control
+public partial class Pagination : Control
 {
 	public event Action OnClick;
 	[Export] private NodePath filledImagePath;

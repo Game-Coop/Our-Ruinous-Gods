@@ -1,283 +1,240 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=24 format=3 uid="uid://cwqqorn7gsw7"]
 
-[ext_resource path="res://entities/player.tscn" type="PackedScene" id=1]
-[ext_resource path="res://assets/textures/skybox.jpg" type="Texture" id=2]
-[ext_resource path="res://assets/textures/grid.png" type="Texture" id=3]
-[ext_resource path="res://objects/PushButton.tscn" type="PackedScene" id=4]
-[ext_resource path="res://ui/Hint.tscn" type="PackedScene" id=5]
-[ext_resource path="res://objects/Lamp.tscn" type="PackedScene" id=6]
-[ext_resource path="res://menus/PauseMenu.tscn" type="PackedScene" id=7]
-[ext_resource path="res://resources/ItemDatas/KeyItem1Data.tres" type="Resource" id=8]
-[ext_resource path="res://resources/ItemDatas/KeyItem2Data.tres" type="Resource" id=9]
-[ext_resource path="res://scripts/Objects/CollectableItem.cs" type="Script" id=10]
-[ext_resource path="res://resources/JournalDatas/JornalEntryData1.tres" type="Resource" id=13]
-[ext_resource path="res://scripts/Journal/JournalData.cs" type="Script" id=14]
-[ext_resource path="res://scripts/Objects/JournalEntryItem.cs" type="Script" id=15]
-[ext_resource path="res://resources/AudioDatas/audioData1.tres" type="Resource" id=16]
-[ext_resource path="res://scripts/AudioPlayer/AudioEntryItem.cs" type="Script" id=17]
-[ext_resource path="res://menus/SettingsMenu.tscn" type="PackedScene" id=18]
-[ext_resource path="res://scripts/UI/UIManager.cs" type="Script" id=19]
-[ext_resource path="res://resources/AudioDatas/audioData2.tres" type="Resource" id=20]
+[ext_resource type="PackedScene" uid="uid://b1lng8ngwsx8o" path="res://entities/player.tscn" id="1"]
+[ext_resource type="Texture2D" uid="uid://0ckjhg2p8cya" path="res://assets/textures/grid.png" id="3"]
+[ext_resource type="PackedScene" uid="uid://dvs2e4tks7nim" path="res://objects/PushButton.tscn" id="4"]
+[ext_resource type="PackedScene" path="res://ui/Hint.tscn" id="5"]
+[ext_resource type="PackedScene" uid="uid://newr1mdwu37n" path="res://objects/Lamp.tscn" id="6"]
+[ext_resource type="PackedScene" uid="uid://df6qkrb2qch0n" path="res://menus/PauseMenu.tscn" id="7"]
+[ext_resource type="Resource" path="res://resources/ItemDatas/KeyItem1Data.tres" id="8"]
+[ext_resource type="Resource" path="res://resources/ItemDatas/KeyItem2Data.tres" id="9"]
+[ext_resource type="Script" uid="uid://fo2tpi6p37ic" path="res://scripts/Objects/CollectableItem.cs" id="10"]
+[ext_resource type="Resource" path="res://resources/JournalDatas/JornalEntryData2.tres" id="11"]
+[ext_resource type="Resource" path="res://resources/JournalDatas/JornalEntryData1.tres" id="13"]
+[ext_resource type="Script" uid="uid://duk6pgl6mv3j3" path="res://scripts/Objects/JournalEntryItem.cs" id="15"]
+[ext_resource type="Resource" path="res://resources/AudioDatas/audioData1.tres" id="16"]
+[ext_resource type="Script" uid="uid://baxay73tmwvmy" path="res://scripts/AudioPlayer/AudioEntryItem.cs" id="17"]
+[ext_resource type="PackedScene" uid="uid://bud1h1sxl0q8n" path="res://menus/SettingsMenu.tscn" id="18"]
+[ext_resource type="Script" uid="uid://dgomxhfymunnt" path="res://scripts/Wwise/WwiseTest.cs" id="18_qw05f"]
+[ext_resource type="Script" uid="uid://cfw1mkbeulv24" path="res://scripts/UI/UIManager.cs" id="19"]
+[ext_resource type="Resource" path="res://resources/AudioDatas/audioData2.tres" id="20"]
 
-[sub_resource type="PanoramaSky" id=3]
-panorama = ExtResource( 2 )
+[sub_resource type="Sky" id="3"]
 
-[sub_resource type="Environment" id=4]
+[sub_resource type="Environment" id="4"]
 background_mode = 2
-background_sky = SubResource( 3 )
+sky = SubResource("3")
 
-[sub_resource type="SpatialMaterial" id=5]
-flags_world_triplanar = true
-albedo_texture = ExtResource( 3 )
-uv1_scale = Vector3( 0.25, 0.25, 0.25 )
+[sub_resource type="StandardMaterial3D" id="5"]
+albedo_texture = ExtResource("3")
+uv1_scale = Vector3(0.25, 0.25, 0.25)
 uv1_triplanar = true
-uv1_triplanar_sharpness = 1.0
 
-[sub_resource type="CylinderShape" id=6]
+[sub_resource type="CylinderShape3D" id="6"]
 
-[sub_resource type="CylinderMesh" id=7]
+[sub_resource type="CylinderMesh" id="7"]
 
-[sub_resource type="SpatialMaterial" id=8]
-albedo_color = Color( 0.901961, 0.670588, 0.670588, 1 )
-
-[sub_resource type="Resource" id=9]
-script = ExtResource( 14 )
-Id = 1
-Name = "Log 2"
-Content = "I like to sit here and watch our big friend’s body gently spin around. I can’t see much through the darkness, but sometimes I catch a glimpse of rotten bone. At least, I think it’s bone. They didn’t tell us much about what we’re studying up here, just that it could be the key to eternal life. Honestly, I think the company knows just as little as we do about it. That’s fine with me; just means more secrets to unravel"
-Category = 0
-
-[node name="Elysia" type="Spatial"]
+[node name="Elysia" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource( 4 )
+environment = SubResource("4")
 
-[node name="Level" type="CSGCombiner" parent="."]
-material_overlay = SubResource( 5 )
+[node name="Level" type="CSGCombiner3D" parent="."]
+material_overlay = SubResource("5")
 use_collision = true
 
-[node name="Room 1" type="CSGBox" parent="Level"]
-transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 1.7, 0 )
-width = 40.0
-height = 15.0
-depth = 40.0
+[node name="Room 1" type="CSGBox3D" parent="Level"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 1.7, 0)
+size = Vector3(40, 15, 40)
 
-[node name="Light" type="OmniLight" parent="Level/Room 1"]
-transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 4.99402, 0 )
-light_color = Color( 0.85098, 0.796078, 1, 1 )
+[node name="Light3D" type="OmniLight3D" parent="Level/Room 1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.99402, 0)
+light_color = Color(0.85098, 0.796078, 1, 1)
 omni_range = 30.0
 
-[node name="Empty Space" type="CSGBox" parent="Level/Room 1"]
+[node name="Empty Space" type="CSGBox3D" parent="Level/Room 1"]
 operation = 2
-width = 38.0
-height = 13.0
-depth = 38.0
+size = Vector3(38, 13, 38)
 
-[node name="Door Empty Space" type="CSGBox" parent="Level/Room 1"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 20 )
+[node name="Door Empty Space" type="CSGBox3D" parent="Level/Room 1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 20)
 operation = 2
-width = 8.0
-height = 11.0
-depth = 4.0
+size = Vector3(8, 11, 4)
 
-[node name="Window Empty Space" type="CSGBox" parent="Level/Room 1"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -19.5 )
+[node name="Window Empty Space" type="CSGBox3D" parent="Level/Room 1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -19.5)
 operation = 2
-width = 23.0
-height = 6.0
-depth = 4.0
+size = Vector3(23, 6, 4)
 
-[node name="Window" type="CSGBox" parent="Level/Room 1"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -19.5 )
-width = 25.0
-height = 8.0
-depth = 3.0
+[node name="Window" type="CSGBox3D" parent="Level/Room 1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -19.5)
+size = Vector3(25, 8, 3)
 
-[node name="Empty Space" type="CSGBox" parent="Level/Room 1/Window"]
+[node name="Empty Space" type="CSGBox3D" parent="Level/Room 1/Window"]
 operation = 2
-width = 23.0
-height = 6.0
-depth = 4.0
+size = Vector3(23, 6, 4)
 
-[node name="Room 2" type="CSGBox" parent="Level"]
-transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 1.7, 20 )
-width = 40.0
-height = 15.0
-depth = 40.0
+[node name="Room 2" type="CSGBox3D" parent="Level"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 1.7, 20)
+size = Vector3(40, 15, 40)
 
-[node name="Empty Space" type="CSGBox" parent="Level/Room 2"]
+[node name="Empty Space" type="CSGBox3D" parent="Level/Room 2"]
 operation = 2
-width = 38.0
-height = 13.0
-depth = 38.0
+size = Vector3(38, 13, 38)
 
-[node name="Door Empty Space" type="CSGBox" parent="Level/Room 2"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, -20 )
+[node name="Door Empty Space" type="CSGBox3D" parent="Level/Room 2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, -20)
 operation = 2
-width = 8.0
-height = 11.0
-depth = 4.0
+size = Vector3(8, 11, 4)
 
-[node name="Door" type="CSGBox" parent="Level/Room 2"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.5, -20 )
-width = 10.0
-height = 12.0
-depth = 3.0
+[node name="Door" type="CSGBox3D" parent="Level/Room 2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.5, -20)
+size = Vector3(10, 12, 3)
 
-[node name="Empty Space" type="CSGBox" parent="Level/Room 2/Door"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0 )
+[node name="Empty Space" type="CSGBox3D" parent="Level/Room 2/Door"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
 operation = 2
-width = 8.0
-height = 11.0
-depth = 4.0
+size = Vector3(8, 11, 4)
 
-[node name="Window Empty Space" type="CSGBox" parent="Level/Room 2"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 15 )
+[node name="Window Empty Space" type="CSGBox3D" parent="Level/Room 2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 15)
 operation = 2
-width = 43.0
-height = 6.0
-depth = 14.0
+size = Vector3(43, 6, 14)
 
-[node name="Window" type="CSGBox" parent="Level/Room 2"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 14 )
-width = 42.0
-height = 8.0
-depth = 14.0
+[node name="Window" type="CSGBox3D" parent="Level/Room 2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 14)
+size = Vector3(42, 8, 14)
 
-[node name="Empty Space Horizontal" type="CSGBox" parent="Level/Room 2/Window"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1 )
+[node name="Empty Space Horizontal" type="CSGBox3D" parent="Level/Room 2/Window"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
 operation = 2
-width = 43.0
-height = 6.0
-depth = 14.0
+size = Vector3(43, 6, 14)
 
-[node name="Empty Space Vertical" type="CSGBox" parent="Level/Room 2/Window"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3 )
+[node name="Empty Space Vertical" type="CSGBox3D" parent="Level/Room 2/Window"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3)
 operation = 2
-width = 36.0
-height = 9.0
-depth = 14.0
+size = Vector3(36, 9, 14)
 
-[node name="player" parent="." instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0 )
+[node name="player" parent="." instance=ExtResource("1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 
-[node name="PushButton" parent="." instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.220026, -0.810355, 26.4457 )
+[node name="PushButton" parent="." instance=ExtResource("4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.220026, -0.810355, 26.4457)
 
-[node name="Lamp" parent="." instance=ExtResource( 6 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.220026, -0.0579853, 26.4457 )
+[node name="Lamp" parent="." instance=ExtResource("6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.220026, -0.0579853, 26.4457)
 
-[node name="Collectable Item 1" type="Area" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8.24102, -0.55, 8.2971 )
+[node name="Collectable Item 1" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.24102, -0.55, 8.2971)
 collision_layer = 2
-script = ExtResource( 10 )
-itemData = ExtResource( 8 )
+script = ExtResource("10")
+itemData = ExtResource("8")
 
-[node name="CollisionShape" type="CollisionShape" parent="Collectable Item 1"]
-shape = SubResource( 6 )
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Collectable Item 1"]
+shape = SubResource("6")
 
-[node name="MeshInstance" type="MeshInstance" parent="Collectable Item 1"]
-mesh = SubResource( 7 )
-material/0 = SubResource( 8 )
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Collectable Item 1"]
+mesh = SubResource("7")
 
-[node name="Hint" parent="Collectable Item 1" instance=ExtResource( 5 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.53142, 0 )
+[node name="Hint" parent="Collectable Item 1" instance=ExtResource("5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.53142, 0)
 
-[node name="Collectable Item 2" type="Area" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8.28742, -0.55, 11.9824 )
+[node name="Collectable Item 2" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.28742, -0.55, 11.9824)
 collision_layer = 2
-script = ExtResource( 10 )
-itemData = ExtResource( 9 )
+script = ExtResource("10")
+itemData = ExtResource("9")
 
-[node name="CollisionShape" type="CollisionShape" parent="Collectable Item 2"]
-shape = SubResource( 6 )
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Collectable Item 2"]
+shape = SubResource("6")
 
-[node name="MeshInstance" type="MeshInstance" parent="Collectable Item 2"]
-mesh = SubResource( 7 )
-material/0 = SubResource( 8 )
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Collectable Item 2"]
+mesh = SubResource("7")
 
-[node name="Hint" parent="Collectable Item 2" instance=ExtResource( 5 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.53142, 0 )
+[node name="Hint" parent="Collectable Item 2" instance=ExtResource("5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.53142, 0)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-pause_mode = 2
-script = ExtResource( 19 )
+process_mode = 3
+script = ExtResource("19")
 pauseMenuPagePath = NodePath("Pause Menu")
 settingsMenuPagePath = NodePath("Settings Menu")
 
-[node name="Pause Menu" parent="CanvasLayer" instance=ExtResource( 7 )]
+[node name="Pause Menu" parent="CanvasLayer" instance=ExtResource("7")]
 visible = false
 
-[node name="Settings Menu" parent="CanvasLayer" instance=ExtResource( 18 )]
+[node name="Settings Menu" parent="CanvasLayer" instance=ExtResource("18")]
+visible = false
 
-[node name="JournalEntry Item 1" type="Area" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8.35019, -1.36535, 8.32227 )
+[node name="JournalEntry Item 1" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.35019, -1.36535, 8.32227)
 collision_layer = 2
-script = ExtResource( 15 )
-journalData = ExtResource( 13 )
+script = ExtResource("15")
+journalData = ExtResource("13")
 
-[node name="CollisionShape" type="CollisionShape" parent="JournalEntry Item 1"]
-transform = Transform( 1, 0, 0, 0, 0.698111, 0, 0, 0, 1, 0, 0.491448, 0 )
-shape = SubResource( 6 )
+[node name="CollisionShape3D" type="CollisionShape3D" parent="JournalEntry Item 1"]
+transform = Transform3D(1, 0, 0, 0, 0.698111, 0, 0, 0, 1, 0, 0.491448, 0)
+shape = SubResource("6")
 
-[node name="MeshInstance" type="MeshInstance" parent="JournalEntry Item 1"]
-transform = Transform( 1, 0, 0, 0, 0.107645, 0, 0, 0, 1, 0, 0, 0 )
-mesh = SubResource( 7 )
-material/0 = SubResource( 8 )
+[node name="MeshInstance3D" type="MeshInstance3D" parent="JournalEntry Item 1"]
+transform = Transform3D(1, 0, 0, 0, 0.107645, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("7")
 
-[node name="Hint" parent="JournalEntry Item 1" instance=ExtResource( 5 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.53142, 0 )
+[node name="Hint" parent="JournalEntry Item 1" instance=ExtResource("5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.53142, 0)
 
-[node name="JournalEntry Item 2" type="Area" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8.35019, -1.36535, 4.65913 )
+[node name="JournalEntry Item 2" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.35019, -1.36535, 4.65913)
 collision_layer = 2
-script = ExtResource( 15 )
-journalData = SubResource( 9 )
+script = ExtResource("15")
+journalData = ExtResource("11")
 
-[node name="CollisionShape" type="CollisionShape" parent="JournalEntry Item 2"]
-transform = Transform( 1, 0, 0, 0, 0.693608, 0, 0, 0, 1, 0, 0.468151, 0 )
-shape = SubResource( 6 )
+[node name="CollisionShape3D" type="CollisionShape3D" parent="JournalEntry Item 2"]
+transform = Transform3D(1, 0, 0, 0, 0.693608, 0, 0, 0, 1, 0, 0.468151, 0)
+shape = SubResource("6")
 
-[node name="MeshInstance" type="MeshInstance" parent="JournalEntry Item 2"]
-transform = Transform( 1, 0, 0, 0, 0.107645, 0, 0, 0, 1, 0, 0, 0 )
-mesh = SubResource( 7 )
-material/0 = SubResource( 8 )
+[node name="MeshInstance3D" type="MeshInstance3D" parent="JournalEntry Item 2"]
+transform = Transform3D(1, 0, 0, 0, 0.107645, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("7")
 
-[node name="Hint" parent="JournalEntry Item 2" instance=ExtResource( 5 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.53142, 0 )
+[node name="Hint" parent="JournalEntry Item 2" instance=ExtResource("5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.53142, 0)
 
-[node name="Audio Entry Item 1" type="Area" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8.25368, -1.36535, -1.42453 )
+[node name="Audio Entry Item 1" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.25368, -1.36535, -1.42453)
 collision_layer = 2
-script = ExtResource( 17 )
-audioData = ExtResource( 16 )
+script = ExtResource("17")
+audioData = ExtResource("16")
 
-[node name="CollisionShape" type="CollisionShape" parent="Audio Entry Item 1"]
-transform = Transform( 1, 0, 0, 0, 0.693608, 0, 0, 0, 1, 0, 0.468151, 0 )
-shape = SubResource( 6 )
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Audio Entry Item 1"]
+transform = Transform3D(1, 0, 0, 0, 0.693608, 0, 0, 0, 1, 0, 0.468151, 0)
+shape = SubResource("6")
 
-[node name="MeshInstance" type="MeshInstance" parent="Audio Entry Item 1"]
-transform = Transform( 1, 0, 0, 0, 0.107645, 0, 0, 0, 1, 0, 0, 0 )
-mesh = SubResource( 7 )
-material/0 = SubResource( 8 )
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Audio Entry Item 1"]
+transform = Transform3D(1, 0, 0, 0, 0.107645, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("7")
 
-[node name="Hint" parent="Audio Entry Item 1" instance=ExtResource( 5 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.53142, 0 )
+[node name="Hint" parent="Audio Entry Item 1" instance=ExtResource("5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.53142, 0)
 
-[node name="Audio Entry Item 2" type="Area" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8.25368, -1.36535, -7.56598 )
+[node name="Audio Entry Item 2" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.25368, -1.36535, -7.56598)
 collision_layer = 2
-script = ExtResource( 17 )
-audioData = ExtResource( 20 )
+script = ExtResource("17")
+audioData = ExtResource("20")
 
-[node name="CollisionShape" type="CollisionShape" parent="Audio Entry Item 2"]
-transform = Transform( 1, 0, 0, 0, 0.693608, 0, 0, 0, 1, 0, 0.468151, 0 )
-shape = SubResource( 6 )
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Audio Entry Item 2"]
+transform = Transform3D(1, 0, 0, 0, 0.693608, 0, 0, 0, 1, 0, 0.468151, 0)
+shape = SubResource("6")
 
-[node name="MeshInstance" type="MeshInstance" parent="Audio Entry Item 2"]
-transform = Transform( 1, 0, 0, 0, 0.107645, 0, 0, 0, 1, 0, 0, 0 )
-mesh = SubResource( 7 )
-material/0 = SubResource( 8 )
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Audio Entry Item 2"]
+transform = Transform3D(1, 0, 0, 0, 0.107645, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("7")
 
-[node name="Hint" parent="Audio Entry Item 2" instance=ExtResource( 5 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.53142, 0 )
+[node name="Hint" parent="Audio Entry Item 2" instance=ExtResource("5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.53142, 0)
+
+[node name="AkListener3D" type="AkListener3D" parent="."]
+
+[node name="Node" type="Node" parent="."]
+script = ExtResource("18_qw05f")

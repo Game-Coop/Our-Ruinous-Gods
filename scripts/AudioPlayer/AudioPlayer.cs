@@ -1,9 +1,11 @@
 
 using System;
+using System.Collections.Generic;
 using Godot;
 
-public class AudioPlayer : AudioStreamPlayer
+public partial class AudioPlayer : AudioStreamPlayer, ISavable<SaveData>
 {
+	public Dictionary<int, AudioData> audioDatas = new Dictionary<int, AudioData>();
 	public static AudioPlayer Instance { get; private set; }
 	private event Action OnFinished;
 	public override void _Ready()
@@ -11,6 +13,31 @@ public class AudioPlayer : AudioStreamPlayer
 		base._Ready();
 		Instance = this;
 	}
+	public override void _EnterTree()
+	{
+		base._EnterTree();
+		AudioPlayerEvents.OnAudioCollect += AddData;
+		AudioPlayerEvents.OnUpdateRequest += AudioPlayerChanged;
+		GameEvents.OnStartMenuLoad += Stop;
+	}
+	public override void _ExitTree()
+	{
+		base._ExitTree();
+		AudioPlayerEvents.OnAudioCollect -= AddData;
+		AudioPlayerEvents.OnUpdateRequest -= AudioPlayerChanged;
+		GameEvents.OnStartMenuLoad -= Stop;
+	}
+	private void AddData(AudioData data)
+	{
+		audioDatas.Add(data.Id, data);
+		AudioPlayerChanged();
+	}
+
+	private void AudioPlayerChanged()
+	{
+		AudioPlayerEvents.OnAudioPlayerChange?.Invoke(audioDatas);
+	}
+
 	public override void _Input(InputEvent e)
 	{
 		base._Input(e);
@@ -23,7 +50,7 @@ public class AudioPlayer : AudioStreamPlayer
 			PausePlay(Playing);
 		}
 	}
-	public void Setup(AudioStreamSample sample)
+	public void Setup(AudioStreamWav sample)
 	{
 		if (Playing)
 		{
@@ -35,18 +62,18 @@ public class AudioPlayer : AudioStreamPlayer
 	public void Rewind(float seconds)
 	{
 		var target = Mathf.Max(0f, GetPlaybackPosition() + seconds);
-		target = Mathf.Min(target, Stream.GetLength());
+		target = (float)Mathf.Min(target, Stream.GetLength());
 		Seek(target);
 	}
 	public void SeekNormalized(float normalized)
 	{
 		var pos = Stream.GetLength() * normalized;
-		Seek(pos);
+		Seek((float)pos);
 	}
 	public void PlayNormalized(float normalized)
 	{
 		var pos = Stream.GetLength() * normalized;
-		Seek(pos);
+		Seek((float)pos);
 	}
 	public void PausePlay(bool pause)
 	{
@@ -61,7 +88,7 @@ public class AudioPlayer : AudioStreamPlayer
 	}
 	public void End()
 	{
-		if(Playing)
+		if (Playing)
 		{
 			OnFinished += () =>
 			{
@@ -87,4 +114,26 @@ public class AudioPlayer : AudioStreamPlayer
 			AudioPlayerEvents.OnAudioPlayerFinished?.Invoke();
 		}
 	}
+
+	public void OnSave(SaveData data)
+	{
+		data.collectibleData.AudioIds.Clear();
+		foreach (var audioData in audioDatas)
+		{
+			data.collectibleData.AudioIds.Add(audioData.Value.Id);
+		}
+	}
+
+	public void OnLoad(SaveData data)
+	{
+		audioDatas.Clear();
+		foreach (var id in data.collectibleData.AudioIds)
+		{
+			var audioData = ResourceDatabase.AudioDatas[id];
+			audioDatas.Add(id, audioData);
+			audioData.IsCollected = true;
+		}
+		AudioPlayerChanged();
+	}
+
 }

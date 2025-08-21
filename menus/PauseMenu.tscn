@@ -1,156 +1,146 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=14 format=3 uid="uid://df6qkrb2qch0n"]
 
-[ext_resource path="res://themes/inventoryScrollbarTheme.tres" type="Theme" id=1]
-[ext_resource path="res://menus/Journal.tscn" type="PackedScene" id=2]
-[ext_resource path="res://menus/Inventory.tscn" type="PackedScene" id=3]
-[ext_resource path="res://assets/ui/right-arrow.png" type="Texture" id=4]
-[ext_resource path="res://scripts/UI/Navbar.cs" type="Script" id=5]
-[ext_resource path="res://scripts/UI/PauseMenu.cs" type="Script" id=6]
-[ext_resource path="res://scripts/UI/ScrollablePages.cs" type="Script" id=7]
-[ext_resource path="res://ui/Titled Pagination.tscn" type="PackedScene" id=8]
-[ext_resource path="res://scripts/UI/OrderedPages.cs" type="Script" id=9]
-[ext_resource path="res://menus/AudioPlayerMenu.tscn" type="PackedScene" id=10]
-[ext_resource path="res://scripts/UI/FadingPanelTweener.cs" type="Script" id=11]
+[ext_resource type="Theme" path="res://themes/inventoryScrollbarTheme.tres" id="1"]
+[ext_resource type="PackedScene" uid="uid://nvsajw008gtm" path="res://menus/JournalPage.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://bw2bssnv641ff" path="res://menus/InventoryPage.tscn" id="3"]
+[ext_resource type="Texture2D" uid="uid://chdxvbrmjswds" path="res://assets/ui/right-arrow.png" id="4"]
+[ext_resource type="Script" uid="uid://dgho8w6pyyanf" path="res://scripts/UI/Navbar.cs" id="5"]
+[ext_resource type="Script" uid="uid://bxpms1rwk7hb1" path="res://scripts/UI/PauseMenu.cs" id="6"]
+[ext_resource type="Script" uid="uid://qulipl1i05lq" path="res://scripts/UI/ScrollablePages.cs" id="7"]
+[ext_resource type="PackedScene" path="res://ui/Titled Pagination.tscn" id="8"]
+[ext_resource type="Script" uid="uid://c4uk0vikv0xhg" path="res://scripts/UI/OrderedPages.cs" id="9"]
+[ext_resource type="PackedScene" uid="uid://cfakrk2aortcg" path="res://menus/AudioPlayerPage.tscn" id="10"]
+[ext_resource type="Script" uid="uid://ebgnfgek2sjl" path="res://scripts/UI/FadingPanelTweener.cs" id="11"]
 
-[sub_resource type="InputEventAction" id=13]
-action = "pause_menu_left"
+[sub_resource type="Shortcut" id="11"]
 
-[sub_resource type="ShortCut" id=11]
-shortcut = SubResource( 13 )
-
-[sub_resource type="InputEventAction" id=14]
-action = "pause_menu_right"
-
-[sub_resource type="ShortCut" id=12]
-shortcut = SubResource( 14 )
+[sub_resource type="Shortcut" id="12"]
 
 [node name="Pause Menu" type="Panel"]
-self_modulate = Color( 1, 1, 1, 0 )
+self_modulate = Color(1, 1, 1, 0)
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-script = ExtResource( 6 )
-panelTweenerPath = NodePath("Panel Tweener")
+script = ExtResource("6")
 navBarPath = NodePath("Panel/VBox/Navigation Bar")
 orderedPagesPath = NodePath("Panel/VBox/Ordered Pages")
 inventoryPagePath = NodePath("Panel/VBox/Ordered Pages/Inventory")
 journalPagePath = NodePath("Panel/VBox/Ordered Pages/Journal")
 audioPlayerPagePath = NodePath("Panel/VBox/Ordered Pages/AudioPlayerMenu")
-paginationTemplate = ExtResource( 8 )
+paginationTemplate = ExtResource("8")
+panelTweenerPath = NodePath("Panel Tweener")
 
 [node name="Panel" type="Panel" parent="."]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="VBox" type="VBoxContainer" parent="Panel"]
-self_modulate = Color( 1, 1, 1, 0 )
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = 50.0
+offset_top = 50.0
 
 [node name="Navigation Bar" type="HBoxContainer" parent="Panel/VBox"]
-margin_left = 860.0
-margin_right = 1060.0
-margin_bottom = 54.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 2
 size_flags_horizontal = 4
-custom_constants/separation = 50
+theme_override_constants/separation = 50
 alignment = 1
-script = ExtResource( 5 )
+script = ExtResource("5")
 paginationsPath = NodePath("Paginations")
 leftButtonPath = NodePath("Left Button")
 rightButtonPath = NodePath("Right Button")
 
 [node name="Left Button" type="Button" parent="Panel/VBox/Navigation Bar"]
-margin_right = 50.0
-margin_bottom = 54.0
-grow_horizontal = 2
-grow_vertical = 2
-rect_min_size = Vector2( 50, 50 )
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
 focus_mode = 0
-shortcut = SubResource( 11 )
+shortcut = SubResource("11")
 flat = true
-icon_align = 1
+icon_alignment = 1
 expand_icon = true
 
 [node name="TextureRect" type="TextureRect" parent="Panel/VBox/Navigation Bar/Left Button"]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
-texture = ExtResource( 4 )
-expand = true
+texture = ExtResource("4")
+expand_mode = 1
 stretch_mode = 6
 flip_h = true
 
 [node name="Paginations" type="HBoxContainer" parent="Panel/VBox/Navigation Bar"]
-margin_left = 100.0
-margin_right = 100.0
-margin_bottom = 54.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_constants/separation = 40
+theme_override_constants/separation = 40
 alignment = 1
 
 [node name="Right Button" type="Button" parent="Panel/VBox/Navigation Bar"]
-margin_left = 150.0
-margin_right = 200.0
-margin_bottom = 54.0
-grow_horizontal = 2
-grow_vertical = 2
-rect_min_size = Vector2( 50, 50 )
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
 focus_mode = 0
 disabled = true
-shortcut = SubResource( 12 )
+shortcut = SubResource("12")
 flat = true
-icon_align = 1
+icon_alignment = 1
 expand_icon = true
 
 [node name="TextureRect" type="TextureRect" parent="Panel/VBox/Navigation Bar/Right Button"]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
-texture = ExtResource( 4 )
-expand = true
+texture = ExtResource("4")
+expand_mode = 1
 stretch_mode = 6
 
 [node name="ScrollContainer" type="ScrollContainer" parent="Panel/VBox"]
 visible = false
-margin_top = 58.0
-margin_right = 1920.0
-margin_bottom = 1030.0
-rect_min_size = Vector2( 750, 0 )
+custom_minimum_size = Vector2(750, 0)
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme = ExtResource( 1 )
+theme = ExtResource("1")
 follow_focus = true
-scroll_vertical_enabled = false
-script = ExtResource( 7 )
+script = ExtResource("7")
 pageContainerPath = NodePath("HBoxContainer")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Panel/VBox/ScrollContainer"]
-margin_right = 1920.0
-margin_bottom = 972.0
-rect_clip_content = true
+clip_contents = true
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Ordered Pages" type="Panel" parent="Panel/VBox"]
-margin_top = 58.0
-margin_right = 1920.0
-margin_bottom = 1030.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-script = ExtResource( 9 )
+script = ExtResource("9")
 pageContainerPath = NodePath(".")
 
-[node name="Inventory" parent="Panel/VBox/Ordered Pages" instance=ExtResource( 3 )]
+[node name="Inventory" parent="Panel/VBox/Ordered Pages" instance=ExtResource("3")]
+layout_mode = 1
 
-[node name="Journal" parent="Panel/VBox/Ordered Pages" instance=ExtResource( 2 )]
+[node name="Journal" parent="Panel/VBox/Ordered Pages" instance=ExtResource("2")]
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_right = 1920.0
+grow_horizontal = 1
+grow_vertical = 1
 
-[node name="AudioPlayerMenu" parent="Panel/VBox/Ordered Pages" instance=ExtResource( 10 )]
+[node name="AudioPlayerMenu" parent="Panel/VBox/Ordered Pages" instance=ExtResource("10")]
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_right = 1920.0
+grow_horizontal = 1
+grow_vertical = 1
 
 [node name="Panel Tweener" type="Control" parent="."]
-script = ExtResource( 11 )
+anchors_preset = 0
+script = ExtResource("11")
 foregroundPath = NodePath("../Panel")
 appearTransition = 1
 disappearEase = 0

@@ -2,7 +2,7 @@
 using System;
 using Godot;
 
-public abstract class PanelTweener : Control
+public abstract partial class PanelTweener : Control
 {
 	public enum Direction
 	{
@@ -15,7 +15,7 @@ public abstract class PanelTweener : Control
 	public event Action OnDisappeared;
 	public bool IsHidden { get; protected set; }
 	[Export] public bool isHiddenAtStart = true;
-	protected SceneTreeTween tween;
+	protected Tween tween;
 	protected bool isReverse;
 	public bool IsReverse => isReverse;
 	public override void _Ready()
@@ -24,7 +24,6 @@ public abstract class PanelTweener : Control
 		if (isHiddenAtStart)
 		{
 			Disappear(true);
-			GD.Print("disappear called on start");
 		}
 	}
 	public virtual void Appear(bool instant = false)

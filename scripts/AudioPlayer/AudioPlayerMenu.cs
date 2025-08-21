@@ -1,8 +1,9 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Godot;
 
-public class AudioPlayerMenu : Page
+public partial class AudioPlayerMenu : Page
 {
 	private SortedDictionary<int, AudioEntry> entries = new SortedDictionary<int, AudioEntry>();
 	[Export] private PackedScene audioEntryTemplate;
@@ -28,7 +29,7 @@ public class AudioPlayerMenu : Page
 	private bool isDragging = false;
 	private AudioEntry focusedEntry;
 
-	protected override void _Ready()
+	public override void _Ready()
 	{
 		base._Ready();
 
@@ -44,20 +45,123 @@ public class AudioPlayerMenu : Page
 		playImage = GetNode<TextureRect>(playImagePath);
 		pauseImage = GetNode<TextureRect>(pauseImagePath);
 
-		playButton.Connect("pressed", this, nameof(PlayButtonPressed));
-		stopButton.Connect("pressed", this, nameof(StopButtonPressed));
-		rewindButton.Connect("pressed", this, nameof(RewindButtonPressed));
-		fastForwardButton.Connect("pressed", this, nameof(FastForwardButtonPressed));
+		playButton.Connect("pressed", new Callable(this, nameof(PlayButtonPressed)));
+		stopButton.Connect("pressed", new Callable(this, nameof(StopButtonPressed)));
+		rewindButton.Connect("pressed", new Callable(this, nameof(RewindButtonPressed)));
+		fastForwardButton.Connect("pressed", new Callable(this, nameof(FastForwardButtonPressed)));
 
-		AudioPlayerEvents.OnAudioCollect += OnEntryCollect;
+		AudioPlayerEvents.OnUpdateRequest.Invoke();
+	}
+	public override void _EnterTree()
+	{
+		base._EnterTree();
+		AudioPlayerEvents.OnAudioPlayerChange += OnAudioPlayerChange;
 		AudioPlayerEvents.OnAudioPlayerStoped += OnAudioPlayerStoped;
+	}
+	public override void _ExitTree()
+	{
+		base._ExitTree();
+		AudioPlayerEvents.OnAudioPlayerChange -= OnAudioPlayerChange;
+		AudioPlayerEvents.OnAudioPlayerStoped -= OnAudioPlayerStoped;
+	}
+	private void OnAudioPlayerChange(Dictionary<int, AudioData> audioDatas)
+	{
+		var entriesToRemove = entries.Where(pair => !audioDatas.ContainsKey(pair.Key)).Select(item => item.Value).ToList();
+		foreach (var entry in entriesToRemove)
+		{
+			RemoveEntry(entry.audioData, false);
+		}
+
+		var entriesToAdd = audioDatas.Where(pair => !entries.ContainsKey(pair.Key));
+
+		foreach (var item in entriesToAdd)
+		{
+			AddEntry(item.Value, false);
+		}
+
+		ReOrderChilds();
+		ConfigureFocusAll();
+	}
+	private void OnEntryCollect(AudioData data)
+	{
+		AddEntry(data);
+	}
+	public void AddEntry(AudioData audioData, bool updateOrder = true)
+	{
+		if (entries.ContainsKey(audioData.Id))
+		{
+			GD.PrintErr("Item is already in inventory!");
+			return;
+		}
+		var entry = audioEntryTemplate.Instantiate() as AudioEntry;
+		entry.Setup(audioData);
+		entry.OnFocus += OnAudioEntryFocus;
+		entries.Add(audioData.Id, entry);
+
+		entryContainer.AddChild(entry);
+		if (updateOrder)
+		{
+			ReOrderChilds();
+			ConfigureFocusAll();
+		}
+	}
+	private void RemoveEntry(AudioData entryData, bool updateOrder = true)
+	{
+		if (entries.ContainsKey(entryData.Id))
+		{
+			var entry = entries[entryData.Id];
+			entry.OnFocus -= OnAudioEntryFocus;
+			entries.Remove(entryData.Id);
+			entry.QueueFree();
+			if (updateOrder)
+			{
+				ReOrderChilds();
+				ConfigureFocusAll();
+			}
+		}
+		else
+		{
+			GD.PrintErr("Item does not registered!");
+		}
+	}
+	private void ReOrderChilds()
+	{
+		int index = 0;
+		foreach (var entry in entries)
+		{
+			entryContainer.MoveChild(entry.Value, index++);
+		}
+	}
+	private void ConfigureFocusAll()
+	{
+		foreach (var item in entries)
+		{
+			ConfigureFocus(item.Value);
+		}
+	}
+	public void ConfigureFocus(AudioEntry entry)
+	{
+		var childCount = entryContainer.GetChildCount();
+		int index = entry.GetIndex();
+		var topEntry = index - 1 >= 0 ? entryContainer.GetChildOrNull<AudioEntry>(index - 1) : null;
+		var bottomEntry = index + 1 < childCount ? entryContainer.GetChildOrNull<AudioEntry>(index + 1) : null;
+
+		if (topEntry != null)
+		{
+			entry.FocusNeighborTop = topEntry.GetPath();
+			topEntry.FocusNeighborBottom = entry.GetPath();
+		}
+		if (bottomEntry != null)
+		{
+			entry.FocusNeighborBottom = bottomEntry.GetPath();
+			bottomEntry.FocusNeighborTop = entry.GetPath();
+		}
 	}
 
 	private void OnAudioPlayerStoped()
 	{
 		UpdatePlayImage();
 	}
-
 	private void StopButtonPressed()
 	{
 		AudioPlayer.Instance.End();
@@ -100,58 +204,13 @@ public class AudioPlayerMenu : Page
 			GetNode<Control>(controlPanelPath).Visible = true;
 		}
 	}
-	private void OnEntryCollect(AudioData data)
-	{
-		AddEntry(data);
-	}
-	public void AddEntry(AudioData audioData)
-	{
-		if (entries.ContainsKey(audioData.Id))
-		{
-			GD.PrintErr("Item is already in inventory!");
-			return;
-		}
-		var entry = audioEntryTemplate.Instance() as AudioEntry;
-		entry.Setup(audioData);
-		entry.OnFocus += OnAudioEntryFocus;
-		entries.Add(audioData.Id, entry);
 
-		entryContainer.AddChild(entry);
-		ReOrderChilds();
-		// ConfigureFocus(entry);
-	}
-	private void ReOrderChilds()
-	{
-		int index = 0;
-		foreach (var entry in entries)
-		{
-			entryContainer.MoveChild(entry.Value, index++);
-		}
-	}
-	public void ConfigureFocus(AudioEntry entry)
-	{
-		var childCount = entryContainer.GetChildCount();
-		int index = entry.GetIndex();
-		var topEntry = index - 1 >= 0 ? entryContainer.GetChildOrNull<AudioEntry>(index - 1) : null;
-		var bottomEntry = index + 1 < childCount ? entryContainer.GetChildOrNull<AudioEntry>(index + 1) : null;
-
-		if (topEntry != null)
-		{
-			entry.FocusNeighbourTop = topEntry.GetPath();
-			topEntry.FocusNeighbourBottom = entry.GetPath();
-		}
-		if (bottomEntry != null)
-		{
-			entry.FocusNeighbourBottom = bottomEntry.GetPath();
-			bottomEntry.FocusNeighbourTop = entry.GetPath();
-		}
-	}
 	private void OnAudioEntryFocus(AudioEntry entry)
 	{
 		entryNameLabel.Text = entry.audioData.Name;
-		AudioPlayer.Instance.Setup(entry.audioData.AudioStreamSample);
+		AudioPlayer.Instance.Setup(entry.audioData.AudioStreamWAV);
 	}
-	public override void _Process(float delta)
+	public override void _Process(double delta)
 	{
 		base._Process(delta);
 		if (isDragging || AudioPlayer.Instance.Stream == null) return;

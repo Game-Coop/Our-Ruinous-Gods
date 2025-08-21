@@ -2,112 +2,63 @@ using System;
 using System.Collections.Generic;
 using Godot;
 
-public class Inventory : Page
+public partial class Inventory : Node, ISavable<SaveData>
 {
-	public Dictionary<int, InventoryItem> items = new Dictionary<int, InventoryItem>();
-	[Export] private PackedScene itemTemplate;
-	[Export] private NodePath itemsContainerPath;
-	[Export] private NodePath itemPreviewRectPath;
-	[Export] private NodePath itemNameLabelPath;
-	[Export] private NodePath itemDescriptionLabelPath;
+    public Dictionary<int, ItemData> itemDatas = new Dictionary<int, ItemData>();
+    public override void _EnterTree()
+    {
+        base._EnterTree();
+        InventoryEvents.OnUpdateRequest += InventoryChanged;
+        InventoryEvents.OnItemCollect += AddData;
+        InventoryEvents.OnItemConsume += RemoveData;
+    }
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+        InventoryEvents.OnUpdateRequest -= InventoryChanged;
+        InventoryEvents.OnItemCollect -= AddData;
+        InventoryEvents.OnItemConsume -= RemoveData;
+    }
+    private void AddData(ItemData data)
+    {
+        itemDatas.Add(data.Id, data);
+        InventoryChanged();
+    }
+    private void RemoveData(ItemData data)
+    {
+        if (itemDatas.ContainsKey(data.Id))
+        {
+            itemDatas.Remove(data.Id);
+            InventoryChanged();
+        }
+        else
+        {
+            GD.PrintErr("Tried to remove an item that doesn't exist");
+        }
+    }
+    private void InventoryChanged()
+    {
+        InventoryEvents.OnInventoryChange.Invoke(itemDatas);
+    }
 
-	private Node container;
-	private Label itemNameLabel;
-	private Label itemDescriptionLabel;
-	private TextureRect itemPreviewTextureRect;
-	protected override void _Ready()
-	{
-		base._Ready();
-		container = GetNode(itemsContainerPath);
-		itemNameLabel = GetNode<Label>(itemNameLabelPath);
-		itemDescriptionLabel = GetNode<Label>(itemDescriptionLabelPath);
-		itemPreviewTextureRect = GetNode<TextureRect>(itemPreviewRectPath);
-	}
-	
-	public override void _EnterTree()
-	{
-		base._EnterTree();
-		InventoryEvents.OnItemCollect += OnItemCollect;
-	}
-	public override void _ExitTree()
-	{
-		base._ExitTree();
-		InventoryEvents.OnItemCollect -= OnItemCollect;
-	}
-	public override void ShowPage(bool instant = false)
-	{
-		base.ShowPage(instant);
-		if (container.GetChildCount() > 0)
-		{
-			(container.GetChild(0) as InventoryItem).GrabFocus();
-		}
-	}
-	private void OnItemCollect(ItemData data)
-	{
-		AddItem(data);
-	}
+    public void OnSave(SaveData data)
+    {
+        data.collectibleData.ItemIds.Clear();
+        foreach (var item in itemDatas)
+        {
+            data.collectibleData.ItemIds.Add(item.Value.Id);
+        }
+    }
 
-	public void AddItem(ItemData itemData)
-	{
-		if (items.ContainsKey(itemData.Id))
-		{
-			GD.PrintErr("Item is already in inventory!");
-			return;
-		}
-		var item = itemTemplate.Instance() as InventoryItem;
-		item.Setup(itemData);
-		item.OnFocus += OnItemFocus;
-		items.Add(itemData.Id, item);
-
-		container.AddChild(item);
-		container.MoveChild(item, container.GetChildCount());
-		// ConfigureFocus(item);
-	}
-	public void ConfigureFocus(InventoryItem item)
-	{
-		var childCount = container.GetChildCount();
-		int index = item.GetIndex();
-		var topItem = index - 1 >= 0 ? container.GetChildOrNull<InventoryItem>(index - 1) : null;
-		var bottomItem = index + 1 < childCount ? container.GetChildOrNull<InventoryItem>(index + 1) : null;
-		if (topItem != null)
-		{
-			item.FocusNeighbourTop = topItem.GetPath();
-			topItem.FocusNeighbourBottom = item.GetPath();
-		}
-		if (bottomItem != null)
-		{
-			item.FocusNeighbourBottom = bottomItem.GetPath();
-			bottomItem.FocusNeighbourTop = item.GetPath();
-		}
-	}
-	public void RemoveItem(ItemData itemData)
-	{
-		if (items.ContainsKey(itemData.Id))
-		{
-			items[itemData.Id].OnFocus -= OnItemFocus;
-			items.Remove(itemData.Id);
-		}
-		else
-		{
-			GD.PrintErr("Item does not registered!");
-		}
-	}
-	private void OnItemFocus(InventoryItem item)
-	{
-		itemPreviewTextureRect.Texture = item.itemData.PreviewSprite;
-		itemDescriptionLabel.Text = item.itemData.Description;
-		itemNameLabel.Text = item.itemData.Name;
-
-		ConfigureButtons(item);
-	}
-	private void ConfigureButtons(InventoryItem item)
-	{
-		// useBtn.Visible = false;
-		// inspectBtn.Visible = false;
-		if (item.itemData.Category == ItemCategory.Consumable)
-		{
-			// useBtn.Visible = true;
-			// inspectBtn.Visible = true;
-		}
-	}
+    public void OnLoad(SaveData data)
+    {
+        itemDatas.Clear();
+        foreach (var id in data.collectibleData.ItemIds)
+        {
+            var itemData = ResourceDatabase.ItemDatas[id];
+            itemDatas.Add(id, itemData);
+            itemData.IsCollected = true;
+        }
+        InventoryChanged();
+    }
 }

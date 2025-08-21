@@ -1,28 +1,23 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=5 format=3 uid="uid://dvs2e4tks7nim"]
 
-[ext_resource path="res://scripts/Objects/PushButton.cs" type="Script" id=1]
-[ext_resource path="res://ui/Hint.tscn" type="PackedScene" id=2]
-[ext_resource path="res://assets/ui/E-Key.png" type="Texture" id=3]
+[ext_resource type="Script" uid="uid://w27cargfidhd" path="res://scripts/Objects/PushButton.cs" id="1"]
+[ext_resource type="PackedScene" path="res://ui/Hint.tscn" id="2"]
 
-[sub_resource type="BoxShape" id=3]
+[sub_resource type="BoxShape3D" id="3"]
 
-[sub_resource type="CubeMesh" id=4]
+[sub_resource type="BoxMesh" id="4"]
 
-[sub_resource type="ORMSpatialMaterial" id=5]
-
-[node name="PushButton" type="Area"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -13.7369, 1.1081, 6.41663 )
+[node name="PushButton" type="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.7369, 1.1081, 6.41663)
 collision_layer = 2
-script = ExtResource( 1 )
-hintIcon = ExtResource( 3 )
+script = ExtResource("1")
 switchableObjectPath = NodePath("../Lamp")
 
-[node name="CollisionShape" type="CollisionShape" parent="."]
-shape = SubResource( 3 )
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("3")
 
-[node name="MeshInstance" type="MeshInstance" parent="."]
-mesh = SubResource( 4 )
-material/0 = SubResource( 5 )
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("4")
 
-[node name="Hint" parent="." instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.53142, 0 )
+[node name="Hint" parent="." instance=ExtResource("2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.53142, 0)
