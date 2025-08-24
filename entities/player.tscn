@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://ditkme4k3jpy0"]
+[gd_scene load_steps=20 format=3 uid="uid://ditkme4k3jpy0"]
 
 [ext_resource type="Script" uid="uid://ddcu5eocmt6x" path="res://scripts/Player.cs" id="1"]
 [ext_resource type="Script" uid="uid://dky7j2woivwl6" path="res://scripts/InteractionRaycaster.cs" id="2"]
@@ -6,6 +6,9 @@
 [ext_resource type="Script" uid="uid://ba63lc4x4ybdq" path="res://scripts/Objects/FPSCamera.cs" id="3_qsoyl"]
 [ext_resource type="Script" uid="uid://cfcf52uqc1f53" path="res://scripts/Objects/HandheldUI.cs" id="5_qly61"]
 [ext_resource type="Script" uid="uid://c4mf3b5lr7uc6" path="res://scripts/Objects/CollisionInputPropagator.cs" id="5_qsoyl"]
+[ext_resource type="Shader" uid="uid://ctyrlvw5cwgga" path="res://shaders/vignette.gdshader" id="7_6nm46"]
+[ext_resource type="Texture2D" uid="uid://bik8og02xdjnw" path="res://assets/ui/player/helmet-top.png" id="7_ef06p"]
+[ext_resource type="Texture2D" uid="uid://dvnkke60e06wf" path="res://assets/ui/player/helmet-bottom.png" id="8_tjdhl"]
 
 [sub_resource type="CapsuleMesh" id="1"]
 
@@ -16,7 +19,7 @@
 [sub_resource type="BoxMesh" id="BoxMesh_rfe5m"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_qly61"]
-viewport_path = NodePath("CanvasLayer/SubViewport - Handheld UI")
+viewport_path = NodePath("Player UI/SubViewport - Handheld UI")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qsoyl"]
 resource_local_to_scene = true
@@ -30,6 +33,12 @@ orientation = 2
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6nm46"]
 bg_color = Color(0.148572, 0.68588, 0.651359, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_i623q"]
+shader = ExtResource("7_6nm46")
+shader_parameter/alpha = 1.0
+shader_parameter/inner_radius = 0.5
+shader_parameter/outer_radius = 1.5
 
 [node name="Player" type="CharacterBody3D"]
 transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0, 0)
@@ -58,10 +67,10 @@ shape = SubResource("2")
 script = ExtResource("2")
 rayCastPath = NodePath("../Head/Camera3D/RayCast3D")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="Player UI" type="CanvasLayer" parent="."]
 layer = -10
 
-[node name="SubViewportContainer - FPS" type="SubViewportContainer" parent="CanvasLayer"]
+[node name="SubViewportContainer - FPS" type="SubViewportContainer" parent="Player UI"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -72,7 +81,7 @@ size_flags_vertical = 3
 stretch = true
 mouse_target = true
 
-[node name="SubViewport - FPS" type="SubViewport" parent="CanvasLayer/SubViewportContainer - FPS"]
+[node name="SubViewport - FPS" type="SubViewport" parent="Player UI/SubViewportContainer - FPS"]
 transparent_bg = true
 handle_input_locally = false
 physics_object_picking = true
@@ -80,7 +89,7 @@ canvas_cull_mask = 524288
 size = Vector2i(1920, 1080)
 render_target_update_mode = 4
 
-[node name="FPS Camera" type="Camera3D" parent="CanvasLayer/SubViewportContainer - FPS/SubViewport - FPS" node_paths=PackedStringArray("mainCamera")]
+[node name="FPS Camera" type="Camera3D" parent="Player UI/SubViewportContainer - FPS/SubViewport - FPS" node_paths=PackedStringArray("mainCamera")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.96046e-08, 2.4, 1.19209e-07)
 cull_mask = 524288
 near = 0.001
@@ -88,44 +97,44 @@ far = 20.0
 script = ExtResource("3_qsoyl")
 mainCamera = NodePath("../../../../Head/Camera3D")
 
-[node name="Handheld Device" type="Node3D" parent="CanvasLayer/SubViewportContainer - FPS/SubViewport - FPS/FPS Camera" node_paths=PackedStringArray("focusNode", "unfocusNode")]
+[node name="Handheld Device" type="Node3D" parent="Player UI/SubViewportContainer - FPS/SubViewport - FPS/FPS Camera" node_paths=PackedStringArray("focusNode", "unfocusNode")]
 transform = Transform3D(0.935296, 0, -0.353867, 0, 1, 0, 0.353867, 0, 0.935296, 0.824068, -0.983714, -1.41656)
 script = ExtResource("2_e4p34")
 offPosition = Vector3(0.824, -3, -1.417)
 focusNode = NodePath("../Handheld Focus Node")
 unfocusNode = NodePath("../Handheld Unfocus Node")
 
-[node name="Button Mesh" type="MeshInstance3D" parent="CanvasLayer/SubViewportContainer - FPS/SubViewport - FPS/FPS Camera/Handheld Device"]
+[node name="Button Mesh" type="MeshInstance3D" parent="Player UI/SubViewportContainer - FPS/SubViewport - FPS/FPS Camera/Handheld Device"]
 transform = Transform3D(-0.1, 0, 0, 0, 4.37114e-10, -0.1, 0, 0.01, 4.37114e-09, 0.278127, 0.503448, 0.0758613)
 layers = 524288
 mesh = SubResource("CylinderMesh_rfe5m")
 skeleton = NodePath("../Screen Mesh")
 
-[node name="Button Mesh2" type="MeshInstance3D" parent="CanvasLayer/SubViewportContainer - FPS/SubViewport - FPS/FPS Camera/Handheld Device"]
+[node name="Button Mesh2" type="MeshInstance3D" parent="Player UI/SubViewportContainer - FPS/SubViewport - FPS/FPS Camera/Handheld Device"]
 transform = Transform3D(-0.1, 0, 0, 0, 4.37114e-10, -0.1, 0, 0.01, 4.37114e-09, 0.278127, 0.376268, 0.0758613)
 layers = 524288
 mesh = SubResource("CylinderMesh_rfe5m")
 skeleton = NodePath("../Screen Mesh")
 
-[node name="Button Mesh3" type="MeshInstance3D" parent="CanvasLayer/SubViewportContainer - FPS/SubViewport - FPS/FPS Camera/Handheld Device"]
+[node name="Button Mesh3" type="MeshInstance3D" parent="Player UI/SubViewportContainer - FPS/SubViewport - FPS/FPS Camera/Handheld Device"]
 transform = Transform3D(-0.1, 0, 0, 0, 4.37114e-10, -0.1, 0, 0.01, 4.37114e-09, 0.278127, 0.646968, 0.0758613)
 layers = 524288
 mesh = SubResource("CylinderMesh_rfe5m")
 skeleton = NodePath("../Screen Mesh")
 
-[node name="Model" type="MeshInstance3D" parent="CanvasLayer/SubViewportContainer - FPS/SubViewport - FPS/FPS Camera/Handheld Device"]
+[node name="Model" type="MeshInstance3D" parent="Player UI/SubViewportContainer - FPS/SubViewport - FPS/FPS Camera/Handheld Device"]
 transform = Transform3D(0.672679, 0, 0, 0, 0.852456, 0, 0, 0, 0.0387254, 0.00611305, 0.426448, 0.0454952)
 layers = 524288
 mesh = SubResource("BoxMesh_rfe5m")
 
-[node name="Screen Mesh" type="MeshInstance3D" parent="CanvasLayer/SubViewportContainer - FPS/SubViewport - FPS/FPS Camera/Handheld Device"]
+[node name="Screen Mesh" type="MeshInstance3D" parent="Player UI/SubViewportContainer - FPS/SubViewport - FPS/FPS Camera/Handheld Device"]
 transform = Transform3D(0.478, 0, -1.24696e-09, 0, 0.478, 0, 1.49012e-08, 0, 0.04, -0.0268986, 0.499598, 0.0705599)
 layers = 524288
 material_override = SubResource("StandardMaterial3D_qsoyl")
 mesh = SubResource("PlaneMesh_qsoyl")
 skeleton = NodePath("")
 
-[node name="Area3D" type="Area3D" parent="CanvasLayer/SubViewportContainer - FPS/SubViewport - FPS/FPS Camera/Handheld Device/Screen Mesh" node_paths=PackedStringArray("camera", "sourceMesh", "targetViewport")]
+[node name="Area3D" type="Area3D" parent="Player UI/SubViewportContainer - FPS/SubViewport - FPS/FPS Camera/Handheld Device/Screen Mesh" node_paths=PackedStringArray("camera", "sourceMesh", "targetViewport")]
 collision_layer = 524288
 collision_mask = 524288
 script = ExtResource("5_qsoyl")
@@ -134,26 +143,26 @@ sourceMesh = NodePath("..")
 targetViewport = NodePath("../../../../../../SubViewport - Handheld UI")
 collisionMask = 524288
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CanvasLayer/SubViewportContainer - FPS/SubViewport - FPS/FPS Camera/Handheld Device/Screen Mesh/Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player UI/SubViewportContainer - FPS/SubViewport - FPS/FPS Camera/Handheld Device/Screen Mesh/Area3D"]
 shape = SubResource("BoxShape3D_qly61")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="CanvasLayer/SubViewportContainer - FPS/SubViewport - FPS/FPS Camera/Handheld Device"]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Player UI/SubViewportContainer - FPS/SubViewport - FPS/FPS Camera/Handheld Device"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.98023e-08, 0, 1.06863)
 layers = 524288
 light_cull_mask = 524288
 
-[node name="Handheld Focus Node" type="Node3D" parent="CanvasLayer/SubViewportContainer - FPS/SubViewport - FPS/FPS Camera"]
+[node name="Handheld Focus Node" type="Node3D" parent="Player UI/SubViewportContainer - FPS/SubViewport - FPS/FPS Camera"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.419286, -0.667823)
 
-[node name="Handheld Unfocus Node" type="Node3D" parent="CanvasLayer/SubViewportContainer - FPS/SubViewport - FPS/FPS Camera"]
+[node name="Handheld Unfocus Node" type="Node3D" parent="Player UI/SubViewportContainer - FPS/SubViewport - FPS/FPS Camera"]
 transform = Transform3D(0.935296, 0, -0.353867, 0, 1, 0, 0.353867, 0, 0.935296, 0.824068, -0.983714, -1.41656)
 
-[node name="SubViewport - Handheld UI" type="SubViewport" parent="CanvasLayer"]
+[node name="SubViewport - Handheld UI" type="SubViewport" parent="Player UI"]
 transparent_bg = true
 canvas_cull_mask = 2147483647
 render_target_update_mode = 4
 
-[node name="Panel" type="Panel" parent="CanvasLayer/SubViewport - Handheld UI" node_paths=PackedStringArray("button")]
+[node name="Panel" type="Panel" parent="Player UI/SubViewport - Handheld UI" node_paths=PackedStringArray("button")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -164,7 +173,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_6nm46")
 script = ExtResource("5_qly61")
 button = NodePath("Button")
 
-[node name="Label" type="Label" parent="CanvasLayer/SubViewport - Handheld UI/Panel"]
+[node name="Label" type="Label" parent="Player UI/SubViewport - Handheld UI/Panel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -177,7 +186,7 @@ text = "This is handheld device
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Button" type="Button" parent="CanvasLayer/SubViewport - Handheld UI/Panel"]
+[node name="Button" type="Button" parent="Player UI/SubViewport - Handheld UI/Panel"]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -190,4 +199,29 @@ offset_right = 150.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[connection signal="input_event" from="CanvasLayer/SubViewportContainer - FPS/SubViewport - FPS/FPS Camera/Handheld Device/Screen Mesh/Area3D" to="CanvasLayer/SubViewportContainer - FPS/SubViewport - FPS/FPS Camera/Handheld Device/Screen Mesh/Area3D" method="_on_input_event"]
+[node name="Upper Visor" type="TextureRect" parent="Player UI"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 172.0
+grow_horizontal = 2
+texture = ExtResource("7_ef06p")
+
+[node name="Lower Visor" type="TextureRect" parent="Player UI"]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -204.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("8_tjdhl")
+
+[node name="Vignette Effect" type="ColorRect" parent="Player UI"]
+material = SubResource("ShaderMaterial_i623q")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[connection signal="input_event" from="Player UI/SubViewportContainer - FPS/SubViewport - FPS/FPS Camera/Handheld Device/Screen Mesh/Area3D" to="Player UI/SubViewportContainer - FPS/SubViewport - FPS/FPS Camera/Handheld Device/Screen Mesh/Area3D" method="_on_input_event"]

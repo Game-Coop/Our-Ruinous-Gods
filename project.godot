@@ -62,7 +62,7 @@ project/assembly_name="Our Ruinous Gods"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/parley/plugin.cfg", "res://addons/quest_resource_translation_parser/plugin.cfg", "res://addons/questify/plugin.cfg", "res://addons/wwisecsharpidgenerator/plugin.cfg")
+enabled=PackedStringArray("res://addons/parley/plugin.cfg", "res://addons/quest_resource_translation_parser/plugin.cfg", "res://addons/questify/plugin.cfg")
 
 [global]
 
