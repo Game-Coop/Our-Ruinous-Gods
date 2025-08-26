@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://5ju312o65nch"]
+[gd_scene load_steps=36 format=3 uid="uid://5ju312o65nch"]
 
 [ext_resource type="Texture2D" uid="uid://cpdlyofeispi2" path="res://assets/textures/skybox.jpg" id="1_kqgya"]
 [ext_resource type="PackedScene" uid="uid://ditkme4k3jpy0" path="res://entities/player.tscn" id="2"]
@@ -21,6 +21,8 @@
 [ext_resource type="Script" uid="uid://g8p6u6edsqu" path="res://scripts/Objects/PlayerSensor.cs" id="20"]
 [ext_resource type="PackedScene" uid="uid://c85rc41hsn055" path="res://objects/LadderCollision.tscn" id="20_kfrdm"]
 [ext_resource type="Script" uid="uid://sle2j723kykw" path="res://scripts/QuestSystem/QuestSwitchableNotifier.cs" id="21_jlvo6"]
+[ext_resource type="PackedScene" uid="uid://veuqgffydt7a" path="res://objects/ElevatorLift.tscn" id="22_ytqx7"]
+[ext_resource type="PackedScene" uid="uid://r7rngipi085n" path="res://objects/ElevatorLiftTestPuzzle.tscn" id="23_bmc1d"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_kfrdm"]
 panorama = ExtResource("1_kqgya")
@@ -338,6 +340,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.7785, -4.9624, 34.6688)
 script = ExtResource("21_jlvo6")
 questVariable = "interaction_main_door"
 switchableNode = NodePath("../Sliding Door")
+
+[node name="ElevatorLift" parent="." instance=ExtResource("22_ytqx7")]
+transform = Transform3D(0.0146194, 0, 0, 0, 0.0184659, 0, 0, 0, 0.015, -0.778415, 2.02355, -2.0972)
+
+[node name="ElevatorPuzzle" parent="." instance=ExtResource("23_bmc1d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.474, 0.429455, 21.9125)
 
 [connection signal="PlayerEnterLadder" from="LadderCollision" to="Player" method="OnAreaEntered"]
 [connection signal="PlayerExitLadder" from="LadderCollision" to="Player" method="OnAreaExited"]

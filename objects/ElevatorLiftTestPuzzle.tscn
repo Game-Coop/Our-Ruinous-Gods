@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://r7rngipi085n"]
+
+[ext_resource type="Script" uid="uid://ctohm3n12hfed" path="res://scripts/Puzzles/LiftTestPuzzle.cs" id="1_f36s3"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jjhfm"]
+
+[node name="ElevatorPuzzle" type="Node3D"]
+script = ExtResource("1_f36s3")
+
+[node name="InteractArea" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InteractArea"]
+shape = SubResource("BoxShape3D_jjhfm")
+debug_color = Color(0.741176, 0.466667, 0, 0.905882)
