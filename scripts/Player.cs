@@ -130,7 +130,7 @@ public partial class Player : CharacterBody3D, ISavable<SaveData>
 	}
 	private void OnHandheldFocused(bool isFocused)
 	{
-		SetPhysicsProcess(!isFocused);
+		SetEnabled(!isFocused);
 	}
 	public void OnPowerChange(PowerEvent e)
 	{
@@ -162,7 +162,12 @@ public partial class Player : CharacterBody3D, ISavable<SaveData>
 		this.Stamina -= cost;
 		GD.Print("current stamina: " + this.Stamina);
 	}
-
+	public void SetEnabled(bool enabled)
+	{
+		SetProcess(enabled);
+		SetPhysicsProcess(enabled);
+		SetProcessInput(enabled);
+	}
 	public void OnSave(SaveData data)
 	{
 		if (data.playerData == null)

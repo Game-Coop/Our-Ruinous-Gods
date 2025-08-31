@@ -33,6 +33,11 @@ public partial class InteractionRaycaster : Node3D
 					focusedInteractable = interactable;
 				}
 			}
+			else
+			{
+				focusedInteractable?.HideHint();
+				focusedInteractable = null;
+			}
 		}
 		else
 		{

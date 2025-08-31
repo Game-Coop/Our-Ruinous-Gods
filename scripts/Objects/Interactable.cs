@@ -22,7 +22,10 @@ public partial class Interactable : Node3D, IInteractable
 		if(IsInstanceValid(hint) == false) return;
 		hint?.Hide();
 	}
-
+	public virtual bool CanInteract()
+	{
+		return true;
+	}
 	public virtual void Interact()
 	{
 		OnInteract?.Invoke(null);

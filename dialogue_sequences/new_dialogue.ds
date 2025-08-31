@@ -60,9 +60,16 @@
     {
       "id": "node:10",
       "type": "DIALOGUE",
-      "position": "(2691.0, 1503.0)",
+      "position": "(2700.0, 1520.0)",
       "character": "uid://dks7iglsfui0y::1",
       "text": "False"
+    },
+    {
+      "id": "node:11",
+      "type": "DIALOGUE_OPTION",
+      "position": "(1860.0, 760.0)",
+      "character": "",
+      "text": ""
     }
   ],
   "edges": [
@@ -143,6 +150,15 @@
       "from_node": "node:10",
       "from_slot": 0,
       "to_node": "node:3",
+      "to_slot": 0,
+      "should_override_colour": false,
+      "colour_override": "(0.4118, 0.4118, 0.4118, 1.0)"
+    },
+    {
+      "id": "edge:14",
+      "from_node": "node:1",
+      "from_slot": 0,
+      "to_node": "node:11",
       "to_slot": 0,
       "should_override_colour": false,
       "colour_override": "(0.4118, 0.4118, 0.4118, 1.0)"

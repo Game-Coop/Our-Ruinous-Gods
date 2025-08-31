@@ -13,6 +13,8 @@ public partial class EventBus : Node
 	public delegate void HandheldFocusEventHandler(bool isFocused);
 	[Signal]
 	public delegate void QuestEventHandler(QuestEvent questEvent);
+	[Signal]
+	public delegate void PuzzleInteractEventHandler(PuzzleInteractEvent puzzleInteractEvent);
 	public void OnPowerEvent(int zone)
 	{
 		EmitSignal(SignalName.Power, zone);
@@ -36,5 +38,9 @@ public partial class EventBus : Node
 	public void OnHandheldFocused(bool isFocused)
 	{
 		EmitSignal(SignalName.HandheldFocus, isFocused);
+	}
+	public void OnPuzzleInteract(PuzzleInteractEvent e)
+	{
+		EmitSignal(SignalName.PuzzleInteract, e);
 	}
 }
