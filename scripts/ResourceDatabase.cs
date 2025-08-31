@@ -9,23 +9,27 @@ public partial class ResourceDatabase : Node
 	[Export] private ItemData[] itemDatas;
 	[Export] private JournalData[] journalDatas;
 	[Export] private AudioData[] audioDatas;
+	[Export] private PuzzleData[] puzzleDatas;
 
 	public static PackedScene StartMenuScene { get; private set; }
 	public static PackedScene GameScene { get; private set; }
-	public static Dictionary<int, ItemData> ItemDatas { get; private set; } = new Dictionary<int, ItemData>();
-	public static Dictionary<int, JournalData> JournalDatas { get; private set; } = new Dictionary<int, JournalData>();
-	public static Dictionary<int, AudioData> AudioDatas { get; private set; } = new Dictionary<int, AudioData>();
+	public static Dictionary<int, ItemData> ItemDatas { get; private set; } = new();
+	public static Dictionary<int, JournalData> JournalDatas { get; private set; } = new();
+	public static Dictionary<int, AudioData> AudioDatas { get; private set; } = new();
+	public static Dictionary<int, PuzzleData> PuzzleDatas { get; private set; } = new();
 
 	public override void _Ready()
 	{
 		base._Ready();
-		
+
 		StartMenuScene = startMenuScene;
 		GameScene = gameScene;
 
 		ItemDatas.Clear();
 		JournalDatas.Clear();
 		AudioDatas.Clear();
+		PuzzleDatas.Clear();
+		
 		foreach (var item in itemDatas)
 		{
 			ItemDatas.Add(item.Id, item);
@@ -37,6 +41,10 @@ public partial class ResourceDatabase : Node
 		foreach (var audioData in audioDatas)
 		{
 			AudioDatas.Add(audioData.Id, audioData);
+		}
+		foreach (var puzzleData in puzzleDatas)
+		{
+			PuzzleDatas.Add(puzzleData.Id, puzzleData);
 		}
 	}
 

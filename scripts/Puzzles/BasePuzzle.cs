@@ -3,13 +3,18 @@ using Godot;
 
 public partial class BasePuzzle : Interactable, IPuzzle
 {
-    public event Action<BaseEventData> OnSolve;
-    public event Action<BaseEventData> OnFail;
-    public event Action<BaseEventData> OnReset;
-    public event Action<BaseEventData> OnBack;
+    [Export] public PuzzleData puzzleData;
+    public event Action<PuzzleData> OnSolve;
+    public event Action<PuzzleData> OnFail;
+    public event Action OnReset;
+    public event Action OnBack;
 
     EventBus eventBus;
 
+    public override bool CanInteract()
+    {
+        return !puzzleData.IsSolved;
+    }
     /// <summary>
     /// Called when entering puzzle interaction
     /// </summary>
@@ -44,7 +49,7 @@ public partial class BasePuzzle : Interactable, IPuzzle
     public virtual void Back()
     {
         GameManager.Instance.Player.SetEnabled(true);
-        OnBack?.Invoke(null);
+        OnBack?.Invoke();
     }
 
     /// <summary>
@@ -52,7 +57,7 @@ public partial class BasePuzzle : Interactable, IPuzzle
     /// </summary>
     public virtual void Reset()
     {
-        OnReset?.Invoke(null);
+        OnReset?.Invoke();
     }
 
     /// <summary>
@@ -63,12 +68,13 @@ public partial class BasePuzzle : Interactable, IPuzzle
     {
         if (isSolved)
         {
-            OnSolve?.Invoke(null);
+            puzzleData.IsSolved = true;
+            OnSolve?.Invoke(puzzleData);
             Back();
         }
         else
         {
-            OnFail?.Invoke(null);
+            OnFail?.Invoke(puzzleData);
         }
     }
 }

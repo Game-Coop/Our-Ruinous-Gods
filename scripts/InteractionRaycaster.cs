@@ -24,7 +24,7 @@ public partial class InteractionRaycaster : Node3D
 		if (rayCast.IsColliding())
 		{
 			var collidingObject = rayCast.GetCollider();
-			if (collidingObject is IInteractable interactable)
+			if (collidingObject is IInteractable interactable && interactable.CanInteract())
 			{
 				if (focusedInteractable != interactable)
 				{

@@ -4,7 +4,6 @@ using Godot;
 
 public partial class QuestPuzzleNotifier : Node
 {
-    [Export] private string questVariable;
     [Export] public NodePath puzzleNode;
     private IPuzzle puzzle;
     private EventBus eventBus;
@@ -28,12 +27,12 @@ public partial class QuestPuzzleNotifier : Node
             puzzle.OnFail -= OnFail;
         }
     }
-    private void OnSolve(BaseEventData data)
+    private void OnSolve(PuzzleData data)
     {
-        eventBus.OnQuestEvent(new QuestEvent(questVariable, true));
+        eventBus.OnQuestEvent(new QuestEvent($"puzzle_{data.Id}", true));
     }
-    private void OnFail(BaseEventData data)
+    private void OnFail(PuzzleData data)
     {
-        eventBus.OnQuestEvent(new QuestEvent(questVariable, false));
+        eventBus.OnQuestEvent(new QuestEvent($"puzzle_{data.Id}", false));
     }
 }

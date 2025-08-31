@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://5ju312o65nch"]
+[gd_scene load_steps=43 format=3 uid="uid://5ju312o65nch"]
 
 [ext_resource type="Environment" uid="uid://ocaio2ownu0m" path="res://Envrionment.tres" id="1_jlvo6"]
 [ext_resource type="PackedScene" uid="uid://ditkme4k3jpy0" path="res://entities/player.tscn" id="2"]
@@ -26,6 +26,7 @@
 [ext_resource type="Script" uid="uid://bj0i3riveseve" path="res://scripts/Puzzles/FuseBoxPuzzle/FuseBoxPuzzle.cs" id="24_iv5uq"]
 [ext_resource type="PackedScene" uid="uid://crqn3klhvnowi" path="res://menus/FuseSlider.tscn" id="25_iv5uq"]
 [ext_resource type="Script" uid="uid://b6ukogi7n345w" path="res://scripts/Puzzles/FuseBoxPuzzle/Fuse.cs" id="25_kg3aa"]
+[ext_resource type="Resource" uid="uid://b7tan7ehl7vki" path="res://resources/PuzzleDatas/puzzle1.tres" id="27_kg3aa"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kfrdm"]
 radius = 0.724904
@@ -383,9 +384,10 @@ dialog = ExtResource("23_uyjrd")
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.63069, 10.1169)
 collision_layer = 2
 script = ExtResource("24_iv5uq")
+fuseParent = NodePath("SubViewport/VBoxContainer")
 fuseSlider = ExtResource("25_iv5uq")
 fuses = Array[Object]([SubResource("Resource_na2vv"), SubResource("Resource_6e0do")])
-fuseParent = NodePath("SubViewport/VBoxContainer")
+puzzleData = ExtResource("27_kg3aa")
 
 [node name="SubViewport" type="SubViewport" parent="Node3D"]
 

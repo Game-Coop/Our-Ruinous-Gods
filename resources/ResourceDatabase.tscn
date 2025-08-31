@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cam06nid85jji"]
+[gd_scene load_steps=11 format=3 uid="uid://cam06nid85jji"]
 
 [ext_resource type="Script" uid="uid://fx4hkj1rkc02" path="res://scripts/ResourceDatabase.cs" id="1"]
 [ext_resource type="Resource" path="res://resources/JournalDatas/JornalEntryData2.tres" id="3"]
@@ -9,6 +9,7 @@
 [ext_resource type="Resource" path="res://resources/AudioDatas/audioData2.tres" id="7"]
 [ext_resource type="Resource" path="res://resources/ItemDatas/KeyItem1Data.tres" id="8"]
 [ext_resource type="Resource" path="res://resources/ItemDatas/KeyItem2Data.tres" id="9"]
+[ext_resource type="Resource" uid="uid://b7tan7ehl7vki" path="res://resources/PuzzleDatas/puzzle1.tres" id="10_xuqyc"]
 
 [node name="ResourceDatabase" type="Node"]
 script = ExtResource("1")
@@ -17,3 +18,4 @@ gameScene = ExtResource("3_c8eqv")
 itemDatas = [ExtResource("8"), ExtResource("9")]
 journalDatas = [ExtResource("5"), ExtResource("3")]
 audioDatas = [ExtResource("4"), ExtResource("7")]
+puzzleDatas = Array[Object]([ExtResource("10_xuqyc")])

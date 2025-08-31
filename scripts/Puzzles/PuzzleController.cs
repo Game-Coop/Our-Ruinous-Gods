@@ -1,10 +1,12 @@
 using System;
+using System.Collections.Generic;
 using Godot;
 
-public partial class PuzzleController : Node
+public partial class PuzzleController : Node, ISavable<SaveData>
 {
     EventBus eventBus;
     private IPuzzle currentPuzzle;
+    private List<PuzzleData> solvedPuzzles = new List<PuzzleData>();
     public override void _EnterTree()
     {
         base._EnterTree();
@@ -41,12 +43,41 @@ public partial class PuzzleController : Node
     private void OnPuzzleInteract(PuzzleInteractEvent puzzleInteractEvent)
     {
         currentPuzzle = puzzleInteractEvent.puzzle;
+
         currentPuzzle.OnBack += CurrentPuzzleBack;
+        currentPuzzle.OnSolve += CurrentPuzzleSolve;
     }
 
-    private void CurrentPuzzleBack(BaseEventData data)
+    private void CurrentPuzzleSolve(PuzzleData puzzleData)
+    {
+        currentPuzzle.OnSolve -= CurrentPuzzleSolve;
+
+        solvedPuzzles.Add(puzzleData);
+    }
+
+    private void CurrentPuzzleBack()
     {
         currentPuzzle.OnBack -= CurrentPuzzleBack;
+        currentPuzzle.OnSolve -= CurrentPuzzleSolve;
         currentPuzzle = null;
+    }
+
+    public void OnSave(SaveData data)
+    {
+        data.solvedPuzzleIds.Clear();
+        foreach (var solvedPuzzle in solvedPuzzles)
+        {
+            data.solvedPuzzleIds.Add(solvedPuzzle.Id);
+        }
+    }
+
+    public void OnLoad(SaveData data)
+    {
+        foreach (var id in data.solvedPuzzleIds)
+        {
+            var puzzleData = ResourceDatabase.PuzzleDatas[id];
+            puzzleData.IsSolved = true;
+            solvedPuzzles.Add(puzzleData);
+        }
     }
 }
