@@ -47,6 +47,7 @@ Parley="*res://addons/parley/parley_runtime.gd"
 ParleyActions="*res://scripts/Parley/ParleyActions.cs"
 ParleyFacts="*res://scripts/Parley/ParleyFacts.cs"
 PuzzleController="*res://scripts/Puzzles/PuzzleController.cs"
+PhantomCameraManager="*res://addons/phantom_camera/scripts/managers/phantom_camera_manager.gd"
 
 [display]
 
@@ -63,7 +64,7 @@ project/assembly_name="Our Ruinous Gods"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/parley/plugin.cfg", "res://addons/quest_resource_translation_parser/plugin.cfg", "res://addons/questify/plugin.cfg", "res://addons/wwisecsharpidgenerator/plugin.cfg")
+enabled=PackedStringArray("res://addons/parley/plugin.cfg", "res://addons/phantom_camera/plugin.cfg", "res://addons/quest_resource_translation_parser/plugin.cfg", "res://addons/questify/plugin.cfg", "res://addons/wwisecsharpidgenerator/plugin.cfg")
 
 [global]
 
