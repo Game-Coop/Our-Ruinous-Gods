@@ -1,8 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://r7rngipi085n"]
+[gd_scene load_steps=4 format=3 uid="uid://r7rngipi085n"]
 
 [ext_resource type="Script" uid="uid://ctohm3n12hfed" path="res://scripts/Puzzles/LiftTestPuzzle.cs" id="1_f36s3"]
+[ext_resource type="PackedScene" path="res://ui/Hint.tscn" id="2_vicql"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jjhfm"]
+size = Vector3(1.02881, 1.04688, 1.10742)
 
 [node name="ElevatorPuzzle" type="Node3D"]
 script = ExtResource("1_f36s3")
@@ -10,5 +12,12 @@ script = ExtResource("1_f36s3")
 [node name="InteractArea" type="Area3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="InteractArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0144043, 0.0234375, 0.0126953)
 shape = SubResource("BoxShape3D_jjhfm")
 debug_color = Color(0.741176, 0.466667, 0, 0.905882)
+
+[node name="Hint" parent="." instance=ExtResource("2_vicql")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.797227, 0)
+text = "Solve Puzzle"
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
