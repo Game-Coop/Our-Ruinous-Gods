@@ -43,7 +43,7 @@ public partial class Player : CharacterBody3D, ISavable<SaveData>
 		eventBus.PowerChanged += OnPowerChange;
 		eventBus.StaminaChange += OnStaminaChange;
 		eventBus.World += OnWorldEvent;
-
+		eventBus.HandheldFocus += OnHandheldFocused;
 		GameEvents.OnRegisterPlayer.Invoke(this);
 
 		if (SaveManager.SaveData != null && !GameManager.Instance.InStartMenu)
@@ -55,7 +55,8 @@ public partial class Player : CharacterBody3D, ISavable<SaveData>
 		eventBus.PowerChanged -= OnPowerChange;
 		eventBus.StaminaChange -= OnStaminaChange;
 		eventBus.World -= OnWorldEvent;
-    }
+		eventBus.HandheldFocus -= OnHandheldFocused;
+	}
 
 	public override void _Input(InputEvent @event)
 	{
@@ -127,7 +128,10 @@ public partial class Player : CharacterBody3D, ISavable<SaveData>
 		Velocity = velocity;
 		MoveAndSlide();
 	}
-
+	private void OnHandheldFocused(bool isFocused)
+	{
+		SetPhysicsProcess(!isFocused);
+	}
 	public void OnPowerChange(PowerEvent e)
 	{
 		int currentPower = Power;

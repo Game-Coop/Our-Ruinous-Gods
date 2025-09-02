@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ParleyFactStore" load_steps=5 format=3 uid="uid://b10i0s5g0ue01"]
+
+[ext_resource type="Script" uid="uid://dhlbgj5hd2115" path="res://addons/parley/models/fact.gd" id="1_4td3x"]
+[ext_resource type="Script" uid="uid://d2q7e5e7shetd" path="res://facts/test_fact.gd" id="2_d5w3f"]
+[ext_resource type="Script" uid="uid://ob0am6au6mmt" path="res://addons/parley/stores/fact/fact_store.gd" id="2_s00fl"]
+
+[sub_resource type="Resource" id="Resource_4td3x"]
+script = ExtResource("1_4td3x")
+id = "main:0"
+name = "test"
+ref = ExtResource("2_d5w3f")
+
+[resource]
+script = ExtResource("2_s00fl")
+facts = Array[ExtResource("1_4td3x")]([SubResource("Resource_4td3x")])
+id = "main"

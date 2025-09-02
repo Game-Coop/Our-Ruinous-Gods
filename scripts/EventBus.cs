@@ -11,6 +11,8 @@ public partial class EventBus : Node
 	public delegate void WorldEventHandler(string name);
 	[Signal]
 	public delegate void PuzzleSolvedEventHandler(string puzzleId);
+  [Signal]
+	public delegate void HandheldFocusEventHandler(bool isFocused);
 	[Signal]
 	public delegate void QuestEventHandler(QuestEvent questEvent);
 
@@ -37,5 +39,9 @@ public partial class EventBus : Node
 	public void OnQuestEvent(QuestEvent questEvent)
 	{
 		EmitSignal(SignalName.Quest, questEvent);
+	}
+	public void OnHandheldFocused(bool isFocused)
+	{
+		EmitSignal(SignalName.HandheldFocus, isFocused);
 	}
 }
