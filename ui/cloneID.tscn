@@ -13,3 +13,4 @@ script = ExtResource( 1 )
 margin_right = 564.0
 margin_bottom = 113.0
 text = "Text"
+script = ExtResource( 1 )
