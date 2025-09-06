@@ -364,10 +364,7 @@ script = ExtResource("22_bmc1d")
 dialog = ExtResource("23_uyjrd")
 
 [node name="FuseBox Puzzle Prototype" parent="." instance=ExtResource("25_un4in")]
-transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 0, 1.63069, 10.1169)
-
-[node name="FuseBox Puzzle Prototype2" parent="." instance=ExtResource("25_un4in")]
-transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 0, 1.63069, 10.1169)
+transform = Transform3D(-1.07285e-07, 0, 1, 0, 1, 0, -1, 0, -1.07285e-07, -3.22057, 3.12225, 11.2072)
 
 [connection signal="PlayerEnterLadder" from="LadderCollision" to="Player" method="OnAreaEntered"]
 [connection signal="PlayerExitLadder" from="LadderCollision" to="Player" method="OnAreaExited"]

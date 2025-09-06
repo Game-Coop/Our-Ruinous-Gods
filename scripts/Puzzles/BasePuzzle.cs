@@ -10,6 +10,7 @@ public partial class BasePuzzle : Interactable, IPuzzle
     public event Action OnBack;
     [Export] public PuzzleData Data { get; private set; }
     [Export] protected Node3D labels;
+
     [Export] Node3D phantomCamNode;
 
     protected PhantomCamera3D phantomCam;
@@ -18,6 +19,7 @@ public partial class BasePuzzle : Interactable, IPuzzle
     public override void _Ready()
     {
         base._Ready();
+        labels.Visible = false;
         phantomCam = phantomCamNode.AsPhantomCamera3D();
         eventBus = GetNode<EventBus>("/root/EventBus");
         phantomCam.TweenCompleted += () => labels.Visible = true;
@@ -37,7 +39,7 @@ public partial class BasePuzzle : Interactable, IPuzzle
         phantomCam.Priority = 100;
         eventBus.OnPuzzleInteract(new PuzzleInteractEvent(this));
         GameManager.Instance.Player.SetEnabled(false);
-        GameManager.Instance.InPuzzle = true;
+        GameManager.Instance.InWorldPuzzle = true;
         HideHint();
     }
 
@@ -66,7 +68,7 @@ public partial class BasePuzzle : Interactable, IPuzzle
         phantomCam.Priority = 0;
 
         GameManager.Instance.Player.SetEnabled(true);
-        GameManager.Instance.InPuzzle = false;
+        GameManager.Instance.InWorldPuzzle = false;
         OnBack?.Invoke();
         labels.Visible = false;
     }

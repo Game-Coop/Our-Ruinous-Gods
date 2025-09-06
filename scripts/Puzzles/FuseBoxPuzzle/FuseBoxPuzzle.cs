@@ -7,10 +7,16 @@ public partial class FuseBoxPuzzle : BasePuzzle
     [Export] public Node fuseParent;
     [Export] public PackedScene fuseSlider;
     [Export] Fuse[] fuses;
+    [Export] protected Label3D nameLabel;
+    [Export] protected Label3D descriptionLabel;
     private int currentSelectedFuseIndex;
     public override void _EnterTree()
     {
         base._EnterTree();
+        if (nameLabel != null)
+            nameLabel.Text = Data.Name;
+        if (descriptionLabel != null)
+            descriptionLabel.Text = Data.Description;
         foreach (var fuse in fuses)
         {
             var slider = fuseSlider.Instantiate() as FuseSlider;
@@ -21,6 +27,12 @@ public partial class FuseBoxPuzzle : BasePuzzle
     public override void Interact()
     {
         base.Interact();
+        foreach (var fuse in fuses)
+        {
+            if (fuse.IsSelected)
+                fuse.UnSelect();
+        }
+        currentSelectedFuseIndex = 0;
         if (!fuses[currentSelectedFuseIndex].IsSelected)
             fuses[currentSelectedFuseIndex].Select();
     }

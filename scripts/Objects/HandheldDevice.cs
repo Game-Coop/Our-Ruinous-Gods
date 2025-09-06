@@ -3,7 +3,7 @@ using Godot;
 
 public partial class HandheldDevice : Node3D
 {
-    public static bool CanUse => !(GameManager.Instance.InCutscene || GameManager.Instance.InStartMenu || GameManager.Instance.InPuzzle);
+    public static bool CanUse => !(GameManager.Instance.InCutscene || GameManager.Instance.InStartMenu || GameManager.Instance.InWorldPuzzle);
     private double startPressTime;
     private bool holdingHandheldToggle = false;
     private Tween tween;
