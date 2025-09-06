@@ -13,21 +13,32 @@ public partial class Fuse : Resource
     private int tempMoveAmount = 1;
     public FuseSlider fuseSlider;
     public bool IsSelected { get; private set; }
+    private int originalValue;
     public void Setup(FuseSlider slider)
     {
         this.fuseSlider = slider;
+        originalValue = value;
         slider.SetTarget(target);
+        fuseSlider.SetMoveAmount(moveAmount);
+    }
+    public void Reset()
+    {
+        value = originalValue;
+        fuseSlider.SetValue(originalValue);
+        fuseSlider.SetMoveAmount(moveAmount);
     }
     public void Select()
     {
         IsSelected = true;
         tempMoveAmount = moveAmount;
         moveAmount = 1;
+        fuseSlider.SetMoveAmount(moveAmount);
         fuseSlider.slider.CallDeferred("grab_focus");
     }
     public void UnSelect()
     {
         moveAmount = tempMoveAmount;
+        fuseSlider.SetMoveAmount(moveAmount);
     }
     public void MoveRight()
     {

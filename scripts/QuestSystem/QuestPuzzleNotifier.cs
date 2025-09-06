@@ -12,10 +12,18 @@ public partial class QuestPuzzleNotifier : Node
         base._Ready();
         eventBus = GetNode<EventBus>("/root/EventBus");
         puzzle = GetNode<IPuzzle>(puzzleNode);
+       
         if (puzzle != null)
         {
-            puzzle.OnSolve += OnSolve;
-            puzzle.OnFail += OnFail;
+            if (puzzle.Data.IsSolved)
+            {
+                OnSolve(puzzle.Data);
+            }
+            else
+            {
+                puzzle.OnSolve += OnSolve;
+                puzzle.OnFail += OnFail;
+            }
         }
     }
     protected override void Dispose(bool disposing)

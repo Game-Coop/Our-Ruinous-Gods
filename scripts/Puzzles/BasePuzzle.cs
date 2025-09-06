@@ -1,19 +1,31 @@
 using System;
 using Godot;
+using PhantomCamera;
 
 public partial class BasePuzzle : Interactable, IPuzzle
 {
-    [Export] public PuzzleData puzzleData;
     public event Action<PuzzleData> OnSolve;
     public event Action<PuzzleData> OnFail;
     public event Action OnReset;
     public event Action OnBack;
+    [Export] public PuzzleData Data { get; private set; }
+    [Export] protected Node3D labels;
+    [Export] Node3D phantomCamNode;
 
+    protected PhantomCamera3D phantomCam;
     EventBus eventBus;
+    public bool IsInteracting { get; private set; }
+    public override void _Ready()
+    {
+        base._Ready();
+        phantomCam = phantomCamNode.AsPhantomCamera3D();
+        eventBus = GetNode<EventBus>("/root/EventBus");
+        phantomCam.TweenCompleted += () => labels.Visible = true;
+    }
 
     public override bool CanInteract()
     {
-        return !puzzleData.IsSolved;
+        return base.CanInteract() && !IsInteracting && !Data.IsSolved;
     }
     /// <summary>
     /// Called when entering puzzle interaction
@@ -21,9 +33,11 @@ public partial class BasePuzzle : Interactable, IPuzzle
     public override void Interact()
     {
         base.Interact();
-        eventBus = GetNode<EventBus>("/root/EventBus");
+        IsInteracting = true;
+        phantomCam.Priority = 100;
         eventBus.OnPuzzleInteract(new PuzzleInteractEvent(this));
         GameManager.Instance.Player.SetEnabled(false);
+        GameManager.Instance.InPuzzle = true;
         HideHint();
     }
 
@@ -48,8 +62,13 @@ public partial class BasePuzzle : Interactable, IPuzzle
     /// </summary>
     public virtual void Back()
     {
+        IsInteracting = false;
+        phantomCam.Priority = 0;
+
         GameManager.Instance.Player.SetEnabled(true);
+        GameManager.Instance.InPuzzle = false;
         OnBack?.Invoke();
+        labels.Visible = false;
     }
 
     /// <summary>
@@ -68,13 +87,13 @@ public partial class BasePuzzle : Interactable, IPuzzle
     {
         if (isSolved)
         {
-            puzzleData.IsSolved = true;
-            OnSolve?.Invoke(puzzleData);
+            Data.IsSolved = true;
+            OnSolve?.Invoke(Data);
             Back();
         }
         else
         {
-            OnFail?.Invoke(puzzleData);
+            OnFail?.Invoke(Data);
         }
     }
 }

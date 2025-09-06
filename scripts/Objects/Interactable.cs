@@ -24,7 +24,7 @@ public partial class Interactable : Node3D, IInteractable
 	}
 	public virtual bool CanInteract()
 	{
-		return true;
+		return !GameManager.Instance.FocusedHandheld;
 	}
 	public virtual void Interact()
 	{

@@ -15,7 +15,10 @@ public partial class InteractionRaycaster : Node3D
 	{
 		if (e.IsActionPressed("interact"))
 		{
-			focusedInteractable?.Interact();
+			if (focusedInteractable != null && focusedInteractable.CanInteract())
+			{
+				focusedInteractable.Interact();
+			}
 		}
 	}
 	public override void _Process(double delta)

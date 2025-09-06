@@ -1,5 +1,6 @@
 using System.Linq;
 using Godot;
+using PhantomCamera;
 
 public partial class FuseBoxPuzzle : BasePuzzle
 {
@@ -28,6 +29,17 @@ public partial class FuseBoxPuzzle : BasePuzzle
         base.Back();
         if (fuses[currentSelectedFuseIndex].IsSelected)
             fuses[currentSelectedFuseIndex].UnSelect();
+    }
+    public override void Reset()
+    {
+        base.Reset();
+        foreach (var fuse in fuses)
+        {
+            fuse.Reset();
+        }
+        fuses[currentSelectedFuseIndex].UnSelect();
+        currentSelectedFuseIndex = 0;
+        fuses[currentSelectedFuseIndex].Select();
     }
     public override void Input(Vector2 value)
     {

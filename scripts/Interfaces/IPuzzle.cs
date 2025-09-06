@@ -3,6 +3,7 @@ using Godot;
 
 public interface IPuzzle : IInteractable
 {
+    public PuzzleData Data { get; }
     event Action<PuzzleData> OnSolve;
     event Action<PuzzleData> OnFail;
     event Action OnReset;

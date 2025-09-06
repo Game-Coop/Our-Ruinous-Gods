@@ -48,6 +48,7 @@ ParleyActions="*res://scripts/Parley/ParleyActions.cs"
 ParleyFacts="*res://scripts/Parley/ParleyFacts.cs"
 PuzzleController="*res://scripts/Puzzles/PuzzleController.cs"
 PhantomCameraManager="*res://addons/phantom_camera/scripts/managers/phantom_camera_manager.gd"
+Utils="*res://scripts/Utils.cs"
 
 [display]
 
