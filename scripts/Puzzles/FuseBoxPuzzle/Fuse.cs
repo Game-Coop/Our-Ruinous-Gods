@@ -16,7 +16,7 @@ public partial class Fuse : Resource
     private int originalValue;
     public void Setup(FuseSlider slider)
     {
-        this.fuseSlider = slider;
+        fuseSlider = slider;
         originalValue = value;
         slider.SetTarget(target);
         fuseSlider.SetMoveAmount(moveAmount);

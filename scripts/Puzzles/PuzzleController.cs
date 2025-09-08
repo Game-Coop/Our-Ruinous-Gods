@@ -24,7 +24,7 @@ public partial class PuzzleController : Node, ISavable<SaveData>
 
 		if (@event.IsAction("move_forward") || @event.IsAction("move_backward") || @event.IsAction("move_left") || @event.IsAction("move_right"))
 		{
-			currentPuzzle.Input(Input.GetVector("move_left", "move_right", "move_forward", "move_backward"));
+			currentPuzzle.Input(Input.GetVector("move_left", "move_right", "move_backward", "move_forward"));
 		}
 		else if (@event.IsAction("submit"))
 		{

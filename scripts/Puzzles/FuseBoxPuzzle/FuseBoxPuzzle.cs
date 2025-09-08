@@ -17,11 +17,12 @@ public partial class FuseBoxPuzzle : BasePuzzle
             nameLabel.Text = Data.Name;
         if (descriptionLabel != null)
             descriptionLabel.Text = Data.Description;
-        foreach (var fuse in fuses)
+        for (int i = 0; i < fuses.Length; i++)
         {
             var slider = fuseSlider.Instantiate() as FuseSlider;
             fuseParent.AddChild(slider);
-            fuse.Setup(slider);
+            fuseParent.MoveChild(slider, i);
+            fuses[i].Setup(slider);
         }
     }
     public override void Interact()
