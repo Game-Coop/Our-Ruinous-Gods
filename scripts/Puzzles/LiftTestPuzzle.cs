@@ -8,9 +8,9 @@ public partial class LiftTestPuzzle : Node3D, IPuzzle
     private bool isSolved = false;
 
     //IPuzzle events
-    public event Action<BaseEventData> OnSolve;
-    public event Action<BaseEventData> OnFail;
-    public event Action<BaseEventData> OnReset;
+    public event Action<PuzzleEvent> OnSolve;
+    public event Action<PuzzleEvent> OnFail;
+    public event Action<PuzzleEvent> OnReset;
 
     //IInteractable events
     public event Action<BaseEventData> OnInteract;
@@ -35,7 +35,8 @@ public partial class LiftTestPuzzle : Node3D, IPuzzle
 
     public void Interact()
     {
-        OnInteract?.Invoke(new PuzzleEvent(puzzleId, isSolved));
+        var baseEvent = new BaseEventData();
+        OnInteract?.Invoke(baseEvent);
         SolvePuzzle();
     }
 
@@ -68,7 +69,9 @@ public partial class LiftTestPuzzle : Node3D, IPuzzle
         isSolved = true;
 
         var eventBus = GetNode<EventBus>("/root/EventBus");
-        eventBus.OnPuzzleSolvedEvent(puzzleId);
+        var puzzleEvent = new PuzzleEvent(puzzleId, true);
+
+        eventBus.OnPuzzleSolvedEvent(puzzleEvent);
 
         OnSolve?.Invoke(new PuzzleEvent(puzzleId, true));
         GD.Print($"Testpuzzle '{puzzleId}' solved!");

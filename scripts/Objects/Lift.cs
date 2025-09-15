@@ -26,12 +26,12 @@ public partial class Lift : Node3D
         interactArea = GetNode<Area3D>("InteractArea");
 
         var eventBus = GetNode<EventBus>("/root/EventBus");
-        eventBus.PuzzleSolved += OnPuzzleSolved;
+        eventBus.PuzzleSolved += OnPuzzleEvent;
     }
 
-    private void OnPuzzleSolved(string solvedPuzzleId)
+    private void OnPuzzleEvent(PuzzleEvent puzzleEvent)
     {
-        if (solvedPuzzleId == puzzleId)
+        if (puzzleEvent.PuzzleId == puzzleId && puzzleEvent.IsSolved)
         {
             isPuzzleSolved = true;
             GD.Print($"Puzzle {puzzleId} solved. Lift unlocked.");
