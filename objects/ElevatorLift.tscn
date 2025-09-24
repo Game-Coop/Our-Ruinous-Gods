@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=4 uid="uid://veuqgffydt7a"]
+[gd_scene load_steps=13 format=4 uid="uid://veuqgffydt7a"]
 
 [ext_resource type="Material" path="res://assets/models/standardSurface1.material" id="1_34ikn"]
 [ext_resource type="Script" uid="uid://5oyah3ona1iq" path="res://scripts/Objects/Lift.cs" id="2_4c4c0"]
+[ext_resource type="Resource" uid="uid://dtk63ml0klibh" path="res://resources/PuzzleDatas/puzzle2.tres" id="3_lsgok"]
 
 [sub_resource type="ArrayMesh" id="22"]
 _surfaces = [{
@@ -85,7 +86,7 @@ size = Vector3(2139.54, 707.255, 2821.45)
 [node name="ElevatorLift" type="MeshInstance3D"]
 mesh = SubResource("22")
 script = ExtResource("2_4c4c0")
-puzzleId = "lift_test_puzzle"
+RequiredPuzzle = ExtResource("3_lsgok")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 

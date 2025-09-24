@@ -1,31 +1,19 @@
 using Godot;
 using System;
 
-public partial class LiftTestPuzzle : Node3D, IPuzzle
+public partial class LiftTestPuzzle : BasePuzzle
 {
-    [Export] public string puzzleId = "lift_test_puzzle";
     private Area3D interactArea;
-    private bool isSolved = false;
-
-    //IPuzzle events
-    public event Action<PuzzleEvent> OnSolve;
-    public event Action<PuzzleEvent> OnFail;
-    public event Action<PuzzleEvent> OnReset;
-
-    //IInteractable events
-    public event Action<BaseEventData> OnInteract;
-
-    //Assing the interaction text for the puzzle
-    public string InteractionText => isSolved ? "Lift unlocked" : "Press E to solve the puzzle";
 
     public override void _Ready()
     {
+        base._Ready();
         interactArea = GetNode<Area3D>("InteractArea");
     }
 
     public override void _Process(double delta)
     {
-        if(isSolved) return;
+        if(Data.IsSolved) return;
 
         if(Godot.Input.IsActionJustPressed("interact") && IsPlayerInRange())
         {
@@ -33,30 +21,19 @@ public partial class LiftTestPuzzle : Node3D, IPuzzle
         }
     }
 
-    public void Interact()
+    public override void Interact()
     {
-        var baseEvent = new BaseEventData();
-        OnInteract?.Invoke(baseEvent);
+        base.Interact();
         SolvePuzzle();
     }
 
-    public void ShowHint()
-    {
-        GD.Print("Show hint for the lift puzzle");
-    }
-
-    public void HideHint()
-    {
-        GD.Print("Hide hint for the lift puzzle");
-    }
-
-    public void Input(Vector2 vector2)
+    public override void Input(Vector2 vector2)
     {
         GD.Print($"Input received: {vector2}");
         // Here you can handle input from the player, e.g., for a joystick or touch input
     }
 
-    public void Submit()
+    public override void Submit()
     {
         GD.Print("Puzzle submitted");
         SolvePuzzle();
@@ -64,17 +41,9 @@ public partial class LiftTestPuzzle : Node3D, IPuzzle
 
     private void SolvePuzzle()
     {
-        if (isSolved) return;
+        if (Data.IsSolved) return;
 
-        isSolved = true;
-
-        var eventBus = GetNode<EventBus>("/root/EventBus");
-        var puzzleEvent = new PuzzleEvent(puzzleId, true);
-
-        eventBus.OnPuzzleSolvedEvent(puzzleEvent);
-
-        OnSolve?.Invoke(new PuzzleEvent(puzzleId, true));
-        GD.Print($"Testpuzzle '{puzzleId}' solved!");
+        SetSolved(true);
     }
 
     private bool IsPlayerInRange()

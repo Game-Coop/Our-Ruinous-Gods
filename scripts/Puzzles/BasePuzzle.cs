@@ -91,6 +91,7 @@ public partial class BasePuzzle : Interactable, IPuzzle
         {
             Data.IsSolved = true;
             OnSolve?.Invoke(Data);
+            eventBus.OnPuzzleSolvedEvent(Data);
             Back();
         }
         else

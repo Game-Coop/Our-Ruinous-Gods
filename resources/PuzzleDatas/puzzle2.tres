@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="PuzzleData" load_steps=2 format=3 uid="uid://dtk63ml0klibh"]
+
+[ext_resource type="Script" uid="uid://cbiihymjp5cc5" path="res://scripts/SaveSystem/PuzzleData.cs" id="1_wx5py"]
+
+[resource]
+script = ExtResource("1_wx5py")
+Id = 1
+Name = "Lift"
+Description = ""
+metadata/_custom_type_script = "uid://cbiihymjp5cc5"

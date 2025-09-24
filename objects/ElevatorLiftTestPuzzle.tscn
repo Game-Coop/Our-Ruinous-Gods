@@ -1,13 +1,25 @@
-[gd_scene load_steps=4 format=3 uid="uid://r7rngipi085n"]
+[gd_scene load_steps=8 format=3 uid="uid://r7rngipi085n"]
 
 [ext_resource type="Script" uid="uid://ctohm3n12hfed" path="res://scripts/Puzzles/LiftTestPuzzle.cs" id="1_f36s3"]
+[ext_resource type="Resource" uid="uid://dtk63ml0klibh" path="res://resources/PuzzleDatas/puzzle2.tres" id="2_iq46w"]
 [ext_resource type="PackedScene" path="res://ui/Hint.tscn" id="2_vicql"]
+[ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="4_8pc1n"]
+[ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="5_1f0wn"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jjhfm"]
 size = Vector3(1.02881, 1.04688, 1.10742)
 
-[node name="ElevatorPuzzle" type="Node3D"]
+[sub_resource type="Resource" id="Resource_bsn3l"]
+script = ExtResource("5_1f0wn")
+duration = 1.0
+transition = 0
+ease = 2
+
+[node name="ElevatorPuzzle" type="Node3D" node_paths=PackedStringArray("labels", "phantomCamNode")]
 script = ExtResource("1_f36s3")
+Data = ExtResource("2_iq46w")
+labels = NodePath("Name Label")
+phantomCamNode = NodePath("PhantomCamera3D")
 
 [node name="InteractArea" type="Area3D" parent="."]
 
@@ -21,3 +33,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.797227, 0)
 text = "Solve Puzzle"
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
+
+[node name="Name Label" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.641842, 0.669404, 0)
+
+[node name="PhantomCamera3D" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.826436)
+script = ExtResource("4_8pc1n")
+tween_resource = SubResource("Resource_bsn3l")
+metadata/_custom_type_script = "uid://csjccrhj5wnx7"

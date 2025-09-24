@@ -10,7 +10,7 @@ public partial class EventBus : Node
 	[Signal]
 	public delegate void WorldEventHandler(string name);
 	[Signal]
-	public delegate void PuzzleSolvedEventHandler(PuzzleEvent puzzleEvent);
+	public delegate void PuzzleSolvedEventHandler(PuzzleData puzzleData);
 	[Signal]
 	public delegate void HandheldFocusEventHandler(bool isFocused);
 	[Signal]
@@ -34,9 +34,9 @@ public partial class EventBus : Node
 	{
 		EmitSignal(SignalName.World, name);
 	}
-	public void OnPuzzleSolvedEvent(PuzzleEvent puzzleEvent)
+	public void OnPuzzleSolvedEvent(PuzzleData puzzleData)
 	{
-		EmitSignal(SignalName.PuzzleSolved, puzzleEvent);
+		EmitSignal(SignalName.PuzzleSolved, puzzleData);
 	}
 	public void OnQuestEvent(QuestEvent questEvent)
 	{

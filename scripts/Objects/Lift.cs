@@ -3,7 +3,7 @@ using System;
 
 public partial class Lift : Node3D
 {
-    [Export] public string puzzleId = "lift_puzzle"; //ADD the actual puzzle ID here
+    [Export] public PuzzleData RequiredPuzzle;
     /*[Export] public string upAnimation = "lift_up";
     [Export] public string downAnimation = "lift_down";*/
 
@@ -25,17 +25,33 @@ public partial class Lift : Node3D
         GlobalPosition = upPosition;
         interactArea = GetNode<Area3D>("InteractArea");
 
-        var eventBus = GetNode<EventBus>("/root/EventBus");
-        eventBus.PuzzleSolved += OnPuzzleEvent;
+        if(RequiredPuzzle != null)
+        {
+            var eventBus = GetNode<EventBus>("/root/EventBus");
+            eventBus.PuzzleSolved += OnPuzzleSolved;
+
+            if (RequiredPuzzle.IsSolved)
+            {
+                UnlockLift();
+            }
+        }
+        else
+        {
+            GD.PushError("Lift has no PuzzleData assigned!");
+        }
     }
 
-    private void OnPuzzleEvent(PuzzleEvent puzzleEvent)
+    private void OnPuzzleSolved(PuzzleData solvedPuzzle)
     {
-        if (puzzleEvent.PuzzleId == puzzleId && puzzleEvent.IsSolved)
+        if (solvedPuzzle == RequiredPuzzle)
         {
-            isPuzzleSolved = true;
-            GD.Print($"Puzzle {puzzleId} solved. Lift unlocked.");
+            UnlockLift();
         }
+    }
+
+    private void UnlockLift()
+    {
+        isPuzzleSolved = true;
     }
 
     public override void _Process(double delta)
