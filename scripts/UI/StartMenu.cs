@@ -78,10 +78,10 @@ public partial class StartMenu : Control
 		if (newGame)
 		{
 			GameManager.Instance.InCutscene = true;
-			GameManager.Instance.Player.SetPhysicsProcess(false);
+			GameManager.Instance.Player.SetEnabled(false);
 			camera.Current = false;
 			await sceneTransitioner.TransitionTo(firstScene, GameManager.Instance.Player, 20);
-			GameManager.Instance.Player.SetPhysicsProcess(true);
+			GameManager.Instance.Player.SetEnabled(true);
 			GameManager.Instance.InCutscene = false;
 		}
 		else

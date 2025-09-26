@@ -1,0 +1,122 @@
+[gd_scene load_steps=17 format=3 uid="uid://lfrojo445a0l"]
+
+[ext_resource type="Script" uid="uid://bj0i3riveseve" path="res://scripts/Puzzles/FuseBoxPuzzle/FuseBoxPuzzle.cs" id="1_32371"]
+[ext_resource type="PackedScene" uid="uid://crqn3klhvnowi" path="res://menus/FuseSlider.tscn" id="2_wblrv"]
+[ext_resource type="Script" uid="uid://b6ukogi7n345w" path="res://scripts/Puzzles/FuseBoxPuzzle/Fuse.cs" id="3_yfgla"]
+[ext_resource type="Resource" uid="uid://b7tan7ehl7vki" path="res://resources/PuzzleDatas/puzzle1.tres" id="4_l08pj"]
+[ext_resource type="PackedScene" path="res://ui/Hint.tscn" id="5_u4436"]
+[ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="6_1t175"]
+[ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="7_53j5y"]
+[ext_resource type="Script" uid="uid://83pqpacabtoa" path="res://scripts/UI/KeybindLabel3D.cs" id="8_bvjqb"]
+[ext_resource type="Texture2D" uid="uid://f10mm7ouc2w3" path="res://assets/ui/KeyboardKeys/keyboard-c.tres" id="9_ngumk"]
+
+[sub_resource type="Resource" id="Resource_na2vv"]
+script = ExtResource("3_yfgla")
+value = 0
+target = 1
+moveAmount = 4
+metadata/_custom_type_script = "uid://dknuit44t41n5"
+
+[sub_resource type="Resource" id="Resource_6e0do"]
+script = ExtResource("3_yfgla")
+value = 0
+target = 1
+moveAmount = 2
+metadata/_custom_type_script = "uid://dknuit44t41n5"
+
+[sub_resource type="Resource" id="Resource_yupic"]
+script = ExtResource("7_53j5y")
+duration = 1.0
+transition = 0
+ease = 2
+
+[sub_resource type="QuadMesh" id="QuadMesh_kn4wo"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_32371"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wblrv"]
+resource_local_to_scene = true
+albedo_texture = SubResource("ViewportTexture_32371")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kg3aa"]
+size = Vector3(0.888428, 0.904053, 1)
+
+[node name="FuseBox Puzzle Prototype" type="Area3D" node_paths=PackedStringArray("fuseParent", "nameLabel", "descriptionLabel", "labels", "phantomCamNode")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+collision_layer = 2
+script = ExtResource("1_32371")
+fuseParent = NodePath("SubViewport/VBoxContainer")
+fuseSlider = ExtResource("2_wblrv")
+fuses = Array[Object]([SubResource("Resource_na2vv"), SubResource("Resource_6e0do")])
+nameLabel = NodePath("Labels/Name Label")
+descriptionLabel = NodePath("Labels/Description Label")
+Data = ExtResource("4_l08pj")
+labels = NodePath("Labels")
+phantomCamNode = NodePath("PhantomCamera3D")
+
+[node name="Hint" parent="." instance=ExtResource("5_u4436")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.52531e-08, 0.0599568, 0.552248)
+
+[node name="PhantomCamera3D" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.008, 0.838)
+script = ExtResource("6_1t175")
+tween_resource = SubResource("Resource_yupic")
+metadata/_custom_type_script = "uid://csjccrhj5wnx7"
+
+[node name="Labels" type="Node3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.254738, -0.26125, 0)
+
+[node name="Back Label" type="Label3D" parent="Labels" node_paths=PackedStringArray("sprite3d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.717117, -0.399727, 0)
+text = "Back"
+script = ExtResource("8_bvjqb")
+inputName = "back"
+sprite3d = NodePath("Sprite3D")
+
+[node name="Sprite3D" type="Sprite3D" parent="Labels/Back Label"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.362495, 0, 0)
+pixel_size = 0.001
+texture = ExtResource("9_ngumk")
+
+[node name="Reset Label" type="Label3D" parent="Labels" node_paths=PackedStringArray("sprite3d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.717117, -0.149914, 0)
+text = "Reset"
+script = ExtResource("8_bvjqb")
+inputName = "reset"
+sprite3d = NodePath("Sprite3D")
+
+[node name="Sprite3D" type="Sprite3D" parent="Labels/Reset Label"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.362495, 0, 0)
+pixel_size = 0.001
+texture = ExtResource("9_ngumk")
+
+[node name="Name Label" type="Label3D" parent="Labels"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.481954, 1.68575, -4.21338e-08)
+horizontal_alignment = 0
+
+[node name="Description Label" type="Label3D" parent="Labels"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.64329, 1.50755, 1.43661e-07)
+horizontal_alignment = 0
+vertical_alignment = 0
+autowrap_mode = 2
+width = 250.0
+
+[node name="SubViewport" type="SubViewport" parent="."]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SubViewport"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("QuadMesh_kn4wo")
+surface_material_override/0 = SubResource("StandardMaterial3D_wblrv")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_kg3aa")

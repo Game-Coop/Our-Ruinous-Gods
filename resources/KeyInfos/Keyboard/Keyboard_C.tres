@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="KeyInfo" load_steps=3 format=3 uid="uid://c8k5ewp80gvu7"]
+
+[ext_resource type="Texture2D" uid="uid://f10mm7ouc2w3" path="res://assets/ui/KeyboardKeys/keyboard-c.tres" id="1_cq5xg"]
+[ext_resource type="Script" uid="uid://bonqev6anduau" path="res://scripts/KeyInfo.cs" id="2"]
+
+[resource]
+script = ExtResource("2")
+Name = "C"
+InputName = "back"
+Icon = ExtResource("1_cq5xg")
+Layout = 0

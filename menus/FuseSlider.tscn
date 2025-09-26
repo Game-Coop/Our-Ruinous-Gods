@@ -1,0 +1,49 @@
+[gd_scene load_steps=3 format=3 uid="uid://crqn3klhvnowi"]
+
+[ext_resource type="Script" uid="uid://c2i7glpt41yc1" path="res://scripts/Puzzles/FuseBoxPuzzle/FuseSlider.cs" id="1_gdk7u"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fn4pp"]
+
+[node name="Fuse Slider" type="Control" node_paths=PackedStringArray("slider", "targetSlider", "moveAmountLabel")]
+custom_minimum_size = Vector2(500, 100)
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_gdk7u")
+slider = NodePath("HSlider")
+targetSlider = NodePath("HSlider/Target Slider")
+moveAmountLabel = NodePath("Label")
+
+[node name="HSlider" type="HSlider" parent="."]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 97.0
+offset_top = -6.0
+offset_right = -12.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+max_value = 10.0
+
+[node name="Target Slider" type="HSlider" parent="HSlider"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -24.0
+offset_bottom = -24.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/slider = SubResource("StyleBoxEmpty_fn4pp")
+max_value = 10.0
+value = 3.0
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 4.0
+offset_right = 83.0
+offset_bottom = 106.0
+theme_override_font_sizes/font_size = 81
+text = "[1]"

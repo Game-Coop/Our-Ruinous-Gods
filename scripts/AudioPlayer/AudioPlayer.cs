@@ -41,6 +41,8 @@ public partial class AudioPlayer : AudioStreamPlayer, ISavable<SaveData>
 	public override void _Input(InputEvent e)
 	{
 		base._Input(e);
+		if (Stream == null) return;
+		
 		if (e.IsActionPressed("audioplayer_rewind"))
 		{
 			Rewind(5f);
