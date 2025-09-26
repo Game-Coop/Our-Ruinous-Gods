@@ -15,27 +15,25 @@ public partial class LiftTestPuzzle : BasePuzzle
     {
         if(Data.IsSolved) return;
 
-        if(Godot.Input.IsActionJustPressed("interact") && IsPlayerInRange())
+        if(IsPlayerInRange())
         {
             Interact();
         }
     }
 
+    /*To be removed when puzzle is implemented
+     * now used to test lift functionality
+     * by setting the puzzle as solved when interacted with
+     */
     public override void Interact()
     {
         base.Interact();
         SolvePuzzle();
     }
 
-    public override void Input(Vector2 vector2)
-    {
-        GD.Print($"Input received: {vector2}");
-        // Here you can handle input from the player, e.g., for a joystick or touch input
-    }
 
     public override void Submit()
     {
-        GD.Print("Puzzle submitted");
         SolvePuzzle();
     }
 
