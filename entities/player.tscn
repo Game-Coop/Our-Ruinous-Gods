@@ -56,7 +56,7 @@ metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 
 [node name="RayCast3D" type="RayCast3D" parent="Head/Camera3D"]
 target_position = Vector3(0, 0, -2)
-collision_mask = 2
+collision_mask = 3
 collide_with_areas = true
 collide_with_bodies = false
 

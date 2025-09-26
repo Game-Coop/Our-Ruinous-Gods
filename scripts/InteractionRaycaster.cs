@@ -27,7 +27,7 @@ public partial class InteractionRaycaster : Node3D
 		if (rayCast.IsColliding())
 		{
 			var collidingObject = rayCast.GetCollider();
-			if (collidingObject is IInteractable interactable && interactable.CanInteract())
+			if (TryGetInteractable(collidingObject, out var interactable))
 			{
 				if (focusedInteractable != interactable)
 				{
@@ -47,5 +47,20 @@ public partial class InteractionRaycaster : Node3D
 			focusedInteractable?.HideHint();
 			focusedInteractable = null;
 		}
+	}
+	public bool TryGetInteractable(GodotObject collidingObject, out IInteractable result)
+	{
+		if (collidingObject is IInteractable interactable && interactable.CanInteract())
+		{
+			result = interactable;
+			return true;
+		}
+		if (collidingObject is Node collidingNode && collidingNode.GetParent() is IInteractable interactable1 && interactable1.CanInteract())
+		{
+			result = interactable1;
+			return true;
+		}
+		result = null;
+		return false;
 	}
 }

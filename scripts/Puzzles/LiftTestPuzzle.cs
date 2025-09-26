@@ -11,16 +11,21 @@ public partial class LiftTestPuzzle : BasePuzzle
         interactArea = GetNode<Area3D>("InteractArea");
     }
 
-    public override void _Process(double delta)
+    // public override void _Process(double delta)
+    // {
+    //     if(Data.IsSolved) return;
+
+    //     if(IsPlayerInRange())
+    //     {
+    //         Interact();
+    //         GD.Print("interact");
+    //     }
+    // }
+    public override bool CanInteract()
     {
-        if(Data.IsSolved) return;
-
-        if(IsPlayerInRange())
-        {
-            Interact();
-        }
+        return base.CanInteract() && IsPlayerInRange();
     }
-
+    
     /*To be removed when puzzle is implemented
      * now used to test lift functionality
      * by setting the puzzle as solved when interacted with
@@ -30,8 +35,6 @@ public partial class LiftTestPuzzle : BasePuzzle
         base.Interact();
         SolvePuzzle();
     }
-
-
     public override void Submit()
     {
         SolvePuzzle();
