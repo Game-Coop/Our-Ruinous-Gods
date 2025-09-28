@@ -1,92 +1,62 @@
 using System.Collections.Generic;
 using Godot;
 
-public class Journal : Page
+public partial class Journal : Node, ISavable<SaveData>
 {
-	private SortedDictionary<int, JournalEntry> entries = new SortedDictionary<int, JournalEntry>();
-	[Export] private PackedScene journalEntryTemplate;
-	[Export] private NodePath entryContainerPath;
-	[Export] private NodePath entryNameLabelPath;
-	[Export] private NodePath pageControllerPath;
-	private JournalEntryReader entryReader;
-	private Label entryNameLabel;
-	private Node entryContainer;
-	protected override void _Ready()
-	{
-		base._Ready();
-
-		entryContainer = GetNode(entryContainerPath);
-		entryNameLabel = GetNode<Label>(entryNameLabelPath);
-		entryReader = GetNode<JournalEntryReader>(pageControllerPath);
-	}
+	public Dictionary<int, JournalData> journalDatas = new Dictionary<int, JournalData>();
 	public override void _EnterTree()
 	{
 		base._EnterTree();
-		JournalEvents.OnEntryCollect += OnEntryCollect;
+		JournalEvents.OnUpdateRequest += JournalChanged;
+		JournalEvents.OnEntryCollect += AddData;
 	}
 	public override void _ExitTree()
 	{
 		base._ExitTree();
-		JournalEvents.OnEntryCollect -= OnEntryCollect;
+		JournalEvents.OnUpdateRequest -= JournalChanged;
+		JournalEvents.OnEntryCollect -= AddData;
 	}
-	public override void ShowPage(bool instant = false)
+	private void AddData(JournalData data)
 	{
-		base.ShowPage(instant);
-		if (entryContainer.GetChildCount() > 0)
+		journalDatas.Add(data.Id, data);
+		JournalChanged();
+	}
+	private void RemoveItem(ItemData data)
+	{
+		if (journalDatas.ContainsKey(data.Id))
 		{
-			(entryContainer.GetChild(0) as JournalEntry).GrabFocus();
+			journalDatas.Remove(data.Id);
+			JournalChanged();
+		}
+		else
+		{
+			GD.PrintErr("Tried to remove an item that doesn't exist");
 		}
 	}
-	private void OnEntryCollect(JournalData data)
+	private void JournalChanged()
 	{
-		AddEntry(data);
+		JournalEvents.OnJournalChange.Invoke(journalDatas);
 	}
-	public void AddEntry(JournalData entryData)
-	{
-		if (entries.ContainsKey(entryData.Id))
-		{
-			GD.PrintErr("Item is already in inventory!");
-			return;
-		}
-		var entry = journalEntryTemplate.Instance() as JournalEntry;
-		entry.Setup(entryData);
-		entry.OnFocus += OnEntryFocus;
-		entries.Add(entryData.Id, entry);
 
-		entryContainer.AddChild(entry);
-		ReOrderChilds();
-		ConfigureFocus(entry);
-	}
-	private void ReOrderChilds()
+	public void OnSave(SaveData data)
 	{
-		int index = 0;
-		foreach (var entry in entries)
+		data.collectibleData.JournalIds.Clear();
+		foreach (var item in journalDatas)
 		{
-			entryContainer.MoveChild(entry.Value, index++);
+			data.collectibleData.JournalIds.Add(item.Value.Id);
 		}
 	}
-	public void ConfigureFocus(JournalEntry entry)
-	{
-		var childCount = entryContainer.GetChildCount();
-		int index = entry.GetIndex();
-		var topEntry = index - 1 >= 0 ? entryContainer.GetChildOrNull<JournalEntry>(index - 1) : null;
-		var bottomEntry = index + 1 < childCount ? entryContainer.GetChildOrNull<JournalEntry>(index + 1) : null;
 
-		if (topEntry != null)
-		{
-			entry.FocusNeighbourTop = topEntry.GetPath();
-			topEntry.FocusNeighbourBottom = entry.GetPath();
-		}
-		if (bottomEntry != null)
-		{
-			entry.FocusNeighbourBottom = bottomEntry.GetPath();
-			bottomEntry.FocusNeighbourTop = entry.GetPath();
-		}
-	}
-	private void OnEntryFocus(JournalEntry entry)
+	public void OnLoad(SaveData data)
 	{
-		entryNameLabel.Text = entry.journalData.Name;
-		entryReader.Setup(entry.journalData);
+		journalDatas.Clear();
+		foreach (var id in data.collectibleData.JournalIds)
+		{
+			var journalData = ResourceDatabase.JournalDatas[id];
+			journalDatas.Add(id, journalData);
+			journalData.IsCollected = true;
+		}
+		JournalChanged();
 	}
 
 }

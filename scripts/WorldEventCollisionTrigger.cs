@@ -1,16 +1,16 @@
 using Godot;
 using System;
 
-public class WorldEventCollisionTrigger : Spatial
+public partial class WorldEventCollisionTrigger : Node3D
 {
 	[Export] public string EventName { get; set; }
-	private Area area;
+	private Area3D area;
 	public override void _Ready()
 	{
-		area = GetNode<Area>("Area");
+		area = GetNode<Area3D>("Area3D");
 		area.Monitoring = true;
-		area.Connect("body_entered", this, "OnBodyEntered");
-		area.Connect("area_entered", this, "OnBodyEntered");
+		area.Connect("body_entered", new Callable(this, "OnBodyEntered"));
+		area.Connect("area_entered", new Callable(this, "OnBodyEntered"));
 	}
 	public void OnBodyEntered(Node body)
 	{

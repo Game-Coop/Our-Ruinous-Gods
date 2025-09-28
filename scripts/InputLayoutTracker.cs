@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class InputLayoutTracker : Node
+public partial class InputLayoutTracker : Node
 {
     public static InputLayout CurrentLayout { get; private set; } = InputLayout.KeyboardMouse;
 

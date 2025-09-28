@@ -1,6 +1,6 @@
 using Godot;
 
-public class AudioMixer : Node
+public partial class AudioMixer : Node
 {
 	[Export] private AudioBusLayout audioBusLayout;
 

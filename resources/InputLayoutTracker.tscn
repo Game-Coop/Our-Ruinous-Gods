@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=2 format=3 uid="uid://cdu62ed21oq28"]
 
-[ext_resource path="res://scripts/InputLayoutTracker.cs" type="Script" id=1]
+[ext_resource type="Script" uid="uid://cn81uld6qssv8" path="res://scripts/InputLayoutTracker.cs" id="1"]
 
 [node name="InputLayoutTracker" type="Node"]
-script = ExtResource( 1 )
+script = ExtResource("1")

@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class AudioEntry : Button
+public partial class AudioEntry : Button
 {
 	public event Action<AudioEntry> OnFocus;
 	[Export] private NodePath labelPath;

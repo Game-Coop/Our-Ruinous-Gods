@@ -1,7 +1,7 @@
 using System;
 using Godot;
 
-public class Interactable : Spatial, IInteractable
+public partial class Interactable : Node3D, IInteractable
 {
 	public virtual event Action<BaseEventData> OnInteract;
 	public virtual string InteractionText => "Interact";
@@ -22,7 +22,10 @@ public class Interactable : Spatial, IInteractable
 		if(IsInstanceValid(hint) == false) return;
 		hint?.Hide();
 	}
-
+	public virtual bool CanInteract()
+	{
+		return !GameManager.Instance.FocusedHandheld;
+	}
 	public virtual void Interact()
 	{
 		OnInteract?.Invoke(null);

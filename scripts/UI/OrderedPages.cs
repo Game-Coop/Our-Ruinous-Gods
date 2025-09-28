@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using Godot;
 
-public class OrderedPages : Control
+public partial class OrderedPages : Control
 {
 	public int PageCount => pages.Count;
 	private List<Page> pages = new List<Page>();
@@ -20,7 +20,6 @@ public class OrderedPages : Control
 		if (toIndex > currentIndex)
 		{
 			//forward
-			GD.Print("forward");
 			pages[currentIndex].TweenerSetReverse(true);
 			pages[toIndex].TweenerSetReverse(false);
 			pages[currentIndex].HidePage(isInstant);
@@ -29,7 +28,6 @@ public class OrderedPages : Control
 		else
 		{
 			//backward
-			GD.Print("backward");
 			pages[toIndex].TweenerSetReverse(true);
 			pages[currentIndex].TweenerSetReverse(false);
 			pages[currentIndex].HidePage(isInstant);
@@ -50,13 +48,12 @@ public class OrderedPages : Control
 	public Page AddPage(PackedScene pageTemplate)
 	{
 		Init();
-		var page = pageTemplate.Instance() as Page;
+		var page = pageTemplate.Instantiate() as Page;
 		return AddPage(page);
 	}
 	public Page AddPage(Page page)
 	{
 		Init();
-		GD.Print("Added page");
 		pages.Add(page);
 		if (page.GetParent() != pageContainer)
 		{

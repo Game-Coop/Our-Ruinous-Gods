@@ -2,7 +2,7 @@
 using System;
 using Godot;
 
-public class JournalEntry : Button
+public partial class JournalEntry : Button
 {
 	public event Action<JournalEntry> OnFocus;
 	[Export] private NodePath labelPath;

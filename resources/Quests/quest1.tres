@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Quest" load_steps=4 format=3 uid="uid://dpam3c5tukex3"]
+
+[ext_resource type="Resource" uid="uid://d2wmasd7aqrbp" path="res://resources/Quests/Quest2.tres" id="1_pxnqs"]
+[ext_resource type="Resource" uid="uid://cpam64fvjxjvv" path="res://resources/Quests/Quest Datas/quest1.tres" id="2_lrn7m"]
+[ext_resource type="Script" uid="uid://dsxcx3uacbtus" path="res://scripts/QuestSystem/Quest.cs" id="3_hn5qv"]
+
+[resource]
+script = ExtResource("3_hn5qv")
+ref = ExtResource("2_lrn7m")
+nextQuest = ExtResource("1_pxnqs")
+metadata/_custom_type_script = "uid://dsxcx3uacbtus"

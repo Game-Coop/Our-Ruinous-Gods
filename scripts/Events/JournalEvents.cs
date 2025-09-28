@@ -1,5 +1,6 @@
 
 using System;
+using System.Collections.Generic;
 
 public static class JournalEvents
 {
@@ -7,4 +8,6 @@ public static class JournalEvents
     public static Action<JournalData> OnEntryCollect;
     public static Action OnJournalOpen;
     public static Action OnJournalClose;
+    public static Action<Dictionary<int,JournalData>> OnJournalChange;
+    public static Action OnUpdateRequest;
 }

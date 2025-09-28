@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using Godot;
 
-public class Navbar : Control
+public partial class Navbar : Control
 {
 	private List<Pagination> paginations = new List<Pagination>();
 	public event Action<int, int> OnNavigate;
@@ -23,7 +23,7 @@ public class Navbar : Control
 	{
 		Init();
 
-		var pagination = paginationTemplate.Instance() as Pagination;
+		var pagination = paginationTemplate.Instantiate() as Pagination;
 		pagination.OnClick += () => Select(index, pagination.GetIndex());
 
 		paginationContainer.AddChild(pagination);
@@ -76,8 +76,8 @@ public class Navbar : Control
 		leftButton = GetNode<Button>(leftButtonPath);
 		rightButton = GetNode<Button>(rightButtonPath);
 
-		leftButton.Connect("pressed", this, nameof(LeftButtonPressed));
-		rightButton.Connect("pressed", this, nameof(RightButtonPressed));
+		leftButton.Connect("pressed", new Callable(this, nameof(LeftButtonPressed)));
+		rightButton.Connect("pressed", new Callable(this, nameof(RightButtonPressed)));
 
 		Clear();
 		for (int i = 0; i < paginationContainer.GetChildCount(); i++)
@@ -121,11 +121,11 @@ public class Navbar : Control
 		rightButton.Disabled = index >= (paginations.Count - 1);
 
 		var leftButtonColor = leftButton.Modulate;
-		leftButtonColor.a = leftButton.Disabled ? 0f : 1f;
+		leftButtonColor.A = leftButton.Disabled ? 0f : 1f;
 		leftButton.Modulate = leftButtonColor;
 
 		var rightButtonColor = rightButton.Modulate;
-		rightButtonColor.a = rightButton.Disabled ? 0f : 1f;
+		rightButtonColor.A = rightButton.Disabled ? 0f : 1f;
 		rightButton.Modulate = rightButtonColor;
 	}
    

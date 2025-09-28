@@ -2,7 +2,7 @@
 using System;
 using Godot;
 
-public class InputBindingButton : Button
+public partial class InputBindingButton : Button
 {
 	public event Action<InputBindingButton> OnBindingSelected;
 	public event Action<InputBindingButton> OnBindingUnselected;
@@ -15,9 +15,9 @@ public class InputBindingButton : Button
 		base._Ready();
 		selectionFrame = GetNode<Control>(selectionFramePath);
 
-		Connect("pressed", this, nameof(BindingPressed));
+		Connect("pressed", new Callable(this, nameof(BindingPressed)));
 	}
-	public void ChangeIcon(Texture icon)
+	public void ChangeIcon(Texture2D icon)
 	{
 		Icon = icon;
 	}

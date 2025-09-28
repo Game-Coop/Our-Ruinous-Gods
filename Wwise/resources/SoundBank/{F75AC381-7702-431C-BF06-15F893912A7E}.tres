@@ -1,0 +1,7 @@
+[gd_resource type="WwiseBank" format=3 uid="uid://t15tt23yvm08"]
+
+[resource]
+name = "Test_Bank"
+id = 2314467862
+guid = "{F75AC381-7702-431C-BF06-15F893912A7E}"
+dummy = true

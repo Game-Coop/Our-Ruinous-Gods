@@ -1,5 +1,5 @@
 
-public class KeyboardControlsMenu : BaseControlsMenu
+public partial class KeyboardControlsMenu : BaseControlsMenu
 {
 	public override void SwapKeys(InputBindingButton inputBinding1, InputBindingButton inputBinding2)
 	{

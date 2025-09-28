@@ -11,10 +11,10 @@ border_width_bottom = 2
 border_blend = true
 
 [node name="Item Template" type="Button"]
-margin_right = 611.0
-margin_bottom = 100.0
-rect_min_size = Vector2( 0, 100 )
-custom_styles/focus = SubResource( 5 )
+offset_right = 611.0
+offset_bottom = 100.0
+custom_minimum_size = Vector2( 0, 100 )
+theme_override_styles/focus = SubResource( 5 )
 script = ExtResource( 1 )
 labelPath = NodePath("Label")
 
@@ -22,8 +22,8 @@ labelPath = NodePath("Label")
 anchor_left = 0.5
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -187.5
-margin_right = 305.5
+offset_left = -187.5
+offset_right = 305.5
 text = "Item 1"
 valign = 1
 

@@ -2,9 +2,9 @@
 using System;
 using Godot;
 
-public class GraphicsMenu : Page
+public partial class GraphicsMenu : Page
 {
-	protected override void _Ready()
+	public override void _Ready()
 	{
 		base._Ready();
 	}

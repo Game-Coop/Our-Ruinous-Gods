@@ -1,4 +1,4 @@
-public class GamepadControlsMenu : BaseControlsMenu
+public partial class GamepadControlsMenu : BaseControlsMenu
 {
 	public override void SwapKeys(InputBindingButton inputBinding1, InputBindingButton inputBinding2)
 	{

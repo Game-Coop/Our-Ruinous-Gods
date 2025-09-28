@@ -8,4 +8,4 @@ script = ExtResource( 1 )
 Id = 0
 Name = "Test Audio"
 Category = 0
-AudioStreamSample = ExtResource( 2 )
+AudioStreamWAV = ExtResource( 2 )

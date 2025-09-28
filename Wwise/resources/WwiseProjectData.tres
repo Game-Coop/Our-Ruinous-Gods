@@ -1,0 +1,120 @@
+[gd_resource type="WwiseProjectData" load_steps=18 format=3 uid="uid://bi0akrday2gfi"]
+
+[sub_resource type="WwiseTreeObject" id="WwiseTreeObject_dn5s6"]
+path = "\\SoundBanks\\Default Work Unit\\Test_Bank"
+type = 7
+name = "Test_Bank"
+guid = "{F75AC381-7702-431C-BF06-15F893912A7E}"
+id = 2314467862
+
+[sub_resource type="WwiseTreeObject" id="WwiseTreeObject_abdhx"]
+children = [SubResource("WwiseTreeObject_dn5s6")]
+name = "Default Work Unit"
+id = 125608783
+
+[sub_resource type="WwiseTreeObject" id="WwiseTreeObject_wbiwk"]
+path = "\\Master-Mixer Hierarchy\\Default Work Unit\\Master Audio Bus"
+type = 2
+name = "Master Audio Bus"
+guid = "{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}"
+id = 3803692087
+
+[sub_resource type="WwiseTreeObject" id="WwiseTreeObject_n4jq4"]
+children = [SubResource("WwiseTreeObject_wbiwk")]
+name = "Default Work Unit"
+id = 125608783
+
+[sub_resource type="WwiseTreeObjectEvent" id="WwiseTreeObjectEvent_2b7v5"]
+max_duration = 1.464
+min_duration = 0.893208
+path = "\\Events\\Default Work Unit\\Play_Test"
+type = 3
+name = "Play_Test"
+guid = "{910A6D2B-9B33-4E83-A609-55EC170EBCAE}"
+id = 3187507146
+
+[sub_resource type="WwiseTreeObject" id="WwiseTreeObject_yty4k"]
+children = [SubResource("WwiseTreeObjectEvent_2b7v5")]
+name = "Default Work Unit"
+id = 125608783
+
+[sub_resource type="WwiseTreeObject" id="WwiseTreeObject_rq3ka"]
+path = "\\Game Parameters\\Default Work Unit\\Testing_RTIPC"
+type = 13
+name = "Testing_RTIPC"
+guid = "{B205323F-C078-43F1-8F92-7026FFEB7DB0}"
+id = 686920922
+
+[sub_resource type="WwiseTreeObject" id="WwiseTreeObject_tfk2a"]
+children = [SubResource("WwiseTreeObject_rq3ka")]
+name = "Default Work Unit"
+id = 125608783
+
+[sub_resource type="WwiseTreeObject" id="WwiseTreeObject_e6o1r"]
+path = "\\States\\Default Work Unit\\Testing_State\\None"
+type = 8
+name = "None"
+guid = "{704C725A-C306-4839-BFB5-DD7B56F5E795}"
+id = 748895195
+
+[sub_resource type="WwiseTreeObject" id="WwiseTreeObject_2v05p"]
+path = "\\States\\Default Work Unit\\Testing_State\\Testing_State_Off"
+type = 8
+name = "Testing_State_Off"
+guid = "{21994044-DFAF-46E7-AD05-9D4F1106C62E}"
+id = 2680282971
+
+[sub_resource type="WwiseTreeObject" id="WwiseTreeObject_tmxjl"]
+path = "\\States\\Default Work Unit\\Testing_State\\Testing_State_On"
+type = 8
+name = "Testing_State_On"
+guid = "{F6A4B3CB-7590-455B-9D96-D36785232DF8}"
+id = 3822738919
+
+[sub_resource type="WwiseTreeObject" id="WwiseTreeObject_im43k"]
+path = "\\States\\Default Work Unit\\Testing_State"
+children = [SubResource("WwiseTreeObject_e6o1r"), SubResource("WwiseTreeObject_2v05p"), SubResource("WwiseTreeObject_tmxjl")]
+type = 9
+name = "Testing_State"
+guid = "{6E3C2B64-ADC6-46A7-BCE3-C973EC5861BA}"
+id = 1146584329
+
+[sub_resource type="WwiseTreeObject" id="WwiseTreeObject_pgs3n"]
+children = [SubResource("WwiseTreeObject_im43k")]
+name = "Default Work Unit"
+id = 125608783
+
+[sub_resource type="WwiseTreeObject" id="WwiseTreeObject_5ewln"]
+path = "\\Switches\\Default Work Unit\\Testing_Switch_Group\\Testing_Switch_Off"
+type = 10
+name = "Testing_Switch_Off"
+guid = "{3BEB703F-C31B-49AA-B95F-8038E6549AAF}"
+id = 3908775632
+
+[sub_resource type="WwiseTreeObject" id="WwiseTreeObject_oeww5"]
+path = "\\Switches\\Default Work Unit\\Testing_Switch_Group\\Testing_Switch_On"
+type = 10
+name = "Testing_Switch_On"
+guid = "{A102C407-071F-4ACC-BE60-036B687FD137}"
+id = 3982860346
+
+[sub_resource type="WwiseTreeObject" id="WwiseTreeObject_4djpx"]
+path = "\\Switches\\Default Work Unit\\Testing_Switch_Group"
+children = [SubResource("WwiseTreeObject_5ewln"), SubResource("WwiseTreeObject_oeww5")]
+type = 11
+name = "Testing_Switch_Group"
+guid = "{1F3ED06F-4BFC-44D3-B135-EF16117F724B}"
+id = 1993586446
+
+[sub_resource type="WwiseTreeObject" id="WwiseTreeObject_mqnyt"]
+children = [SubResource("WwiseTreeObject_4djpx")]
+name = "Default Work Unit"
+id = 125608783
+
+[resource]
+bus_root = [SubResource("WwiseTreeObject_n4jq4")]
+bank_root = [SubResource("WwiseTreeObject_abdhx")]
+event_root = [SubResource("WwiseTreeObject_yty4k")]
+game_parameter_root = [SubResource("WwiseTreeObject_tfk2a")]
+state_root = [SubResource("WwiseTreeObject_pgs3n")]
+switch_root = [SubResource("WwiseTreeObject_mqnyt")]

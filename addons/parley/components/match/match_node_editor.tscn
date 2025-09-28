@@ -1,0 +1,83 @@
+[gd_scene load_steps=5 format=3 uid="uid://bec24fvhws41m"]
+
+[ext_resource type="PackedScene" uid="uid://m3v11vm16l8y" path="res://addons/parley/components/node/node_editor.tscn" id="1_kdtf2"]
+[ext_resource type="Script" uid="uid://cqwma84t2j4tb" path="res://addons/parley/components/match/match_node_editor.gd" id="2_jun7c"]
+[ext_resource type="Texture2D" uid="uid://c4qx01xbrjp7h" path="res://addons/parley/assets/Edit.svg" id="3_frbg2"]
+[ext_resource type="Texture2D" uid="uid://oqt4tn7c8fd" path="res://addons/parley/assets/Fallback.svg" id="3_uceht"]
+
+[node name="ParleyMatchNodeEditor" instance=ExtResource("1_kdtf2")]
+script = ExtResource("2_jun7c")
+type = 7
+
+[node name="TitleLabel" parent="TitleContainer/TitlePanelContainer/TitleMarginContainer/TitlePartsContainer" index="0"]
+text = "Match [ID: ]"
+
+[node name="MatchDescriptionContainer" type="VBoxContainer" parent="BodyMarginContainer/BodyScrollContainer/BodyContainer" index="0"]
+layout_mode = 2
+
+[node name="MatchDescription" type="TextEdit" parent="BodyMarginContainer/BodyScrollContainer/BodyContainer/MatchDescriptionContainer" index="0"]
+unique_name_in_owner = true
+layout_mode = 2
+placeholder_text = "Match description (Eg. Difficulty level)"
+wrap_mode = 1
+scroll_past_end_of_file = true
+scroll_fit_content_height = true
+use_default_word_separators = false
+
+[node name="HSeparator" type="HSeparator" parent="BodyMarginContainer/BodyScrollContainer/BodyContainer" index="1"]
+layout_mode = 2
+
+[node name="FactContainer" type="HBoxContainer" parent="BodyMarginContainer/BodyScrollContainer/BodyContainer" index="2"]
+layout_mode = 2
+
+[node name="FactLabel" type="Label" parent="BodyMarginContainer/BodyScrollContainer/BodyContainer/FactContainer" index="0"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Fact:"
+
+[node name="FactSelector" type="OptionButton" parent="BodyMarginContainer/BodyScrollContainer/BodyContainer/FactContainer" index="1"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(150, 0)
+size_flags_horizontal = 3
+text_overrun_behavior = 3
+clip_text = true
+
+[node name="EditFactButton" type="Button" parent="BodyMarginContainer/BodyScrollContainer/BodyContainer/FactContainer" index="2"]
+layout_mode = 2
+tooltip_text = "Edit Action Script."
+icon = ExtResource("3_frbg2")
+
+[node name="HSeparator2" type="HSeparator" parent="BodyMarginContainer/BodyScrollContainer/BodyContainer" index="3"]
+layout_mode = 2
+
+[node name="CasesContainer" type="VBoxContainer" parent="BodyMarginContainer/BodyScrollContainer/BodyContainer" index="4"]
+layout_mode = 2
+
+[node name="CasesLabel" type="Label" parent="BodyMarginContainer/BodyScrollContainer/BodyContainer/CasesContainer" index="0"]
+layout_mode = 2
+text = "Cases:"
+
+[node name="CasesEditor" type="VBoxContainer" parent="BodyMarginContainer/BodyScrollContainer/BodyContainer/CasesContainer" index="1"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="HSeparator3" type="HSeparator" parent="BodyMarginContainer/BodyScrollContainer/BodyContainer" index="5"]
+layout_mode = 2
+
+[node name="AddCaseButton" type="Button" parent="BodyMarginContainer/BodyScrollContainer/BodyContainer" index="6"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Add Case"
+
+[node name="AddFallbackCaseButton" type="Button" parent="BodyMarginContainer/BodyScrollContainer/BodyContainer" index="7"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Add Fallback Case"
+icon = ExtResource("3_uceht")
+
+[connection signal="text_changed" from="BodyMarginContainer/BodyScrollContainer/BodyContainer/MatchDescriptionContainer/MatchDescription" to="." method="_on_match_description_text_changed"]
+[connection signal="item_selected" from="BodyMarginContainer/BodyScrollContainer/BodyContainer/FactContainer/FactSelector" to="." method="_on_fact_selector_item_selected"]
+[connection signal="pressed" from="BodyMarginContainer/BodyScrollContainer/BodyContainer/FactContainer/EditFactButton" to="." method="_on_edit_fact_button_pressed"]
+[connection signal="pressed" from="BodyMarginContainer/BodyScrollContainer/BodyContainer/AddCaseButton" to="." method="_on_add_case_button_pressed"]
+[connection signal="pressed" from="BodyMarginContainer/BodyScrollContainer/BodyContainer/AddFallbackCaseButton" to="." method="_on_add_fallback_case_button_pressed"]
