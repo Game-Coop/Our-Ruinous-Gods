@@ -3,28 +3,15 @@ using Godot;
 
 public partial class AudioSettingsMenu : Page
 {
-	[Export] private NodePath masterSliderPath;
-	[Export] private NodePath dialogSliderPath;
-	[Export] private NodePath sfxSliderPath;
-	[Export] private NodePath musicSliderPath;
-	[Export] private NodePath envrionmentSliderPath;
-
-	private Slider _masterSlider;
-	private Slider _dialogSlider;
-	private Slider _sfxSlider;
-	private Slider _musicSlider;
-	private Slider _environmentSlider;
+	[Export] private Slider _masterSlider;
+	[Export] private Slider _dialogSlider;
+	[Export] private Slider _sfxSlider;
+	[Export] private Slider _musicSlider;
+	[Export] private Slider _environmentSlider;
 
 	public override void _Ready()
 	{
 		base._Ready();
-
-		_masterSlider = GetNode<Slider>(masterSliderPath);
-		_dialogSlider = GetNode<Slider>(dialogSliderPath);
-		_sfxSlider = GetNode<Slider>(sfxSliderPath);
-		_musicSlider = GetNode<Slider>(musicSliderPath);
-		_environmentSlider = GetNode<Slider>(envrionmentSliderPath);
-
 		_masterSlider.Connect("value_changed", new Callable(this, nameof(MasterSliderChanged)));
 		_dialogSlider.Connect("value_changed", new Callable(this, nameof(DialogSliderChanged)));
 		_sfxSlider.Connect("value_changed", new Callable(this, nameof(SfxSliderSliderChanged)));
