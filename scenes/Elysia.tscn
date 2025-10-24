@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://eaur2wqbevho"]
 
-[ext_resource type="PackedScene" uid="uid://b1lng8ngwsx8o" path="res://entities/Player.tscn" id="1"]
+[ext_resource type="PackedScene" uid="uid://ditkme4k3jpy0" path="res://entities/Player.tscn" id="1"]
 [ext_resource type="Texture2D" uid="uid://0ckjhg2p8cya" path="res://assets/textures/grid.png" id="3"]
 [ext_resource type="PackedScene" uid="uid://bbtlh1kjqcs54" path="res://objects/PowerSwitch.tscn" id="4"]
 [ext_resource type="PackedScene" uid="uid://bmyx37pp63kbo" path="res://objects/PowerableLight.tscn" id="5"]

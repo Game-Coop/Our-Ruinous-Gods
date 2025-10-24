@@ -250,5 +250,6 @@ process_mode = 1
 transform = Transform3D(-0.714412, -0.224214, 0.66283, -1.49012e-08, 0.947272, 0.320431, -0.699726, 0.22892, -0.676742, 121.254, 46.0335, -7.69838)
 curve = SubResource("Curve3D_rj5xk")
 
-[node name="Outline Shader Quad" parent="Scene Transitioner" instance=ExtResource("5_wns2j")]
-transform = Transform3D(-0.00999999, -2.32831e-10, -1.50996e-09, -2.32831e-10, 0.01, 2.32831e-10, 1.50996e-09, 2.32831e-10, -0.01, 7.62939e-06, 9.53674e-07, -0.884003)
+[node name="Outline Shader Quad" parent="." instance=ExtResource("5_wns2j")]
+transform = Transform3D(0.00714411, -0.00224214, -0.0066283, 3.76095e-10, 0.00947272, -0.00320431, 0.00699725, 0.0022892, 0.00676742, 120.668, 45.7502, -7.10015)
+skeleton = NodePath("../Camera3D")

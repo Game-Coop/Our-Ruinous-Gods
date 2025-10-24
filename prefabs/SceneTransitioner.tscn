@@ -9,11 +9,10 @@ _data = {
 }
 point_count = 6
 
-[node name="Scene Transitioner" type="Path3D" node_paths=PackedStringArray("pathFollow3D")]
+[node name="Scene Transitioner" type="Path3D"]
 transform = Transform3D(-0.714412, -0.224214, 0.66283, -1.49012e-08, 0.947272, 0.320431, -0.699726, 0.22892, -0.676742, 0, 0, 0)
 curve = SubResource("Curve3D_0cgwn")
 script = ExtResource("1_2cfxm")
-pathFollow3D = NodePath("PathFollow3D")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="."]
 transform = Transform3D(0.999954, 1.56137e-05, 0.000594986, -9.09453e-13, 0.999584, -0.0262323, -0.000595194, 0.0262318, 0.999604, -0.00119781, -0.150944, -0.0503235)

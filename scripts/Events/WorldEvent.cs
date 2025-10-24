@@ -2,5 +2,5 @@ using Godot;
 
 public partial class WorldEvent : GodotObject 
 {
-    public string Name;
+	public string Name;
 }
