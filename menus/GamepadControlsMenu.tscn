@@ -1,14 +1,26 @@
-[gd_scene load_steps=9 format=3 uid="uid://cc2x222go4i8e"]
+[gd_scene load_steps=16 format=3 uid="uid://cc2x222go4i8e"]
 
 [ext_resource type="Theme" path="res://themes/inventoryScrollbarTheme.tres" id="1"]
 [ext_resource type="Script" uid="uid://bbwa3gfr35dgg" path="res://scripts/UI/MovingPanelTweener.cs" id="2"]
 [ext_resource type="Script" uid="uid://bpevk21ctkop4" path="res://scripts/UI/GamepadControlsMenu.cs" id="3"]
+[ext_resource type="Script" uid="uid://cecmhhcex34pa" path="res://scripts/UI/CustomLabel.cs" id="3_bh246"]
 [ext_resource type="PackedScene" path="res://ui/InputBindingButton.tscn" id="4"]
 [ext_resource type="Resource" path="res://resources/KeyInfos/Gamepad/PS_Select.tres" id="5"]
+[ext_resource type="Script" uid="uid://8yifj8qsq2a6" path="res://scripts/UI/InputBindingButton.cs" id="5_w268n"]
 [ext_resource type="Resource" path="res://resources/KeyInfos/Gamepad/PS_Start.tres" id="6"]
 [ext_resource type="Resource" path="res://resources/KeyInfos/Gamepad/PS_East.tres" id="7"]
 
 [sub_resource type="StyleBoxEmpty" id="14"]
+
+[sub_resource type="StyleBoxEmpty" id="3"]
+
+[sub_resource type="StyleBoxEmpty" id="4"]
+
+[sub_resource type="StyleBoxEmpty" id="2"]
+
+[sub_resource type="StyleBoxEmpty" id="13"]
+
+[sub_resource type="StyleBoxEmpty" id="5"]
 
 [node name="GamepadControlsMenu" type="Control"]
 layout_mode = 3
@@ -55,58 +67,104 @@ size_flags_vertical = 3
 
 [node name="Title" type="Label" parent="ScrollContainer/Panel/HBoxContainer/Input Names Column"]
 layout_mode = 2
+script = ExtResource("3_bh246")
 
 [node name="Inventory" type="Label" parent="ScrollContainer/Panel/HBoxContainer/Input Names Column"]
 layout_mode = 2
 text = "Inventory"
+script = ExtResource("3_bh246")
 
 [node name="Journal" type="Label" parent="ScrollContainer/Panel/HBoxContainer/Input Names Column"]
 layout_mode = 2
 text = "Journal"
+script = ExtResource("3_bh246")
 
 [node name="Audio Player" type="Label" parent="ScrollContainer/Panel/HBoxContainer/Input Names Column"]
 layout_mode = 2
 text = "Audio Player"
+script = ExtResource("3_bh246")
 
 [node name="Pause" type="Label" parent="ScrollContainer/Panel/HBoxContainer/Input Names Column"]
 layout_mode = 2
 text = "Pause"
+script = ExtResource("3_bh246")
 
 [node name="Interact" type="Label" parent="ScrollContainer/Panel/HBoxContainer/Input Names Column"]
 layout_mode = 2
 text = "Interact"
+script = ExtResource("3_bh246")
 
 [node name="Playstation Column" type="VBoxContainer" parent="ScrollContainer/Panel/HBoxContainer"]
 layout_mode = 2
 
 [node name="Label" type="Label" parent="ScrollContainer/Panel/HBoxContainer/Playstation Column"]
 layout_mode = 2
-theme_override_colors/font_color = Color(1, 1, 1, 0.294118)
 text = "PS / Xbox"
 horizontal_alignment = 1
+script = ExtResource("3_bh246")
 
-[node name="Inventory Button" parent="ScrollContainer/Panel/HBoxContainer/Playstation Column" instance=ExtResource("4")]
+[node name="Inventory Button" type="Button" parent="ScrollContainer/Panel/HBoxContainer/Playstation Column" instance=ExtResource("4")]
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
+theme_override_styles/focus = SubResource("3")
+theme_override_styles/disabled = SubResource("4")
+theme_override_styles/hover = SubResource("2")
+theme_override_styles/pressed = SubResource("13")
+theme_override_styles/normal = SubResource("5")
 text = "Start / Menu"
+script = ExtResource("5_w268n")
 keyInfo = ExtResource("6")
+selectionFramePath = NodePath("TextureRect")
 
-[node name="Journal Button" parent="ScrollContainer/Panel/HBoxContainer/Playstation Column" instance=ExtResource("4")]
+[node name="Journal Button" type="Button" parent="ScrollContainer/Panel/HBoxContainer/Playstation Column" instance=ExtResource("4")]
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
+theme_override_styles/focus = SubResource("3")
+theme_override_styles/disabled = SubResource("4")
+theme_override_styles/hover = SubResource("2")
+theme_override_styles/pressed = SubResource("13")
+theme_override_styles/normal = SubResource("5")
 text = "None"
+script = ExtResource("5_w268n")
+selectionFramePath = NodePath("TextureRect")
 
-[node name="Audio Player Button" parent="ScrollContainer/Panel/HBoxContainer/Playstation Column" instance=ExtResource("4")]
+[node name="Audio Player Button" type="Button" parent="ScrollContainer/Panel/HBoxContainer/Playstation Column" instance=ExtResource("4")]
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
+theme_override_styles/focus = SubResource("3")
+theme_override_styles/disabled = SubResource("4")
+theme_override_styles/hover = SubResource("2")
+theme_override_styles/pressed = SubResource("13")
+theme_override_styles/normal = SubResource("5")
 text = "None"
+script = ExtResource("5_w268n")
+selectionFramePath = NodePath("TextureRect")
 
-[node name="Pause Button" parent="ScrollContainer/Panel/HBoxContainer/Playstation Column" instance=ExtResource("4")]
+[node name="Pause Button" type="Button" parent="ScrollContainer/Panel/HBoxContainer/Playstation Column" instance=ExtResource("4")]
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
+theme_override_styles/focus = SubResource("3")
+theme_override_styles/disabled = SubResource("4")
+theme_override_styles/hover = SubResource("2")
+theme_override_styles/pressed = SubResource("13")
+theme_override_styles/normal = SubResource("5")
 text = "Select / Back"
+script = ExtResource("5_w268n")
 keyInfo = ExtResource("5")
+selectionFramePath = NodePath("TextureRect")
 
-[node name="Interact Button" parent="ScrollContainer/Panel/HBoxContainer/Playstation Column" instance=ExtResource("4")]
+[node name="Interact Button" type="Button" parent="ScrollContainer/Panel/HBoxContainer/Playstation Column" instance=ExtResource("4")]
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
+theme_override_styles/focus = SubResource("3")
+theme_override_styles/disabled = SubResource("4")
+theme_override_styles/hover = SubResource("2")
+theme_override_styles/pressed = SubResource("13")
+theme_override_styles/normal = SubResource("5")
 text = "[] / X"
+script = ExtResource("5_w268n")
 keyInfo = ExtResource("7")
+selectionFramePath = NodePath("TextureRect")
 
 [node name="Label" type="Label" parent="ScrollContainer/Panel"]
 visible = false
@@ -120,6 +178,7 @@ offset_top = -363.0
 offset_right = 272.0
 text = "Select the binding you want to swap"
 horizontal_alignment = 1
+script = ExtResource("3_bh246")
 
 [node name="Panel Tweener" type="Control" parent="."]
 anchors_preset = 0

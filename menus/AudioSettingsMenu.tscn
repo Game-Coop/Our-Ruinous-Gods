@@ -1,24 +1,24 @@
-[gd_scene load_steps=4 format=3 uid="uid://bv3x50trujqnr"]
+[gd_scene load_steps=5 format=3 uid="uid://bv3x50trujqnr"]
 
 [ext_resource type="Script" uid="uid://bbwa3gfr35dgg" path="res://scripts/UI/MovingPanelTweener.cs" id="1"]
 [ext_resource type="Script" uid="uid://c1b1x61gvovm2" path="res://scripts/UI/AudioSettingsMenu.cs" id="2"]
+[ext_resource type="Script" uid="uid://cecmhhcex34pa" path="res://scripts/UI/CustomLabel.cs" id="2_bjnoh"]
 
-[sub_resource type="StyleBoxEmpty" id="1"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vk0v2"]
 
-[node name="AudioSettingsMenu" type="Panel"]
+[node name="AudioSettingsMenu" type="Panel" node_paths=PackedStringArray("_masterSlider", "_dialogSlider", "_sfxSlider", "_musicSlider", "_environmentSlider")]
 clip_contents = true
-anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_styles/panel = SubResource("1")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_vk0v2")
 script = ExtResource("2")
-masterSliderPath = NodePath("Panel/Panel/Master Slider")
-dialogSliderPath = NodePath("Panel/Panel/Dialog Slider")
-sfxSliderPath = NodePath("Panel/Panel/Sfx Slider")
-musicSliderPath = NodePath("Panel/Panel/Music Slider")
-envrionmentSliderPath = NodePath("Panel/Panel/Environment Slider")
+_masterSlider = NodePath("Panel/Panel/Master Slider")
+_dialogSlider = NodePath("Panel/Panel/Dialog Slider")
+_sfxSlider = NodePath("Panel/Panel/Sfx Slider")
+_musicSlider = NodePath("Panel/Panel/Music Slider")
+_environmentSlider = NodePath("Panel/Panel/Environment Slider")
 panelTweenerPath = NodePath("Panel Tweener")
 
 [node name="Panel" type="Panel" parent="."]
@@ -46,6 +46,7 @@ layout_mode = 2
 layout_mode = 0
 anchor_top = 0.5
 anchor_bottom = 0.5
+offset_left = -1.0
 offset_top = -24.0
 offset_bottom = 24.0
 grow_horizontal = 0
@@ -53,6 +54,7 @@ grow_vertical = 2
 text = "Master"
 horizontal_alignment = 2
 vertical_alignment = 1
+script = ExtResource("2_bjnoh")
 
 [node name="Music Slider" type="HSlider" parent="Panel/Panel"]
 layout_mode = 2
@@ -61,6 +63,7 @@ layout_mode = 2
 layout_mode = 0
 anchor_top = 0.5
 anchor_bottom = 0.5
+offset_left = -1.0
 offset_top = -24.0
 offset_bottom = 24.0
 grow_horizontal = 0
@@ -68,6 +71,7 @@ grow_vertical = 2
 text = "Music"
 horizontal_alignment = 2
 vertical_alignment = 1
+script = ExtResource("2_bjnoh")
 
 [node name="Dialog Slider" type="HSlider" parent="Panel/Panel"]
 layout_mode = 2
@@ -76,6 +80,7 @@ layout_mode = 2
 layout_mode = 0
 anchor_top = 0.5
 anchor_bottom = 0.5
+offset_left = -1.0
 offset_top = -24.0
 offset_bottom = 24.0
 grow_horizontal = 0
@@ -83,6 +88,7 @@ grow_vertical = 2
 text = "Dialog"
 horizontal_alignment = 2
 vertical_alignment = 1
+script = ExtResource("2_bjnoh")
 
 [node name="Sfx Slider" type="HSlider" parent="Panel/Panel"]
 layout_mode = 2
@@ -91,6 +97,7 @@ layout_mode = 2
 layout_mode = 0
 anchor_top = 0.5
 anchor_bottom = 0.5
+offset_left = -1.0
 offset_top = -24.0
 offset_bottom = 24.0
 grow_horizontal = 0
@@ -98,6 +105,7 @@ grow_vertical = 2
 text = "Sound Effects"
 horizontal_alignment = 2
 vertical_alignment = 1
+script = ExtResource("2_bjnoh")
 
 [node name="Environment Slider" type="HSlider" parent="Panel/Panel"]
 layout_mode = 2
@@ -106,6 +114,7 @@ layout_mode = 2
 layout_mode = 0
 anchor_top = 0.5
 anchor_bottom = 0.5
+offset_left = -1.0
 offset_top = -24.0
 offset_bottom = 24.0
 grow_horizontal = 0
@@ -113,6 +122,7 @@ grow_vertical = 2
 text = "Environment"
 horizontal_alignment = 2
 vertical_alignment = 1
+script = ExtResource("2_bjnoh")
 
 [node name="Label" type="Label" parent="Panel"]
 layout_mode = 0
@@ -121,9 +131,10 @@ anchor_right = 0.5
 offset_left = -129.5
 offset_top = 100.0
 offset_right = 129.5
-offset_bottom = 48.0
+offset_bottom = 123.0
 text = "Audio"
 horizontal_alignment = 1
+script = ExtResource("2_bjnoh")
 
 [node name="Panel Tweener" type="Control" parent="."]
 anchors_preset = 0

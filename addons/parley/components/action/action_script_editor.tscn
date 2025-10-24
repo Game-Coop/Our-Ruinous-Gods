@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://dswbt3yqp34bc"]
+[gd_scene load_steps=7 format=3 uid="uid://dswbt3yqp34bc"]
 
 [ext_resource type="Script" uid="uid://blp3obvqxbd2p" path="res://addons/parley/components/action/action_script_editor.gd" id="1_b7gwc"]
 [ext_resource type="PackedScene" uid="uid://dcaqonk76b5qj" path="res://addons/parley/components/editor/string_editor.tscn" id="1_ncn3y"]
 [ext_resource type="PackedScene" uid="uid://dlqqxs60xui5w" path="res://addons/parley/components/editor/resource_editor.tscn" id="2_b7gwc"]
+[ext_resource type="Script" uid="uid://dl1srgeyxyjhp" path="res://addons/parley/components/editor/string_editor.gd" id="3_72aph"]
 [ext_resource type="Texture2D" uid="uid://dres8tr2nd82o" path="res://addons/parley/assets/Remove.svg" id="3_ubmjh"]
+[ext_resource type="Script" uid="uid://behpdnx34u6d7" path="res://addons/parley/components/editor/resource_editor.gd" id="5_v1ifu"]
 
 [node name="ActionScriptEditor" type="PanelContainer"]
 offset_right = 40.0
@@ -25,19 +27,22 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 5
 
-[node name="IdEditor" parent="ActionScriptEditorMarginContainer/ActionScriptEditorContainer/DataContainer" instance=ExtResource("1_ncn3y")]
+[node name="IdEditor" type="HBoxContainer" parent="ActionScriptEditorMarginContainer/ActionScriptEditorContainer/DataContainer" instance=ExtResource("1_ncn3y")]
 unique_name_in_owner = true
 layout_mode = 2
+script = ExtResource("3_72aph")
 key = "id"
 
-[node name="NameEditor" parent="ActionScriptEditorMarginContainer/ActionScriptEditorContainer/DataContainer" instance=ExtResource("1_ncn3y")]
+[node name="NameEditor" type="HBoxContainer" parent="ActionScriptEditorMarginContainer/ActionScriptEditorContainer/DataContainer" instance=ExtResource("1_ncn3y")]
 unique_name_in_owner = true
 layout_mode = 2
+script = ExtResource("3_72aph")
 key = "name"
 
-[node name="ResourceEditor" parent="ActionScriptEditorMarginContainer/ActionScriptEditorContainer/DataContainer" instance=ExtResource("2_b7gwc")]
+[node name="ResourceEditor" type="HBoxContainer" parent="ActionScriptEditorMarginContainer/ActionScriptEditorContainer/DataContainer" instance=ExtResource("2_b7gwc")]
 unique_name_in_owner = true
 layout_mode = 2
+script = ExtResource("5_v1ifu")
 key = "ref"
 base_type = "GDScript"
 

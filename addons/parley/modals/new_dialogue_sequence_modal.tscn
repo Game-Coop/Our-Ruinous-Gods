@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://1alef4tqlskn"]
+[gd_scene load_steps=4 format=3 uid="uid://1alef4tqlskn"]
 
 [ext_resource type="Script" uid="uid://k61ki1a2kh34" path="res://addons/parley/modals/new_dialogue_sequence_modal.gd" id="1_r74fp"]
 [ext_resource type="Texture2D" uid="uid://d4d8bblglcblx" path="res://addons/parley/assets/Folder.svg" id="2_1rnpk"]
+[ext_resource type="Script" uid="uid://cecmhhcex34pa" path="res://scripts/UI/CustomLabel.cs" id="2_v8no8"]
 
 [node name="NewDialogueSequenceModal" type="Window"]
 auto_translate_mode = 1
@@ -33,6 +34,7 @@ layout_mode = 2
 [node name="PathLabel" type="Label" parent="NewDialogueMarginContainer/NewDialogueContainer/PathContainer"]
 layout_mode = 2
 text = "Path:"
+script = ExtResource("2_v8no8")
 
 [node name="PathEdit" type="LineEdit" parent="NewDialogueMarginContainer/NewDialogueContainer/PathContainer"]
 unique_name_in_owner = true
@@ -52,6 +54,7 @@ layout_mode = 2
 [node name="TitleLabel" type="Label" parent="NewDialogueMarginContainer/NewDialogueContainer/TitleContainer"]
 layout_mode = 2
 text = "Title:"
+script = ExtResource("2_v8no8")
 
 [node name="TitleEdit" type="LineEdit" parent="NewDialogueMarginContainer/NewDialogueContainer/TitleContainer"]
 unique_name_in_owner = true

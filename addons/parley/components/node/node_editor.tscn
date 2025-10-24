@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://m3v11vm16l8y"]
+[gd_scene load_steps=5 format=3 uid="uid://m3v11vm16l8y"]
 
 [ext_resource type="Script" uid="uid://edcww4owyx04" path="res://addons/parley/components/node/node_editor.gd" id="1_g4urk"]
 [ext_resource type="Texture2D" uid="uid://dres8tr2nd82o" path="res://addons/parley/assets/Remove.svg" id="2_bbjsx"]
+[ext_resource type="Script" uid="uid://cecmhhcex34pa" path="res://scripts/UI/CustomLabel.cs" id="2_f0jla"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l4dko"]
 bg_color = Color(0.658824, 0.313726, 0.0470588, 1)
@@ -33,10 +34,10 @@ theme_override_constants/margin_bottom = 1
 layout_mode = 2
 
 [node name="TitleLabel" type="Label" parent="TitleContainer/TitlePanelContainer/TitleMarginContainer/TitlePartsContainer"]
-unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Unknown [ID: ]"
+script = ExtResource("2_f0jla")
 
 [node name="DeleteNodeButton" type="Button" parent="TitleContainer/TitlePanelContainer/TitleMarginContainer/TitlePartsContainer"]
 layout_mode = 2

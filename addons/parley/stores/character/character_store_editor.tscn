@@ -1,12 +1,14 @@
-[gd_scene load_steps=8 format=3 uid="uid://b282u3bhn7ncf"]
+[gd_scene load_steps=10 format=3 uid="uid://b282u3bhn7ncf"]
 
 [ext_resource type="Script" uid="uid://d2kl6i115lxk" path="res://addons/parley/stores/character/character_store_editor.gd" id="1_6ff4i"]
 [ext_resource type="Texture2D" uid="uid://bmyblj8lm0jme" path="res://addons/parley/assets/Save.svg" id="2_hnfne"]
 [ext_resource type="Texture2D" uid="uid://ct6iywe1qjuh3" path="res://addons/parley/assets/New.svg" id="3_hnfne"]
+[ext_resource type="Script" uid="uid://behpdnx34u6d7" path="res://addons/parley/components/editor/resource_editor.gd" id="3_t810p"]
 [ext_resource type="PackedScene" uid="uid://dlqqxs60xui5w" path="res://addons/parley/components/editor/resource_editor.tscn" id="4_6q5xl"]
 [ext_resource type="Texture2D" uid="uid://drrcpeyo5x1ih" path="res://addons/parley/assets/Warning.svg" id="4_i65ff"]
 [ext_resource type="PackedScene" uid="uid://msdptt8ygebm" path="res://addons/parley/stores/register_store_modal.tscn" id="5_885rw"]
 [ext_resource type="Texture2D" uid="uid://cr4knibdm85n1" path="res://addons/parley/assets/Search.svg" id="7_kbaov"]
+[ext_resource type="Script" uid="uid://85wkenyryluy" path="res://addons/parley/stores/register_store_modal.gd" id="9_kbaov"]
 
 [node name="CharacterStoreEditor" type="PanelContainer"]
 offset_right = 40.0
@@ -24,10 +26,11 @@ layout_mode = 2
 [node name="AvailableStoresContainer" type="HBoxContainer" parent="CharacterStoreMarginContainer/CharacterStoreContainer"]
 layout_mode = 2
 
-[node name="CharacterStore" parent="CharacterStoreMarginContainer/CharacterStoreContainer/AvailableStoresContainer" instance=ExtResource("4_6q5xl")]
+[node name="CharacterStore" type="HBoxContainer" parent="CharacterStoreMarginContainer/CharacterStoreContainer/AvailableStoresContainer" instance=ExtResource("4_6q5xl")]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
+script = ExtResource("3_t810p")
 key = "Character Store"
 base_type = "ParleyCharacterStore"
 
@@ -53,9 +56,10 @@ tooltip_text = "Create and register new Character Store."
 icon = ExtResource("3_hnfne")
 flat = true
 
-[node name="DialogueSequenceContainer" parent="CharacterStoreMarginContainer/CharacterStoreContainer" instance=ExtResource("4_6q5xl")]
+[node name="DialogueSequenceContainer" type="HBoxContainer" parent="CharacterStoreMarginContainer/CharacterStoreContainer" instance=ExtResource("4_6q5xl")]
 unique_name_in_owner = true
 layout_mode = 2
+script = ExtResource("3_t810p")
 key = "Dialogue Sequence"
 base_type = "DialogueAst"
 
@@ -86,10 +90,14 @@ layout_mode = 2
 tooltip_text = "Add Character to the currently selected store."
 text = "Add Character"
 
-[node name="RegisterCharacterStoreModal" parent="." instance=ExtResource("5_885rw")]
+[node name="RegisterCharacterStoreModal" type="Window" parent="." instance=ExtResource("5_885rw")]
 unique_name_in_owner = true
 title = "Register Character Store"
+initial_position = 2
+size = Vector2i(1000, 600)
 visible = false
+min_size = Vector2i(1000, 600)
+script = ExtResource("9_kbaov")
 
 [connection signal="resource_changed" from="CharacterStoreMarginContainer/CharacterStoreContainer/AvailableStoresContainer/CharacterStore" to="." method="_on_character_store_resource_changed"]
 [connection signal="pressed" from="CharacterStoreMarginContainer/CharacterStoreContainer/AvailableStoresContainer/SaveCharacterStoreButton" to="." method="_on_save_character_store_button_pressed"]

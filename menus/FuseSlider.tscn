@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://crqn3klhvnowi"]
+[gd_scene load_steps=4 format=3 uid="uid://crqn3klhvnowi"]
 
 [ext_resource type="Script" uid="uid://c2i7glpt41yc1" path="res://scripts/Puzzles/FuseBoxPuzzle/FuseSlider.cs" id="1_gdk7u"]
+[ext_resource type="Script" uid="uid://cecmhhcex34pa" path="res://scripts/UI/CustomLabel.cs" id="2_fn4pp"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fn4pp"]
 
@@ -45,5 +46,5 @@ layout_mode = 0
 offset_left = 4.0
 offset_right = 83.0
 offset_bottom = 106.0
-theme_override_font_sizes/font_size = 81
 text = "[1]"
+script = ExtResource("2_fn4pp")

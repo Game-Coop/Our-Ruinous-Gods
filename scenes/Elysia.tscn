@@ -1,12 +1,18 @@
-[gd_scene load_steps=11 format=3 uid="uid://eaur2wqbevho"]
+[gd_scene load_steps=17 format=3 uid="uid://eaur2wqbevho"]
 
-[ext_resource type="PackedScene" uid="uid://b1lng8ngwsx8o" path="res://entities/Player.tscn" id="1"]
+[ext_resource type="PackedScene" uid="uid://ditkme4k3jpy0" path="res://entities/player.tscn" id="1"]
+[ext_resource type="Script" uid="uid://ddcu5eocmt6x" path="res://scripts/Player.cs" id="2_r1vub"]
 [ext_resource type="Texture2D" uid="uid://0ckjhg2p8cya" path="res://assets/textures/grid.png" id="3"]
 [ext_resource type="PackedScene" uid="uid://bbtlh1kjqcs54" path="res://objects/PowerSwitch.tscn" id="4"]
 [ext_resource type="PackedScene" uid="uid://bmyx37pp63kbo" path="res://objects/PowerableLight.tscn" id="5"]
+[ext_resource type="Script" uid="uid://epj28x3ifpfr" path="res://scripts/Objects/PowerSwitch.cs" id="5_7rlit"]
 [ext_resource type="PackedScene" uid="uid://cbdgjnsddvyc5" path="res://objects/PowerCollisionTrigger.tscn" id="6"]
 [ext_resource type="PackedScene" uid="uid://cpmoe4yxkm0ip" path="res://objects/WorldEventCollisionTrigger.tscn" id="7"]
+[ext_resource type="Script" uid="uid://cvk47f6skrlib" path="res://scripts/PowerSwitchWithStaminaCost.cs" id="7_ibmv1"]
 [ext_resource type="PackedScene" uid="uid://bceai1j7uspj7" path="res://objects/PowerSwitchWithStaminaCost.tscn" id="8"]
+[ext_resource type="Script" uid="uid://crjw3d3qfmx82" path="res://scripts/Objects/PowerableLight.cs" id="9_inriv"]
+[ext_resource type="Script" uid="uid://camw7uos6ul5x" path="res://scripts/WorldEventCollisionTrigger.cs" id="11_u2s1a"]
+[ext_resource type="Script" uid="uid://qpxtdqhldy08" path="res://scripts/Objects/PowerCollisionTrigger.cs" id="13_1r5n5"]
 
 [sub_resource type="Sky" id="6"]
 
@@ -24,8 +30,10 @@ uv1_triplanar = true
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("4")
 
-[node name="Player" parent="." instance=ExtResource("1")]
+[node name="Player" type="CharacterBody3D" parent="." instance=ExtResource("1")]
 transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0.182181, 1.76786, 0.00218105)
+input_ray_pickable = false
+script = ExtResource("2_r1vub")
 
 [node name="Level" type="CSGCombiner3D" parent="."]
 material_overlay = SubResource("5")
@@ -103,23 +111,30 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3)
 operation = 2
 size = Vector3(36, 9, 14)
 
-[node name="PowerSwitch" parent="." instance=ExtResource("4")]
+[node name="PowerSwitch" type="Area3D" parent="." instance=ExtResource("4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 20)
+collision_layer = 2
+script = ExtResource("5_7rlit")
 Zone = 1
 
-[node name="PowerSwitch (Stamina)" parent="." instance=ExtResource("8")]
+[node name="PowerSwitch (Stamina)" type="Area3D" parent="." instance=ExtResource("8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.53926, -1.37046, 13.5592)
+collision_layer = 2
+script = ExtResource("7_ibmv1")
 Zone = 1
 Stamina = 10
 
-[node name="PowerableLight" parent="." instance=ExtResource("5")]
+[node name="PowerableLight" type="Node3D" parent="." instance=ExtResource("5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 20)
+script = ExtResource("9_inriv")
 Charge = 50
 Zone = 1
 
-[node name="WorldEventCollisionTrigger" parent="." instance=ExtResource("7")]
+[node name="WorldEventCollisionTrigger" type="Node3D" parent="." instance=ExtResource("7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.91255, -0.113734, -6.24291)
+script = ExtResource("11_u2s1a")
 
-[node name="PowerCollisionSwitch" parent="." instance=ExtResource("6")]
+[node name="PowerCollisionSwitch" type="Node3D" parent="." instance=ExtResource("6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.16026, -1.55, 25.3769)
+script = ExtResource("13_1r5n5")
 Zone = 1

@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://ditkme4k3jpy0"]
+[gd_scene load_steps=24 format=3 uid="uid://ditkme4k3jpy0"]
 
 [ext_resource type="Script" uid="uid://ddcu5eocmt6x" path="res://scripts/Player.cs" id="1"]
 [ext_resource type="Script" uid="uid://dky7j2woivwl6" path="res://scripts/InteractionRaycaster.cs" id="2"]
@@ -11,6 +11,7 @@
 [ext_resource type="Shader" uid="uid://ctyrlvw5cwgga" path="res://shaders/vignette.gdshader" id="7_6nm46"]
 [ext_resource type="Texture2D" uid="uid://bik8og02xdjnw" path="res://assets/ui/player/helmet-top.png" id="7_ef06p"]
 [ext_resource type="Texture2D" uid="uid://dvnkke60e06wf" path="res://assets/ui/player/helmet-bottom.png" id="8_tjdhl"]
+[ext_resource type="Script" uid="uid://cecmhhcex34pa" path="res://scripts/UI/CustomLabel.cs" id="9_dchgp"]
 
 [sub_resource type="Resource" id="Resource_i623q"]
 script = ExtResource("3_ef06p")
@@ -26,12 +27,12 @@ ease = 2
 
 [sub_resource type="BoxMesh" id="BoxMesh_rfe5m"]
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_qly61"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_dchgp"]
 viewport_path = NodePath("Player UI/SubViewport - Handheld UI")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qsoyl"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kdgjc"]
 resource_local_to_scene = true
-albedo_texture = SubResource("ViewportTexture_qly61")
+albedo_texture = SubResource("ViewportTexture_dchgp")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_qsoyl"]
 size = Vector2(1, 1)
@@ -145,11 +146,11 @@ mesh = SubResource("BoxMesh_rfe5m")
 [node name="Screen Mesh" type="MeshInstance3D" parent="Player UI/SubViewportContainer - FPS/SubViewport - FPS/FPS Camera/Handheld Device"]
 transform = Transform3D(0.478, 0, -1.24696e-09, 0, 0.478, 0, 1.49012e-08, 0, 0.04, -0.0268986, 0.499598, 0.0705599)
 layers = 524288
-material_override = SubResource("StandardMaterial3D_qsoyl")
+material_override = SubResource("StandardMaterial3D_kdgjc")
 mesh = SubResource("PlaneMesh_qsoyl")
 skeleton = NodePath("")
 
-[node name="Area3D" type="Area3D" parent="Player UI/SubViewportContainer - FPS/SubViewport - FPS/FPS Camera/Handheld Device/Screen Mesh" node_paths=PackedStringArray("camera", "sourceMesh", "targetViewport")]
+[node name="Area3D" type="Area3D" parent="Player UI/SubViewportContainer - FPS/SubViewport - FPS/FPS Camera/Handheld Device/Screen Mesh" node_paths=PackedStringArray("sourceMesh", "targetViewport")]
 collision_layer = 524288
 collision_mask = 524288
 script = ExtResource("5_qsoyl")
@@ -192,13 +193,17 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -0.5
+offset_top = -11.5
+offset_right = 0.5
+offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/font_size = 34
 text = "This is handheld device
 "
 horizontal_alignment = 1
 vertical_alignment = 1
+script = ExtResource("9_dchgp")
 
 [node name="Button" type="Button" parent="Player UI/SubViewport - Handheld UI/Panel"]
 layout_mode = 1
