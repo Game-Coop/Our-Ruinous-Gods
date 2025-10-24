@@ -27,13 +27,5 @@ public partial class CustomLabel : Label
 	private void UpdateFontSize(float scale)
 	{
 		AddThemeFontSizeOverride("font_size", Mathf.RoundToInt(_baseFontSize * scale));
-		// if (AutowrapMode != TextServer.AutowrapMode.Off)
-		// {
-		// 	var temp = Text;
-		// 	Text = "";
-		// 	Text = temp;
-		// 	SetSize(Vector2.Zero); // Reset size
-		// 	ResetSize(); // Force recalculation
-		// }
 	}
 }
