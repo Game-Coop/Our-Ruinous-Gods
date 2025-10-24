@@ -1,10 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://jsmom37esqfc"]
+[gd_scene load_steps=7 format=3 uid="uid://jsmom37esqfc"]
 
 [ext_resource type="AudioStream" uid="uid://bfkc80yhg62qr" path="res://assets/audio/88 horroramb2.wav" id="1"]
 [ext_resource type="FontFile" uid="uid://djxjfdocobiaf" path="res://fonts/Chakra_Petch/ChakraPetch-Regular.ttf" id="3"]
 [ext_resource type="Script" uid="uid://dtcloosmxo5fu" path="res://scripts/UI/StartMenu.cs" id="4"]
 [ext_resource type="PackedScene" uid="uid://bxxhpppmwi4rt" path="res://prefabs/SceneTransitioner.tscn" id="4_wns2j"]
-[ext_resource type="PackedScene" uid="uid://3gj05nfhyh8u" path="res://prefabs/outline_shader_quad.tscn" id="5_wns2j"]
 
 [sub_resource type="FontFile" id="3"]
 fallbacks = Array[Font]([ExtResource("3"), ExtResource("3")])
@@ -245,11 +244,13 @@ process_mode = 1
 transform = Transform3D(-0.714412, -0.224214, 0.66283, -1.49012e-08, 0.947272, 0.320431, -0.699726, 0.22892, -0.676742, 121.254, 46.0335, -7.69838)
 visible = false
 
-[node name="Scene Transitioner" parent="." instance=ExtResource("4_wns2j")]
+[node name="Scene Transitioner" parent="." node_paths=PackedStringArray("pathFollow3D") instance=ExtResource("4_wns2j")]
 process_mode = 1
 transform = Transform3D(-0.714412, -0.224214, 0.66283, -1.49012e-08, 0.947272, 0.320431, -0.699726, 0.22892, -0.676742, 121.254, 46.0335, -7.69838)
 curve = SubResource("Curve3D_rj5xk")
+pathFollow3D = NodePath("PathFollow3D")
 
-[node name="Outline Shader Quad" parent="." instance=ExtResource("5_wns2j")]
-transform = Transform3D(0.00714411, -0.00224214, -0.0066283, 3.76095e-10, 0.00947272, -0.00320431, 0.00699725, 0.0022892, 0.00676742, 120.668, 45.7502, -7.10015)
-skeleton = NodePath("../Camera3D")
+[node name="PathFollow3D" parent="Scene Transitioner" index="0"]
+transform = Transform3D(0.999954, 1.56137e-05, 0.000594986, -9.09453e-13, 0.999584, -0.0262323, -0.000595194, 0.0262318, 0.999604, -0.00119781, -0.150944, -0.0503235)
+
+[editable path="Scene Transitioner"]
