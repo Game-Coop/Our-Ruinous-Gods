@@ -3,6 +3,7 @@ using Godot;
 
 public partial class HandheldDevice : Node3D
 {
+    public static bool CanUse => !(GameManager.Instance.InCutscene || GameManager.Instance.InStartMenu || GameManager.Instance.InWorldPuzzle);
     private double startPressTime;
     private bool holdingHandheldToggle = false;
     private Tween tween;
@@ -21,6 +22,7 @@ public partial class HandheldDevice : Node3D
             {
                 _isFocused = value;
                 eventBus.OnHandheldFocused(isFocused);
+                GameManager.Instance.FocusedHandheld = value;
             }
         }
     }
@@ -45,6 +47,15 @@ public partial class HandheldDevice : Node3D
     public override void _Input(InputEvent @event)
     {
         base._Input(@event);
+        if (!CanUse)
+        {
+            if (Visible)
+            {
+                Utils.DelayedCall(HideHandheld, 0.1f);
+            }
+            return;
+        }
+
         if (@event.IsActionPressed("handheld_toggle"))
         {
             holdingHandheldToggle = true;
@@ -144,7 +155,6 @@ public partial class HandheldDevice : Node3D
     private void FocusHandheld()
     {
         Input.MouseMode = Input.MouseModeEnum.Visible;
-        GameManager.Instance.FocusedHandheld = true;
 
         KillTween();
 
@@ -165,7 +175,6 @@ public partial class HandheldDevice : Node3D
     private void UnfocusHandheld()
     {
         Input.MouseMode = Input.MouseModeEnum.Captured;
-        GameManager.Instance.FocusedHandheld = false;
 
         KillTween();
 

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="KeyInfo" load_steps=3 format=3 uid="uid://c5ofq440y1ja2"]
+
+[ext_resource type="Texture2D" uid="uid://cconk3j7xqbhw" path="res://assets/ui/KeyboardKeys/keyboard-r.tres" id="1_65hnb"]
+[ext_resource type="Script" uid="uid://bonqev6anduau" path="res://scripts/KeyInfo.cs" id="2"]
+
+[resource]
+script = ExtResource("2")
+Name = "R"
+InputName = "reset"
+Icon = ExtResource("1_65hnb")
+Layout = 0

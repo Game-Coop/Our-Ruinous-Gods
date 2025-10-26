@@ -2,7 +2,7 @@ using Godot;
 
 public partial class FPSCamera : Camera3D
 {
-	[Export] private Camera3D mainCamera;
+	[Export] private Node3D mainCamera;
 
 	public override void _Process(double delta)
 	{
