@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://5ju312o65nch"]
+[gd_scene load_steps=36 format=3 uid="uid://5ju312o65nch"]
 
 [ext_resource type="Environment" uid="uid://ocaio2ownu0m" path="res://Envrionment.tres" id="1_jlvo6"]
 [ext_resource type="PackedScene" uid="uid://ditkme4k3jpy0" path="res://entities/player.tscn" id="2"]
@@ -25,6 +25,7 @@
 [ext_resource type="Script" uid="uid://fdl1stm4m2w" path="res://scripts/Parley/ParleyTest.cs" id="22_bmc1d"]
 [ext_resource type="Resource" uid="uid://dg383wlfxj8ip" path="res://dialogue_sequences/new_dialogue.ds" id="23_uyjrd"]
 [ext_resource type="PackedScene" uid="uid://lfrojo445a0l" path="res://prefabs/Puzzles/fuse_box_puzzle_prototype.tscn" id="25_un4in"]
+[ext_resource type="PackedScene" uid="uid://hl5amlhee3yn" path="res://objects/Hatch.tscn" id="26_iv5uq"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kfrdm"]
 radius = 0.724904
@@ -365,6 +366,9 @@ dialog = ExtResource("23_uyjrd")
 
 [node name="FuseBox Puzzle Prototype" parent="." instance=ExtResource("25_un4in")]
 transform = Transform3D(-1.07285e-07, 0, 1, 0, 1, 0, -1, 0, -1.07285e-07, -3.22057, 3.12225, 11.2072)
+
+[node name="TopFloor_Hatch_mesh_01" parent="." instance=ExtResource("26_iv5uq")]
+skeleton = NodePath("../../root/@EditorNode@21306/@Panel@14/@VBoxContainer@15/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@26/DockVSplitCenter/@VSplitContainer@54/@VBoxContainer@55/@EditorMainScreen@102/MainScreen/@CanvasItemEditor@11482/@VSplitContainer@11134/@HSplitContainer@11136/@HSplitContainer@11138/@Control@11139/@SubViewportContainer@11140/@SubViewport@11141/DockingBay")
 
 [connection signal="PlayerEnterLadder" from="LadderCollision" to="Player" method="OnAreaEntered"]
 [connection signal="PlayerExitLadder" from="LadderCollision" to="Player" method="OnAreaExited"]
