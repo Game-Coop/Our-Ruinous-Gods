@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://c7u1m6w3cex3j"]
+[gd_scene load_steps=7 format=3 uid="uid://c7u1m6w3cex3j"]
 
 [ext_resource type="Script" uid="uid://bqyncpl8kcdl0" path="res://addons/parley/components/condition/condition_editor.gd" id="1_majdh"]
 [ext_resource type="PackedScene" uid="uid://dcaqonk76b5qj" path="res://addons/parley/components/editor/string_editor.tscn" id="2_dmc6l"]
+[ext_resource type="Script" uid="uid://cecmhhcex34pa" path="res://scripts/UI/CustomLabel.cs" id="2_ievwf"]
 [ext_resource type="Texture2D" uid="uid://c4qx01xbrjp7h" path="res://addons/parley/assets/Edit.svg" id="2_pylhe"]
 [ext_resource type="Texture2D" uid="uid://dres8tr2nd82o" path="res://addons/parley/assets/Remove.svg" id="3_pylhe"]
+[ext_resource type="Script" uid="uid://dl1srgeyxyjhp" path="res://addons/parley/components/editor/string_editor.gd" id="5_3joqi"]
 
 [node name="ConditionEditor" type="PanelContainer"]
 offset_right = 256.0
@@ -33,12 +35,13 @@ layout_mode = 2
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 text = "Fact:"
+script = ExtResource("2_ievwf")
 
 [node name="FactSelector" type="OptionButton" parent="MarginContainer/ConditionEditorContainer/DataContainer/FactContainer"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 size_flags_horizontal = 3
-custom_minimum_size = Vector2(150, 0)
 text_overrun_behavior = 3
 clip_text = true
 
@@ -54,6 +57,7 @@ layout_mode = 2
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 text = "Operator:"
+script = ExtResource("2_ievwf")
 
 [node name="OperatorEditor" type="OptionButton" parent="MarginContainer/ConditionEditorContainer/DataContainer/OperatorContainer"]
 unique_name_in_owner = true
@@ -66,9 +70,10 @@ popup/item_0/id = 0
 popup/item_1/text = "Not Equal"
 popup/item_1/id = 1
 
-[node name="ValueEditor" parent="MarginContainer/ConditionEditorContainer/DataContainer" instance=ExtResource("2_dmc6l")]
+[node name="ValueEditor" type="HBoxContainer" parent="MarginContainer/ConditionEditorContainer/DataContainer" instance=ExtResource("2_dmc6l")]
 unique_name_in_owner = true
 layout_mode = 2
+script = ExtResource("5_3joqi")
 key = "Value"
 minimum_x = 150.0
 

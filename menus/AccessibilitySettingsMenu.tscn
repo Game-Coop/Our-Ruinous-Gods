@@ -1,0 +1,102 @@
+[gd_scene load_steps=5 format=3 uid="uid://dd00pj485gr2a"]
+
+[ext_resource type="Script" uid="uid://cnq2hrkr8ubhe" path="res://scripts/UI/AccessibiltySettingsMenu.cs" id="1_uvbt2"]
+[ext_resource type="Script" uid="uid://cecmhhcex34pa" path="res://scripts/UI/CustomLabel.cs" id="2_m0ess"]
+[ext_resource type="Script" uid="uid://bbwa3gfr35dgg" path="res://scripts/UI/MovingPanelTweener.cs" id="2_nvlqc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hxjy5"]
+
+[node name="AccessibilitySettingsMenu" type="Panel" node_paths=PackedStringArray("fontScaleSlider", "fontScaleLabel")]
+clip_contents = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_hxjy5")
+script = ExtResource("1_uvbt2")
+fontScaleSlider = NodePath("Panel/Panel/Fonscale Slider")
+fontScaleLabel = NodePath("Panel/Panel/Fonscale Slider/Value")
+min = 0.5
+max = 2.0
+panelTweenerPath = NodePath("Panel Tweener")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="VBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -300.0
+offset_right = 300.0
+offset_bottom = 1000.0
+grow_horizontal = 2
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="Fonscale Slider" type="HSlider" parent="Panel/Panel"]
+layout_mode = 2
+max_value = 10.0
+rounded = true
+
+[node name="Label" type="Label" parent="Panel/Panel/Fonscale Slider"]
+layout_mode = 0
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -24.0
+offset_right = -29.0
+offset_bottom = 24.0
+grow_horizontal = 0
+grow_vertical = 2
+text = "Fon Scale"
+horizontal_alignment = 2
+vertical_alignment = 1
+script = ExtResource("2_m0ess")
+
+[node name="Value" type="Label" parent="Panel/Panel/Fonscale Slider"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 612.0
+offset_top = -24.0
+offset_right = 683.0
+offset_bottom = 24.0
+grow_vertical = 2
+text = "x2"
+vertical_alignment = 1
+script = ExtResource("2_m0ess")
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -144.0
+offset_top = 58.0
+offset_right = 144.0
+offset_bottom = 124.0
+grow_horizontal = 2
+text = "Accessibility"
+horizontal_alignment = 1
+script = ExtResource("2_m0ess")
+
+[node name="Panel Tweener" type="Control" parent="."]
+anchors_preset = 0
+script = ExtResource("2_nvlqc")
+foregroundPath = NodePath("../Panel")
+direction = 3
+appearTime = 0.2
+disappearTime = 0.2
+appearTransition = 1
+disappearEase = 0
+disappearTransition = 1

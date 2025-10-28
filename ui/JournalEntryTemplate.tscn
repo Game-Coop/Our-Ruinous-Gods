@@ -1,8 +1,9 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=3 uid="uid://da48j0ffpbdir"]
 
-[ext_resource path="res://scripts/Journal/JournalEntry.cs" type="Script" id=1]
+[ext_resource type="Script" uid="uid://g3h5y7062j65" path="res://scripts/Journal/JournalEntry.cs" id="1"]
+[ext_resource type="Script" uid="uid://cecmhhcex34pa" path="res://scripts/UI/CustomLabel.cs" id="2_qhtbs"]
 
-[sub_resource type="StyleBoxFlat" id=5]
+[sub_resource type="StyleBoxFlat" id="5"]
 draw_center = false
 border_width_left = 2
 border_width_top = 2
@@ -11,20 +12,23 @@ border_width_bottom = 2
 border_blend = true
 
 [node name="Item Template" type="Button"]
+custom_minimum_size = Vector2(0, 100)
 offset_right = 611.0
 offset_bottom = 100.0
-custom_minimum_size = Vector2( 0, 100 )
-theme_override_styles/focus = SubResource( 5 )
-script = ExtResource( 1 )
+theme_override_styles/focus = SubResource("5")
+script = ExtResource("1")
 labelPath = NodePath("Label")
 
 [node name="Label" type="Label" parent="."]
+layout_mode = 0
 anchor_left = 0.5
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -187.5
 offset_right = 305.5
+offset_bottom = 23.0
 text = "Item 1"
-valign = 1
+vertical_alignment = 1
+script = ExtResource("2_qhtbs")
 
 [connection signal="focus_entered" from="." to="." method="OnFocused"]

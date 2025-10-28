@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://brdgm6uqjhaxq"]
+[gd_scene load_steps=4 format=3 uid="uid://brdgm6uqjhaxq"]
 
 [ext_resource type="Script" uid="uid://c6hnlb23dr6a3" path="res://addons/parley/views/parley_edges.gd" id="1_5t3tj"]
+[ext_resource type="Script" uid="uid://cecmhhcex34pa" path="res://scripts/UI/CustomLabel.cs" id="2_sqx0l"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vou20"]
 bg_color = Color(0.115533, 0.193601, 0.311096, 1)
@@ -33,6 +34,7 @@ theme_override_constants/margin_bottom = 1
 [node name="Edges" type="Label" parent="MarginContainer/EdgesEditorContainer/EdgesLabelPanel/EdgesLabelMarginContainer"]
 layout_mode = 2
 text = "Edges:"
+script = ExtResource("2_sqx0l")
 
 [node name="EdgesScrollContainer" type="ScrollContainer" parent="MarginContainer/EdgesEditorContainer"]
 layout_mode = 2

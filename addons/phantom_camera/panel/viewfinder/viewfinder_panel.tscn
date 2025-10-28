@@ -1,7 +1,8 @@
-[gd_scene load_steps=28 format=3 uid="uid://dbkr3d716wtx0"]
+[gd_scene load_steps=29 format=3 uid="uid://dbkr3d716wtx0"]
 
 [ext_resource type="Script" uid="uid://drmv3363t8amc" path="res://addons/phantom_camera/scripts/panel/viewfinder/viewfinder.gd" id="1_utvi8"]
 [ext_resource type="StyleBox" uid="uid://dpa7yvxlq043a" path="res://addons/phantom_camera/panel/viewfinder/deadzone_style_box.tres" id="2_uabt4"]
+[ext_resource type="Script" uid="uid://cecmhhcex34pa" path="res://scripts/UI/CustomLabel.cs" id="3_i21vv"]
 [ext_resource type="FontFile" uid="uid://c4mm3of2mc8o5" path="res://addons/phantom_camera/fonts/Nunito-Black.ttf" id="3_li3i3"]
 [ext_resource type="Texture2D" uid="uid://5fatldiu7dd5" path="res://addons/phantom_camera/icons/phantom_camera_host.svg" id="4_lcg1p"]
 [ext_resource type="FontFile" uid="uid://dve7mgsjik4dg" path="res://addons/phantom_camera/fonts/Nunito-Regular.ttf" id="5_4jhax"]
@@ -43,9 +44,9 @@ corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_iho1a"]
-
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_obaj6"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_iho1a"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4b76l"]
 
@@ -343,23 +344,21 @@ mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_q7vs4")
 
 [node name="NoSupportMsg" type="Label" parent="."]
-unique_name_in_owner = true
 visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -8.0
-offset_bottom = -8.0
+offset_left = -0.5
+offset_top = -19.5
+offset_right = 0.5
+offset_bottom = 3.5
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/font = ExtResource("3_li3i3")
-theme_override_font_sizes/font_size = 24
-theme_override_styles/normal = SubResource("StyleBoxEmpty_iho1a")
 text = "Control scenes are not supported"
 horizontal_alignment = 1
 vertical_alignment = 1
-metadata/_edit_lock_ = true
+script = ExtResource("3_i21vv")
 
 [node name="EmptyStateControl" type="Control" parent="."]
 unique_name_in_owner = true
@@ -486,27 +485,23 @@ offset_left = 30.0
 offset_top = 1.0
 offset_right = 140.0
 offset_bottom = 24.0
-theme_override_fonts/font = ExtResource("3_li3i3")
-theme_override_font_sizes/font_size = 14
 text = "OVERRIDDEN BY"
 vertical_alignment = 1
+script = ExtResource("3_i21vv")
 
 [node name="PriorityOverrideNameLabel" type="Label" parent="PriorityOverrideButton"]
-unique_name_in_owner = true
 layout_mode = 0
 offset_left = 6.0
 offset_top = 21.0
 offset_right = 153.0
 offset_bottom = 44.0
-theme_override_fonts/font = ExtResource("5_4jhax")
-theme_override_font_sizes/font_size = 14
 text = "PCam_Name
 "
 vertical_alignment = 1
 text_overrun_behavior = 3
+script = ExtResource("3_i21vv")
 
 [node name="SizeLabel" type="Label" parent="."]
-unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -515,6 +510,7 @@ offset_top = -11.5
 offset_right = 40.0
 offset_bottom = 11.5
 grow_vertical = 2
+script = ExtResource("3_i21vv")
 
 [node name="PCamHostList" type="VBoxContainer" parent="."]
 unique_name_in_owner = true

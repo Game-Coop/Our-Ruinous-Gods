@@ -1,11 +1,66 @@
-[gd_scene load_steps=3 format=3 uid="uid://bluc7ffod8a78"]
+[gd_scene load_steps=5 format=3 uid="uid://bluc7ffod8a78"]
 
-[ext_resource type="PackedScene" uid="uid://m3v11vm16l8y" path="res://addons/parley/components/node/node_editor.tscn" id="1_d7xal"]
 [ext_resource type="Script" uid="uid://c57qf0jxioj6g" path="res://addons/parley/components/start/start_node_editor.gd" id="1_shjdk"]
+[ext_resource type="Script" uid="uid://cecmhhcex34pa" path="res://scripts/UI/CustomLabel.cs" id="2_72lvi"]
+[ext_resource type="Texture2D" uid="uid://dres8tr2nd82o" path="res://addons/parley/assets/Remove.svg" id="3_s2xyj"]
 
-[node name="StartNodeEditor" instance=ExtResource("1_d7xal")]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l4dko"]
+bg_color = Color(0.658824, 0.313726, 0.0470588, 1)
+
+[node name="StartNodeEditor" type="VBoxContainer"]
+offset_right = 125.0
+offset_bottom = 39.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 script = ExtResource("1_shjdk")
 type = 4
 
-[node name="TitleLabel" parent="TitleContainer/TitlePanelContainer/TitleMarginContainer/TitlePartsContainer" index="0"]
+[node name="TitleContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="TitlePanelContainer" type="PanelContainer" parent="TitleContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_l4dko")
+
+[node name="TitleMarginContainer" type="MarginContainer" parent="TitleContainer/TitlePanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 1
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 1
+
+[node name="TitlePartsContainer" type="HBoxContainer" parent="TitleContainer/TitlePanelContainer/TitleMarginContainer"]
+layout_mode = 2
+
+[node name="TitleLabel" type="Label" parent="TitleContainer/TitlePanelContainer/TitleMarginContainer/TitlePartsContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
 text = "Start [ID: ]"
+script = ExtResource("2_72lvi")
+
+[node name="DeleteNodeButton" type="Button" parent="TitleContainer/TitlePanelContainer/TitleMarginContainer/TitlePartsContainer"]
+layout_mode = 2
+tooltip_text = "Delete the selected node."
+icon = ExtResource("3_s2xyj")
+flat = true
+
+[node name="BodyMarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="BodyScrollContainer" type="ScrollContainer" parent="BodyMarginContainer"]
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="BodyContainer" type="VBoxContainer" parent="BodyMarginContainer/BodyScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[connection signal="pressed" from="TitleContainer/TitlePanelContainer/TitleMarginContainer/TitlePartsContainer/DeleteNodeButton" to="." method="_on_delete_node_button_pressed"]

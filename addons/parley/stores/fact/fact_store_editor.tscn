@@ -1,12 +1,14 @@
-[gd_scene load_steps=8 format=3 uid="uid://bhcdx3h8xtn5"]
+[gd_scene load_steps=10 format=3 uid="uid://bhcdx3h8xtn5"]
 
 [ext_resource type="Script" uid="uid://y48wrseks5vu" path="res://addons/parley/stores/fact/fact_store_editor.gd" id="1_55agi"]
 [ext_resource type="Texture2D" uid="uid://bmyblj8lm0jme" path="res://addons/parley/assets/Save.svg" id="2_irk8n"]
+[ext_resource type="Script" uid="uid://behpdnx34u6d7" path="res://addons/parley/components/editor/resource_editor.gd" id="3_epnm1"]
 [ext_resource type="Texture2D" uid="uid://ct6iywe1qjuh3" path="res://addons/parley/assets/New.svg" id="3_kh15r"]
 [ext_resource type="Texture2D" uid="uid://drrcpeyo5x1ih" path="res://addons/parley/assets/Warning.svg" id="3_rkmh7"]
 [ext_resource type="Texture2D" uid="uid://cr4knibdm85n1" path="res://addons/parley/assets/Search.svg" id="4_bhutp"]
 [ext_resource type="PackedScene" uid="uid://dlqqxs60xui5w" path="res://addons/parley/components/editor/resource_editor.tscn" id="4_kh15r"]
 [ext_resource type="PackedScene" uid="uid://msdptt8ygebm" path="res://addons/parley/stores/register_store_modal.tscn" id="6_bhutp"]
+[ext_resource type="Script" uid="uid://85wkenyryluy" path="res://addons/parley/stores/register_store_modal.gd" id="9_xqd17"]
 
 [node name="FactStoreEditor" type="PanelContainer"]
 offset_right = 40.0
@@ -24,10 +26,11 @@ layout_mode = 2
 [node name="AvailableStoresContainer" type="HBoxContainer" parent="FactStoreMarginContainer/FactStoreContainer"]
 layout_mode = 2
 
-[node name="FactStore" parent="FactStoreMarginContainer/FactStoreContainer/AvailableStoresContainer" instance=ExtResource("4_kh15r")]
+[node name="FactStore" type="HBoxContainer" parent="FactStoreMarginContainer/FactStoreContainer/AvailableStoresContainer" instance=ExtResource("4_kh15r")]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
+script = ExtResource("3_epnm1")
 key = "Fact Store"
 base_type = "ParleyFactStore"
 
@@ -53,9 +56,10 @@ tooltip_text = "Create and register new Fact Store."
 icon = ExtResource("3_kh15r")
 flat = true
 
-[node name="DialogueSequenceContainer" parent="FactStoreMarginContainer/FactStoreContainer" instance=ExtResource("4_kh15r")]
+[node name="DialogueSequenceContainer" type="HBoxContainer" parent="FactStoreMarginContainer/FactStoreContainer" instance=ExtResource("4_kh15r")]
 unique_name_in_owner = true
 layout_mode = 2
+script = ExtResource("3_epnm1")
 key = "Dialogue Sequence"
 base_type = "DialogueAst"
 
@@ -85,10 +89,14 @@ layout_mode = 2
 tooltip_text = "Add Fact to the currently selected store."
 text = "Add Fact"
 
-[node name="RegisterFactStoreModal" parent="." instance=ExtResource("6_bhutp")]
+[node name="RegisterFactStoreModal" type="Window" parent="." instance=ExtResource("6_bhutp")]
 unique_name_in_owner = true
 title = "Register Fact Store"
+initial_position = 2
+size = Vector2i(1000, 600)
 visible = false
+min_size = Vector2i(1000, 600)
+script = ExtResource("9_xqd17")
 type = 1
 
 [connection signal="resource_changed" from="FactStoreMarginContainer/FactStoreContainer/AvailableStoresContainer/FactStore" to="." method="_on_fact_store_resource_changed"]

@@ -1,32 +1,87 @@
-[gd_scene load_steps=5 format=3 uid="uid://cyokvghm1mjrp"]
+[gd_scene load_steps=8 format=3 uid="uid://cyokvghm1mjrp"]
 
-[ext_resource type="PackedScene" uid="uid://m3v11vm16l8y" path="res://addons/parley/components/node/node_editor.tscn" id="1_4nlu2"]
+[ext_resource type="Script" uid="uid://cecmhhcex34pa" path="res://scripts/UI/CustomLabel.cs" id="2_53j5n"]
 [ext_resource type="Script" uid="uid://c5h33y8wso1fd" path="res://addons/parley/components/jump/jump_node_editor.gd" id="2_b1vft"]
+[ext_resource type="Texture2D" uid="uid://dres8tr2nd82o" path="res://addons/parley/assets/Remove.svg" id="3_2vtxi"]
 [ext_resource type="PackedScene" uid="uid://dlqqxs60xui5w" path="res://addons/parley/components/editor/resource_editor.tscn" id="3_v37do"]
 [ext_resource type="Texture2D" uid="uid://c4qx01xbrjp7h" path="res://addons/parley/assets/Edit.svg" id="4_x5loc"]
+[ext_resource type="Script" uid="uid://behpdnx34u6d7" path="res://addons/parley/components/editor/resource_editor.gd" id="5_ns3jb"]
 
-[node name="JumpNodeEditor" instance=ExtResource("1_4nlu2")]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l4dko"]
+bg_color = Color(0.658824, 0.313726, 0.0470588, 1)
+
+[node name="JumpNodeEditor" type="VBoxContainer"]
+offset_right = 125.0
+offset_bottom = 39.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 script = ExtResource("2_b1vft")
-dialogue_sequence_ast_ref = ""
 type = 8
 
-[node name="TitleLabel" parent="TitleContainer/TitlePanelContainer/TitleMarginContainer/TitlePartsContainer" index="0"]
-text = "Jump [ID: ]"
-
-[node name="HBoxContainer" type="HBoxContainer" parent="BodyMarginContainer/BodyScrollContainer/BodyContainer" index="0"]
+[node name="TitleContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
 
-[node name="DialogueSequenceAstEditor" parent="BodyMarginContainer/BodyScrollContainer/BodyContainer/HBoxContainer" index="0" instance=ExtResource("3_v37do")]
+[node name="TitlePanelContainer" type="PanelContainer" parent="TitleContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_l4dko")
+
+[node name="TitleMarginContainer" type="MarginContainer" parent="TitleContainer/TitlePanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 1
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 1
+
+[node name="TitlePartsContainer" type="HBoxContainer" parent="TitleContainer/TitlePanelContainer/TitleMarginContainer"]
+layout_mode = 2
+
+[node name="TitleLabel" type="Label" parent="TitleContainer/TitlePanelContainer/TitleMarginContainer/TitlePartsContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Jump [ID: ]"
+script = ExtResource("2_53j5n")
+
+[node name="DeleteNodeButton" type="Button" parent="TitleContainer/TitlePanelContainer/TitleMarginContainer/TitlePartsContainer"]
+layout_mode = 2
+tooltip_text = "Delete the selected node."
+icon = ExtResource("3_2vtxi")
+flat = true
+
+[node name="BodyMarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="BodyScrollContainer" type="ScrollContainer" parent="BodyMarginContainer"]
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="BodyContainer" type="VBoxContainer" parent="BodyMarginContainer/BodyScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="BodyMarginContainer/BodyScrollContainer/BodyContainer"]
+layout_mode = 2
+
+[node name="DialogueSequenceAstEditor" type="HBoxContainer" parent="BodyMarginContainer/BodyScrollContainer/BodyContainer/HBoxContainer" instance=ExtResource("3_v37do")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("5_ns3jb")
 key = "Dialogue Sequence"
 base_type = "ParleyDialogueSequenceAst"
 
-[node name="EditDialogueSequenceButton" type="Button" parent="BodyMarginContainer/BodyScrollContainer/BodyContainer/HBoxContainer" index="1"]
+[node name="EditDialogueSequenceButton" type="Button" parent="BodyMarginContainer/BodyScrollContainer/BodyContainer/HBoxContainer"]
 layout_mode = 2
 tooltip_text = "Edit Action Script."
 icon = ExtResource("4_x5loc")
 
+[connection signal="pressed" from="TitleContainer/TitlePanelContainer/TitleMarginContainer/TitlePartsContainer/DeleteNodeButton" to="." method="_on_delete_node_button_pressed"]
 [connection signal="resource_changed" from="BodyMarginContainer/BodyScrollContainer/BodyContainer/HBoxContainer/DialogueSequenceAstEditor" to="." method="_on_dialogue_sequence_ast_editor_resource_changed"]
 [connection signal="pressed" from="BodyMarginContainer/BodyScrollContainer/BodyContainer/HBoxContainer/EditDialogueSequenceButton" to="." method="_on_edit_dialogue_sequence_button_pressed"]

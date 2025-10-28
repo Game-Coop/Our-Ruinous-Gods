@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://c6cagjh7y5wn4"]
+[gd_scene load_steps=4 format=3 uid="uid://c6cagjh7y5wn4"]
 
 [ext_resource type="Script" uid="uid://ymic8gvhhocj" path="res://addons/parley/modals/export_to_csv_modal.gd" id="1_5mgyv"]
 [ext_resource type="Texture2D" uid="uid://d4d8bblglcblx" path="res://addons/parley/assets/Folder.svg" id="2_dhe52"]
+[ext_resource type="Script" uid="uid://cecmhhcex34pa" path="res://scripts/UI/CustomLabel.cs" id="2_nvd0r"]
 
 [node name="ExportToCsvModal" type="Window"]
 auto_translate_mode = 1
@@ -33,6 +34,7 @@ layout_mode = 2
 [node name="PathLabel" type="Label" parent="ExportToCsvMarginContainer/ExportToCsvContainer/PathContainer"]
 layout_mode = 2
 text = "Path:"
+script = ExtResource("2_nvd0r")
 
 [node name="PathEdit" type="LineEdit" parent="ExportToCsvMarginContainer/ExportToCsvContainer/PathContainer"]
 unique_name_in_owner = true

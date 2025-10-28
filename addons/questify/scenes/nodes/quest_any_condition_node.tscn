@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://ce2n8hf7d72cm"]
+[gd_scene load_steps=4 format=3 uid="uid://ce2n8hf7d72cm"]
 
 [ext_resource type="Script" uid="uid://qbagdyptf6a3" path="res://addons/questify/scripts/graph_nodes/quest_any_condition_node.gd" id="1_qsymm"]
+[ext_resource type="Script" uid="uid://cecmhhcex34pa" path="res://scripts/UI/CustomLabel.cs" id="2_2ia1n"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y08gr"]
 content_margin_left = 4.0
@@ -34,7 +35,9 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Input"
+script = ExtResource("2_2ia1n")
 
 [node name="OutputLabel" type="Label" parent="HBoxContainer"]
 layout_mode = 2
 text = "Output"
+script = ExtResource("2_2ia1n")

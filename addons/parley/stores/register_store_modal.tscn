@@ -1,9 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://msdptt8ygebm"]
+[gd_scene load_steps=8 format=3 uid="uid://msdptt8ygebm"]
 
 [ext_resource type="Script" uid="uid://85wkenyryluy" path="res://addons/parley/stores/register_store_modal.gd" id="1_sngxt"]
 [ext_resource type="PackedScene" uid="uid://dlqqxs60xui5w" path="res://addons/parley/components/editor/resource_editor.tscn" id="2_bbxl3"]
 [ext_resource type="PackedScene" uid="uid://dcaqonk76b5qj" path="res://addons/parley/components/editor/string_editor.tscn" id="2_u6kwa"]
+[ext_resource type="Script" uid="uid://dl1srgeyxyjhp" path="res://addons/parley/components/editor/string_editor.gd" id="3_38chr"]
 [ext_resource type="Texture2D" uid="uid://d4d8bblglcblx" path="res://addons/parley/assets/Folder.svg" id="3_u6kwa"]
+[ext_resource type="Script" uid="uid://behpdnx34u6d7" path="res://addons/parley/components/editor/resource_editor.gd" id="5_yk0ti"]
+[ext_resource type="Script" uid="uid://cecmhhcex34pa" path="res://scripts/UI/CustomLabel.cs" id="6_yr3xd"]
 
 [node name="RegisterStoreModal" type="Window"]
 initial_position = 2
@@ -27,16 +30,18 @@ theme_override_constants/margin_bottom = 15
 [node name="NewDialogueContainer" type="VBoxContainer" parent="NewDialogueMarginContainer"]
 layout_mode = 2
 
-[node name="IdEditor" parent="NewDialogueMarginContainer/NewDialogueContainer" instance=ExtResource("2_u6kwa")]
+[node name="IdEditor" type="HBoxContainer" parent="NewDialogueMarginContainer/NewDialogueContainer" instance=ExtResource("2_u6kwa")]
 unique_name_in_owner = true
 layout_mode = 2
+script = ExtResource("3_38chr")
 key = "Id"
 minimum_x = 250.0
 placeholder = "Define the unique ID for the store (e.g. main)"
 
-[node name="ResourceEditor" parent="NewDialogueMarginContainer/NewDialogueContainer" instance=ExtResource("2_bbxl3")]
+[node name="ResourceEditor" type="HBoxContainer" parent="NewDialogueMarginContainer/NewDialogueContainer" instance=ExtResource("2_bbxl3")]
 unique_name_in_owner = true
 layout_mode = 2
+script = ExtResource("5_yk0ti")
 key = "Character Store"
 base_type = "ParleyCharacterStore"
 minimum_x = 250.0
@@ -48,6 +53,7 @@ layout_mode = 2
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 text = "Path:"
+script = ExtResource("6_yr3xd")
 
 [node name="PathEdit" type="LineEdit" parent="NewDialogueMarginContainer/NewDialogueContainer/PathContainer"]
 unique_name_in_owner = true

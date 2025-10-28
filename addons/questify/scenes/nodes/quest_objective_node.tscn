@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://dp18smike5vyv"]
+[gd_scene load_steps=5 format=3 uid="uid://dp18smike5vyv"]
 
 [ext_resource type="Script" uid="uid://b0bv1ueuny10y" path="res://addons/questify/scripts/graph_nodes/quest_objective_node.gd" id="1_0u0oi"]
 [ext_resource type="Script" uid="uid://d3y7kchbj45jy" path="res://addons/questify/scripts/components/metadata_editor.gd" id="2_nklti"]
+[ext_resource type="Script" uid="uid://cecmhhcex34pa" path="res://scripts/UI/CustomLabel.cs" id="2_xh6gt"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8ihrq"]
 content_margin_left = 4.0
@@ -87,14 +88,17 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "Input
 "
+script = ExtResource("2_xh6gt")
 
 [node name="OutputLabel" type="Label" parent="SlotsContainer"]
 layout_mode = 2
 text = "Output"
+script = ExtResource("2_xh6gt")
 
 [node name="ConditionSlot" type="Label" parent="."]
 layout_mode = 2
 text = "Conditions"
+script = ExtResource("2_xh6gt")
 
 [node name="HSeparator" type="HSeparator" parent="."]
 layout_mode = 2
@@ -109,6 +113,7 @@ layout_mode = 2
 [node name="DescriptionLabel" type="Label" parent="DescriptionContainer"]
 layout_mode = 2
 text = "Description"
+script = ExtResource("2_xh6gt")
 
 [node name="DescriptionTextEdit" type="TextEdit" parent="DescriptionContainer"]
 custom_minimum_size = Vector2(0, 100)
@@ -128,6 +133,7 @@ items_container = NodePath("ScrollContainer/ItemContainer")
 [node name="MetadataLabel" type="Label" parent="MetaDataEditor"]
 layout_mode = 2
 text = "Metadata"
+script = ExtResource("2_xh6gt")
 
 [node name="AddMetadataButton" type="Button" parent="MetaDataEditor"]
 layout_mode = 2

@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://dqn2u4mrnggth"]
+[gd_scene load_steps=4 format=3 uid="uid://dqn2u4mrnggth"]
 
 [ext_resource type="Script" uid="uid://y5sl824eliam" path="res://addons/parley/components/edge/edge_editor.gd" id="1_dn5bp"]
+[ext_resource type="Script" uid="uid://cecmhhcex34pa" path="res://scripts/UI/CustomLabel.cs" id="2_bmt46"]
 [ext_resource type="Texture2D" uid="uid://dres8tr2nd82o" path="res://addons/parley/assets/Remove.svg" id="2_s762g"]
 
 [node name="EdgeEditor" type="VBoxContainer"]
@@ -28,36 +29,40 @@ columns = 4
 [node name="FromNodeLabel" type="Label" parent="EdgeDetailsMargin/EdgeTableContainer"]
 layout_mode = 2
 text = "From Node:"
+script = ExtResource("2_bmt46")
 
 [node name="FromNodeValue" type="Label" parent="EdgeDetailsMargin/EdgeTableContainer"]
-unique_name_in_owner = true
 layout_mode = 2
+script = ExtResource("2_bmt46")
 
 [node name="FromSlotLabel" type="Label" parent="EdgeDetailsMargin/EdgeTableContainer"]
 layout_mode = 2
 text = "From Slot:"
+script = ExtResource("2_bmt46")
 
 [node name="FromSlotValue" type="Label" parent="EdgeDetailsMargin/EdgeTableContainer"]
-unique_name_in_owner = true
 layout_mode = 2
 text = "0"
+script = ExtResource("2_bmt46")
 
 [node name="ToNodeLabel" type="Label" parent="EdgeDetailsMargin/EdgeTableContainer"]
 layout_mode = 2
 text = "To Node:"
+script = ExtResource("2_bmt46")
 
 [node name="ToNodeValue" type="Label" parent="EdgeDetailsMargin/EdgeTableContainer"]
-unique_name_in_owner = true
 layout_mode = 2
+script = ExtResource("2_bmt46")
 
 [node name="ToSlotLabel" type="Label" parent="EdgeDetailsMargin/EdgeTableContainer"]
 layout_mode = 2
 text = "To Slot:"
+script = ExtResource("2_bmt46")
 
 [node name="ToSlotValue" type="Label" parent="EdgeDetailsMargin/EdgeTableContainer"]
-unique_name_in_owner = true
 layout_mode = 2
 text = "0"
+script = ExtResource("2_bmt46")
 
 [node name="ColorOverrideContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
@@ -69,6 +74,7 @@ layout_mode = 2
 [node name="ColorOverrideLabel" type="Label" parent="ColorOverrideContainer"]
 layout_mode = 2
 text = "Override colour:"
+script = ExtResource("2_bmt46")
 
 [node name="ColorOverrideButton" type="ColorPickerButton" parent="ColorOverrideContainer"]
 unique_name_in_owner = true

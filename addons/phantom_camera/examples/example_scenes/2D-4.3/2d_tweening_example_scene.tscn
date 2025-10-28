@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="4_j7670"]
 [ext_resource type="Script" uid="uid://bhexx6mj1xv3q" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="5_gvv7r"]
 [ext_resource type="Resource" uid="uid://euybd2w0bax" path="res://addons/phantom_camera/examples/resources/tween/player_phantom_camera_2d_tween.tres" id="6_rwobr"]
-[ext_resource type="FontFile" uid="uid://c4mm3of2mc8o5" path="res://addons/phantom_camera/fonts/Nunito-Black.ttf" id="7_ylx0h"]
+[ext_resource type="Script" uid="uid://cecmhhcex34pa" path="res://scripts/UI/CustomLabel.cs" id="7_vhxxm"]
 [ext_resource type="PackedScene" uid="uid://7kh0xydx0b1o" path="res://addons/phantom_camera/examples/example_scenes/2D/sub_scenes/playable_character_2d.tscn" id="8_ytsgf"]
 [ext_resource type="Script" uid="uid://t8wa4e5y5hcf" path="res://addons/phantom_camera/examples/scripts/2D/2d_trigger_area.gd" id="9_3r1pw"]
 [ext_resource type="Script" uid="uid://cnnaky2ns2pn4" path="res://addons/phantom_camera/examples/scripts/2D/player_character_body_2d_4.3.gd" id="9_5jy5e"]
@@ -225,13 +225,27 @@ tile_set = SubResource("TileSet_na7gm")
 
 [node name="UI" type="CanvasLayer" parent="."]
 
-[node name="UIInventory" parent="UI" instance=ExtResource("2_1f2t2")]
+[node name="UIInventory" type="Control" parent="UI" instance=ExtResource("2_1f2t2")]
 unique_name_in_owner = true
 visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="UISign" parent="UI" instance=ExtResource("3_o6nri")]
+[node name="UISign" type="Control" parent="UI" instance=ExtResource("3_o6nri")]
 unique_name_in_owner = true
 visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
 [node name="Camera2D" type="Camera2D" parent="."]
 physics_interpolation_mode = 1
@@ -265,12 +279,11 @@ offset_left = 167.0
 offset_top = -132.0
 offset_right = 332.0
 offset_bottom = -68.0
-theme_override_colors/font_color = Color(0.294118, 1, 0.631373, 1)
-theme_override_fonts/font = ExtResource("7_ylx0h")
 text = "[WASD] to move
 [Space] to jump"
+script = ExtResource("7_vhxxm")
 
-[node name="CharacterBody2D" parent="Player" instance=ExtResource("8_ytsgf")]
+[node name="CharacterBody2D" type="CharacterBody2D" parent="Player" instance=ExtResource("8_ytsgf")]
 position = Vector2(227, -28)
 script = ExtResource("9_5jy5e")
 
@@ -299,14 +312,13 @@ offset_left = -77.0
 offset_top = -250.0
 offset_right = 76.0
 offset_bottom = -120.0
-theme_override_colors/font_color = Color(0.294118, 1, 0.631373, 1)
-theme_override_fonts/font = ExtResource("7_ylx0h")
 text = "Transition Type:
 Sine
 
 Duration:
 0.6s"
 horizontal_alignment = 1
+script = ExtResource("7_vhxxm")
 
 [node name="PhantomCamera2D" type="Node2D" parent="WideArea"]
 position = Vector2(4, -100)
@@ -344,14 +356,13 @@ offset_left = -74.0
 offset_top = -251.0
 offset_right = 79.0
 offset_bottom = -121.0
-theme_override_colors/font_color = Color(0.294118, 1, 0.631373, 1)
-theme_override_fonts/font = ExtResource("7_ylx0h")
 text = "Transition Type:
 Circ
 
 Duration:
 0.3s"
 horizontal_alignment = 1
+script = ExtResource("7_vhxxm")
 
 [node name="PhantomCamera2D" type="Node2D" parent="UpperZoomArea"]
 position = Vector2(2, -83)
@@ -385,14 +396,13 @@ offset_left = -76.0
 offset_top = -252.0
 offset_right = 77.0
 offset_bottom = -122.0
-theme_override_colors/font_color = Color(0.294118, 1, 0.631373, 1)
-theme_override_fonts/font = ExtResource("7_ylx0h")
 text = "Transition Type:
 Back
 
 Duration:
 1.2s"
 horizontal_alignment = 1
+script = ExtResource("7_vhxxm")
 
 [node name="PhantomCamera2D" type="Node2D" parent="ForwardArea"]
 position = Vector2(344, -46)

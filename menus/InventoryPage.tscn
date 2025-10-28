@@ -1,9 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://bw2bssnv641ff"]
+[gd_scene load_steps=9 format=3 uid="uid://bw2bssnv641ff"]
 
 [ext_resource type="Script" uid="uid://d1yty5c3d8hde" path="res://scripts/Inventory/InventoryPage.cs" id="1"]
 [ext_resource type="Theme" path="res://themes/inventoryScrollbarTheme.tres" id="2"]
-[ext_resource type="PackedScene" path="res://ui/ItemTemplate.tscn" id="3"]
-[ext_resource type="FontFile" uid="uid://djxjfdocobiaf" path="res://fonts/Chakra_Petch/ChakraPetch-Regular.ttf" id="4"]
+[ext_resource type="PackedScene" uid="uid://dmr5c7oo82cmd" path="res://ui/ItemTemplate.tscn" id="3"]
+[ext_resource type="Script" uid="uid://cecmhhcex34pa" path="res://scripts/UI/CustomLabel.cs" id="4_gy5u2"]
 [ext_resource type="Script" uid="uid://bbwa3gfr35dgg" path="res://scripts/UI/MovingPanelTweener.cs" id="5"]
 
 [sub_resource type="StyleBoxFlat" id="1"]
@@ -30,17 +30,6 @@ border_color = Color(0.419608, 0.419608, 0.419608, 1)
 border_blend = true
 
 [sub_resource type="Theme" id="4"]
-
-[sub_resource type="FontFile" id="5"]
-fallbacks = Array[Font]([ExtResource("4"), ExtResource("4")])
-subpixel_positioning = 0
-msdf_pixel_range = 14
-msdf_size = 128
-cache/0/16/0/ascent = 0.0
-cache/0/16/0/descent = 0.0
-cache/0/16/0/underline_position = 0.0
-cache/0/16/0/underline_thickness = 0.0
-cache/0/16/0/scale = 1.0
 
 [node name="Inventory" type="Control"]
 custom_minimum_size = Vector2(1920, 0)
@@ -126,12 +115,14 @@ stretch_mode = 6
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
+script = ExtResource("4_gy5u2")
 
 [node name="Description Label" type="Label" parent="Panel/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 5.0
+script = ExtResource("4_gy5u2")
 
 [node name="Label" type="Label" parent="Panel"]
 layout_mode = 0
@@ -139,8 +130,8 @@ offset_left = 155.0
 offset_top = 231.0
 offset_right = 372.0
 offset_bottom = 297.0
-theme_override_fonts/font = SubResource("5")
 text = "Inventory"
+script = ExtResource("4_gy5u2")
 
 [node name="Panel Tweener" type="Control" parent="."]
 anchors_preset = 0
