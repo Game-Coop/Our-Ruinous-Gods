@@ -9,11 +9,16 @@ public partial class Hatch : Node3D
 
     [Export] public Vector3 openPosition = new Vector3(0, 1, 0);
     [Export] public Vector3 closedPosition = new Vector3(0, 0, 0);
+    [Export] public Vector3 openRotation = new Vector3(0, 0, 0);
+    [Export] public Vector3 closedRotation = new Vector3(0, 0, 90);
     [Export] public float moveSpeed = 1f;
 
     private bool isOpen = false;
     private bool isMoving = false;
+
     private Vector3 targetPosition;
+    private Vector3 targetRotation;
+
     private Area3D interactArea;
     private AnimationPlayer animationPlayer;
 
@@ -26,6 +31,7 @@ public partial class Hatch : Node3D
         else
         {
             GlobalPosition = closedPosition;
+            RotationDegrees = closedRotation;
         }
 
         interactArea = GetNode<Area3D>("InteractArea");
@@ -40,7 +46,7 @@ public partial class Hatch : Node3D
 
         if(!useAnimation && isMoving)
         {
-            MoveHatch(delta);
+            MoveAndRotateHatch(delta);
         }
     }
 
@@ -67,26 +73,43 @@ public partial class Hatch : Node3D
         else
         {
             targetPosition = isOpen ? closedPosition : openPosition;
+            targetRotation = isOpen ? closedRotation : openRotation;
             isMoving = true;
         }
     }
 
-    private void MoveHatch(double delta)
+    private void MoveAndRotateHatch(double delta)
     {
+        //Position
         Vector3 currentPosition = GlobalPosition;
         Vector3 direction = (targetPosition - currentPosition).Normalized();
         float distance = (targetPosition - currentPosition).Length();
         float moveStep = moveSpeed * (float)delta;
 
-        if(moveStep >= distance)
+        //Rotation
+        Vector3 currentRotation = RotationDegrees;
+        Vector3 rotationDiff = targetRotation - currentRotation;
+        float rotationStep = moveSpeed * 90f * (float)delta;
+
+        bool positionDone = distance < 0.01f;
+        bool rotationDone = rotationDiff.Length() < 0.5f;
+
+        if (!positionDone)
+        {
+            GlobalPosition = currentPosition + direction * Math.Min(moveStep, distance);
+        }
+
+        if (!rotationDone)
+        {
+            RotationDegrees = currentRotation.Lerp(targetRotation, (float)(moveSpeed * delta));
+        }
+
+        if(positionDone && rotationDone)
         {
             GlobalPosition = targetPosition;
+            RotationDegrees = targetRotation;
             isMoving = false;
             isOpen = !isOpen;
-        }
-        else
-        {
-            GlobalPosition += direction * moveStep;
         }
     }
 
