@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class Hatch : Node3D
+public partial class Hatch : Interactable
 {
     [Export] public bool useAnimation = false;
     [Export] public string openAnimationName = "hatch_open";
@@ -9,8 +9,10 @@ public partial class Hatch : Node3D
 
     [Export] public Vector3 openPosition = new Vector3(0, 1, 0);
     [Export] public Vector3 closedPosition = new Vector3(0, 0, 0);
+
     [Export] public Vector3 openRotation = new Vector3(0, 0, 0);
     [Export] public Vector3 closedRotation = new Vector3(0, 0, 90);
+
     [Export] public float moveSpeed = 1f;
 
     private bool isOpen = false;
@@ -24,6 +26,10 @@ public partial class Hatch : Node3D
 
     public override void _Ready()
     {
+        base._Ready();
+        
+        interactArea = GetNode<Area3D>("InteractArea");
+
         if (useAnimation)
         {
             animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
@@ -34,19 +40,41 @@ public partial class Hatch : Node3D
             RotationDegrees = closedRotation;
         }
 
-        interactArea = GetNode<Area3D>("InteractArea");
+        OnInteract += _ => ToggleHatch();
     }
 
     public override void _Process(double delta)
     {
-        if(Input.IsActionJustPressed("interact") && IsPlayerInRange() && !isMoving)
-        {
-            ToggleHatch();
-        }
+        HandleHintVisibility();
 
         if(!useAnimation && isMoving)
         {
             MoveAndRotateHatch(delta);
+        }
+    }
+
+    private void HandleHintVisibility()
+    {
+        if (IsPlayerInRange() && CanInteract())
+        {
+            ShowHint();
+        }
+        else
+        {
+            HideHint();
+        }
+    }
+
+    public override bool CanInteract()
+    {
+        return IsPlayerInRange() && base.CanInteract();
+    }
+
+    public override void Interact()
+    {
+        if (!isMoving)
+        {
+            base.Interact();
         }
     }
 

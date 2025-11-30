@@ -368,7 +368,9 @@ dialog = ExtResource("23_uyjrd")
 transform = Transform3D(-1.07285e-07, 0, 1, 0, 1, 0, -1, 0, -1.07285e-07, -3.22057, 3.12225, 11.2072)
 
 [node name="TopFloor_Hatch_mesh_01" parent="." instance=ExtResource("26_iv5uq")]
-skeleton = NodePath("../../root/@EditorNode@21306/@Panel@14/@VBoxContainer@15/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@26/DockVSplitCenter/@VSplitContainer@54/@VBoxContainer@55/@EditorMainScreen@102/MainScreen/@CanvasItemEditor@11482/@VSplitContainer@11134/@HSplitContainer@11136/@HSplitContainer@11138/@Control@11139/@SubViewportContainer@11140/@SubViewport@11141/DockingBay")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.101, -0.012, 34.803)
+openPosition = Vector3(26.101, -0.012, 34.803)
+closedPosition = Vector3(25.322, -1.093, 34.803)
 
 [connection signal="PlayerEnterLadder" from="LadderCollision" to="Player" method="OnAreaEntered"]
 [connection signal="PlayerExitLadder" from="LadderCollision" to="Player" method="OnAreaExited"]
