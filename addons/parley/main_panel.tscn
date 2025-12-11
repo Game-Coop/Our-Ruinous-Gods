@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://ckubjbp3e7yy3"]
+[gd_scene load_steps=46 format=3 uid="uid://ckubjbp3e7yy3"]
 
 [ext_resource type="Script" uid="uid://ctp441gxhvg80" path="res://addons/parley/main_panel.gd" id="1_06n3w"]
 [ext_resource type="Texture2D" uid="uid://ct6iywe1qjuh3" path="res://addons/parley/assets/New.svg" id="3_4ui00"]
@@ -25,13 +25,19 @@
 [ext_resource type="PackedScene" uid="uid://dcdua1f2ah8xa" path="res://addons/parley/views/parley_graph_view.tscn" id="20_8yxrj"]
 [ext_resource type="Script" uid="uid://b3tj6amhgmct6" path="res://addons/parley/stores/action/action_store.gd" id="26_anq7l"]
 [ext_resource type="Script" uid="uid://cbi8x2vk7bku1" path="res://addons/parley/stores/character/character_store.gd" id="28_anq7l"]
+[ext_resource type="Script" uid="uid://dbqp7dc5s5e3n" path="res://addons/parley/components/sidebar.gd" id="28_hqssv"]
 [ext_resource type="PackedScene" uid="uid://c6cagjh7y5wn4" path="res://addons/parley/modals/export_to_csv_modal.tscn" id="29_wngpy"]
 [ext_resource type="PackedScene" uid="uid://cjgxxvotxhj1g" path="res://addons/parley/components/bottom_panel.tscn" id="29_xxhvx"]
 [ext_resource type="Script" uid="uid://ob0am6au6mmt" path="res://addons/parley/stores/fact/fact_store.gd" id="30_7jaih"]
 [ext_resource type="Script" uid="uid://cjo7uxv32sr14" path="res://addons/parley/models/edge_ast.gd" id="30_rspbv"]
+[ext_resource type="Script" uid="uid://cyx7ixqxq6pxd" path="res://addons/parley/views/parley_graph_view.gd" id="30_ywstf"]
 [ext_resource type="PackedScene" uid="uid://brdwtctohmwso" path="res://addons/parley/modals/edit_dialogue_sequence_modal.tscn" id="31_7jaih"]
 [ext_resource type="Script" uid="uid://3nqtsewsmim0" path="res://addons/parley/models/node_ast.gd" id="31_tp54n"]
+[ext_resource type="Script" uid="uid://gu5an32ya6bh" path="res://addons/parley/components/bottom_panel.gd" id="32_gi5pe"]
 [ext_resource type="Script" uid="uid://btn7s5anok7p4" path="res://addons/parley/models/dialogue_sequence_ast.gd" id="32_pogw7"]
+[ext_resource type="Script" uid="uid://k61ki1a2kh34" path="res://addons/parley/modals/new_dialogue_sequence_modal.gd" id="34_r87t6"]
+[ext_resource type="Script" uid="uid://ymic8gvhhocj" path="res://addons/parley/modals/export_to_csv_modal.gd" id="36_7ys2g"]
+[ext_resource type="Script" uid="uid://c08skt634b7fa" path="res://addons/parley/modals/edit_dialogue_sequence_modal.gd" id="38_iso7o"]
 
 [sub_resource type="Resource" id="Resource_owjo5"]
 script = ExtResource("32_pogw7")
@@ -54,7 +60,7 @@ script = ExtResource("28_anq7l")
 characters = Array[ExtResource("11_7jaih")]([])
 id = ""
 
-[sub_resource type="Image" id="Image_8yxrj"]
+[sub_resource type="Image" id="Image_hqssv"]
 data = {
 "data": PackedByteArray(255, 93, 93, 0, 255, 93, 93, 0, 255, 93, 93, 0, 255, 93, 93, 0, 255, 93, 93, 0, 255, 93, 93, 0, 255, 93, 93, 0, 255, 93, 93, 0, 255, 93, 93, 0, 255, 93, 93, 0, 255, 92, 92, 0, 255, 92, 92, 0, 255, 92, 92, 0, 255, 92, 92, 0, 255, 92, 92, 0, 255, 92, 92, 0, 255, 93, 93, 0, 255, 93, 93, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 0, 255, 92, 92, 127, 255, 92, 92, 0, 255, 92, 92, 0, 255, 92, 92, 0, 255, 92, 92, 0, 255, 92, 92, 0, 255, 93, 93, 0, 255, 93, 93, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 0, 255, 93, 93, 255, 255, 92, 92, 127, 255, 92, 92, 0, 255, 92, 92, 0, 255, 92, 92, 0, 255, 92, 92, 0, 255, 93, 93, 0, 255, 93, 93, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 92, 92, 127, 255, 92, 92, 0, 255, 92, 92, 0, 255, 92, 92, 0, 255, 93, 93, 0, 255, 93, 93, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 92, 92, 127, 255, 92, 92, 0, 255, 92, 92, 0, 255, 93, 93, 0, 255, 93, 93, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 0, 255, 93, 93, 0, 255, 93, 93, 0, 255, 93, 93, 0, 255, 92, 92, 0, 255, 92, 92, 0, 255, 92, 92, 0, 255, 93, 93, 0, 255, 93, 93, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 0, 255, 93, 93, 0, 255, 93, 93, 0, 255, 93, 93, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 0, 255, 93, 93, 0, 255, 93, 93, 0, 255, 93, 93, 0, 255, 93, 93, 231, 255, 90, 90, 54, 255, 94, 94, 57, 255, 93, 93, 233, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 231, 255, 90, 90, 54, 255, 94, 94, 57, 255, 93, 93, 233, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 0, 255, 93, 93, 0, 255, 91, 91, 0, 255, 91, 91, 0, 255, 91, 91, 42, 255, 90, 90, 0, 255, 94, 94, 0, 255, 91, 91, 42, 255, 93, 93, 233, 255, 92, 92, 232, 255, 93, 93, 41, 255, 90, 90, 0, 255, 94, 94, 0, 255, 91, 91, 42, 255, 93, 93, 233, 255, 92, 92, 232, 255, 92, 92, 0, 255, 92, 92, 0, 255, 91, 91, 0, 255, 91, 91, 0, 255, 91, 91, 0, 255, 91, 91, 45, 255, 93, 93, 44, 255, 91, 91, 0, 255, 91, 91, 42, 255, 91, 91, 42, 255, 93, 93, 0, 255, 91, 91, 45, 255, 93, 93, 44, 255, 91, 91, 0, 255, 91, 91, 42, 255, 91, 91, 42, 255, 91, 91, 0, 255, 91, 91, 0, 255, 91, 91, 0, 255, 91, 91, 0, 255, 91, 91, 45, 255, 92, 92, 235, 255, 92, 92, 234, 255, 89, 89, 43, 255, 91, 91, 0, 255, 91, 91, 0, 255, 91, 91, 45, 255, 92, 92, 235, 255, 92, 92, 234, 255, 89, 89, 43, 255, 91, 91, 0, 255, 91, 91, 0, 255, 91, 91, 0, 255, 91, 91, 0, 255, 92, 92, 0, 255, 92, 92, 0, 255, 92, 92, 235, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 233, 255, 91, 91, 59, 255, 92, 92, 61, 255, 92, 92, 235, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 233, 255, 91, 91, 59, 255, 92, 92, 61, 255, 92, 92, 0, 255, 92, 92, 0, 255, 93, 93, 0, 255, 93, 93, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 0, 255, 93, 93, 0, 255, 93, 93, 0, 255, 93, 93, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 0, 255, 93, 93, 0, 255, 93, 93, 0, 255, 93, 93, 0, 255, 93, 93, 0, 255, 93, 93, 0, 255, 93, 93, 0, 255, 93, 93, 0, 255, 93, 93, 0, 255, 93, 93, 0, 255, 93, 93, 0, 255, 93, 93, 0, 255, 93, 93, 0, 255, 93, 93, 0, 255, 93, 93, 0, 255, 93, 93, 0, 255, 93, 93, 0, 255, 93, 93, 0),
 "format": "RGBA8",
@@ -64,7 +70,7 @@ data = {
 }
 
 [sub_resource type="ImageTexture" id="ImageTexture_h2jtb"]
-image = SubResource("Image_8yxrj")
+image = SubResource("Image_hqssv")
 
 [sub_resource type="Resource" id="Resource_7hjis"]
 script = ExtResource("32_pogw7")
@@ -75,7 +81,6 @@ nodes = Array[ExtResource("31_tp54n")]([])
 [node name="MainPanel" type="VBoxContainer" node_paths=PackedStringArray("save_button", "arrange_nodes_button", "refresh_button", "open_file_dialogue")]
 auto_translate_mode = 1
 clip_contents = true
-anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
@@ -265,21 +270,37 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 split_offset = 400
 
-[node name="Sidebar" parent="MarginContainer/MainContainer/HSplitContainer/MainViewPanel/MainViewContainer/EditorView" instance=ExtResource("18_re0cy")]
+[node name="Sidebar" type="VBoxContainer" parent="MarginContainer/MainContainer/HSplitContainer/MainViewPanel/MainViewContainer/EditorView" instance=ExtResource("18_re0cy")]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
+script = ExtResource("28_hqssv")
 
 [node name="GraphContainer" type="VBoxContainer" parent="MarginContainer/MainContainer/HSplitContainer/MainViewPanel/MainViewContainer/EditorView"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="GraphView" parent="MarginContainer/MainContainer/HSplitContainer/MainViewPanel/MainViewContainer/EditorView/GraphContainer" instance=ExtResource("20_8yxrj")]
+[node name="GraphView" type="GraphEdit" parent="MarginContainer/MainContainer/HSplitContainer/MainViewPanel/MainViewContainer/EditorView/GraphContainer" instance=ExtResource("20_8yxrj")]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_colors/connection_rim_color = Color(0, 0, 0, 1)
+right_disconnects = true
+connection_lines_thickness = 3.0
+zoom = 0.5
+show_zoom_label = true
+show_arrange_button = false
+script = ExtResource("30_ywstf")
 
-[node name="BottomPanel" parent="MarginContainer/MainContainer/HSplitContainer/MainViewPanel/MainViewContainer/EditorView/GraphContainer" instance=ExtResource("29_xxhvx")]
+[node name="BottomPanel" type="MarginContainer" parent="MarginContainer/MainContainer/HSplitContainer/MainViewPanel/MainViewContainer/EditorView/GraphContainer" instance=ExtResource("29_xxhvx")]
 unique_name_in_owner = true
 layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_bottom = 10
+script = ExtResource("32_gi5pe")
 
 [node name="OpenFileDialog" type="FileDialog" parent="."]
 title = "Open a File"
@@ -290,18 +311,36 @@ ok_button_text = "Open"
 file_mode = 0
 filters = PackedStringArray("*.ds")
 
-[node name="NewDialogueSequenceModal" parent="." instance=ExtResource("12_v8y8i")]
+[node name="NewDialogueSequenceModal" type="Window" parent="." instance=ExtResource("12_v8y8i")]
 unique_name_in_owner = true
+auto_translate_mode = 1
+title = "New Dialogue Sequence"
+initial_position = 2
+size = Vector2i(1000, 500)
 visible = false
+min_size = Vector2i(1000, 500)
+script = ExtResource("34_r87t6")
 
-[node name="ExportToCsvModal" parent="." instance=ExtResource("29_wngpy")]
+[node name="ExportToCsvModal" type="Window" parent="." instance=ExtResource("29_wngpy")]
 unique_name_in_owner = true
+auto_translate_mode = 1
+title = "Export to CSV"
+initial_position = 2
+size = Vector2i(800, 400)
 visible = false
+min_size = Vector2i(800, 400)
+script = ExtResource("36_7ys2g")
 dialogue_ast = SubResource("Resource_7hjis")
 
-[node name="EditDialogueSequenceModal" parent="." instance=ExtResource("31_7jaih")]
+[node name="EditDialogueSequenceModal" type="Window" parent="." instance=ExtResource("31_7jaih")]
 unique_name_in_owner = true
+auto_translate_mode = 1
+title = "Edit Dialogue Sequence"
+initial_position = 2
+size = Vector2i(1000, 500)
 visible = false
+min_size = Vector2i(1000, 500)
+script = ExtResource("38_iso7o")
 
 [connection signal="pressed" from="MarginContainer/MainContainer/HSplitContainer/MainViewPanel/MainViewContainer/Toolbar/EditorActions/SaveButton" to="." method="_on_save_pressed"]
 [connection signal="pressed" from="MarginContainer/MainContainer/HSplitContainer/MainViewPanel/MainViewContainer/Toolbar/EditorActions/ArrangeNodesButton" to="." method="_on_arrange_nodes_button_pressed"]

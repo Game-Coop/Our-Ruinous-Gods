@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://dubuq4fr54oik"]
+[gd_scene load_steps=3 format=3 uid="uid://dubuq4fr54oik"]
 
 [ext_resource type="Script" uid="uid://bgvdxkiubsgyg" path="res://scripts/UI/Page.cs" id="1"]
+[ext_resource type="Script" uid="uid://cecmhhcex34pa" path="res://scripts/UI/CustomLabel.cs" id="2_7lbi8"]
 
 [node name="Page" type="Control"]
 custom_minimum_size = Vector2(750, 0)
@@ -20,4 +21,5 @@ anchor_bottom = 1.0
 text = "asdasd asd a dsa das dsad as das das as dsa sd a sd as asd asd asd asdas sdsa s  as sas as das as s a sa s sdadsas as das as s a sa s sdadsas as das as s a sa s sdadsas as das as s a sa s sdad"
 horizontal_alignment = 1
 vertical_alignment = 1
-autowrap_mode = 3
+autowrap_mode = 2
+script = ExtResource("2_7lbi8")

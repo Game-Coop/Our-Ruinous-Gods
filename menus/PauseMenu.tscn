@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://df6qkrb2qch0n"]
+[gd_scene load_steps=20 format=3 uid="uid://df6qkrb2qch0n"]
 
 [ext_resource type="Theme" path="res://themes/inventoryScrollbarTheme.tres" id="1"]
 [ext_resource type="PackedScene" uid="uid://nvsajw008gtm" path="res://menus/JournalPage.tscn" id="2"]
@@ -7,10 +7,16 @@
 [ext_resource type="Script" uid="uid://dgho8w6pyyanf" path="res://scripts/UI/Navbar.cs" id="5"]
 [ext_resource type="Script" uid="uid://bxpms1rwk7hb1" path="res://scripts/UI/PauseMenu.cs" id="6"]
 [ext_resource type="Script" uid="uid://qulipl1i05lq" path="res://scripts/UI/ScrollablePages.cs" id="7"]
-[ext_resource type="PackedScene" path="res://ui/Titled Pagination.tscn" id="8"]
+[ext_resource type="PackedScene" uid="uid://b4q4xjuseqcq8" path="res://ui/Titled Pagination.tscn" id="8"]
 [ext_resource type="Script" uid="uid://c4uk0vikv0xhg" path="res://scripts/UI/OrderedPages.cs" id="9"]
+[ext_resource type="Script" uid="uid://d1yty5c3d8hde" path="res://scripts/Inventory/InventoryPage.cs" id="9_aq6px"]
 [ext_resource type="PackedScene" uid="uid://cfakrk2aortcg" path="res://menus/AudioPlayerPage.tscn" id="10"]
+[ext_resource type="PackedScene" uid="uid://dmr5c7oo82cmd" path="res://ui/ItemTemplate.tscn" id="10_d3pcd"]
 [ext_resource type="Script" uid="uid://ebgnfgek2sjl" path="res://scripts/UI/FadingPanelTweener.cs" id="11"]
+[ext_resource type="Script" uid="uid://cb3tdx4fpgcey" path="res://scripts/Journal/JournalPage.cs" id="12_vxv50"]
+[ext_resource type="PackedScene" uid="uid://da48j0ffpbdir" path="res://ui/JournalEntryTemplate.tscn" id="13_5svbq"]
+[ext_resource type="Script" uid="uid://cmu23utnjs2k3" path="res://scripts/AudioPlayer/AudioPlayerMenu.cs" id="15_4sc5h"]
+[ext_resource type="PackedScene" uid="uid://dp5ho1wpls5kc" path="res://ui/AudioEntryTemplate.tscn" id="16_bgrse"]
 
 [sub_resource type="Shortcut" id="11"]
 
@@ -18,7 +24,6 @@
 
 [node name="Pause Menu" type="Panel"]
 self_modulate = Color(1, 1, 1, 0)
-anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource("6")
@@ -119,24 +124,56 @@ size_flags_vertical = 3
 script = ExtResource("9")
 pageContainerPath = NodePath(".")
 
-[node name="Inventory" parent="Panel/VBox/Ordered Pages" instance=ExtResource("3")]
+[node name="Inventory" type="Control" parent="Panel/VBox/Ordered Pages" instance=ExtResource("3")]
+custom_minimum_size = Vector2(1920, 0)
 layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("9_aq6px")
+itemTemplate = ExtResource("10_d3pcd")
+itemsContainerPath = NodePath("Panel/Item List Container/ScrollContainer/VBoxContainer")
+itemPreviewRectPath = NodePath("Panel/VBoxContainer/Item Preview")
+itemNameLabelPath = NodePath("Panel/VBoxContainer/Name Label")
+itemDescriptionLabelPath = NodePath("Panel/VBoxContainer/Description Label")
+panelTweenerPath = NodePath("Panel Tweener")
 
-[node name="Journal" parent="Panel/VBox/Ordered Pages" instance=ExtResource("2")]
+[node name="Journal" type="Control" parent="Panel/VBox/Ordered Pages" instance=ExtResource("2")]
+custom_minimum_size = Vector2(1920, 0)
+layout_mode = 3
 anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
 offset_right = 1920.0
-grow_horizontal = 1
-grow_vertical = 1
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("12_vxv50")
+journalEntryTemplate = ExtResource("13_5svbq")
+entryContainerPath = NodePath("Panel/Item List Container/ScrollContainer/VBoxContainer")
+entryNameLabelPath = NodePath("Panel/Journal Reader/Entry Name")
+entryReaderPath = NodePath("Panel/Journal Reader")
+panelTweenerPath = NodePath("Panel Tweener")
 
-[node name="AudioPlayerMenu" parent="Panel/VBox/Ordered Pages" instance=ExtResource("10")]
+[node name="AudioPlayerMenu" type="Control" parent="Panel/VBox/Ordered Pages" instance=ExtResource("10")]
+custom_minimum_size = Vector2(1920, 0)
+layout_mode = 3
 anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
 offset_right = 1920.0
-grow_horizontal = 1
-grow_vertical = 1
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("15_4sc5h")
+audioEntryTemplate = ExtResource("16_bgrse")
+controlPanelPath = NodePath("Panel/Control Panel")
+entryContainerPath = NodePath("Panel/Item List Container/ScrollContainer/VBoxContainer")
+entryNameLabelPath = NodePath("Panel/Control Panel/Entry Name")
+sliderPath = NodePath("Panel/Control Panel/HSlider")
+playButtonPath = NodePath("Panel/Control Panel/HBoxContainer/Play Pause")
+stopButtonPath = NodePath("Panel/Control Panel/HBoxContainer/Stop")
+rewindButtonPath = NodePath("Panel/Control Panel/HBoxContainer/Rewind")
+fastForwardButtonPath = NodePath("Panel/Control Panel/HBoxContainer/Fast Forward")
+playImagePath = NodePath("Panel/Control Panel/HBoxContainer/Play Pause/Play")
+pauseImagePath = NodePath("Panel/Control Panel/HBoxContainer/Play Pause/Pause")
+panelTweenerPath = NodePath("Panel Tweener")
 
 [node name="Panel Tweener" type="Control" parent="."]
 anchors_preset = 0

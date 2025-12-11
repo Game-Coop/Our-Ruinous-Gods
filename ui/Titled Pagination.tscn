@@ -1,46 +1,46 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=3 uid="uid://b4q4xjuseqcq8"]
 
-[ext_resource path="res://scripts/UI/Pagination.cs" type="Script" id=1]
-[ext_resource path="res://assets/ui/roundedRectangle.png" type="Texture2D" id=2]
+[ext_resource type="Script" uid="uid://bf4wqgepa87e4" path="res://scripts/UI/Pagination.cs" id="1"]
+[ext_resource type="Texture2D" uid="uid://bph7mj12dvok6" path="res://assets/ui/roundedRectangle.png" id="2"]
+[ext_resource type="Script" uid="uid://cecmhhcex34pa" path="res://scripts/UI/CustomLabel.cs" id="3_wyd6l"]
 
-[sub_resource type="StyleBoxEmpty" id=1]
+[sub_resource type="StyleBoxEmpty" id="1"]
 
 [node name="Titled Pagination" type="PanelContainer"]
 size_flags_horizontal = 3
-theme_override_styles/panel = SubResource( 1 )
-script = ExtResource( 1 )
+theme_override_styles/panel = SubResource("1")
+script = ExtResource("1")
 filledImagePath = NodePath("Button/Filled")
 labelPath = NodePath("Label")
 
 [node name="Button" type="Button" parent="."]
-offset_right = 286.0
-offset_bottom = 54.0
-custom_minimum_size = Vector2( 200, 0 )
-focus_mode = 0
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+focus_mode = 0
 flat = true
 
 [node name="Empty" type="TextureRect" parent="Button"]
-self_modulate = Color( 1, 1, 1, 0.196078 )
+self_modulate = Color(1, 1, 1, 0.196078)
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
-texture = ExtResource( 2 )
-expand = true
+texture = ExtResource("2")
+expand_mode = 1
 
 [node name="Filled" type="TextureRect" parent="Button"]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
-texture = ExtResource( 2 )
-expand = true
+texture = ExtResource("2")
+expand_mode = 1
 
 [node name="Label" type="Label" parent="."]
-offset_top = 3.0
-offset_right = 286.0
-offset_bottom = 51.0
-theme_override_colors/font_color = Color( 0, 0, 0, 1 )
+layout_mode = 2
 text = "Inventory asdasd"
-align = 1
-valign = 1
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("3_wyd6l")
 
 [connection signal="pressed" from="Button" to="." method="ButtonPressed"]

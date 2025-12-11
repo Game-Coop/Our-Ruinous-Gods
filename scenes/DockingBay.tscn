@@ -26,6 +26,7 @@
 [ext_resource type="Resource" uid="uid://dg383wlfxj8ip" path="res://dialogue_sequences/new_dialogue.ds" id="23_uyjrd"]
 [ext_resource type="PackedScene" uid="uid://lfrojo445a0l" path="res://prefabs/Puzzles/fuse_box_puzzle_prototype.tscn" id="25_un4in"]
 [ext_resource type="PackedScene" uid="uid://hl5amlhee3yn" path="res://objects/Hatch.tscn" id="26_iv5uq"]
+[ext_resource type="Script" uid="uid://b6ukogi7n345w" path="res://scripts/Puzzles/FuseBoxPuzzle/Fuse.cs" id="37_31fnb"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kfrdm"]
 radius = 0.724904
@@ -48,6 +49,23 @@ height = 7.47521
 size = Vector3(6.58246, 7.02236, 9.24394)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_kfrdm"]
+
+[sub_resource type="BoxShape3D" id="1"]
+size = Vector3(1, 10.9248, 1.48938)
+
+[sub_resource type="Resource" id="Resource_na2vv"]
+script = ExtResource("37_31fnb")
+value = 0
+target = 1
+moveAmount = 4
+metadata/_custom_type_script = "uid://dknuit44t41n5"
+
+[sub_resource type="Resource" id="Resource_6e0do"]
+script = ExtResource("37_31fnb")
+value = 0
+target = 1
+moveAmount = 2
+metadata/_custom_type_script = "uid://dknuit44t41n5"
 
 [node name="DockingBay" type="Node3D"]
 
@@ -228,6 +246,7 @@ settingsMenuPagePath = NodePath("Settings Menu")
 
 [node name="Pause Menu" parent="CanvasLayer" instance=ExtResource("7")]
 visible = false
+anchors_preset = 15
 
 [node name="Settings Menu" parent="CanvasLayer" instance=ExtResource("9")]
 visible = false
@@ -354,6 +373,7 @@ layers = 3
 
 [node name="CollisionShape" parent="LadderCollision" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.7785, -4.9624, 34.6688)
+shape = SubResource("1")
 
 [node name="QuestSwitchableNotifier" type="Node" parent="."]
 script = ExtResource("21_jlvo6")
@@ -366,6 +386,7 @@ dialog = ExtResource("23_uyjrd")
 
 [node name="FuseBox Puzzle Prototype" parent="." instance=ExtResource("25_un4in")]
 transform = Transform3D(-1.07285e-07, 0, 1, 0, 1, 0, -1, 0, -1.07285e-07, -3.22057, 3.12225, 11.2072)
+fuses = Array[Object]([SubResource("Resource_na2vv"), SubResource("Resource_6e0do")])
 
 [node name="TopFloor_Hatch_mesh_01" parent="." instance=ExtResource("26_iv5uq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.101, -0.012, 34.803)

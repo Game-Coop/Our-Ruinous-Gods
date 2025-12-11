@@ -1,81 +1,65 @@
 {
-  "title": "",
+  "title": "docking-bay-intro",
   "nodes": [
     {
       "id": "node:1",
       "type": "DIALOGUE",
-      "position": "(1440.0, 960.0)",
-      "character": "uid://dks7iglsfui0y::1",
-      "text": "This is a dialog"
+      "position": "(-60.0, 380.0)",
+      "character": "uid://dks7iglsfui0y::2",
+      "text": "Greetings, employee 14. We hope you’re familiar with the Bataafse orientation handbook, but we’ve found that a single friendly voice is often worth a thousand words on a pad. That’s why I’m here! My name is Mark3, and you can think of me as your handler for this mission. I’m here to make sure your work experience is both pleasant and productive — think of those terms as two wings of the company motto, keeping us all in the air."
+    },
+    {
+      "id": "node:2",
+      "type": "DIALOGUE",
+      "position": "(420.0, 380.0)",
+      "character": "uid://dks7iglsfui0y::2",
+      "text": "Your mission is to assess the situation at Drenthe station and handle any issues. There’s no serious cause for concern, but we have detected some unexpected radio silence and power issues that we need to understand better. Make sure the station continues to operate, restart any systems, and in the unlikely scenario of a level 3 event, find all non-injured personnel."
     },
     {
       "id": "node:3",
-      "type": "END",
-      "position": "(3560.0, 1500.0)"
+      "type": "DIALOGUE",
+      "position": "(900.0, 380.0)",
+      "character": "uid://dks7iglsfui0y::2",
+      "text": "To get started, go to the central strut and locate the communications center. You should be able to get the door open with minimal issues. "
+    },
+    {
+      "id": "node:4",
+      "type": "START",
+      "position": "(-440.0, 400.0)"
     },
     {
       "id": "node:5",
-      "type": "DIALOGUE_OPTION",
-      "position": "(1940.0, 1100.0)",
-      "character": "uid://dks7iglsfui0y::1",
-      "text": "Someone please help me!"
+      "type": "DIALOGUE",
+      "position": "(-40.0, -40.0)",
+      "character": "",
+      "text": "NOTE\n\nMark3  represents the company orders. To the player it will feel as an assistant is guiding them, but in reality, all messages from Mark3 will be removed."
     },
     {
       "id": "node:6",
-      "type": "START",
-      "position": "(1100.0, 940.0)"
+      "type": "DIALOGUE",
+      "position": "(420.0, -40.0)",
+      "character": "",
+      "text": "NOTE\n\nTest and see if dialogue block is too big.\n\nMy recommendation: Split text in 2-line chunks the player advances pressing a button."
     },
     {
       "id": "node:7",
-      "type": "DIALOGUE",
-      "position": "(3080.0, 1080.0)",
-      "character": "uid://dks7iglsfui0y::1",
-      "text": "right"
-    },
-    {
-      "id": "node:8",
-      "type": "ACTION",
-      "position": "(2560.0, 780.0)",
-      "description": "",
-      "action_type": "SCRIPT",
-      "action_script_ref": "uid://dvj6kcf7errc6",
-      "values": [
-        "1\n2\n3"
-      ]
-    },
-    {
-      "id": "node:9",
-      "type": "CONDITION",
-      "position": "(2140.0, 1420.0)",
-      "description": "is alive?",
-      "combiner": "ALL",
-      "conditions": [
-        {
-          "fact_ref": "uid://d2q7e5e7shetd",
-          "operator": 0,
-          "value": "true"
-        }
-      ]
-    },
-    {
-      "id": "node:10",
-      "type": "DIALOGUE",
-      "position": "(2700.0, 1520.0)",
-      "character": "uid://dks7iglsfui0y::1",
-      "text": "False"
-    },
-    {
-      "id": "node:11",
-      "type": "DIALOGUE_OPTION",
-      "position": "(1860.0, 760.0)",
-      "character": "",
-      "text": ""
+      "type": "END",
+      "position": "(1320.0, 400.0)"
     }
   ],
   "edges": [
     {
+      "id": "edge:1",
+      "from_node": "node:1",
+      "from_slot": 0,
+      "to_node": "node:2",
+      "to_slot": 0,
+      "should_override_colour": false,
+      "colour_override": "(0.4118, 0.4118, 0.4118, 1.0)"
+    },
+    {
       "id": "edge:2",
-      "from_node": "node:4",
+      "from_node": "node:2",
       "from_slot": 0,
       "to_node": "node:3",
       "to_slot": 0,
@@ -84,16 +68,7 @@
     },
     {
       "id": "edge:3",
-      "from_node": "node:1",
-      "from_slot": 0,
-      "to_node": "node:5",
-      "to_slot": 0,
-      "should_override_colour": false,
-      "colour_override": "(0.4118, 0.4118, 0.4118, 1.0)"
-    },
-    {
-      "id": "edge:5",
-      "from_node": "node:6",
+      "from_node": "node:4",
       "from_slot": 0,
       "to_node": "node:1",
       "to_slot": 0,
@@ -101,64 +76,10 @@
       "colour_override": "(0.4118, 0.4118, 0.4118, 1.0)"
     },
     {
-      "id": "edge:7",
-      "from_node": "node:7",
-      "from_slot": 0,
-      "to_node": "node:3",
-      "to_slot": 0,
-      "should_override_colour": false,
-      "colour_override": "(0.4118, 0.4118, 0.4118, 1.0)"
-    },
-    {
-      "id": "edge:9",
-      "from_node": "node:8",
+      "id": "edge:4",
+      "from_node": "node:3",
       "from_slot": 0,
       "to_node": "node:7",
-      "to_slot": 0,
-      "should_override_colour": false,
-      "colour_override": "(0.4118, 0.4118, 0.4118, 1.0)"
-    },
-    {
-      "id": "edge:10",
-      "from_node": "node:5",
-      "from_slot": 0,
-      "to_node": "node:9",
-      "to_slot": 0,
-      "should_override_colour": false,
-      "colour_override": "(0.4118, 0.4118, 0.4118, 1.0)"
-    },
-    {
-      "id": "edge:11",
-      "from_node": "node:9",
-      "from_slot": 0,
-      "to_node": "node:8",
-      "to_slot": 0,
-      "should_override_colour": false,
-      "colour_override": "(0.4118, 0.4118, 0.4118, 1.0)"
-    },
-    {
-      "id": "edge:12",
-      "from_node": "node:9",
-      "from_slot": 1,
-      "to_node": "node:10",
-      "to_slot": 0,
-      "should_override_colour": false,
-      "colour_override": "(0.4118, 0.4118, 0.4118, 1.0)"
-    },
-    {
-      "id": "edge:13",
-      "from_node": "node:10",
-      "from_slot": 0,
-      "to_node": "node:3",
-      "to_slot": 0,
-      "should_override_colour": false,
-      "colour_override": "(0.4118, 0.4118, 0.4118, 1.0)"
-    },
-    {
-      "id": "edge:14",
-      "from_node": "node:1",
-      "from_slot": 0,
-      "to_node": "node:11",
       "to_slot": 0,
       "should_override_colour": false,
       "colour_override": "(0.4118, 0.4118, 0.4118, 1.0)"

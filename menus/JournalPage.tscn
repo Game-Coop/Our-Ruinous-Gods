@@ -1,9 +1,9 @@
-[gd_scene load_steps=17 format=3 uid="uid://nvsajw008gtm"]
+[gd_scene load_steps=16 format=3 uid="uid://nvsajw008gtm"]
 
 [ext_resource type="Script" uid="uid://cb3tdx4fpgcey" path="res://scripts/Journal/JournalPage.cs" id="1"]
 [ext_resource type="Theme" path="res://themes/inventoryScrollbarTheme.tres" id="2"]
-[ext_resource type="PackedScene" path="res://ui/JournalEntryTemplate.tscn" id="3"]
-[ext_resource type="FontFile" uid="uid://djxjfdocobiaf" path="res://fonts/Chakra_Petch/ChakraPetch-Regular.ttf" id="4"]
+[ext_resource type="PackedScene" uid="uid://da48j0ffpbdir" path="res://ui/JournalEntryTemplate.tscn" id="3"]
+[ext_resource type="Script" uid="uid://cecmhhcex34pa" path="res://scripts/UI/CustomLabel.cs" id="4_fob72"]
 [ext_resource type="PackedScene" path="res://ui/Pagination.tscn" id="5"]
 [ext_resource type="PackedScene" uid="uid://dubuq4fr54oik" path="res://ui/EntryPageTemplate.tscn" id="6"]
 [ext_resource type="Texture2D" uid="uid://chdxvbrmjswds" path="res://assets/ui/right-arrow.png" id="7"]
@@ -26,17 +26,6 @@ corner_radius_bottom_right = 30
 corner_radius_bottom_left = 30
 
 [sub_resource type="Theme" id="4"]
-
-[sub_resource type="FontFile" id="5"]
-fallbacks = Array[Font]([ExtResource("4"), ExtResource("4")])
-subpixel_positioning = 0
-msdf_pixel_range = 14
-msdf_size = 128
-cache/0/16/0/ascent = 0.0
-cache/0/16/0/descent = 0.0
-cache/0/16/0/underline_position = 0.0
-cache/0/16/0/underline_thickness = 0.0
-cache/0/16/0/scale = 1.0
 
 [sub_resource type="Shortcut" id="9"]
 
@@ -109,8 +98,8 @@ offset_left = 155.0
 offset_top = 231.0
 offset_right = 372.0
 offset_bottom = 297.0
-theme_override_fonts/font = SubResource("5")
 text = "Journal"
+script = ExtResource("4_fob72")
 
 [node name="Journal Reader" type="VBoxContainer" parent="Panel"]
 layout_mode = 0
@@ -133,6 +122,7 @@ layout_mode = 2
 size_flags_vertical = 1
 horizontal_alignment = 1
 vertical_alignment = 1
+script = ExtResource("4_fob72")
 
 [node name="ScrollablePages" type="ScrollContainer" parent="Panel/Journal Reader"]
 custom_minimum_size = Vector2(750, 0)

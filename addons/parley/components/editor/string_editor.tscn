@@ -1,15 +1,16 @@
-[gd_scene load_steps=2 format=3 uid="uid://dcaqonk76b5qj"]
+[gd_scene load_steps=3 format=3 uid="uid://dcaqonk76b5qj"]
 
 [ext_resource type="Script" uid="uid://dl1srgeyxyjhp" path="res://addons/parley/components/editor/string_editor.gd" id="1_lyc73"]
+[ext_resource type="Script" uid="uid://cecmhhcex34pa" path="res://scripts/UI/CustomLabel.cs" id="2_au3uh"]
 
 [node name="StringEditor" type="HBoxContainer"]
 script = ExtResource("1_lyc73")
 
 [node name="Label" type="Label" parent="."]
-unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 text = ":"
+script = ExtResource("2_au3uh")
 
 [node name="ValueEdit" type="LineEdit" parent="."]
 unique_name_in_owner = true

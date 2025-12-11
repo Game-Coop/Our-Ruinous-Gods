@@ -1,25 +1,14 @@
-[gd_scene load_steps=13 format=3 uid="uid://cfakrk2aortcg"]
+[gd_scene load_steps=12 format=3 uid="uid://cfakrk2aortcg"]
 
 [ext_resource type="Script" uid="uid://cmu23utnjs2k3" path="res://scripts/AudioPlayer/AudioPlayerMenu.cs" id="1"]
 [ext_resource type="Theme" path="res://themes/inventoryScrollbarTheme.tres" id="2"]
-[ext_resource type="PackedScene" path="res://ui/AudioEntryTemplate.tscn" id="3"]
-[ext_resource type="FontFile" uid="uid://djxjfdocobiaf" path="res://fonts/Chakra_Petch/ChakraPetch-Regular.ttf" id="4"]
+[ext_resource type="PackedScene" uid="uid://dp5ho1wpls5kc" path="res://ui/AudioEntryTemplate.tscn" id="3"]
+[ext_resource type="Script" uid="uid://cecmhhcex34pa" path="res://scripts/UI/CustomLabel.cs" id="3_4mhlh"]
 [ext_resource type="Texture2D" uid="uid://bor1s2ap53ksj" path="res://assets/ui/play-buttton.png" id="5"]
 [ext_resource type="Texture2D" uid="uid://bsogpgegkrcdl" path="res://assets/ui/stop-button.png" id="6"]
 [ext_resource type="Texture2D" uid="uid://bgd1130n21i2o" path="res://assets/ui/pause.png" id="7"]
 [ext_resource type="Texture2D" uid="uid://cpdpc16msi3v3" path="res://assets/ui/rewind.png" id="8"]
 [ext_resource type="Script" uid="uid://bbwa3gfr35dgg" path="res://scripts/UI/MovingPanelTweener.cs" id="11"]
-
-[sub_resource type="FontFile" id="5"]
-fallbacks = Array[Font]([ExtResource("4"), ExtResource("4")])
-subpixel_positioning = 0
-msdf_pixel_range = 14
-msdf_size = 128
-cache/0/16/0/ascent = 0.0
-cache/0/16/0/descent = 0.0
-cache/0/16/0/underline_position = 0.0
-cache/0/16/0/underline_thickness = 0.0
-cache/0/16/0/scale = 1.0
 
 [sub_resource type="Theme" id="4"]
 
@@ -73,8 +62,8 @@ offset_left = 155.0
 offset_top = 231.0
 offset_right = 442.0
 offset_bottom = 297.0
-theme_override_fonts/font = SubResource("5")
 text = "Audio Player"
+script = ExtResource("3_4mhlh")
 
 [node name="Item List Container" type="Panel" parent="Panel"]
 layout_mode = 0
@@ -249,6 +238,7 @@ offset_top = 164.0
 offset_right = 391.0
 offset_bottom = 212.0
 clip_text = true
+script = ExtResource("3_4mhlh")
 
 [node name="Panel Tweener" type="Control" parent="."]
 anchors_preset = 0

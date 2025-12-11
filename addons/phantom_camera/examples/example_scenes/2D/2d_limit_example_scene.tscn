@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://w20wokw3ohsq"]
+[gd_scene load_steps=24 format=3 uid="uid://w20wokw3ohsq"]
 
 [ext_resource type="Script" uid="uid://c5yewe1hewu7j" path="res://addons/phantom_camera/examples/scripts/2D/2d_room_limit_tween.gd" id="1_ijqyv"]
 [ext_resource type="Texture2D" uid="uid://c77npili4pel4" path="res://addons/phantom_camera/examples/textures/2D/level_spritesheet.png" id="1_wmhqb"]
@@ -6,8 +6,13 @@
 [ext_resource type="PackedScene" uid="uid://iq5xd1ob1res" path="res://addons/phantom_camera/examples/ui/ui_sign.tscn" id="3_oqmwp"]
 [ext_resource type="Script" uid="uid://bhexx6mj1xv3q" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="4_4b648"]
 [ext_resource type="PackedScene" uid="uid://7kh0xydx0b1o" path="res://addons/phantom_camera/examples/example_scenes/2D/sub_scenes/playable_character_2d.tscn" id="5_pr2x5"]
+[ext_resource type="Script" uid="uid://cb46ypjv5p72s" path="res://addons/phantom_camera/examples/scripts/2D/player_character_body_2d.gd" id="6_xuoxe"]
+[ext_resource type="Texture2D" uid="uid://cscjjt55iw2cu" path="res://addons/phantom_camera/examples/textures/2D/player_sprite.svg" id="7_k0o58"]
+[ext_resource type="Script" uid="uid://cecmhhcex34pa" path="res://scripts/UI/CustomLabel.cs" id="8_jnqo4"]
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="9_twplb"]
 [ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="9_w5e16"]
+[ext_resource type="Resource" uid="uid://cecrnq0wnkexh" path="res://addons/phantom_camera/examples/resources/tween/item_focus_phantom_camera_2d_tween.tres" id="10_f2ewg"]
+[ext_resource type="Resource" uid="uid://cllveybboaqk5" path="res://addons/phantom_camera/examples/resources/tween/inventory_phantom_camera_2d_tween.tres" id="11_42v28"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_easgx"]
 texture = ExtResource("1_wmhqb")
@@ -160,6 +165,24 @@ custom_data_layer_0/name = "Type"
 custom_data_layer_0/type = 21
 sources/0 = SubResource("TileSetAtlasSource_easgx")
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5hryl"]
+bg_color = Color(0.85098, 0.894118, 0.937255, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.113725, 0.113725, 0.113725, 1)
+corner_radius_top_left = 7
+corner_radius_top_right = 7
+corner_radius_bottom_right = 7
+corner_radius_bottom_left = 7
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xj4ar"]
+size = Vector2(64, 57)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_18i13"]
+size = Vector2(64, 57)
+
 [sub_resource type="Resource" id="Resource_ct1eh"]
 script = ExtResource("9_twplb")
 duration = 0.9
@@ -226,17 +249,123 @@ layer_1/tile_data = PackedInt32Array(8, 786432, 4, 9, 786432, 4, 10, 786432, 4, 
 
 [node name="UI" type="CanvasLayer" parent="."]
 
-[node name="UIInventory" parent="UI" instance=ExtResource("2_v5qg2")]
+[node name="UIInventory" type="Control" parent="UI" instance=ExtResource("2_v5qg2")]
 unique_name_in_owner = true
 visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="UISign" parent="UI" instance=ExtResource("3_oqmwp")]
+[node name="UISign" type="Control" parent="UI" instance=ExtResource("3_oqmwp")]
 unique_name_in_owner = true
 visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("5_pr2x5")]
 unique_name_in_owner = true
 position = Vector2(66, -28)
+script = ExtResource("6_xuoxe")
+
+[node name="DarkOverlay" parent="CharacterBody2D" index="0"]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1000.0
+offset_top = -1000.0
+offset_right = 1000.0
+offset_bottom = 1000.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.615686)
+
+[node name="PlayerVisuals" parent="CharacterBody2D" index="1"]
+unique_name_in_owner = true
+
+[node name="PlayerSprite" parent="CharacterBody2D/PlayerVisuals" index="0"]
+unique_name_in_owner = true
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("7_k0o58")
+
+[node name="InteractionPrompt" parent="CharacterBody2D/PlayerVisuals" index="1"]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -16.0
+offset_top = -66.0
+offset_right = 16.0
+offset_bottom = -34.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_5hryl")
+
+[node name="Label" parent="CharacterBody2D/PlayerVisuals/InteractionPrompt" index="0"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -0.5
+offset_top = -10.5
+offset_right = 0.5
+offset_bottom = 12.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "F"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("8_jnqo4")
+
+[node name="CollisionShape2D" parent="CharacterBody2D" index="2"]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_xj4ar")
+
+[node name="PlayerArea2D" parent="CharacterBody2D" index="3"]
+unique_name_in_owner = true
+collision_layer = 2
+collision_mask = 2
+priority = 20
+
+[node name="CollisionShape2D" parent="CharacterBody2D/PlayerArea2D" index="0"]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_18i13")
+
+[node name="ItemFocusPhantomCamera2D" parent="CharacterBody2D" index="4"]
+unique_name_in_owner = true
+position = Vector2(0, -122)
+script = ExtResource("4_4b648")
+zoom = Vector2(2, 2)
+frame_preview = false
+tween_resource = ExtResource("10_f2ewg")
+follow_damping_value = Vector2(0, 0)
+draw_limits = true
+
+[node name="InventoryPhantomCamera2D" parent="CharacterBody2D" index="5"]
+unique_name_in_owner = true
+position = Vector2(-183, -5)
+script = ExtResource("4_4b648")
+zoom = Vector2(2.5, 2.5)
+frame_preview = false
+tween_resource = ExtResource("11_42v28")
+follow_damping_value = Vector2(0, 0)
+draw_limits = true
 
 [node name="RoomLeftPhantomCamera2D" type="Node2D" parent="." node_paths=PackedStringArray("follow_target")]
 unique_name_in_owner = true

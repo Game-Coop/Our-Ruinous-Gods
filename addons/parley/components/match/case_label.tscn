@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://5hi25aq3rc01"]
+[gd_scene load_steps=3 format=3 uid="uid://5hi25aq3rc01"]
 
 [ext_resource type="Script" uid="uid://b6wu5f1lgmndw" path="res://addons/parley/components/match/case_label.gd" id="1_gjlld"]
+[ext_resource type="Script" uid="uid://cecmhhcex34pa" path="res://scripts/UI/CustomLabel.cs" id="2_76x85"]
 
 [node name="CaseLabel" type="MarginContainer"]
 offset_right = 105.0
@@ -14,6 +15,7 @@ layout_mode = 2
 [node name="Padding" type="Label" parent="HBoxContainer"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
+script = ExtResource("2_76x85")
 
 [node name="Case" type="Button" parent="HBoxContainer"]
 unique_name_in_owner = true
