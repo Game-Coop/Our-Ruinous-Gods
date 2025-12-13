@@ -1,10 +1,10 @@
-[gd_resource type="Resource" load_steps=2 format=2]
+[gd_resource type="Resource" script_class="JournalData" load_steps=2 format=3 uid="uid://djq0mhhkghaaf"]
 
-[ext_resource path="res://scripts/Journal/JournalData.cs" type="Script" id=1]
+[ext_resource type="Script" uid="uid://d0vmpl467m0n0" path="res://scripts/Journal/JournalData.cs" id="1"]
 
 [resource]
-script = ExtResource( 1 )
+script = ExtResource("1")
 Id = 0
-Name = "Log 1"
-Content = "I never realized just how many stars there are in space. They’re hard to see down on Earth, with the smog and the light pollution. @But up here... billions of gleaming beams, death masks for giants that died millennia ago. @Sometimes I wonder if there were billions of Earths orbiting those stars, with billions of Hilts trying to break free. @Was I the only one to get the chance?"
+Name = "Tony's Log 2: Work Woes"
+Content = "So this AI, uhh, Dorian is what they are callin’ it? Feels like I have someone hanging over my shoulder at all times. Everyone keeps sayin’ they’re helpful. That I should run things by them.@  I’m sorry, I don’t need some disembodied voice trying to do my job. I’ve never had an AI at my station before and I’ve been doing this for over a decade now.@ I don’t need one now!  Ugh, I know I’m sounding like some grump but I take pride in my work. Asking some thinking machine its “opinion” feels like cheatin’ in some way, or givin’ up.@Bah, enough of that thou. Abby had her piano recital a few weeks back. Harriett's recordin’ came in today. Hell, I wish I could have been there.@ Abby was so happy when I watched it.  Freddy, thou, Freddy wasn’t saying much. I could tell he was angry. Haa, yeah I do still feel a little guilty, takin’ this job.@ Harriett understands, and little Abby doesn’t know better yet, but Freddy, he’s old enough now to get it.@ Every job I tell him it will be my last. But…finances are a little tight right now and well, this could solve that little problem. I told him this will be my last job for sure.@ I think he has stopped believing me when I say it. I don’t blame him. I just— I don’t want to keep watchin’ my kids grow up through videos and recordin’s. This time. This time for sure."
 Category = 0

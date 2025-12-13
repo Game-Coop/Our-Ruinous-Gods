@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="JournalData" load_steps=2 format=3 uid="uid://b06opaqubf7s7"]
+
+[ext_resource type="Script" uid="uid://d0vmpl467m0n0" path="res://scripts/Journal/JournalData.cs" id="1"]
+
+[resource]
+script = ExtResource("1")
+Id = 1
+Name = "Engineers, Never Spacewalk Alone!"
+Content = "The engineer’s thought-bubble:
+
+I can fix that alone, no biggie!
+
+Next to the image:
+
+ENGINEERS, THINK AGAIN!
+@
+Never spacewalk alone! All your extravehicular activities must be conducted in teams of two or more and supervised by personnel onboard the station.
+
+TWO IS ONE, ONE IS NONE
+
+In smaller print, at the bottom of the poster:
+
+Consult your Employee Handbook for specific guidelines on extravehicular activities. Failure to comply with these guidelines might nullify your personal insurance and make you liable for damages to company property."
+Category = 0

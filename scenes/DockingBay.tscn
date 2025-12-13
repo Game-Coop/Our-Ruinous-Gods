@@ -12,7 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://bud1h1sxl0q8n" path="res://menus/SettingsMenu.tscn" id="9"]
 [ext_resource type="Resource" path="res://resources/AudioDatas/audioData2.tres" id="10"]
 [ext_resource type="Resource" path="res://resources/ItemDatas/KeyItem1Data.tres" id="11"]
-[ext_resource type="Resource" path="res://resources/JournalDatas/JornalEntryData1.tres" id="12"]
+[ext_resource type="Resource" uid="uid://djq0mhhkghaaf" path="res://resources/JournalDatas/JornalEntryData1.tres" id="12"]
 [ext_resource type="PackedScene" path="res://ui/Hint.tscn" id="13"]
 [ext_resource type="Script" uid="uid://fo2tpi6p37ic" path="res://scripts/Objects/CollectableItem.cs" id="14"]
 [ext_resource type="Script" uid="uid://duk6pgl6mv3j3" path="res://scripts/Objects/JournalEntryItem.cs" id="15"]
