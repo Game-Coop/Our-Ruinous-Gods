@@ -40,15 +40,16 @@ Inventory="*res://resources/Inventory.tscn"
 Journal="*res://resources/Journal.tscn"
 VersionInfo="*res://scripts/VersionInfo.cs"
 WwiseRuntimeManager="*res://addons/Wwise/runtime/wwise_runtime_manager.gd"
-Questify="*res://addons/questify/quest_manager.gd"
 QuestManager="*res://resources/QuestManager.tscn"
 GameTime="*res://scripts/GameTime.cs"
 Parley="*res://addons/parley/parley_runtime.gd"
 ParleyActions="*res://scripts/Parley/ParleyActions.cs"
 ParleyFacts="*res://scripts/Parley/ParleyFacts.cs"
 PuzzleController="*res://scripts/Puzzles/PuzzleController.cs"
-PhantomCameraManager="*res://addons/phantom_camera/scripts/managers/phantom_camera_manager.gd"
 Utils="*res://scripts/Utils.cs"
+PhantomCameraManager="*res://addons/phantom_camera/scripts/managers/phantom_camera_manager.gd"
+Questify="*res://addons/questify/quest_manager.gd"
+Dither3DGlobals="*res://addons/dither3d/scripts/Dither3DGlobalProperties.gd"
 
 [display]
 
@@ -65,7 +66,7 @@ project/assembly_name="Our Ruinous Gods"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/customlabelconverter/plugin.cfg", "res://addons/parley/plugin.cfg", "res://addons/phantom_camera/plugin.cfg", "res://addons/quest_resource_translation_parser/plugin.cfg", "res://addons/questify/plugin.cfg")
+enabled=PackedStringArray("res://addons/dither3d/plugin.cfg", "res://addons/parley/plugin.cfg", "res://addons/phantom_camera/plugin.cfg", "res://addons/quest_resource_translation_parser/plugin.cfg", "res://addons/questify/plugin.cfg")
 
 [global]
 
