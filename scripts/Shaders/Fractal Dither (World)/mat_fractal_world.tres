@@ -1,7 +1,7 @@
 [gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://d24idwj2im481"]
 
 [ext_resource type="Shader" uid="uid://ofuh4ry8oux2" path="res://scripts/Shaders/Fractal Dither (World)/fractal_world.gdshader" id="1_vjn8w"]
-[ext_resource type="Texture2D" uid="uid://6pkpbfivt20y" path="res://scripts/Shaders/Fractal Dither (World)/DitherTextures/bayer.jpg" id="2_vjn8w"]
+[ext_resource type="Texture2D" uid="uid://dhdefw0kcg5yo" path="res://scripts/Shaders/Fractal Dither (World)/DitherTextures/gradient2d.tres" id="2_vjn8w"]
 
 [resource]
 render_priority = -1
@@ -13,7 +13,7 @@ shader_parameter/col2 = Color(1, 1, 1, 1)
 shader_parameter/doFresnel = 0.5
 shader_parameter/fresnelStrength = 0.5
 shader_parameter/DitherMap = ExtResource("2_vjn8w")
-shader_parameter/ditherScale = 17.02
+shader_parameter/ditherScale = 23.81
 shader_parameter/ditherStrength = 1.0
 shader_parameter/invertDots = false
 shader_parameter/input_exposure = 1.0
