@@ -4,8 +4,6 @@
 
 [resource]
 script = ExtResource("1")
-Id = 1
-Name = "Engineers, Never Spacewalk Alone!"
 Content = "The engineer’s thought-bubble:
 
 I can fix that alone, no biggie!
@@ -22,3 +20,6 @@ In smaller print, at the bottom of the poster:
 
 Consult your Employee Handbook for specific guidelines on extravehicular activities. Failure to comply with these guidelines might nullify your personal insurance and make you liable for damages to company property."
 Category = 0
+Id = 2
+Name = "Engineers, Never Spacewalk Alone!"
+Description = ""
