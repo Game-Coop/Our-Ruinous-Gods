@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://5ju312o65nch"]
+[gd_scene load_steps=42 format=3 uid="uid://5ju312o65nch"]
 
 [ext_resource type="Environment" uid="uid://ocaio2ownu0m" path="res://Envrionment.tres" id="1_jlvo6"]
 [ext_resource type="PackedScene" uid="uid://ditkme4k3jpy0" path="res://entities/player.tscn" id="2"]
@@ -26,6 +26,8 @@
 [ext_resource type="Resource" uid="uid://dg383wlfxj8ip" path="res://dialogue_sequences/new_dialogue.ds" id="23_uyjrd"]
 [ext_resource type="PackedScene" uid="uid://lfrojo445a0l" path="res://prefabs/Puzzles/fuse_box_puzzle_prototype.tscn" id="25_un4in"]
 [ext_resource type="PackedScene" uid="uid://hl5amlhee3yn" path="res://objects/Hatch.tscn" id="26_iv5uq"]
+[ext_resource type="PackedScene" uid="uid://1p822a0mm531" path="res://assets/Free Bench asset/Free Bench.fbx" id="28_na2vv"]
+[ext_resource type="PackedScene" uid="uid://c417loaxk02gq" path="res://assets/Free Ladder asset/Free Ladder.fbx" id="29_6e0do"]
 [ext_resource type="Script" uid="uid://b6ukogi7n345w" path="res://scripts/Puzzles/FuseBoxPuzzle/Fuse.cs" id="37_31fnb"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kfrdm"]
@@ -393,8 +395,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.101, -0.012, 34.803)
 openPosition = Vector3(26.101, -0.012, 34.803)
 closedPosition = Vector3(25.322, -1.093, 34.803)
 
-[connection signal="PlayerEnterLadder" from="LadderCollision" to="Player" method="OnAreaEntered"]
-[connection signal="PlayerExitLadder" from="LadderCollision" to="Player" method="OnAreaExited"]
+[node name="Free Bench" parent="." instance=ExtResource("28_na2vv")]
+transform = Transform3D(1.96843, 0, -0.695279, 0, 2.08761, 0, 0.695279, 0, 1.96843, -14.0768, -0.557286, 17.3912)
+
+[node name="Free Ladder" parent="." instance=ExtResource("29_6e0do")]
+transform = Transform3D(0.0249073, 0, 1.45607, 0, 1.45628, 0, -1.45607, 0, 0.0249073, 26.1429, -10.7007, 34.6143)
+
 [connection signal="body_entered" from="LadderCollision" to="LadderCollision" method="_on_body_entered"]
 [connection signal="body_exited" from="LadderCollision" to="LadderCollision" method="_on_body_exited"]
 
