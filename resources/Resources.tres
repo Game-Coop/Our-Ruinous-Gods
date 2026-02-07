@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Resources" load_steps=13 format=3 uid="uid://drkw1ejpsqxwy"]
+[gd_resource type="Resource" script_class="Resources" load_steps=14 format=3 uid="uid://drkw1ejpsqxwy"]
 
 [ext_resource type="Resource" path="res://resources/AudioDatas/audioData1.tres" id="1_horij"]
 [ext_resource type="Resource" path="res://resources/AudioDatas/audioData2.tres" id="2_vmj3m"]
@@ -8,6 +8,7 @@
 [ext_resource type="Resource" uid="uid://djq0mhhkghaaf" path="res://resources/JournalDatas/JornalEntryData1.tres" id="6_l1axi"]
 [ext_resource type="Resource" uid="uid://b5s4cf1nx5m0s" path="res://resources/JournalDatas/JornalEntryData2.tres" id="7_m6koh"]
 [ext_resource type="Resource" uid="uid://b06opaqubf7s7" path="res://resources/JournalDatas/JornalEntryData3.tres" id="8_pbwu8"]
+[ext_resource type="Resource" uid="uid://dhx7otpa353p7" path="res://resources/JournalDatas/JornalEntryData4.tres" id="9_horij"]
 [ext_resource type="Resource" uid="uid://b7tan7ehl7vki" path="res://resources/PuzzleDatas/puzzle1.tres" id="10_7cy5o"]
 [ext_resource type="Resource" uid="uid://dtk63ml0klibh" path="res://resources/PuzzleDatas/puzzle2.tres" id="11_p22ms"]
 [ext_resource type="Script" uid="uid://du7vfpol6rseq" path="res://scripts/Resources.cs" id="12_u3sae"]
@@ -18,7 +19,7 @@ script = ExtResource("12_u3sae")
 startMenuScene = ExtResource("13_xfqv5")
 gameScene = ExtResource("3_a1drw")
 itemDatas = Array[Object]([ExtResource("4_xj3c8"), ExtResource("5_56qm2")])
-journalDatas = Array[Object]([ExtResource("6_l1axi"), ExtResource("7_m6koh"), ExtResource("8_pbwu8")])
+journalDatas = Array[Object]([ExtResource("6_l1axi"), ExtResource("7_m6koh"), ExtResource("8_pbwu8"), ExtResource("9_horij")])
 audioDatas = Array[Object]([ExtResource("1_horij"), ExtResource("2_vmj3m")])
 puzzleDatas = Array[Object]([ExtResource("10_7cy5o"), ExtResource("11_p22ms")])
 metadata/_custom_type_script = "uid://du7vfpol6rseq"
