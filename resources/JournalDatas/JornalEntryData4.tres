@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="JournalData" load_steps=2 format=3 uid="uid://dhx7otpa353p7"]
+
+[ext_resource type="Script" uid="uid://d0vmpl467m0n0" path="res://scripts/Journal/JournalData.cs" id="1_dljg3"]
+
+[resource]
+script = ExtResource("1_dljg3")
+Content = "**Bataafse Motoren Fabriek Employee Directive 1A-2H7: Ship Amenities**
+
+Welcome valued employees! We are proud to welcome you aboard Drenthe Station, our state-of-the-art research facility! Over the next several years, you’ll be hard at work researching what we hope will be the future of our company, so we want you to be familiar with the ship’s layout. Here’s just some of the amenities on board:
+- Our fully automated nuclear power plant provides full uninterrupted power to every square meter of the station. No more working in the dark!
+- Our communications system allows you to stay in constant contact with all of your coworkers, as well as our friendly A.I. assistant, Dorian. You’ll always have someone to talk to*!
+- There’s always plenty to eat, thanks to our aquaponics and livestock facilities. Take a swing by the slaughter floor and say hello to your animal friends!
+- The dining hall is the perfect place for R&R**. Share a meal with your coworkers, relax with fresh oxygenated plants, or veg out with some delightful company-approved visual entertainment!
+@
+All this and more can be found on board. Remember, Drenthe Station is your home, and we want you to feel comfortable. Take some time to relax, detox, and unwind. Don’t forget: at Bataafse Motoren Fabriek, we’re family!
+
+**Your first shift starts within 5 minutes of reading this message. Contact Dorian for further inquiries.**
+
+**Communication with outside parties is strictly forbidden.*
+
+***Rest periods are not compensated.*"
+Category = 0
+Id = 3
+Name = "Bataafse Motoren Fabriek Employee Directive 1A-2H7: Ship Amenities"
+Description = "This physical log provides information about some of the areas on the ship, while also hinting at the company’s two-faced corporate culture."
