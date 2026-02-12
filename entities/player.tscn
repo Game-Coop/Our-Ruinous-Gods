@@ -1,6 +1,6 @@
 [gd_scene load_steps=24 format=3 uid="uid://ditkme4k3jpy0"]
 
-[ext_resource type="Script" uid="uid://ddcu5eocmt6x" path="res://scripts/Player.cs" id="1"]
+[ext_resource type="Script" uid="uid://ckih22id8amr1" path="res://scripts/Player.cs" id="1"]
 [ext_resource type="Script" uid="uid://dky7j2woivwl6" path="res://scripts/InteractionRaycaster.cs" id="2"]
 [ext_resource type="Script" uid="uid://b8kk6p6yj1spi" path="res://scripts/Objects/HandheldDevice.cs" id="2_e4p34"]
 [ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="2_i623q"]
@@ -52,6 +52,9 @@ shader_parameter/outer_radius = 1.5
 [node name="Player" type="CharacterBody3D"]
 transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0, 0)
 input_ray_pickable = false
+floor_block_on_wall = false
+floor_max_angle = 1.5708
+floor_snap_length = 0.75
 script = ExtResource("1")
 
 [node name="Head" type="Node3D" parent="."]
@@ -70,12 +73,16 @@ collision_mask = 3
 collide_with_areas = true
 collide_with_bodies = false
 
+[node name="RayCast3D_Step" type="RayCast3D" parent="Head"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.001, 0.00700009, -0.6)
+target_position = Vector3(0, -2, 0)
+
 [node name="Capsule" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 visible = false
 mesh = SubResource("1")
 
-[node name="Collision" type="CollisionShape3D" parent="."]
+[node name="Collider" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("2")
 

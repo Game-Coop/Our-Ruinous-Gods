@@ -14,7 +14,7 @@
 [ext_resource type="Resource" path="res://resources/ItemDatas/KeyItem1Data.tres" id="11"]
 [ext_resource type="Resource" path="res://resources/JournalDatas/JornalEntryData1.tres" id="12"]
 [ext_resource type="PackedScene" path="res://ui/Hint.tscn" id="13"]
-[ext_resource type="Material" path="res://shaders/hilight.tres" id="13_0wavo"]
+[ext_resource type="Material" uid="uid://dxst2enbl8tm6" path="res://shaders/hilight.tres" id="13_0wavo"]
 [ext_resource type="Script" uid="uid://fo2tpi6p37ic" path="res://scripts/Objects/CollectableItem.cs" id="14"]
 [ext_resource type="Script" uid="uid://duk6pgl6mv3j3" path="res://scripts/Objects/JournalEntryItem.cs" id="15"]
 [ext_resource type="Script" uid="uid://baxay73tmwvmy" path="res://scripts/AudioPlayer/AudioEntryItem.cs" id="17"]
@@ -78,7 +78,7 @@ environment = ExtResource("1_jlvo6")
 
 [node name="Main Camera" type="Camera3D" parent="."]
 physics_interpolation_mode = 1
-transform = Transform3D(-1.2, 0, -1.81195e-07, 0, 1.2, 0, 1.81195e-07, 0, -1.2, 0, 3.81686, 1.73652)
+transform = Transform3D(-1.2, 0, -1.81195e-07, 0, 1.2, 0, 1.81195e-07, 0, -1.2, -0.0150359, 3.79183, 1.72684)
 cull_mask = 2146959359
 
 [node name="PhantomCameraHost" type="Node" parent="Main Camera"]
@@ -88,9 +88,12 @@ script = ExtResource("2_87hxl")
 metadata/_custom_type_script = "uid://bd046eokvcnu2"
 
 [node name="Player" parent="." instance=ExtResource("2")]
-transform = Transform3D(-1.2, 0, -1.81195e-07, 0, 1.2, 0, 1.81195e-07, 0, -1.2, 0, 1.41686, 1.73652)
+transform = Transform3D(-1.2, 0, -1.81195e-07, 0, 1.2, 0, 1.81195e-07, 0, -1.2, -0.0150359, 1.39183, 1.72684)
 collision_layer = 3
 collision_mask = 3
+floor_block_on_wall = false
+floor_max_angle = 1.5708
+floor_snap_length = 0.75
 
 [node name="LadderDetector" type="Area3D" parent="Player"]
 collision_layer = 2
