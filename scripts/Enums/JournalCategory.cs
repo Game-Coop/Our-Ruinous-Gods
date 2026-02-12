@@ -1,4 +1,5 @@
 public enum JournalCategory
 {
-    Logs = 0,
+    Log = 0,
+    Poster = 1,
 }
