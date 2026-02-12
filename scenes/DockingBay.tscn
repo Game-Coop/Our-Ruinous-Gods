@@ -14,6 +14,7 @@
 [ext_resource type="Resource" path="res://resources/ItemDatas/KeyItem1Data.tres" id="11"]
 [ext_resource type="Resource" uid="uid://djq0mhhkghaaf" path="res://resources/JournalDatas/JornalEntryData1.tres" id="12"]
 [ext_resource type="PackedScene" path="res://ui/Hint.tscn" id="13"]
+[ext_resource type="Material" uid="uid://dxst2enbl8tm6" path="res://shaders/hilight.tres" id="13_0wavo"]
 [ext_resource type="Script" uid="uid://fo2tpi6p37ic" path="res://scripts/Objects/CollectableItem.cs" id="14"]
 [ext_resource type="Script" uid="uid://duk6pgl6mv3j3" path="res://scripts/Objects/JournalEntryItem.cs" id="15"]
 [ext_resource type="Script" uid="uid://baxay73tmwvmy" path="res://scripts/AudioPlayer/AudioEntryItem.cs" id="17"]
@@ -22,9 +23,11 @@
 [ext_resource type="Material" path="res://assets/models/standardSurface1.material" id="19"]
 [ext_resource type="Resource" uid="uid://dhx7otpa353p7" path="res://resources/JournalDatas/JornalEntryData4.tres" id="19_6e0do"]
 [ext_resource type="Script" uid="uid://g8p6u6edsqu" path="res://scripts/Objects/PlayerSensor.cs" id="20"]
+[ext_resource type="Material" uid="uid://d24idwj2im481" path="res://shaders/Dithering/mat_fractal_dither.tres" id="20_0wavo"]
 [ext_resource type="PackedScene" uid="uid://c85rc41hsn055" path="res://objects/LadderCollision.tscn" id="20_kfrdm"]
 [ext_resource type="Script" uid="uid://sle2j723kykw" path="res://scripts/QuestSystem/QuestSwitchableNotifier.cs" id="21_jlvo6"]
 [ext_resource type="Script" uid="uid://fdl1stm4m2w" path="res://scripts/Parley/ParleyTest.cs" id="22_bmc1d"]
+[ext_resource type="PackedScene" uid="uid://3gj05nfhyh8u" path="res://shaders/Outline/prefab_outline_quad.tscn" id="23_na2vv"]
 [ext_resource type="Resource" uid="uid://dg383wlfxj8ip" path="res://dialogue_sequences/new_dialogue.ds" id="23_uyjrd"]
 [ext_resource type="PackedScene" uid="uid://lfrojo445a0l" path="res://prefabs/Puzzles/fuse_box_puzzle_prototype.tscn" id="25_un4in"]
 [ext_resource type="PackedScene" uid="uid://hl5amlhee3yn" path="res://objects/Hatch.tscn" id="26_iv5uq"]
@@ -38,10 +41,12 @@ height = 3.00492
 height = 7.47521
 
 [sub_resource type="CylinderMesh" id="6"]
+material = ExtResource("13_0wavo")
 
 [sub_resource type="CylinderShape3D" id="11"]
 
 [sub_resource type="CylinderMesh" id="12"]
+material = ExtResource("13_0wavo")
 
 [sub_resource type="CylinderShape3D" id="8"]
 
@@ -76,7 +81,7 @@ environment = ExtResource("1_jlvo6")
 
 [node name="Main Camera" type="Camera3D" parent="."]
 physics_interpolation_mode = 1
-transform = Transform3D(-1.2, 0, -1.81195e-07, 0, 1.2, 0, 1.81195e-07, 0, -1.2, 0, 3.81686, 1.73652)
+transform = Transform3D(-1.2, 0, -1.81195e-07, 0, 1.2, 0, 1.81195e-07, 0, -1.2, -0.0150359, 3.79183, 1.72684)
 cull_mask = 2146959359
 
 [node name="PhantomCameraHost" type="Node" parent="Main Camera"]
@@ -86,9 +91,12 @@ script = ExtResource("2_87hxl")
 metadata/_custom_type_script = "uid://bd046eokvcnu2"
 
 [node name="Player" parent="." instance=ExtResource("2")]
-transform = Transform3D(-1.2, 0, -1.81195e-07, 0, 1.2, 0, 1.81195e-07, 0, -1.2, 0, 1.41686, 1.73652)
+transform = Transform3D(-1.2, 0, -1.81195e-07, 0, 1.2, 0, 1.81195e-07, 0, -1.2, -0.0150359, 1.39183, 1.72684)
 collision_layer = 3
 collision_mask = 3
+floor_block_on_wall = false
+floor_max_angle = 1.5708
+floor_snap_length = 0.75
 
 [node name="LadderDetector" type="Area3D" parent="Player"]
 collision_layer = 2
@@ -299,6 +307,7 @@ shape = SubResource("8")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="JournalEntry Item 1"]
 transform = Transform3D(0.183, 0, 0, 0, 0.025, 0, 0, 0, 0.183, 0, 0, 0)
+material_override = ExtResource("13_0wavo")
 mesh = SubResource("9")
 
 [node name="Hint" parent="JournalEntry Item 1" instance=ExtResource("13")]
@@ -357,7 +366,7 @@ use_collision = true
 [node name="CSGBox3D" type="CSGBox3D" parent="Sliding Door/LeftDoor"]
 transform = Transform3D(2, 0, 0, 0, 3, 0, 0, 0, 0.4, 0, 0, 0)
 size = Vector3(3.10349, 3.1661, 1)
-material = ExtResource("19")
+material = ExtResource("20_0wavo")
 
 [node name="RightDoor" type="CSGCombiner3D" parent="Sliding Door"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 0)
@@ -366,7 +375,7 @@ use_collision = true
 [node name="CSGBox3D" type="CSGBox3D" parent="Sliding Door/RightDoor"]
 transform = Transform3D(2, 0, 0, 0, 3, 0, 0, 0, 0.4, 0, 0, 0)
 size = Vector3(3.10349, 3.1661, 1)
-material = ExtResource("19")
+material = ExtResource("20_0wavo")
 
 [node name="Door Sensor" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 15.3612)
@@ -403,6 +412,7 @@ shape = SubResource("BoxShape3D_kfrdm")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.6809, -0.0729938, 0.72873, 0.604828, -0.505049, -0.615718, 0.412988, 0.859999, -0.299739, 25.8281, 30.6139, -41.3749)
+visible = false
 layers = 3
 
 [node name="LadderCollision" parent="." instance=ExtResource("20_kfrdm")]
@@ -410,6 +420,8 @@ layers = 3
 [node name="CollisionShape" parent="LadderCollision" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.7785, -4.9624, 34.6688)
 shape = SubResource("1")
+
+[node name="Outline Shader Quad" parent="." instance=ExtResource("23_na2vv")]
 
 [node name="QuestSwitchableNotifier" type="Node" parent="."]
 script = ExtResource("21_jlvo6")
