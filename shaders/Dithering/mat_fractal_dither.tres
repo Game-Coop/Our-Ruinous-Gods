@@ -1,0 +1,22 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://d24idwj2im481"]
+
+[ext_resource type="Shader" uid="uid://ofuh4ry8oux2" path="res://shaders/Dithering/sh_fractal_dither.gdshader" id="1_o4uja"]
+[ext_resource type="Texture2D" uid="uid://dhdefw0kcg5yo" path="res://shaders/Dithering/DitherTextures/gradient2d.tres" id="2_jcunl"]
+
+[resource]
+render_priority = -1
+shader = ExtResource("1_o4uja")
+shader_parameter/is_enabled = true
+shader_parameter/albedo_uv_offset = Vector2(0, 0)
+shader_parameter/albedo_uv_scale = Vector2(1, 1)
+shader_parameter/col1 = Color(0, 0, 0, 1)
+shader_parameter/col2 = Color(1, 1, 1, 1)
+shader_parameter/doFresnel = 0.5
+shader_parameter/fresnelStrength = 0.5
+shader_parameter/DitherMap = ExtResource("2_jcunl")
+shader_parameter/ditherScale = 34.875
+shader_parameter/ditherStrength = 1.0
+shader_parameter/invertDots = false
+shader_parameter/input_exposure = 1.0
+shader_parameter/input_offset = 0.0
+shader_parameter/uv1_blend_sharpness = 0.001

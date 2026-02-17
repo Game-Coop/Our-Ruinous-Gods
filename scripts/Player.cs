@@ -1,5 +1,4 @@
 using Godot;
-using System;
 
 public struct CameraClamp
 {
@@ -28,6 +27,7 @@ public partial class Player : CharacterBody3D, ISavable<SaveData>
     private int _ladderOverlapCount = 0;
     private bool _isOnLadder => _ladderOverlapCount > 0;
     private RayCast3D _rayDown;
+    private RayCast3D _rayStep;
 
     private int Power = 0;
     private int MaxPower = 100;
@@ -38,6 +38,7 @@ public partial class Player : CharacterBody3D, ISavable<SaveData>
         _head = GetNode<Node3D>("Head");
         _camera = GetNode<Node3D>("Head/Camera3D");
         _rayDown = GetNode<RayCast3D>("Head/Camera3D/RayCast3D");
+        _rayStep = GetNode<RayCast3D>("Head/RayCast3D_Step");
 
         eventBus = GetNode<EventBus>("/root/EventBus");
         eventBus.PowerChanged += OnPowerChange;
@@ -73,7 +74,6 @@ public partial class Player : CharacterBody3D, ISavable<SaveData>
 
         }
     }
-
     public override void _PhysicsProcess(double delta)
     {
         Vector3 velocity = Velocity;
@@ -126,6 +126,7 @@ public partial class Player : CharacterBody3D, ISavable<SaveData>
         }
 
         Velocity = velocity;
+
         MoveAndSlide();
     }
     private void OnHandheldFocused(bool isFocused)
