@@ -26,7 +26,7 @@ public static class SceneLoader
 		sceneTree.CurrentScene = newScene;
 	}
 	/// <summary>
-	/// LoadScene from given packedScene
+	/// Loads scene from given packedScene
 	/// </summary>
 	/// <param name="sceneTree">Sceen Tree</param>
 	/// <param name="newPackedScene">New scene to load</param>

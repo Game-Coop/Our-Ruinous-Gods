@@ -1,6 +1,6 @@
 [gd_scene load_steps=24 format=3 uid="uid://ditkme4k3jpy0"]
 
-[ext_resource type="Script" uid="uid://ckih22id8amr1" path="res://scripts/Player.cs" id="1"]
+[ext_resource type="Script" uid="uid://ddcu5eocmt6x" path="res://scripts/Player.cs" id="1"]
 [ext_resource type="Script" uid="uid://dky7j2woivwl6" path="res://scripts/InteractionRaycaster.cs" id="2"]
 [ext_resource type="Script" uid="uid://b8kk6p6yj1spi" path="res://scripts/Objects/HandheldDevice.cs" id="2_e4p34"]
 [ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="2_i623q"]
@@ -13,7 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://dvnkke60e06wf" path="res://assets/ui/player/helmet-bottom.png" id="8_tjdhl"]
 [ext_resource type="Script" uid="uid://cecmhhcex34pa" path="res://scripts/UI/CustomLabel.cs" id="9_dchgp"]
 
-[sub_resource type="Resource" id="Resource_i623q"]
+[sub_resource type="Resource" id="Resource_dchgp"]
 script = ExtResource("3_ef06p")
 duration = 1.0
 transition = 0
@@ -49,25 +49,28 @@ shader_parameter/alpha = 1.0
 shader_parameter/inner_radius = 0.5
 shader_parameter/outer_radius = 1.5
 
-[node name="Player" type="CharacterBody3D"]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("_camera", "_rayDown", "_rayStep")]
 transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0, 0)
 input_ray_pickable = false
 floor_block_on_wall = false
 floor_max_angle = 1.5708
 floor_snap_length = 0.75
 script = ExtResource("1")
+_camera = NodePath("Head/PlayerCam")
+_rayDown = NodePath("Head/PlayerCam/RayCast3D")
+_rayStep = NodePath("Head/RayCast3D_Step")
 
 [node name="Head" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 
-[node name="Camera3D" type="Node3D" parent="Head"]
+[node name="PlayerCam" type="Node3D" parent="Head"]
 script = ExtResource("2_i623q")
 priority = 10
-tween_resource = SubResource("Resource_i623q")
+tween_resource = SubResource("Resource_dchgp")
 tween_on_load = false
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 
-[node name="RayCast3D" type="RayCast3D" parent="Head/Camera3D"]
+[node name="RayCast3D" type="RayCast3D" parent="Head/PlayerCam"]
 target_position = Vector3(0, 0, -2)
 collision_mask = 3
 collide_with_areas = true
@@ -88,7 +91,7 @@ shape = SubResource("2")
 
 [node name="InteractionRaycaster" type="Node3D" parent="."]
 script = ExtResource("2")
-rayCastPath = NodePath("../Head/Camera3D/RayCast3D")
+rayCastPath = NodePath("../Head/PlayerCam/RayCast3D")
 
 [node name="Player UI" type="CanvasLayer" parent="."]
 layer = -10
@@ -118,7 +121,7 @@ cull_mask = 524288
 near = 0.001
 far = 20.0
 script = ExtResource("3_qsoyl")
-mainCamera = NodePath("../../../../Head/Camera3D")
+mainCamera = NodePath("../../../../Head/PlayerCam")
 
 [node name="Handheld Device" type="Node3D" parent="Player UI/SubViewportContainer - FPS/SubViewport - FPS/FPS Camera" node_paths=PackedStringArray("focusNode", "unfocusNode")]
 transform = Transform3D(0.935296, 0, -0.353867, 0, 1, 0, 0.353867, 0, 0.935296, 0.824068, -0.983714, -1.41656)
@@ -200,9 +203,9 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -0.5
+offset_left = 27.045
 offset_top = -11.5
-offset_right = 0.5
+offset_right = 28.045
 offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
