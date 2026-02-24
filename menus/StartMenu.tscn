@@ -1,10 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://jsmom37esqfc"]
+[gd_scene load_steps=6 format=3 uid="uid://jsmom37esqfc"]
 
 [ext_resource type="AudioStream" uid="uid://bfkc80yhg62qr" path="res://assets/audio/88 horroramb2.wav" id="1"]
 [ext_resource type="Script" uid="uid://cecmhhcex34pa" path="res://scripts/UI/CustomLabel.cs" id="2_wns2j"]
 [ext_resource type="Script" uid="uid://dtcloosmxo5fu" path="res://scripts/UI/StartMenu.cs" id="4"]
 [ext_resource type="PackedScene" uid="uid://bxxhpppmwi4rt" path="res://prefabs/SceneTransitioner.tscn" id="4_wns2j"]
-[ext_resource type="Script" uid="uid://beouhtg0xlotn" path="res://scripts/SceneTransitioner.cs" id="5_ye8o8"]
 
 [sub_resource type="Curve3D" id="Curve3D_rj5xk"]
 _data = {
@@ -128,9 +127,7 @@ process_mode = 1
 transform = Transform3D(-0.714412, -0.224214, 0.66283, -1.49012e-08, 0.947272, 0.320431, -0.699726, 0.22892, -0.676742, 121.254, 46.0335, -7.69838)
 visible = false
 
-[node name="Scene Transitioner" type="Path3D" parent="." node_paths=PackedStringArray("pathFollow3D") instance=ExtResource("4_wns2j")]
+[node name="Scene Transitioner" parent="." instance=ExtResource("4_wns2j")]
 process_mode = 1
 transform = Transform3D(-0.714412, -0.224214, 0.66283, -1.49012e-08, 0.947272, 0.320431, -0.699726, 0.22892, -0.676742, 121.254, 46.0335, -7.69838)
 curve = SubResource("Curve3D_rj5xk")
-script = ExtResource("5_ye8o8")
-pathFollow3D = NodePath("PathFollow3D")

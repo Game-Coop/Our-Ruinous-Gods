@@ -33,20 +33,22 @@ public static class SceneLoader
 	/// <param name="additive">If set to true, it will not unload the previous scene</param>
 	/// <param name="defer">If set to true, it will defer to call add child</param>
 	/// <returns></returns>
-	public static Node LoadScene(this SceneTree sceneTree, PackedScene newPackedScene, bool additive = false, bool defer = false)
+	public static async Task<Node> LoadScene(this SceneTree sceneTree, PackedScene newPackedScene, bool additive = false)
 	{
 		if(!additive)
 			Cleanup();
 
-		var newScene = newPackedScene.Instantiate();
-		if (defer)
-			sceneTree.Root.CallDeferred("add_child", newScene);
-		else
-			sceneTree.Root.AddChild(newScene);
-
 		if (!additive)
 		{
 			sceneTree.CurrentScene.QueueFree();
+		}
+		await sceneTree.ToSignal(sceneTree, SceneTree.SignalName.ProcessFrame);
+
+		var newScene = newPackedScene.Instantiate();
+		sceneTree.Root.AddChild(newScene);
+			
+		if(!additive)
+		{
 			sceneTree.CurrentScene = newScene;
 		}
 		return newScene;

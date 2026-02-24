@@ -1,6 +1,6 @@
-[gd_scene load_steps=24 format=3 uid="uid://ditkme4k3jpy0"]
+[gd_scene load_steps=23 format=3 uid="uid://ditkme4k3jpy0"]
 
-[ext_resource type="Script" uid="uid://ddcu5eocmt6x" path="res://scripts/Player.cs" id="1"]
+[ext_resource type="Script" uid="uid://ckih22id8amr1" path="res://scripts/Player.cs" id="1"]
 [ext_resource type="Script" uid="uid://dky7j2woivwl6" path="res://scripts/InteractionRaycaster.cs" id="2"]
 [ext_resource type="Script" uid="uid://b8kk6p6yj1spi" path="res://scripts/Objects/HandheldDevice.cs" id="2_e4p34"]
 [ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="2_i623q"]
@@ -27,12 +27,8 @@ ease = 2
 
 [sub_resource type="BoxMesh" id="BoxMesh_rfe5m"]
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_dchgp"]
-viewport_path = NodePath("Player UI/SubViewport - Handheld UI")
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kdgjc"]
 resource_local_to_scene = true
-albedo_texture = SubResource("ViewportTexture_dchgp")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_qsoyl"]
 size = Vector2(1, 1)
@@ -123,9 +119,11 @@ far = 20.0
 script = ExtResource("3_qsoyl")
 mainCamera = NodePath("../../../../Head/PlayerCam")
 
-[node name="Handheld Device" type="Node3D" parent="Player UI/SubViewportContainer - FPS/SubViewport - FPS/FPS Camera" node_paths=PackedStringArray("focusNode", "unfocusNode")]
+[node name="Handheld Device" type="Node3D" parent="Player UI/SubViewportContainer - FPS/SubViewport - FPS/FPS Camera" node_paths=PackedStringArray("subViewport", "screenMesh", "focusNode", "unfocusNode")]
 transform = Transform3D(0.935296, 0, -0.353867, 0, 1, 0, 0.353867, 0, 0.935296, 0.824068, -0.983714, -1.41656)
 script = ExtResource("2_e4p34")
+subViewport = NodePath("../../../../SubViewport - Handheld UI")
+screenMesh = NodePath("Screen Mesh")
 offPosition = Vector3(0.824, -3, -1.417)
 focusNode = NodePath("../Handheld Focus Node")
 unfocusNode = NodePath("../Handheld Unfocus Node")
