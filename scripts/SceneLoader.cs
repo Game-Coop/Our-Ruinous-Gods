@@ -31,7 +31,6 @@ public static class SceneLoader
 	/// <param name="sceneTree">Sceen Tree</param>
 	/// <param name="newPackedScene">New scene to load</param>
 	/// <param name="additive">If set to true, it will not unload the previous scene</param>
-	/// <param name="defer">If set to true, it will defer to call add child</param>
 	/// <returns></returns>
 	public static async Task<Node> LoadScene(this SceneTree sceneTree, PackedScene newPackedScene, bool additive = false)
 	{
