@@ -5,7 +5,8 @@ public enum PuzzleAudioTrigger
 {
     Solved,
     Failed,
-    Reset
+    Reset,
+    Back
 }
 
 public partial class OnPuzzleEventAudio : AudioBehavior
@@ -27,6 +28,12 @@ public partial class OnPuzzleEventAudio : AudioBehavior
                 break;
             case PuzzleAudioTrigger.Failed:
                 puzzle.OnFail += _ => Play(GetParent());
+                break;
+            case PuzzleAudioTrigger.Reset:
+                puzzle.OnReset += () => Play(GetParent());
+                break;
+            case PuzzleAudioTrigger.Back:
+                puzzle.OnBack += () => Play(GetParent());
                 break;
         }
     }

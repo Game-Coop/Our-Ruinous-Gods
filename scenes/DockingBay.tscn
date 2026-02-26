@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://5ju312o65nch"]
+[gd_scene load_steps=44 format=3 uid="uid://5ju312o65nch"]
 
 [ext_resource type="Environment" uid="uid://ocaio2ownu0m" path="res://Envrionment.tres" id="1_jlvo6"]
 [ext_resource type="PackedScene" uid="uid://ditkme4k3jpy0" path="res://entities/player.tscn" id="2"]
@@ -20,7 +20,6 @@
 [ext_resource type="Script" uid="uid://baxay73tmwvmy" path="res://scripts/AudioPlayer/AudioEntryItem.cs" id="17"]
 [ext_resource type="Script" uid="uid://ckqja6geconlm" path="res://scripts/Objects/SlidingDoor.cs" id="18"]
 [ext_resource type="Resource" uid="uid://b06opaqubf7s7" path="res://resources/JournalDatas/JornalEntryData3.tres" id="18_na2vv"]
-[ext_resource type="Material" path="res://assets/models/standardSurface1.material" id="19"]
 [ext_resource type="Resource" uid="uid://dhx7otpa353p7" path="res://resources/JournalDatas/JornalEntryData4.tres" id="19_6e0do"]
 [ext_resource type="Script" uid="uid://g8p6u6edsqu" path="res://scripts/Objects/PlayerSensor.cs" id="20"]
 [ext_resource type="Material" uid="uid://d24idwj2im481" path="res://shaders/Dithering/mat_fractal_dither.tres" id="20_0wavo"]
@@ -94,9 +93,6 @@ metadata/_custom_type_script = "uid://bd046eokvcnu2"
 transform = Transform3D(-1.2, 0, -1.81195e-07, 0, 1.2, 0, 1.81195e-07, 0, -1.2, -0.0150359, 1.39183, 1.72684)
 collision_layer = 3
 collision_mask = 3
-floor_block_on_wall = false
-floor_max_angle = 1.5708
-floor_snap_length = 0.75
 
 [node name="LadderDetector" type="Area3D" parent="Player"]
 collision_layer = 2
@@ -437,9 +433,9 @@ transform = Transform3D(-1.07285e-07, 0, 1, 0, 1, 0, -1, 0, -1.07285e-07, -3.220
 fuses = Array[Object]([SubResource("Resource_na2vv"), SubResource("Resource_6e0do")])
 
 [node name="TopFloor_Hatch_mesh_01" parent="." instance=ExtResource("26_iv5uq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.101, -0.012, 34.803)
-openPosition = Vector3(26.101, -0.012, 34.803)
-closedPosition = Vector3(25.322, -1.093, 34.803)
+transform = Transform3D(0.999458, -0.032911, 0, 0.032911, 0.999458, 0, 0, 0, 1, 26.3401, -0.012, 34.803)
+openPosition = Vector3(26.34, -0.012, 34.803)
+closedPosition = Vector3(25.121, -1.4, 34.803)
 
 [connection signal="PlayerEnterLadder" from="LadderCollision" to="Player" method="OnAreaEntered"]
 [connection signal="PlayerExitLadder" from="LadderCollision" to="Player" method="OnAreaExited"]

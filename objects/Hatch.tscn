@@ -1,7 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://hl5amlhee3yn"]
+[gd_scene load_steps=8 format=3 uid="uid://hl5amlhee3yn"]
 
-[ext_resource type="Script" uid="uid://gssltjpxlc5x" path="res://scripts/Objects/Hatch.cs" id="2_3a3nq"]
+[ext_resource type="Script" uid="uid://31kbh7irb6bl" path="res://scripts/Objects/Hatch.cs" id="2_3a3nq"]
+[ext_resource type="PackedScene" uid="uid://b1ydfislyhiof" path="res://prefabs/AudioNodes/SFX_OnInteract.tscn" id="2_8omf1"]
 [ext_resource type="PackedScene" path="res://ui/Hint.tscn" id="2_v30cp"]
+[ext_resource type="AudioStream" uid="uid://dkibfvjlp6hf7" path="res://assets/audio/642709__creature__sci_fi_door.wav" id="3_8omf1"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_pucwn"]
 
@@ -28,6 +30,9 @@ shape = SubResource("BoxShape3D_3a3nq")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.509094, 0.239227, 0.0278931)
 shape = SubResource("BoxShape3D_g1jkh")
 debug_color = Color(0, 0.639216, 0.345098, 0.768627)
+
+[node name="OnInteractAudio" parent="InteractArea" instance=ExtResource("2_8omf1")]
+Audio = ExtResource("3_8omf1")
 
 [node name="Hint" parent="." instance=ExtResource("2_v30cp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.10469, 1.883, 0)
