@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://5ju312o65nch"]
+[gd_scene load_steps=46 format=3 uid="uid://5ju312o65nch"]
 
 [ext_resource type="Environment" uid="uid://ocaio2ownu0m" path="res://Envrionment.tres" id="1_jlvo6"]
 [ext_resource type="PackedScene" uid="uid://ditkme4k3jpy0" path="res://entities/player.tscn" id="2"]
@@ -28,7 +28,9 @@
 [ext_resource type="Script" uid="uid://fdl1stm4m2w" path="res://scripts/Parley/ParleyTest.cs" id="22_bmc1d"]
 [ext_resource type="PackedScene" uid="uid://3gj05nfhyh8u" path="res://shaders/Outline/prefab_outline_quad.tscn" id="23_na2vv"]
 [ext_resource type="Resource" uid="uid://dg383wlfxj8ip" path="res://dialogue_sequences/new_dialogue.ds" id="23_uyjrd"]
+[ext_resource type="PackedScene" uid="uid://dmiodsf4eh7g" path="res://prefabs/AudioNodes/SFX_OnAreaTriggered.tscn" id="24_kn4wo"]
 [ext_resource type="PackedScene" uid="uid://lfrojo445a0l" path="res://prefabs/Puzzles/fuse_box_puzzle_prototype.tscn" id="25_un4in"]
+[ext_resource type="AudioStream" uid="uid://dkibfvjlp6hf7" path="res://assets/audio/642709__creature__sci_fi_door.wav" id="25_xxtsu"]
 [ext_resource type="PackedScene" uid="uid://hl5amlhee3yn" path="res://objects/Hatch.tscn" id="26_iv5uq"]
 [ext_resource type="Script" uid="uid://b6ukogi7n345w" path="res://scripts/Puzzles/FuseBoxPuzzle/Fuse.cs" id="37_31fnb"]
 
@@ -89,7 +91,7 @@ process_physics_priority = 300
 script = ExtResource("2_87hxl")
 metadata/_custom_type_script = "uid://bd046eokvcnu2"
 
-[node name="Player" parent="." instance=ExtResource("2")]
+[node name="Player" parent="." groups=["player"] instance=ExtResource("2")]
 transform = Transform3D(-1.2, 0, -1.81195e-07, 0, 1.2, 0, 1.81195e-07, 0, -1.2, -0.0150359, 1.39183, 1.72684)
 collision_layer = 3
 collision_mask = 3
@@ -381,6 +383,13 @@ switchablePath = NodePath("../Sliding Door")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Door Sensor"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.57936, 1.74968)
 shape = SubResource("14")
+
+[node name="SFX_OnAreaTriggered" parent="Door Sensor" instance=ExtResource("24_kn4wo")]
+Audio = ExtResource("25_xxtsu")
+
+[node name="SFX_OnAreaTriggered2" parent="Door Sensor" instance=ExtResource("24_kn4wo")]
+Trigger = 1
+Audio = ExtResource("25_xxtsu")
 
 [node name="StaticBody3D2" type="StaticBody3D" parent="."]
 transform = Transform3D(7, 0, 0, 0, 0.0965926, -1.2941, 0, 0.0258819, 4.82963, 0.594981, -0.0590178, 20.305)

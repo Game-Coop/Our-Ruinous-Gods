@@ -10,25 +10,49 @@ public enum StateAudioTrigger
 public partial class OnStateChangedAudio : AudioBehavior
 {
     [Export] public StateAudioTrigger Trigger;
+    [Export] public string RequiredGroup = "player";
 
     protected override void Setup()
     {
-        /*var state = GetParent<State>();
-        if(state == null) 
-        { 
+        var area = FindParentOfType<Area3D>();
+        if (area == null)
+        {
             return;
         }
 
-        state.OnStateChanged += active =>
+        area.BodyEntered += body =>
         {
-            if (active && Trigger == StateAudioTrigger.Activated)
+            if (!IsValidBody(body))
             {
-                Play();
+                return;
             }
-            else if (!active && Trigger == StateAudioTrigger.Deactivated)
+
+            if (Trigger == StateAudioTrigger.Activated)
             {
-                Play();
+                Play(GetParent());
             }
-        };*/
+        };
+
+        area.BodyExited += body =>
+        {
+            if (!IsValidBody(body))
+            {
+                return;
+            }
+            if (Trigger == StateAudioTrigger.Deactivated)
+            {
+                Play(GetParent());
+            }
+        };
+    }
+
+    private bool IsValidBody(Node body)
+    {
+        if (string.IsNullOrEmpty(body.Name))
+        {
+            return true;
+        }
+
+        return body.IsInGroup(RequiredGroup);
     }
 }
