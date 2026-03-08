@@ -7,6 +7,8 @@ public partial class HandheldDevice : Node3D
     private double startPressTime;
     private bool holdingHandheldToggle = false;
     private Tween tween;
+    [Export] private SubViewport subViewport;
+    [Export] private MeshInstance3D screenMesh;
     [Export] private Vector3 offPosition;
     [Export] private Node3D focusNode;
     [Export] private Node3D unfocusNode;
@@ -43,6 +45,14 @@ public partial class HandheldDevice : Node3D
     {
         base._Ready();
         eventBus = GetNode<EventBus>("/root/EventBus");
+        SetupScreenMesh();
+    }
+    private void SetupScreenMesh()
+    {
+        var mat = (StandardMaterial3D)screenMesh.MaterialOverride;
+        var viewportTexture = new ViewportTexture();
+        viewportTexture.ViewportPath = subViewport.GetPath();
+        mat.AlbedoTexture = viewportTexture;
     }
     public override void _Input(InputEvent @event)
     {

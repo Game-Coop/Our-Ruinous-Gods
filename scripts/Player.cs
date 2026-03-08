@@ -1,33 +1,34 @@
 using Godot;
+using PhantomCamera;
 
 public struct CameraClamp
 {
-	public float Min { get; }
-	public float Max { get; }
+    public float Min { get; }
+    public float Max { get; }
 
-	public CameraClamp(float min, float max)
-	{
-		Min = min;
-		Max = max;
-	}
+    public CameraClamp(float min, float max)
+    {
+        Min = min;
+        Max = max;
+    }
 
-	public override string ToString() => $"({Min} - {Max})";
+    public override string ToString() => $"({Min} - {Max})";
 }
 
 public partial class Player : CharacterBody3D, ISavable<SaveData>
 {
     [Export] public float gravity = 9.8f;
     [Export] public float speed = 1.42f;
+    [Export] private Node3D _camera;
+    [Export] private RayCast3D _rayDown;
+    [Export] private RayCast3D _rayStep;
 
     private CameraClamp cameraClamp = new CameraClamp(-75f, 80f);
 
     private Node3D _head;
-    private Node3D _camera;
 
     private int _ladderOverlapCount = 0;
     private bool _isOnLadder => _ladderOverlapCount > 0;
-    private RayCast3D _rayDown;
-    private RayCast3D _rayStep;
 
     private int Power = 0;
     private int MaxPower = 100;
@@ -36,9 +37,6 @@ public partial class Player : CharacterBody3D, ISavable<SaveData>
     public override void _Ready()
     {
         _head = GetNode<Node3D>("Head");
-        _camera = GetNode<Node3D>("Head/Camera3D");
-        _rayDown = GetNode<RayCast3D>("Head/Camera3D/RayCast3D");
-        _rayStep = GetNode<RayCast3D>("Head/RayCast3D_Step");
 
         eventBus = GetNode<EventBus>("/root/EventBus");
         eventBus.PowerChanged += OnPowerChange;
@@ -191,7 +189,6 @@ public partial class Player : CharacterBody3D, ISavable<SaveData>
             _head.Rotation = data.playerData.headRotation;
         }
     }
-    
     private void OnAreaEntered()
     {
         _ladderOverlapCount++;
@@ -202,13 +199,13 @@ public partial class Player : CharacterBody3D, ISavable<SaveData>
         _ladderOverlapCount--;
         if (_ladderOverlapCount < 0) _ladderOverlapCount = 0; // Prevent negative count
     }
-    
-	private void OnDie()
-	{
-		GD.Print("Player has died.");
-		SetPhysicsProcess(false);
-		Input.MouseMode = Input.MouseModeEnum.Visible;
-		
-		CharacterEvents.OnDie?.Invoke();
-	}
+
+    private void OnDie()
+    {
+        GD.Print("Player has died.");
+        SetPhysicsProcess(false);
+        Input.MouseMode = Input.MouseModeEnum.Visible;
+
+        CharacterEvents.OnDie?.Invoke();
+    }
 }

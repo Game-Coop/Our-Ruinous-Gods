@@ -12,7 +12,7 @@ public partial class StartMenu : Control
 	[Export] private Label _versionLabel;
 	[Export] private AudioStreamPlayer _musicPlayer;
 	private Node3D firstScene;
-	public override void _Ready()
+	public override async void _Ready()
 	{
 		base._Ready();
 
@@ -33,7 +33,7 @@ public partial class StartMenu : Control
 		GameManager.Instance.InStartMenu = true;
 		GameManager.Instance.InCutscene = false;
 
-		firstScene = GetTree().LoadScene(ResourceDatabase.GameScene, true, true) as Node3D;
+		firstScene = await GetTree().LoadScene(ResourceDatabase.GameScene, true) as Node3D;
 		camera.Current = true;
 		if (!SaveManager.HasSave)
 		{
@@ -87,7 +87,7 @@ public partial class StartMenu : Control
 		else
 		{
 			firstScene.QueueFree();
-			GetTree().LoadScene(ResourceDatabase.GameScene);
+			await GetTree().LoadScene(ResourceDatabase.GameScene);
 		}
 	}
 
