@@ -2,8 +2,6 @@ using Godot;
 public partial class EventBus : Node
 {
 	[Signal]
-	public delegate void PowerEventHandler(int zone);
-	[Signal]
 	public delegate void PowerChangedEventHandler(PowerEvent e);
 	[Signal]
 	public delegate void StaminaChangeEventHandler(int cost);
@@ -18,10 +16,6 @@ public partial class EventBus : Node
 	[Signal]
 	public delegate void PuzzleInteractEventHandler(PuzzleInteractEvent puzzleInteractEvent);
 
-	public void OnPowerEvent(int zone)
-	{
-		EmitSignal(SignalName.Power, zone);
-	}
 	public void OnPowerChangeEvent(PowerEvent e)
 	{
 		EmitSignal(SignalName.PowerChanged, e);

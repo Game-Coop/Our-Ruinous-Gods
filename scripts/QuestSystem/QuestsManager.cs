@@ -95,10 +95,10 @@ public partial class QuestsManager : Node, ISavable<SaveData>
 	}
 	private void OnPowerChange(PowerEvent e)
 	{
-		var powerZoneStateVariable = $"power_zone_state_{e.Zone}";
-		var powerZoneChargeVariable = $"power_zone_charge_{e.Zone}";
-		SetValue(powerZoneStateVariable, e.State == PowerState.On);
-		SetValue(powerZoneChargeVariable, e.Charge);
+		var powerZoneStateVariable = $"power_zone_state_{e.PowerZone.Name}";
+		// var powerZoneChargeVariable = $"power_zone_charge_{e.PowerZone.Name}";
+		SetValue(powerZoneStateVariable, e.PowerZone.State == PowerState.On);
+		// SetValue(powerZoneChargeVariable, e.PowerZone.Charge);
 		Questify.UpdateQuests();
 	}
 	private Variant GetValue(string key)

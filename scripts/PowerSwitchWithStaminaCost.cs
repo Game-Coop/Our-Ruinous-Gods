@@ -3,10 +3,9 @@ using System;
 
 public partial class PowerSwitchWithStaminaCost : Interactable
 {
-    [Export] public int Zone { get; set; }
+    [Export] public PowerZone PowerZone { get; private set; }
     [Export] public int Stamina { get; set; }
 
-	[Export] private NodePath switchableObjectPath;
 	public override string InteractionText => "Push";
 	public override void _Ready()
 	{
@@ -16,8 +15,10 @@ public partial class PowerSwitchWithStaminaCost : Interactable
 	{
 		base.Interact();
 
-        EventBus EventBusHandler = GetNode<EventBus>("/root/EventBus");        
-        EventBusHandler.OnPowerEvent(this.Zone);   
-        EventBusHandler.OnStaminaChangeEvent(this.Stamina);
+        EventBus EventBusHandler = GetNode<EventBus>("/root/EventBus");
+		if(PowerZone.TryTurnOn())
+		{
+        	EventBusHandler.OnStaminaChangeEvent(this.Stamina);
+		}
 	}
 }

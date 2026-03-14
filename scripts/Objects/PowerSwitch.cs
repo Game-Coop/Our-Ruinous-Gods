@@ -1,11 +1,9 @@
 using Godot;
 using System;
 
-public partial class PowerSwitch : Interactable
+public partial class PowerSwitch : Interactable, IPower
 {
-	[Export] public int Zone { get; set; }
-
-	[Export] private NodePath switchableObjectPath;
+	public PowerZone PowerZone { get; private set; }
 	public override string InteractionText => "Push";
 	public override void _Ready()
 	{
@@ -14,8 +12,17 @@ public partial class PowerSwitch : Interactable
 	public override void Interact()
 	{
 		base.Interact();
-
-		EventBus EventBusHandler = GetNode<EventBus>("/root/EventBus");        
-		EventBusHandler.OnPowerEvent(this.Zone);
+		if (PowerZone.TryTurnOn())
+		{
+			GD.Print("Power zone activated");
+		}
+		else
+		{
+			GD.Print("Failed to activate power zone");
+		}
+	}
+	public void Register(PowerZone powerZone)
+	{
+		PowerZone = powerZone;
 	}
 }

@@ -4,12 +4,18 @@ using Godot;
 
 public partial class Door : Node3D, ISwitchable
 {
-    public event Action<bool> OnStateChange;
+	public event Action<bool> OnStateChange;
 	[Export] public bool IsOn { get; private set; }
-
-    public virtual void Toggle()
+	public override void _Ready()
 	{
-		if(IsOn) TurnOff();
+		base._Ready();
+	
+
+	}
+
+	public virtual void Toggle()
+	{
+		if (IsOn) TurnOff();
 		else TurnOn();
 	}
 	public virtual void TurnOff()
