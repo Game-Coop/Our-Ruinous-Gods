@@ -2,8 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Godot;
 
-[GlobalClass]
-public partial class PowerGrid : Resource
+public partial class PowerGrid : Node
 {
 	[Export] public int MaxCharge = 10;
 

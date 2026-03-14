@@ -3,7 +3,7 @@ using Godot;
 
 public partial class PowerZone : Node, ISavable<SaveData>
 {
-    [Export] public PowerGrid powerGrid;
+    public PowerGrid powerGrid;
     [Export] public int Charge { get; private set; }
     public event Action<PowerZone> OnPowerChange;
     public PowerState _state;
@@ -23,12 +23,13 @@ public partial class PowerZone : Node, ISavable<SaveData>
     public override void _Ready()
     {
         base._Ready();
+        powerGrid = GetParent<PowerGrid>();
+        GD.Print("zone ready with index and state", GetIndex(), State, " ",GetInstanceId());
         powerGrid.Register(this);
         this.Traverse<IPower>((powerable) =>
         {
             powerable.Register(this);
         });
-
     }
     public bool TryTurnOn()
     {
@@ -63,9 +64,11 @@ public partial class PowerZone : Node, ISavable<SaveData>
     public void OnLoad(SaveData data)
     {
         var index = GetIndex();
+        GD.Print("zone loaded with index", index, " ", GetInstanceId());
         if (data.powerZoneStates.TryGetValue(index, out var isOn))
         {
             State = isOn;
+            GD.Print("zone loaded with state", isOn);
         }
     }
 }

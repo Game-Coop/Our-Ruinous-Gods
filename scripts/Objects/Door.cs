@@ -2,21 +2,16 @@
 using System;
 using Godot;
 
-public partial class Door : Node3D, ISwitchable
+public partial class Door : Node3D, ISwitchable, IPower
 {
 	public event Action<bool> OnStateChange;
 	[Export] public bool IsOn { get; private set; }
-	public override void _Ready()
-	{
-		base._Ready();
-	
-
-	}
-
+	public PowerZone PowerZone { get; private set; }
+	public virtual bool CanTurnOn => PowerZone == null || PowerZone.State == PowerState.On;
 	public virtual void Toggle()
 	{
 		if (IsOn) TurnOff();
-		else TurnOn();
+		else if (CanTurnOn) TurnOn();
 	}
 	public virtual void TurnOff()
 	{
@@ -28,5 +23,18 @@ public partial class Door : Node3D, ISwitchable
 	{
 		IsOn = true;
 		OnStateChange?.Invoke(true);
+	}
+
+	public void Register(PowerZone powerZone)
+	{
+		PowerZone = powerZone;
+		powerZone.OnPowerChange += OnPowerChange;
+		OnPowerChange(powerZone);
+	}
+
+	private void OnPowerChange(PowerZone zone)
+	{
+		if (zone.State == PowerState.Off)
+			TurnOff();
 	}
 }

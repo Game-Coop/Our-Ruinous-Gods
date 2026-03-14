@@ -4,7 +4,6 @@ using System;
 public partial class PowerableLight : Node3D, IPower
 {
 	[Export] private Node3D light;
-	[Export] public PowerState State { get; set; }
 	public PowerZone PowerZone { get; private set; }
 
 	private EventBus eventBusHandler;
@@ -18,7 +17,7 @@ public partial class PowerableLight : Node3D, IPower
 	}
 	private void OnPowerChange(PowerZone powerZone)
 	{
-		if (State == PowerState.On && powerZone.State == PowerState.On)
+		if (powerZone.State == PowerState.On)
 		{
 			light.Show();
 		}
