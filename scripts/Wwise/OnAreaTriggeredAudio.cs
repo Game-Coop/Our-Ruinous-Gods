@@ -7,7 +7,7 @@ public enum StateAudioTrigger
     Deactivated
 }
 
-public partial class OnStateChangedAudio : AudioBehavior
+public partial class OnAreaTriggeredAudio : AudioBehavior
 {
     [Export] public StateAudioTrigger Trigger;
     [Export] public string RequiredGroup = "player";
