@@ -82,7 +82,7 @@ environment = ExtResource("1_jlvo6")
 
 [node name="Main Camera" type="Camera3D" parent="."]
 physics_interpolation_mode = 1
-transform = Transform3D(-1.2, 0, -1.81195e-07, 0, 1.2, 0, 1.81195e-07, 0, -1.2, -0.0150359, 3.79183, 1.72684)
+transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, -0.0150359, 3.79183, 1.72684)
 cull_mask = 2146959359
 
 [node name="PhantomCameraHost" type="Node" parent="Main Camera"]
