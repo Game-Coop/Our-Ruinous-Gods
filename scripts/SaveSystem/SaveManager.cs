@@ -23,7 +23,7 @@ public partial class SaveManager : Node
 			if (!HasSave) return false;
 
 			var checkedSave = saveData;
-			if (saveData == null)
+			if (checkedSave == null)
 				saveSystem.Load(defaultSaveName, out checkedSave, false);
 
 			return checkedSave.playerDiedBefore; // this could be a game state check as well
