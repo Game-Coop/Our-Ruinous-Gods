@@ -347,7 +347,7 @@ shape = SubResource("1")
 [node name="QuestSwitchableNotifier" type="Node" parent="."]
 script = ExtResource("21_jlvo6")
 questVariable = "interaction_main_door"
-switchableNode = NodePath("../Sliding Door")
+switchableNode = NodePath("../Power Grid/Power Zone 3/Sliding Door")
 
 [node name="Parley Test" type="Node" parent="."]
 script = ExtResource("22_bmc1d")
@@ -365,41 +365,11 @@ closedPosition = Vector3(25.322, -1.093, 34.803)
 [node name="Door Sensor" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 15.3612)
 script = ExtResource("20")
-switchablePath = NodePath("../Sliding Door")
+switchablePath = NodePath("../Power Grid/Power Zone 3/Sliding Door")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Door Sensor"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.57936, 1.74968)
 shape = SubResource("14")
-
-[node name="Sliding Door" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.597278, 3.946, 17.5416)
-script = ExtResource("18")
-rightDoorPath = NodePath("RightDoor")
-leftDoorPath = NodePath("LeftDoor")
-doorEase = 1
-easeTransition = 1
-leftLocalOpenPos = Vector3(-7.2, 0, 0)
-leftLocalClosePos = Vector3(-3, 0, 0)
-rightLocalOpenPos = Vector3(7.2, 0, 0)
-rightLocalClosePos = Vector3(3, 0, 0)
-
-[node name="LeftDoor" type="CSGCombiner3D" parent="Sliding Door"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 0)
-use_collision = true
-
-[node name="CSGBox3D" type="CSGBox3D" parent="Sliding Door/LeftDoor"]
-transform = Transform3D(2, 0, 0, 0, 3, 0, 0, 0, 0.4, 0, 0, 0)
-size = Vector3(3.10349, 3.1661, 1)
-material = ExtResource("20_0wavo")
-
-[node name="RightDoor" type="CSGCombiner3D" parent="Sliding Door"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 0)
-use_collision = true
-
-[node name="CSGBox3D" type="CSGBox3D" parent="Sliding Door/RightDoor"]
-transform = Transform3D(2, 0, 0, 0, 3, 0, 0, 0, 0.4, 0, 0, 0)
-size = Vector3(3.10349, 3.1661, 1)
-material = ExtResource("20_0wavo")
 
 [node name="Power Grid" type="Node3D" parent="."]
 script = ExtResource("29_kn4wo")
@@ -446,6 +416,42 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.788644, 6.64329, -23.3324)
 [node name="Power Zone 3" type="Node3D" parent="Power Grid"]
 script = ExtResource("32_kn4wo")
 Charge = 4
+
+[node name="PowerSwitch(Door)" parent="Power Grid/Power Zone 3" instance=ExtResource("4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.34369, 3.29959, 9.51121)
+
+[node name="PowerableLight" parent="Power Grid/Power Zone 3/PowerSwitch(Door)" instance=ExtResource("5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.85291, 3.33978, 5.95726)
+
+[node name="Sliding Door" type="Node3D" parent="Power Grid/Power Zone 3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.597278, 3.946, 17.5416)
+script = ExtResource("18")
+rightDoorPath = NodePath("RightDoor")
+leftDoorPath = NodePath("LeftDoor")
+doorEase = 1
+easeTransition = 1
+leftLocalOpenPos = Vector3(-7.2, 0, 0)
+leftLocalClosePos = Vector3(-3, 0, 0)
+rightLocalOpenPos = Vector3(7.2, 0, 0)
+rightLocalClosePos = Vector3(3, 0, 0)
+
+[node name="LeftDoor" type="CSGCombiner3D" parent="Power Grid/Power Zone 3/Sliding Door"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 0)
+use_collision = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Power Grid/Power Zone 3/Sliding Door/LeftDoor"]
+transform = Transform3D(2, 0, 0, 0, 3, 0, 0, 0, 0.4, 0, 0, 0)
+size = Vector3(3.10349, 3.1661, 1)
+material = ExtResource("20_0wavo")
+
+[node name="RightDoor" type="CSGCombiner3D" parent="Power Grid/Power Zone 3/Sliding Door"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 0)
+use_collision = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Power Grid/Power Zone 3/Sliding Door/RightDoor"]
+transform = Transform3D(2, 0, 0, 0, 3, 0, 0, 0, 0.4, 0, 0, 0)
+size = Vector3(3.10349, 3.1661, 1)
+material = ExtResource("20_0wavo")
 
 [node name="Power Zone 4" type="Node3D" parent="Power Grid"]
 script = ExtResource("32_kn4wo")

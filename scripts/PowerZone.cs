@@ -64,11 +64,9 @@ public partial class PowerZone : Node, ISavable<SaveData>
     public void OnLoad(SaveData data)
     {
         var index = GetIndex();
-        GD.Print("zone loaded with index", index, " ", GetInstanceId());
         if (data.powerZoneStates.TryGetValue(index, out var isOn))
         {
             State = isOn;
-            GD.Print("zone loaded with state", isOn);
         }
     }
 }

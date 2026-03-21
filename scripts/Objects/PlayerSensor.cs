@@ -1,4 +1,3 @@
-
 using Godot;
 
 public partial class PlayerSensor : Area3D

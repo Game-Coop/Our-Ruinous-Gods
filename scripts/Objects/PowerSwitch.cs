@@ -12,13 +12,20 @@ public partial class PowerSwitch : Interactable, IPower
 	public override void Interact()
 	{
 		base.Interact();
-		if (PowerZone.TryTurnOn())
+		if (PowerZone.State == PowerState.On)
 		{
-			GD.Print("Power zone activated");
+			PowerZone.TurnOff();
 		}
 		else
 		{
-			GD.Print("Failed to activate power zone");
+			if (PowerZone.TryTurnOn())
+			{
+				GD.Print("Power zone activated");
+			}
+			else
+			{
+				GD.Print("Failed to activate power zone");
+			}
 		}
 	}
 	public void Register(PowerZone powerZone)
