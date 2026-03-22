@@ -15,17 +15,12 @@ public partial class OnAreaTriggeredAudio : AudioBehavior
     protected override void Setup()
     {
         var area = FindParentOfType<Area3D>();
-        if (area == null)
-        {
-            return;
-        }
+        
+        if (area == null) return;
 
         area.BodyEntered += body =>
         {
-            if (!IsValidBody(body))
-            {
-                return;
-            }
+            if (!IsValidBody(body)) return;
 
             if (Trigger == StateAudioTrigger.Activated)
             {
@@ -35,10 +30,8 @@ public partial class OnAreaTriggeredAudio : AudioBehavior
 
         area.BodyExited += body =>
         {
-            if (!IsValidBody(body))
-            {
-                return;
-            }
+            if (!IsValidBody(body)) return;
+
             if (Trigger == StateAudioTrigger.Deactivated)
             {
                 Play(GetParent());

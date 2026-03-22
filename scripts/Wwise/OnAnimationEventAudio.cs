@@ -8,10 +8,8 @@ public partial class OnAnimationEventAudio : AudioBehavior
     protected override void Setup()
     {
         var animPlayer = FindParentOfType<AnimationPlayer>();
-        if (animPlayer == null)
-        {
-            return;
-        }
+        
+        if (animPlayer == null) return;
 
         animPlayer.AnimationFinished += name =>
         {

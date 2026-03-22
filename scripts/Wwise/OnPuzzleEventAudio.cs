@@ -16,10 +16,7 @@ public partial class OnPuzzleEventAudio : AudioBehavior
     protected override void Setup()
     {
         var puzzle = FindParentOfType<IPuzzle>();
-        if (puzzle == null)
-        {
-            return;
-        }
+        if (puzzle == null) return;
 
         switch (Trigger)
         {

@@ -11,10 +11,7 @@ public abstract partial class AudioBehavior : Node
 
     public override void _Ready()
     {
-        if(Audio == null)
-        {
-            return;
-        }
+        if (Audio == null) return;
 
         if (PlayAs3D)
         {
