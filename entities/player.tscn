@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://ditkme4k3jpy0"]
+[gd_scene load_steps=24 format=3 uid="uid://ditkme4k3jpy0"]
 
 [ext_resource type="Script" uid="uid://ckih22id8amr1" path="res://scripts/Player.cs" id="1"]
 [ext_resource type="Script" uid="uid://dky7j2woivwl6" path="res://scripts/InteractionRaycaster.cs" id="2"]
@@ -27,8 +27,12 @@ ease = 2
 
 [sub_resource type="BoxMesh" id="BoxMesh_rfe5m"]
 
+[sub_resource type="ViewportTexture" id="ViewportTexture_dchgp"]
+viewport_path = NodePath("Player UI/SubViewport - Handheld UI")
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kdgjc"]
 resource_local_to_scene = true
+albedo_texture = SubResource("ViewportTexture_dchgp")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_qsoyl"]
 size = Vector2(1, 1)
@@ -45,7 +49,7 @@ shader_parameter/alpha = 1.0
 shader_parameter/inner_radius = 0.5
 shader_parameter/outer_radius = 1.5
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("_camera", "_rayDown", "_rayStep")]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("_camera", "_rayDown", "_rayStep") groups=["player"]]
 transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0, 0)
 input_ray_pickable = false
 floor_block_on_wall = false

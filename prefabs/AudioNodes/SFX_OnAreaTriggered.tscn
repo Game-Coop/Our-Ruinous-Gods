@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dmiodsf4eh7g"]
+
+[ext_resource type="Script" uid="uid://d2qdnuhj54k6e" path="res://scripts/Wwise/OnAreaTriggeredAudio.cs" id="1_s3gko"]
+
+[node name="SFX_OnAreaTriggered" type="Node3D"]
+script = ExtResource("1_s3gko")
