@@ -1,8 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://jsmom37esqfc"]
+[gd_scene load_steps=8 format=3 uid="uid://jsmom37esqfc"]
 
 [ext_resource type="AudioStream" uid="uid://bfkc80yhg62qr" path="res://assets/audio/88 horroramb2.wav" id="1"]
 [ext_resource type="Script" uid="uid://cecmhhcex34pa" path="res://scripts/UI/CustomLabel.cs" id="2_wns2j"]
+[ext_resource type="PackedScene" uid="uid://crrip5xuk02ou" path="res://prefabs/AudioNodes/SFX_OnButtonClicked.tscn" id="3_ye8o8"]
 [ext_resource type="Script" uid="uid://dtcloosmxo5fu" path="res://scripts/UI/StartMenu.cs" id="4"]
+[ext_resource type="AudioStream" uid="uid://bqxu68r0bcnyj" path="res://assets/audio/button tick.wav" id="4_7xqkm"]
 [ext_resource type="PackedScene" uid="uid://bxxhpppmwi4rt" path="res://prefabs/SceneTransitioner.tscn" id="4_wns2j"]
 
 [sub_resource type="Curve3D" id="Curve3D_rj5xk"]
@@ -67,6 +69,9 @@ text = "CONTINUE"
 vertical_alignment = 1
 script = ExtResource("2_wns2j")
 
+[node name="SFX_OnButtonClicked" parent="Panel/Panel2/Panel/Continue Button" instance=ExtResource("3_ye8o8")]
+Audio = ExtResource("4_7xqkm")
+
 [node name="New Game Button" type="Button" parent="Panel/Panel2/Panel"]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
@@ -85,11 +90,17 @@ text = "NEW GAME"
 vertical_alignment = 1
 script = ExtResource("2_wns2j")
 
+[node name="SFX_OnButtonClicked" parent="Panel/Panel2/Panel/New Game Button" instance=ExtResource("3_ye8o8")]
+Audio = ExtResource("4_7xqkm")
+
 [node name="Exit Button" type="Button" parent="Panel/Panel2/Panel"]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 size_flags_horizontal = 3
 flat = true
+
+[node name="SFX_OnButtonClicked" parent="Panel/Panel2/Panel/Exit Button" instance=ExtResource("3_ye8o8")]
+Audio = ExtResource("4_7xqkm")
 
 [node name="Label" type="Label" parent="Panel/Panel2/Panel/Exit Button"]
 layout_mode = 0
