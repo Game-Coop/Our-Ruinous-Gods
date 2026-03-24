@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://5ju312o65nch"]
+[gd_scene load_steps=48 format=3 uid="uid://5ju312o65nch"]
 
 [ext_resource type="Environment" uid="uid://ocaio2ownu0m" path="res://Envrionment.tres" id="1_jlvo6"]
 [ext_resource type="PackedScene" uid="uid://ditkme4k3jpy0" path="res://entities/player.tscn" id="2"]
@@ -84,7 +84,8 @@ environment = ExtResource("1_jlvo6")
 
 [node name="Main Camera" type="Camera3D" parent="."]
 physics_interpolation_mode = 1
-transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, -0.0150359, 3.79183, 1.72684)
+transform = Transform3D(-1.2, 0, -1.81195e-07, 0, 1.2, 0, 1.81195e-07, 0, -1.2, -0.0150359, 3.79183, 1.72684)
+top_level = true
 cull_mask = 2146959359
 
 [node name="PhantomCameraHost" type="Node" parent="Main Camera"]
@@ -96,7 +97,7 @@ metadata/_custom_type_script = "uid://bd046eokvcnu2"
 [node name="Outline Shader Quad" parent="." instance=ExtResource("23_na2vv")]
 skeleton = NodePath("")
 
-[node name="Player" parent="." groups=["player"] instance=ExtResource("2")]
+[node name="Player" parent="." instance=ExtResource("2")]
 transform = Transform3D(-1.2, 0, -1.81195e-07, 0, 1.2, 0, 1.81195e-07, 0, -1.2, -0.0150359, 1.39183, 1.72684)
 collision_layer = 3
 collision_mask = 3
@@ -340,22 +341,6 @@ transform = Transform3D(2, 0, 0, 0, 3, 0, 0, 0, 0.4, 0, 0, 0)
 size = Vector3(3.10349, 3.1661, 1)
 material = ExtResource("20_0wavo")
 
-[node name="Door Sensor" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 15.3612)
-script = ExtResource("20")
-switchablePath = NodePath("../Sliding Door")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Door Sensor"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.57936, 1.74968)
-shape = SubResource("14")
-
-[node name="SFX_OnAreaTriggered" parent="Door Sensor" instance=ExtResource("24_kn4wo")]
-Audio = ExtResource("25_xxtsu")
-
-[node name="SFX_OnAreaTriggered2" parent="Door Sensor" instance=ExtResource("24_kn4wo")]
-Trigger = 1
-Audio = ExtResource("25_xxtsu")
-
 [node name="StaticBody3D2" type="StaticBody3D" parent="."]
 transform = Transform3D(7, 0, 0, 0, 0.0965926, -1.2941, 0, 0.0258819, 4.82963, 0.594981, -0.0590178, 20.305)
 
@@ -417,6 +402,13 @@ switchablePath = NodePath("../Power Grid/Power Zone 3/Sliding Door")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Door Sensor"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.57936, 1.74968)
 shape = SubResource("14")
+
+[node name="SFX_OnAreaTriggered" parent="Door Sensor" instance=ExtResource("24_kn4wo")]
+Audio = ExtResource("25_xxtsu")
+
+[node name="SFX_OnAreaTriggered2" parent="Door Sensor" instance=ExtResource("24_kn4wo")]
+Trigger = 1
+Audio = ExtResource("25_xxtsu")
 
 [node name="Power Grid" type="Node3D" parent="."]
 script = ExtResource("29_kn4wo")
