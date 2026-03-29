@@ -82,7 +82,8 @@ environment = ExtResource("1_jlvo6")
 
 [node name="Main Camera" type="Camera3D" parent="."]
 physics_interpolation_mode = 1
-transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, -0.0150359, 3.79183, 1.72684)
+transform = Transform3D(-1.2, 0, -1.81195e-07, 0, 1.2, 0, 1.81195e-07, 0, -1.2, -0.0150359, 3.79183, 1.72684)
+top_level = true
 cull_mask = 2146959359
 
 [node name="PhantomCameraHost" type="Node" parent="Main Camera"]
@@ -91,7 +92,7 @@ process_physics_priority = 300
 script = ExtResource("2_87hxl")
 metadata/_custom_type_script = "uid://bd046eokvcnu2"
 
-[node name="Player" parent="." groups=["player"] instance=ExtResource("2")]
+[node name="Player" parent="." instance=ExtResource("2")]
 transform = Transform3D(-1.2, 0, -1.81195e-07, 0, 1.2, 0, 1.81195e-07, 0, -1.2, -0.0150359, 1.39183, 1.72684)
 collision_layer = 3
 collision_mask = 3
