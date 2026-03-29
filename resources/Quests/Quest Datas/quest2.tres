@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="QuestResource" load_steps=15 format=3 uid="uid://cicijk5a6ytfi"]
+[gd_resource type="Resource" script_class="QuestResource" format=3 uid="uid://cicijk5a6ytfi"]
 
 [ext_resource type="Script" uid="uid://d4gmb2nftapl5" path="res://addons/questify/scripts/model/quest_edge.gd" id="1_qmrnj"]
 [ext_resource type="Script" uid="uid://dtbofow3tdngk" path="res://addons/questify/scripts/model/quest_start.gd" id="2_ewndb"]
@@ -13,7 +13,6 @@ script = ExtResource("2_ewndb")
 name = "Turn On Power"
 description = "I need to turn on power. Or I won't be able to use the elevator."
 id = "a1YSDEstfc"
-optional = false
 graph_editor_position = Vector2(-280, -320)
 graph_editor_size = Vector2(300, 516)
 
@@ -21,7 +20,6 @@ graph_editor_size = Vector2(300, 516)
 script = ExtResource("3_3k6sh")
 description = "Turn the power switch on."
 id = "W5-lMeTr83"
-optional = false
 graph_editor_position = Vector2(600, 0)
 graph_editor_size = Vector2(340, 540)
 
@@ -29,12 +27,10 @@ graph_editor_size = Vector2(340, 540)
 script = ExtResource("1_qmrnj")
 from = SubResource("Resource_i272p")
 to = SubResource("Resource_kvlcw")
-edge_type = 0
 
 [sub_resource type="Resource" id="Resource_o4crt"]
 script = ExtResource("4_7v77g")
 id = "ADXUlnAkyB"
-optional = false
 graph_editor_position = Vector2(1160, 0)
 graph_editor_size = Vector2(141, 78)
 
@@ -42,14 +38,12 @@ graph_editor_size = Vector2(141, 78)
 script = ExtResource("1_qmrnj")
 from = SubResource("Resource_kvlcw")
 to = SubResource("Resource_o4crt")
-edge_type = 0
 
 [sub_resource type="Resource" id="Resource_iov6b"]
 script = ExtResource("5_p40wc")
 type = "=="
 key = "power_zone_state_0"
 id = "kpLDJ-Xwi3"
-optional = false
 graph_editor_position = Vector2(100, 100)
 graph_editor_size = Vector2(377, 309)
 metadata/value = true

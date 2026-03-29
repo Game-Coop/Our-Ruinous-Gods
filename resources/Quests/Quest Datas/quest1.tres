@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="QuestResource" load_steps=16 format=3 uid="uid://cpam64fvjxjvv"]
+[gd_resource type="Resource" script_class="QuestResource" format=3 uid="uid://cpam64fvjxjvv"]
 
 [ext_resource type="Script" uid="uid://d4gmb2nftapl5" path="res://addons/questify/scripts/model/quest_edge.gd" id="1_w80ml"]
 [ext_resource type="Script" uid="uid://dtbofow3tdngk" path="res://addons/questify/scripts/model/quest_start.gd" id="2_7g6rw"]
@@ -13,7 +13,6 @@ script = ExtResource("2_7g6rw")
 name = "Enter Docking Bay"
 description = "Finally, I have managed to came to this place. Need to get pass that door first."
 id = "a1YSDEstfc"
-optional = false
 graph_editor_position = Vector2(-280, -320)
 graph_editor_size = Vector2(300, 516)
 
@@ -21,7 +20,6 @@ graph_editor_size = Vector2(300, 516)
 script = ExtResource("3_w6ssa")
 description = "Pass through the door"
 id = "W5-lMeTr83"
-optional = false
 graph_editor_position = Vector2(600, 0)
 graph_editor_size = Vector2(340, 540)
 
@@ -29,12 +27,10 @@ graph_editor_size = Vector2(340, 540)
 script = ExtResource("1_w80ml")
 from = SubResource("Resource_f20yv")
 to = SubResource("Resource_p5u1k")
-edge_type = 0
 
 [sub_resource type="Resource" id="Resource_wfqcc"]
 script = ExtResource("4_ola8t")
 id = "ADXUlnAkyB"
-optional = false
 graph_editor_position = Vector2(1160, 0)
 graph_editor_size = Vector2(141, 78)
 
@@ -42,14 +38,12 @@ graph_editor_size = Vector2(141, 78)
 script = ExtResource("1_w80ml")
 from = SubResource("Resource_p5u1k")
 to = SubResource("Resource_wfqcc")
-edge_type = 0
 
 [sub_resource type="Resource" id="Resource_ptyqj"]
 script = ExtResource("5_l0rc1")
 type = "=="
 key = "interaction_main_door"
 id = "kpLDJ-Xwi3"
-optional = false
 graph_editor_position = Vector2(100, 100)
 graph_editor_size = Vector2(377, 309)
 metadata/value = true
@@ -65,7 +59,6 @@ script = ExtResource("5_l0rc1")
 type = "=="
 key = "someEventName"
 id = "6dgAf629bk"
-optional = false
 graph_editor_position = Vector2(100, 440)
 graph_editor_size = Vector2(377, 309)
 metadata/value = true
