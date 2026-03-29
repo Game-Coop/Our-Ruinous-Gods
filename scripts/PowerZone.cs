@@ -12,7 +12,7 @@ public partial class PowerZone : Node, ISavable<SaveData>
         get => _state;
         set
         {
-            if(_state != value)
+            if (_state != value)
             {
                 _state = value;
                 OnPowerChange?.Invoke(this);
@@ -24,7 +24,7 @@ public partial class PowerZone : Node, ISavable<SaveData>
     {
         base._Ready();
         powerGrid = GetParent<PowerGrid>();
-        GD.Print("zone ready with index and state", GetIndex(), State, " ",GetInstanceId());
+        GD.Print("zone ready with index and state", GetIndex(), State, " ", GetInstanceId());
         powerGrid.Register(this);
         this.Traverse<IPower>((powerable) =>
         {
@@ -33,15 +33,11 @@ public partial class PowerZone : Node, ISavable<SaveData>
     }
     public bool TryTurnOn()
     {
-        if (powerGrid.CurrentCharge + Charge <= powerGrid.MaxCharge)
-        {
-            State = PowerState.On;
-            return true;
-        }
-        else
-        {
+        if (powerGrid.CurrentCharge + Charge > powerGrid.MaxCharge)
             return false;
-        }
+            
+        State = PowerState.On;
+        return true;
     }
     public void TurnOff()
     {
