@@ -2,8 +2,9 @@
 
 [ext_resource type="Script" uid="uid://crjw3d3qfmx82" path="res://scripts/Objects/PowerableLight.cs" id="1"]
 
-[node name="PowerableLight" type="Node3D"]
+[node name="PowerableLight" type="Node3D" node_paths=PackedStringArray("light")]
 script = ExtResource("1")
+light = NodePath("Light3D")
 
 [node name="Light3D" type="OmniLight3D" parent="."]
 layers = 3

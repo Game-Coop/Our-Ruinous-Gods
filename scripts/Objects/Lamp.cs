@@ -6,6 +6,7 @@ public partial class Lamp : Node3D, ISwitchable
 {
 	public event Action<bool> OnStateChange;
 	public bool IsOn { get; private set; }
+	public bool CanTurnOn => true;
 	private Light3D light;
 	public override void _Ready()
 	{
@@ -14,8 +15,8 @@ public partial class Lamp : Node3D, ISwitchable
 	}
 	public void Toggle()
 	{
-		if(IsOn) TurnOff();
-		else TurnOn();
+		if (IsOn) TurnOff();
+		else if(CanTurnOn) TurnOn();
 	}
 	public void TurnOff()
 	{

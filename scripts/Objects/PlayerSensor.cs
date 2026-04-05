@@ -1,4 +1,3 @@
-
 using Godot;
 
 public partial class PlayerSensor : Area3D
@@ -16,7 +15,8 @@ public partial class PlayerSensor : Area3D
     {
         if (body is Player)
         {
-            switchable.TurnOn();
+            if(switchable.CanTurnOn)
+                switchable.TurnOn();
         }
     }
     public void OnBodyExited(Node body)

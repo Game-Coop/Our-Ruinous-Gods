@@ -30,7 +30,7 @@ public partial class SaveSystem : ISaveSystem
 		data = _decoder.Decode<T>(_saver.Load(saveFileName));
 		if (data == null)
 			data = new T();
-			
+
 		T val = data;
 		if (notify)
 		{
@@ -66,18 +66,6 @@ public partial class SaveSystem : ISaveSystem
 	}
 	public void ForEachSavable<T>(Action<ISavable<T>> action)
 	{
-		Traverse(_nodeRef.GetTree().Root, action);
+		_nodeRef.GetTree().Root.Traverse(action);
 	}
-
-	private void Traverse<T>(Node node, Action<ISavable<T>> action)
-	{
-		if (node is ISavable<T> savable)
-			action(savable);
-
-		foreach (Node child in node.GetChildren())
-			Traverse(child, action);
-	}
-
-
-
 }

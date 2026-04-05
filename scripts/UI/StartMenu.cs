@@ -74,7 +74,6 @@ public partial class StartMenu : Control
 
 	private async Task LoadGame(bool newGame)
 	{
-		SaveManager.Load();
 		if (newGame)
 		{
 			GameManager.Instance.InCutscene = true;
@@ -88,6 +87,7 @@ public partial class StartMenu : Control
 		{
 			firstScene.QueueFree();
 			await GetTree().LoadScene(ResourceDatabase.GameScene);
+			SaveManager.Load();
 		}
 	}
 

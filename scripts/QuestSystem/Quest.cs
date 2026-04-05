@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Godot;
 
@@ -35,6 +36,10 @@ public partial class Quest : Resource
 		}
 		return false;
 	}
+    public override int GetHashCode()
+    {
+        return @ref.ResourcePath.GetHashCode();
+    }
 	public void Start()
 	{
 		GD.Print($"Starting quest: {Name}. Description: {Description}. Completed: {Completed}");
