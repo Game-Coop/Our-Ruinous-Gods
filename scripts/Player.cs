@@ -1,20 +1,6 @@
 using Godot;
 using PhantomCamera;
 
-public struct CameraClamp
-{
-    public float Min { get; }
-    public float Max { get; }
-
-    public CameraClamp(float min, float max)
-    {
-        Min = min;
-        Max = max;
-    }
-
-    public override string ToString() => $"({Min} - {Max})";
-}
-
 public partial class Player : CharacterBody3D, ISavable<SaveData>
 {
     [Export] public float gravity = 9.8f;
