@@ -1,9 +1,9 @@
 using Godot;
 using System;
 
-public partial class PowerCollisionTrigger : Node3D
+public partial class PowerCollisionTrigger : Node3D, IPower
 {
-	[Export] public int Zone { get; set; }
+	public PowerZone PowerZone { get; private set; }
 	[Export] public bool RunOnce { get; set; }
 	private Area3D area;
 	public override void _Ready()
@@ -14,13 +14,17 @@ public partial class PowerCollisionTrigger : Node3D
 	}
 	public void OnBodyEntered(Node body)
 	{
-		if(body is Player) {
-			EventBus EventBusHandler = GetNode<EventBus>("/root/EventBus");      
-			EventBusHandler.OnPowerEvent(this.Zone);
-
-			if(RunOnce) {
+		if (body is Player)
+		{
+			PowerZone.TurnOff();
+			if (RunOnce)
+			{
 				this.QueueFree();
 			}
 		}
+	}
+	public void Register(PowerZone powerZone)
+	{
+		PowerZone = powerZone;
 	}
 }
