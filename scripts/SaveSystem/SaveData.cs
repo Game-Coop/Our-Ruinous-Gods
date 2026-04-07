@@ -12,4 +12,5 @@ public partial class SaveData
     [JsonConverter(typeof(GodotCollectionsArrayConverter))]
     public Godot.Collections.Array questData = new Godot.Collections.Array();
     public List<int> solvedPuzzleIds = new List<int>();
+    public Dictionary<int, PowerState> powerZoneStates = new();
 }

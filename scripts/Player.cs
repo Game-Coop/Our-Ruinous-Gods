@@ -1,20 +1,6 @@
 using Godot;
 using PhantomCamera;
 
-public struct CameraClamp
-{
-    public float Min { get; }
-    public float Max { get; }
-
-    public CameraClamp(float min, float max)
-    {
-        Min = min;
-        Max = max;
-    }
-
-    public override string ToString() => $"({Min} - {Max})";
-}
-
 public partial class Player : CharacterBody3D, ISavable<SaveData>
 {
     [Export] public float gravity = 9.8f;
@@ -31,7 +17,6 @@ public partial class Player : CharacterBody3D, ISavable<SaveData>
     private bool _isOnLadder => _ladderOverlapCount > 0;
 
     private int Power = 0;
-    private int MaxPower = 100;
     private int Stamina = 100;
     private EventBus eventBus;
     public override void _Ready()
@@ -133,21 +118,7 @@ public partial class Player : CharacterBody3D, ISavable<SaveData>
     }
     public void OnPowerChange(PowerEvent e)
     {
-        int currentPower = Power;
-
-        if (e.State == PowerState.On)
-        {
-            currentPower += e.Charge;
-        }
-        else
-        {
-            currentPower -= e.Charge;
-        }
-
-        if (currentPower < 0) currentPower = 0;
-        if (currentPower >= MaxPower) currentPower = MaxPower;
-
-        Power = currentPower;
+        Power = e.PowerZone.powerGrid.CurrentCharge;
         GD.Print("current power use is: " + Power);
     }
 

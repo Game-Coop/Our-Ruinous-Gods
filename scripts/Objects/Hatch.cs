@@ -36,14 +36,14 @@ public partial class Hatch : Interactable
         }
         else
         {
-            GlobalPosition = closedPosition;
+            Position = closedPosition;
             RotationDegrees = closedRotation;
         }
 
         OnInteract += _ => ToggleHatch();
     }
 
-    public override void _Process(double delta)
+    public override void _PhysicsProcess(double delta)
     {
         HandleHintVisibility();
 
@@ -67,7 +67,7 @@ public partial class Hatch : Interactable
 
     public override bool CanInteract()
     {
-        return IsPlayerInRange() && base.CanInteract();
+        return base.CanInteract() && !isMoving;
     }
 
     public override void Interact()
@@ -109,7 +109,7 @@ public partial class Hatch : Interactable
     private void MoveAndRotateHatch(double delta)
     {
         //Position
-        Vector3 currentPosition = GlobalPosition;
+        Vector3 currentPosition = Position;
         Vector3 direction = (targetPosition - currentPosition).Normalized();
         float distance = (targetPosition - currentPosition).Length();
         float moveStep = moveSpeed * (float)delta;
@@ -124,7 +124,7 @@ public partial class Hatch : Interactable
 
         if (!positionDone)
         {
-            GlobalPosition = currentPosition + direction * Math.Min(moveStep, distance);
+            Position = currentPosition + direction * Math.Min(moveStep, distance);
         }
 
         if (!rotationDone)
@@ -134,7 +134,7 @@ public partial class Hatch : Interactable
 
         if(positionDone && rotationDone)
         {
-            GlobalPosition = targetPosition;
+            Position = targetPosition;
             RotationDegrees = targetRotation;
             isMoving = false;
             isOpen = !isOpen;
@@ -143,6 +143,12 @@ public partial class Hatch : Interactable
 
     private bool IsPlayerInRange()
     {
+        //fallback in case the interact area is missing, allowing interaction but preventing hints
+        if (interactArea == null)
+        {
+            return true;
+        }
+
         var bodies = interactArea.GetOverlappingBodies();
         if(bodies == null) return false;
 
