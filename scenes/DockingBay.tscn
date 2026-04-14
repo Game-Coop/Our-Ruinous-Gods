@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://5ju312o65nch"]
+[gd_scene format=3 uid="uid://5ju312o65nch"]
 
 [ext_resource type="Environment" uid="uid://ocaio2ownu0m" path="res://Envrionment.tres" id="1_jlvo6"]
 [ext_resource type="PackedScene" uid="uid://ditkme4k3jpy0" path="res://entities/player.tscn" id="2"]
@@ -22,7 +22,7 @@
 [ext_resource type="PackedScene" uid="uid://c85rc41hsn055" path="res://objects/LadderCollision.tscn" id="20_kfrdm"]
 [ext_resource type="Script" uid="uid://sle2j723kykw" path="res://scripts/QuestSystem/QuestSwitchableNotifier.cs" id="21_jlvo6"]
 [ext_resource type="Script" uid="uid://fdl1stm4m2w" path="res://scripts/Parley/ParleyTest.cs" id="22_bmc1d"]
-[ext_resource type="Resource" uid="uid://dg383wlfxj8ip" path="res://dialogue_sequences/new_dialogue.ds" id="23_uyjrd"]
+[ext_resource type="Resource" uid="uid://bhhespnnd63cn" path="res://dialogue_sequences/test_dialogue.ds" id="23_bmc1d"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kfrdm"]
 radius = 0.724904
@@ -46,228 +46,227 @@ size = Vector3(6.58246, 7.02236, 9.24394)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_kfrdm"]
 
-[node name="DockingBay" type="Node3D"]
+[node name="DockingBay" type="Node3D" unique_id=701494392]
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=826191660]
 environment = ExtResource("1_jlvo6")
 
-[node name="Player" parent="." instance=ExtResource("2")]
+[node name="Player" parent="." unique_id=1107394555 instance=ExtResource("2")]
 transform = Transform3D(-1.2, 0, -1.81195e-07, 0, 1.2, 0, 1.81195e-07, 0, -1.2, 0, 1.41686, 1.73652)
 collision_layer = 3
 collision_mask = 3
 
-[node name="LadderDetector" type="Area3D" parent="Player"]
+[node name="LadderDetector" type="Area3D" parent="Player" unique_id=327160692]
 collision_layer = 2
 collision_mask = 2
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Player/LadderDetector"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player/LadderDetector" unique_id=1958204764]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.535686, 0)
 shape = SubResource("CapsuleShape3D_kfrdm")
 
-[node name="RootNode" parent="." instance=ExtResource("2_2heu7")]
+[node name="RootNode" parent="." unique_id=454941089 instance=ExtResource("2_2heu7")]
 transform = Transform3D(1.395, 0, 0, 0, 1.395, 0, 0, 0, 1.395, 0, 0, 0)
 
-[node name="DockingbayBlockout_CSGCombiner3D#CSGBox3D" type="CSGBox3D" parent="."]
+[node name="DockingbayBlockout_CSGCombiner3D#CSGBox3D" type="CSGBox3D" parent="." unique_id=132625339]
 transform = Transform3D(2.96124, 0, 0, 0, 3.4166, 0, 0, 0, 1, 0.447214, 2.92033, -2.10941)
 use_collision = true
 size = Vector3(3.10349, 3.1661, 1)
 
-[node name="PowerSwitch(Upstairs)" parent="." instance=ExtResource("4")]
+[node name="PowerSwitch(Upstairs)" parent="." unique_id=954820128 instance=ExtResource("4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.529503, 0.230173, 28.464)
 
-[node name="PowerableLight" parent="PowerSwitch(Upstairs)" instance=ExtResource("5")]
+[node name="PowerableLight" parent="PowerSwitch(Upstairs)" unique_id=1587620818 instance=ExtResource("5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.46353, 7.88833, 19.8214)
-State = 1
 
-[node name="PowerableLight2" parent="PowerSwitch(Upstairs)" instance=ExtResource("5")]
+[node name="PowerableLight2" parent="PowerSwitch(Upstairs)" unique_id=1143026068 instance=ExtResource("5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.26369, 8.00827, 18.525)
-State = 1
 
-[node name="PowerableLight3" parent="PowerSwitch(Upstairs)" instance=ExtResource("5")]
+[node name="PowerableLight3" parent="PowerSwitch(Upstairs)" unique_id=998521589 instance=ExtResource("5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.7054, 7.91115, -6.88297)
-State = 1
 
-[node name="PowerableLight4" parent="PowerSwitch(Upstairs)" instance=ExtResource("5")]
+[node name="PowerableLight4" parent="PowerSwitch(Upstairs)" unique_id=1157183246 instance=ExtResource("5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.77925, 7.91115, -6.88297)
-State = 1
 
-[node name="PowerSwitch(Downstairs)" parent="." instance=ExtResource("4")]
+[node name="PowerSwitch(Downstairs)" parent="." unique_id=1588628187 instance=ExtResource("4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.782809, -10.2342, 49.1794)
-Zone = 1
 
-[node name="PowerableLight" parent="PowerSwitch(Downstairs)" instance=ExtResource("5")]
+[node name="PowerableLight" parent="PowerSwitch(Downstairs)" unique_id=751413626 instance=ExtResource("5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.85291, 4.08115, -0.807796)
-Zone = 1
-State = 1
 
-[node name="PowerableLight2" parent="PowerSwitch(Downstairs)" instance=ExtResource("5")]
+[node name="PowerableLight2" parent="PowerSwitch(Downstairs)" unique_id=754843643 instance=ExtResource("5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.52098, 4.23446, -0.772114)
-Zone = 1
-State = 1
 
-[node name="PowerableLight3" parent="PowerSwitch(Downstairs)" instance=ExtResource("5")]
+[node name="PowerableLight3" parent="PowerSwitch(Downstairs)" unique_id=757057452 instance=ExtResource("5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.788644, 6.64329, -23.3324)
-Zone = 1
-State = 1
 
-[node name="Ambient Lights" type="Node3D" parent="."]
+[node name="Ambient Lights" type="Node3D" parent="." unique_id=2059933280]
 
-[node name="Docking" type="Node3D" parent="Ambient Lights"]
+[node name="Docking" type="Node3D" parent="Ambient Lights" unique_id=1027946793]
 
-[node name="OmniLight5" type="OmniLight3D" parent="Ambient Lights/Docking"]
+[node name="OmniLight5" type="OmniLight3D" parent="Ambient Lights/Docking" unique_id=1830705893]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 2, 4)
 layers = 3
 light_color = Color(1, 0, 0, 1)
 light_energy = 0.25
 omni_range = 10.0
 
-[node name="OmniLight3D" type="OmniLight3D" parent="Ambient Lights/Docking"]
+[node name="OmniLight3D" type="OmniLight3D" parent="Ambient Lights/Docking" unique_id=381860811]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 7, 4)
 layers = 3
 light_color = Color(1, 0, 0, 1)
 light_energy = 0.25
 omni_range = 10.0
 
-[node name="OmniLight6" type="OmniLight3D" parent="Ambient Lights/Docking"]
+[node name="OmniLight6" type="OmniLight3D" parent="Ambient Lights/Docking" unique_id=1201529823]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 2, 4)
 layers = 3
 light_color = Color(1, 0, 0, 1)
 light_energy = 0.25
 omni_range = 10.0
 
-[node name="OmniLight2" type="OmniLight3D" parent="Ambient Lights/Docking"]
+[node name="OmniLight2" type="OmniLight3D" parent="Ambient Lights/Docking" unique_id=61586989]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 7, 4)
 layers = 3
 light_color = Color(1, 0, 0, 1)
 light_energy = 0.25
 omni_range = 10.0
 
-[node name="OmniLight7" type="OmniLight3D" parent="Ambient Lights/Docking"]
+[node name="OmniLight7" type="OmniLight3D" parent="Ambient Lights/Docking" unique_id=2071738107]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 2, 14)
 layers = 3
 light_color = Color(1, 0, 0, 1)
 light_energy = 0.25
 omni_range = 10.0
 
-[node name="OmniLight3" type="OmniLight3D" parent="Ambient Lights/Docking"]
+[node name="OmniLight3" type="OmniLight3D" parent="Ambient Lights/Docking" unique_id=1220927564]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 7, 14)
 layers = 3
 light_color = Color(1, 0, 0, 1)
 light_energy = 0.25
 omni_range = 10.0
 
-[node name="OmniLight8" type="OmniLight3D" parent="Ambient Lights/Docking"]
+[node name="OmniLight8" type="OmniLight3D" parent="Ambient Lights/Docking" unique_id=54142083]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 2, 14)
 layers = 3
 light_color = Color(1, 0, 0, 1)
 light_energy = 0.25
 omni_range = 10.0
 
-[node name="OmniLight4" type="OmniLight3D" parent="Ambient Lights/Docking"]
+[node name="OmniLight4" type="OmniLight3D" parent="Ambient Lights/Docking" unique_id=153569289]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 7, 14)
 layers = 3
 light_color = Color(1, 0, 0, 1)
 light_energy = 0.25
 omni_range = 10.0
 
-[node name="Bar" type="Node3D" parent="Ambient Lights"]
+[node name="Bar" type="Node3D" parent="Ambient Lights" unique_id=2042386897]
 
-[node name="OmniLight11" type="OmniLight3D" parent="Ambient Lights/Bar"]
+[node name="OmniLight11" type="OmniLight3D" parent="Ambient Lights/Bar" unique_id=1371596033]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.1818, 1.00298, 21.2775)
 layers = 3
 light_color = Color(0, 0.717647, 1, 1)
 light_energy = 0.2
 omni_range = 10.0
 
-[node name="OmniLight10" type="OmniLight3D" parent="Ambient Lights/Bar"]
+[node name="OmniLight10" type="OmniLight3D" parent="Ambient Lights/Bar" unique_id=1670566381]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.7666, 0.501488, 24.0893)
 layers = 3
 light_color = Color(0, 0.717647, 1, 1)
 light_energy = 0.2
 omni_range = 10.0
 
-[node name="OmniLight9" type="OmniLight3D" parent="Ambient Lights/Bar"]
+[node name="OmniLight9" type="OmniLight3D" parent="Ambient Lights/Bar" unique_id=437387479]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.6836, 0.536226, 21.9512)
 layers = 3
 light_color = Color(0, 0.717647, 1, 1)
 light_energy = 0.2
 omni_range = 10.0
 
-[node name="Panel" type="Node3D" parent="Ambient Lights"]
+[node name="Panel" type="Node3D" parent="Ambient Lights" unique_id=1088128977]
 
-[node name="OmniLight12" type="OmniLight3D" parent="Ambient Lights/Panel"]
+[node name="OmniLight12" type="OmniLight3D" parent="Ambient Lights/Panel" unique_id=400642740]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.1422, -0.181529, 35.1723)
 layers = 3
 light_color = Color(0.619608, 0.509804, 0.0784314, 1)
 light_energy = 0.2
 omni_range = 10.0
 
-[node name="PowerCollisionTrigger" parent="." instance=ExtResource("6")]
+[node name="PowerCollisionTrigger" parent="." unique_id=569429125 instance=ExtResource("6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.7128, -0.993279, 34.4857)
 RunOnce = true
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=825117879]
 process_mode = 3
 script = ExtResource("8")
 pauseMenuPagePath = NodePath("Pause Menu")
 settingsMenuPagePath = NodePath("Settings Menu")
 
-[node name="Pause Menu" parent="CanvasLayer" instance=ExtResource("7")]
+[node name="Pause Menu" parent="CanvasLayer" unique_id=1974891730 instance=ExtResource("7")]
 
-[node name="Settings Menu" parent="CanvasLayer" instance=ExtResource("9")]
+[node name="Settings Menu" parent="CanvasLayer" unique_id=1399635853 instance=ExtResource("9")]
+continueBtnPath = null
+controlsBtnPath = null
+gameplayBtnPath = null
+graphicsBtnPath = null
+audioBtnPath = null
+exitBtnPath = null
+controlsMenuPath = null
+gameplayMenuPath = null
+graphicsMenuPath = null
+audioMenuPath = null
 
-[node name="Collectable Item 1" type="Area3D" parent="."]
+[node name="Collectable Item 1" type="Area3D" parent="." unique_id=1140573121]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.87988, -10.7633, 48.6081)
 collision_layer = 2
 script = ExtResource("14")
 itemData = ExtResource("11")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Collectable Item 1"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Collectable Item 1" unique_id=655071185]
 transform = Transform3D(0.3, 0, 0, 0, 0.1, 0, 0, 0, 0.3, 0, 0.291816, 0)
 shape = SubResource("5")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Collectable Item 1"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Collectable Item 1" unique_id=106173329]
 transform = Transform3D(0.3, 0, 0, 0, 0.1, 0, 0, 0, 0.3, 0, 0, 0)
 mesh = SubResource("6")
 
-[node name="Hint" parent="Collectable Item 1" instance=ExtResource("13")]
+[node name="Hint" parent="Collectable Item 1" unique_id=407523383 instance=ExtResource("13")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.317379, 0)
 
-[node name="Audio Entry Item 1" type="Area3D" parent="."]
+[node name="Audio Entry Item 1" type="Area3D" parent="." unique_id=248517657]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17, 1.18534, 20)
 collision_layer = 2
 script = ExtResource("17")
 audioData = ExtResource("10")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Audio Entry Item 1"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Audio Entry Item 1" unique_id=941086315]
 transform = Transform3D(0.215, 0, 0, 0, 0.300748, 0, 0, 0, 0.215, 0.00912213, 0.319621, 0.02742)
 shape = SubResource("11")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Audio Entry Item 1"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Audio Entry Item 1" unique_id=969088574]
 transform = Transform3D(0.215, 0, 0, 0, 0.026, 0, 0, 0, 0.215, 0, 0, 0)
 mesh = SubResource("12")
 
-[node name="Hint" parent="Audio Entry Item 1" instance=ExtResource("13")]
+[node name="Hint" parent="Audio Entry Item 1" unique_id=1930689836 instance=ExtResource("13")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0935812, 0)
 
-[node name="JournalEntry Item 1" type="Area3D" parent="."]
+[node name="JournalEntry Item 1" type="Area3D" parent="." unique_id=448404627]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.40817, 1.23542, 28.369)
 collision_layer = 2
 script = ExtResource("15")
 journalData = ExtResource("12")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="JournalEntry Item 1"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="JournalEntry Item 1" unique_id=537903361]
 transform = Transform3D(0.183, 0, 0, 0, 0.160994, 0, 0, 0, 0.183, 0, 0.135152, 0)
 shape = SubResource("8")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="JournalEntry Item 1"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="JournalEntry Item 1" unique_id=1061604856]
 transform = Transform3D(0.183, 0, 0, 0, 0.025, 0, 0, 0, 0.183, 0, 0, 0)
 mesh = SubResource("9")
 
-[node name="Hint" parent="JournalEntry Item 1" instance=ExtResource("13")]
+[node name="Hint" parent="JournalEntry Item 1" unique_id=1018405391 instance=ExtResource("13")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25511, 0)
 
-[node name="Sliding Door" type="Node3D" parent="."]
+[node name="Sliding Door" type="Node3D" parent="." unique_id=595768072]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.597278, 3.946, 17.5416)
 script = ExtResource("18")
 rightDoorPath = NodePath("RightDoor")
@@ -279,74 +278,74 @@ leftLocalClosePos = Vector3(-3, 0, 0)
 rightLocalOpenPos = Vector3(7.2, 0, 0)
 rightLocalClosePos = Vector3(3, 0, 0)
 
-[node name="LeftDoor" type="CSGCombiner3D" parent="Sliding Door"]
+[node name="LeftDoor" type="CSGCombiner3D" parent="Sliding Door" unique_id=917966817]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 0)
 use_collision = true
 
-[node name="CSGBox3D" type="CSGBox3D" parent="Sliding Door/LeftDoor"]
+[node name="CSGBox3D" type="CSGBox3D" parent="Sliding Door/LeftDoor" unique_id=283956026]
 transform = Transform3D(2, 0, 0, 0, 3, 0, 0, 0, 0.4, 0, 0, 0)
 size = Vector3(3.10349, 3.1661, 1)
 material = ExtResource("19")
 
-[node name="RightDoor" type="CSGCombiner3D" parent="Sliding Door"]
+[node name="RightDoor" type="CSGCombiner3D" parent="Sliding Door" unique_id=301548977]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 0)
 use_collision = true
 
-[node name="CSGBox3D" type="CSGBox3D" parent="Sliding Door/RightDoor"]
+[node name="CSGBox3D" type="CSGBox3D" parent="Sliding Door/RightDoor" unique_id=576977482]
 transform = Transform3D(2, 0, 0, 0, 3, 0, 0, 0, 0.4, 0, 0, 0)
 size = Vector3(3.10349, 3.1661, 1)
 material = ExtResource("19")
 
-[node name="Door Sensor" type="Area3D" parent="."]
+[node name="Door Sensor" type="Area3D" parent="." unique_id=1862400716]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 15.3612)
 script = ExtResource("20")
 switchablePath = NodePath("../Sliding Door")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Door Sensor"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Door Sensor" unique_id=446591618]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.57936, 1.74968)
 shape = SubResource("14")
 
-[node name="StaticBody3D2" type="StaticBody3D" parent="."]
+[node name="StaticBody3D2" type="StaticBody3D" parent="." unique_id=726445708]
 transform = Transform3D(7, 0, 0, 0, 0.0965926, -1.2941, 0, 0.0258819, 4.82963, 0.594981, -0.0590178, 20.305)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D2"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D2" unique_id=547406125]
 shape = SubResource("BoxShape3D_kfrdm")
 
-[node name="StaticBody3D3" type="StaticBody3D" parent="."]
+[node name="StaticBody3D3" type="StaticBody3D" parent="." unique_id=828489460]
 transform = Transform3D(7, 0, 0, 0, 0.0996378, 0.425172, 0, -0.00850343, 4.98189, 0.594981, 0.367756, 15.3814)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D3"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D3" unique_id=1456456421]
 shape = SubResource("BoxShape3D_kfrdm")
 
-[node name="StaticBody3D4" type="StaticBody3D" parent="."]
+[node name="StaticBody3D4" type="StaticBody3D" parent="." unique_id=1338461396]
 transform = Transform3D(3.70488, 0, 0, 0, 0.0827685, -1.16484, 0, 0.0341942, 2.81955, 0.603499, -10.4625, 38.8494)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D4"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D4" unique_id=449099356]
 shape = SubResource("BoxShape3D_kfrdm")
 
-[node name="StaticBody3D5" type="StaticBody3D" parent="."]
+[node name="StaticBody3D5" type="StaticBody3D" parent="." unique_id=1230675674]
 transform = Transform3D(3.70488, 0, 0, 0, 0.0975966, 0.989858, 0, -0.0342505, 2.82059, 0.603499, -10.3941, 36.0546)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D5"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D5" unique_id=1750817054]
 shape = SubResource("BoxShape3D_kfrdm")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=830159379]
 transform = Transform3D(0.6809, -0.0729938, 0.72873, 0.604828, -0.505049, -0.615718, 0.412988, 0.859999, -0.299739, 25.8281, 30.6139, -41.3749)
 layers = 3
 
-[node name="LadderCollision" parent="." instance=ExtResource("20_kfrdm")]
+[node name="LadderCollision" parent="." unique_id=1685221222 instance=ExtResource("20_kfrdm")]
 
 [node name="CollisionShape" parent="LadderCollision" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.7785, -4.9624, 34.6688)
 
-[node name="QuestSwitchableNotifier" type="Node" parent="."]
+[node name="QuestSwitchableNotifier" type="Node" parent="." unique_id=1038599113]
 script = ExtResource("21_jlvo6")
 questVariable = "interaction_main_door"
 switchableNode = NodePath("../Sliding Door")
 
-[node name="Parley Test" type="Node" parent="."]
+[node name="Parley Test" type="Node" parent="." unique_id=1041029198]
 script = ExtResource("22_bmc1d")
-dialog = ExtResource("23_uyjrd")
+dialog = ExtResource("23_bmc1d")
 
 [connection signal="PlayerEnterLadder" from="LadderCollision" to="Player" method="OnAreaEntered"]
 [connection signal="PlayerExitLadder" from="LadderCollision" to="Player" method="OnAreaExited"]

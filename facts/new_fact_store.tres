@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="ParleyFactStore" load_steps=5 format=3 uid="uid://b10i0s5g0ue01"]
+[gd_resource type="Resource" script_class="ParleyFactStore" format=3 uid="uid://b10i0s5g0ue01"]
 
 [ext_resource type="Script" uid="uid://dhlbgj5hd2115" path="res://addons/parley/models/fact.gd" id="1_4td3x"]
 [ext_resource type="Script" uid="uid://d2q7e5e7shetd" path="res://facts/test_fact.gd" id="2_d5w3f"]

@@ -14,11 +14,15 @@ ClassPrefix=""
 SearchType=0
 ResourceScriptDirectories=["res://"]
 
+[animation]
+
+compatibility/default_parent_skeleton_in_mesh_instance_3d=true
+
 [application]
 
 config/name="Our Ruinous Gods"
 run/main_scene="res://menus/StartMenu.tscn"
-config/features=PackedStringArray("4.4", "C#")
+config/features=PackedStringArray("4.6", "C#")
 config/icon="res://icon.png"
 
 [audio]
@@ -40,7 +44,7 @@ Inventory="*res://resources/Inventory.tscn"
 Journal="*res://resources/Journal.tscn"
 VersionInfo="*res://scripts/VersionInfo.cs"
 WwiseRuntimeManager="*res://addons/Wwise/runtime/wwise_runtime_manager.gd"
-Questify="*res://addons/questify/quest_manager.gd"
+Questify="*uid://b07jy1yytqpum"
 QuestManager="*res://resources/QuestManager.tscn"
 GameTime="*res://scripts/GameTime.cs"
 Parley="*res://addons/parley/parley_runtime.gd"
