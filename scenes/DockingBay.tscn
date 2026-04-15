@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://5ju312o65nch"]
+[gd_scene load_steps=49 format=3 uid="uid://5ju312o65nch"]
 
 [ext_resource type="Environment" uid="uid://ocaio2ownu0m" path="res://Envrionment.tres" id="1_jlvo6"]
 [ext_resource type="PackedScene" uid="uid://ditkme4k3jpy0" path="res://entities/player.tscn" id="2"]
@@ -34,6 +34,7 @@
 [ext_resource type="PackedScene" uid="uid://hl5amlhee3yn" path="res://objects/Hatch.tscn" id="26_iv5uq"]
 [ext_resource type="Script" uid="uid://rklq2656y3b" path="res://scripts/PowerGrid.cs" id="29_kn4wo"]
 [ext_resource type="Script" uid="uid://dj2gvdl6uuexa" path="res://scripts/PowerZone.cs" id="32_kn4wo"]
+[ext_resource type="PackedScene" uid="uid://d3g2w6h61jtb3" path="res://assets/models/info kiosk/InfoKiosk.fbx" id="36_wnxt2"]
 [ext_resource type="Script" uid="uid://b6ukogi7n345w" path="res://scripts/Puzzles/FuseBoxPuzzle/Fuse.cs" id="37_31fnb"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kfrdm"]
@@ -496,8 +497,9 @@ material = ExtResource("20_0wavo")
 script = ExtResource("32_kn4wo")
 Charge = 5
 
-[connection signal="PlayerEnterLadder" from="LadderCollision" to="Player" method="OnAreaEntered"]
-[connection signal="PlayerExitLadder" from="LadderCollision" to="Player" method="OnAreaExited"]
+[node name="InfoKiosk" parent="." instance=ExtResource("36_wnxt2")]
+transform = Transform3D(-1.12174, 0, 9.80655e-08, 0, 1.12174, 0, -9.80655e-08, 0, -1.12174, 0.454727, -0.53984, 30.959)
+
 [connection signal="body_entered" from="LadderCollision" to="LadderCollision" method="_on_body_entered"]
 [connection signal="body_exited" from="LadderCollision" to="LadderCollision" method="_on_body_exited"]
 
