@@ -1,4 +1,4 @@
-[gd_resource type="Environment" load_steps=4 format=3 uid="uid://ocaio2ownu0m"]
+[gd_resource type="Environment" format=3 uid="uid://ocaio2ownu0m"]
 
 [ext_resource type="Texture2D" uid="uid://c8lh5gt6dsjx5" path="res://shaders/Space Environment/lut.png" id="1_bceua"]
 [ext_resource type="Material" uid="uid://kl1w4dej8nup" path="res://shaders/Space Environment/mat_stars.tres" id="2_bceua"]
