@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://3gj05nfhyh8u"]
+
+[ext_resource type="Material" uid="uid://co1ilm7ttt7ya" path="res://shaders/Outline/outline.tres" id="1_hehg7"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_0cgwn"]
+material = ExtResource("1_hehg7")
+flip_faces = true
+size = Vector2(20, 20)
+
+[node name="Outline Shader Quad" type="MeshInstance3D"]
+transform = Transform3D(-0.00999999, -2.32831e-10, -1.50996e-09, -2.32831e-10, 0.01, 2.32831e-10, 1.50996e-09, 2.32831e-10, -0.01, 0, 0, 0)
+extra_cull_margin = 16384.0
+mesh = SubResource("QuadMesh_0cgwn")

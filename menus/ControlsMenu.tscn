@@ -1,13 +1,15 @@
-[gd_scene load_steps=12 format=3 uid="uid://4dxr6g5g1sxw"]
+[gd_scene load_steps=14 format=3 uid="uid://4dxr6g5g1sxw"]
 
 [ext_resource type="Script" uid="uid://bbwa3gfr35dgg" path="res://scripts/UI/MovingPanelTweener.cs" id="1"]
 [ext_resource type="Script" uid="uid://0ag37exh3h4n" path="res://scripts/UI/ControlsMenu.cs" id="2"]
 [ext_resource type="PackedScene" uid="uid://dxnu41k0cg5y4" path="res://menus/KeyboardControlsMenu.tscn" id="3"]
 [ext_resource type="Script" uid="uid://dgho8w6pyyanf" path="res://scripts/UI/Navbar.cs" id="4"]
 [ext_resource type="Texture2D" uid="uid://chdxvbrmjswds" path="res://assets/ui/right-arrow.png" id="5"]
-[ext_resource type="PackedScene" path="res://ui/Titled Pagination.tscn" id="6"]
+[ext_resource type="PackedScene" uid="uid://b4q4xjuseqcq8" path="res://ui/Titled Pagination.tscn" id="6"]
 [ext_resource type="Script" uid="uid://c4uk0vikv0xhg" path="res://scripts/UI/OrderedPages.cs" id="7"]
+[ext_resource type="Script" uid="uid://6gemwa8xs5gv" path="res://scripts/UI/KeyboardControlsMenu.cs" id="7_3bt07"]
 [ext_resource type="PackedScene" uid="uid://cc2x222go4i8e" path="res://menus/GamepadControlsMenu.tscn" id="8"]
+[ext_resource type="Script" uid="uid://bpevk21ctkop4" path="res://scripts/UI/GamepadControlsMenu.cs" id="9_qqph8"]
 
 [sub_resource type="StyleBoxEmpty" id="1"]
 
@@ -17,7 +19,6 @@
 
 [node name="ControlsMenu" type="Panel"]
 clip_contents = true
-anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 3
@@ -111,12 +112,34 @@ offset_top = 200.0
 script = ExtResource("7")
 pageContainerPath = NodePath(".")
 
-[node name="KeyboardControlsMenu" parent="Panel/Ordered Pages" instance=ExtResource("3")]
+[node name="KeyboardControlsMenu" type="Control" parent="Panel/Ordered Pages" instance=ExtResource("3")]
 layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("7_3bt07")
+inputBindingPaths = [NodePath("ScrollContainer/Panel/HBoxContainer/Inputs Column/Inventory Button"), NodePath("ScrollContainer/Panel/HBoxContainer/Inputs Column/Journal Button"), NodePath("ScrollContainer/Panel/HBoxContainer/Inputs Column/Audio Player Button"), NodePath("ScrollContainer/Panel/HBoxContainer/Inputs Column/Pause Button"), NodePath("ScrollContainer/Panel/HBoxContainer/Inputs Column/Interact Button")]
+swapLabelPath = NodePath("ScrollContainer/Panel/Label")
+panelTweenerPath = NodePath("Panel Tweener")
 
-[node name="GamepadControlsMenu" parent="Panel/Ordered Pages" instance=ExtResource("8")]
+[node name="GamepadControlsMenu" type="Control" parent="Panel/Ordered Pages" instance=ExtResource("8")]
 visible = false
 layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("9_qqph8")
+inputBindingPaths = [NodePath("ScrollContainer/Panel/HBoxContainer/Playstation Column/Inventory Button"), NodePath("ScrollContainer/Panel/HBoxContainer/Playstation Column/Journal Button"), NodePath("ScrollContainer/Panel/HBoxContainer/Playstation Column/Audio Player Button"), NodePath("ScrollContainer/Panel/HBoxContainer/Playstation Column/Pause Button"), NodePath("ScrollContainer/Panel/HBoxContainer/Playstation Column/Interact Button")]
+swapLabelPath = NodePath("ScrollContainer/Panel/Label")
+panelTweenerPath = NodePath("Panel Tweener")
 
 [node name="Panel Tweener" type="Control" parent="."]
 anchors_preset = 0

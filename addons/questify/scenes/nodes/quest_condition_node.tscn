@@ -1,7 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://bhbl3kyiea18r"]
+[gd_scene load_steps=6 format=3 uid="uid://bhbl3kyiea18r"]
 
 [ext_resource type="Script" uid="uid://bclvqawby8ylj" path="res://addons/questify/scripts/graph_nodes/quest_condition_node.gd" id="1_a8dc6"]
+[ext_resource type="Script" uid="uid://cecmhhcex34pa" path="res://scripts/UI/CustomLabel.cs" id="2_1sccn"]
 [ext_resource type="PackedScene" uid="uid://cdmvb6rdyjmhy" path="res://addons/questify/scenes/metadata_input.tscn" id="2_l1xol"]
+[ext_resource type="Script" uid="uid://d26l7ngfsise6" path="res://addons/questify/scripts/components/variant_input.gd" id="4_r2mis"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sjk50"]
 content_margin_left = 4.0
@@ -69,12 +71,12 @@ script = ExtResource("1_a8dc6")
 type_input = NodePath("Type/TypeInput")
 key_input = NodePath("Key/KeyInput")
 meta_input = NodePath("Value/MetadataInput")
-label_color = Color(0, 0, 0, 1)
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 2
 text = "Output"
 horizontal_alignment = 2
+script = ExtResource("2_1sccn")
 
 [node name="HSeparator" type="HSeparator" parent="."]
 layout_mode = 2
@@ -85,6 +87,7 @@ layout_mode = 2
 [node name="Label" type="Label" parent="Type"]
 layout_mode = 2
 text = "Query Type"
+script = ExtResource("2_1sccn")
 
 [node name="TypeInput" type="LineEdit" parent="Type"]
 custom_minimum_size = Vector2(0, 32)
@@ -97,6 +100,7 @@ layout_mode = 2
 [node name="Label" type="Label" parent="Key"]
 layout_mode = 2
 text = "Key"
+script = ExtResource("2_1sccn")
 
 [node name="KeyInput" type="LineEdit" parent="Key"]
 custom_minimum_size = Vector2(0, 32)
@@ -109,9 +113,14 @@ layout_mode = 2
 [node name="Label" type="Label" parent="Value"]
 layout_mode = 2
 text = "Value"
+script = ExtResource("2_1sccn")
 
-[node name="MetadataInput" parent="Value" instance=ExtResource("2_l1xol")]
+[node name="MetadataInput" type="HBoxContainer" parent="Value" node_paths=PackedStringArray("type_select", "inputs_container") instance=ExtResource("2_l1xol")]
+custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
+script = ExtResource("4_r2mis")
+type_select = NodePath("MetaTypeSelect")
+inputs_container = NodePath("InputsContainer")
 
 [connection signal="text_changed" from="Type/TypeInput" to="." method="_on_type_text_changed"]
 [connection signal="text_changed" from="Key/KeyInput" to="." method="_on_key_text_changed"]

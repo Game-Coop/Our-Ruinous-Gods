@@ -2,51 +2,30 @@ using Godot;
 
 public partial class SettingsMenu : Page
 {
-	[Export] private NodePath continueBtnPath;
-	[Export] private NodePath controlsBtnPath;
-	[Export] private NodePath gameplayBtnPath;
-	[Export] private NodePath graphicsBtnPath;
-	[Export] private NodePath audioBtnPath;
-	[Export] private NodePath exitBtnPath;
-	[Export] private NodePath controlsMenuPath;
-	[Export] private NodePath gameplayMenuPath;
-	[Export] private NodePath graphicsMenuPath;
-	[Export] private NodePath audioMenuPath;
-	private Button _continueBtn;
-	private Button _exitBtn;
-	private Button _controlsBtn;
-	private Button _gameplayBtn;
-	private Button _graphicsBtn;
-	private Button _audioBtn;
-	private Page controlsMenuPage;
-	private Page gameplayMenuPage;
-	private Page graphicsMenuPage;
-	private Page audioMenuPage;
+	[Export] private Button _continueBtn;
+	[Export] private Button _exitBtn;
+	[Export] private Button _controlsBtn;
+	[Export] private Button _gameplayBtn;
+	[Export] private Button _graphicsBtn;
+	[Export] private Button _audioBtn;
+	[Export] private Button _accessibilityBtn;
+	[Export] private Page controlsMenuPage;
+	[Export] private Page gameplayMenuPage;
+	[Export] private Page graphicsMenuPage;
+	[Export] private Page audioMenuPage;
+	[Export] private Page accessibilityPage;
 
 	private Page currentPage;
 	public override void _Ready()
 	{
 		base._Ready();
-		controlsMenuPage = GetNode<Page>(controlsMenuPath);
-		gameplayMenuPage = GetNode<Page>(gameplayMenuPath);
-		graphicsMenuPage = GetNode<Page>(graphicsMenuPath);
-		audioMenuPage = GetNode<Page>(audioMenuPath);
-
-		_continueBtn = GetNode<Button>(continueBtnPath);
-		_exitBtn = GetNode<Button>(exitBtnPath);
-
-		_controlsBtn = GetNode<Button>(controlsBtnPath);
-		_gameplayBtn = GetNode<Button>(gameplayBtnPath);
-		_graphicsBtn = GetNode<Button>(graphicsBtnPath);
-		_audioBtn = GetNode<Button>(audioBtnPath);
-
-		_continueBtn.Connect("pressed", new Callable(this, nameof(ContinuePressed)));
-		_exitBtn.Connect("pressed", new Callable(this, nameof(OnExitPressed)));
-
-		_controlsBtn.Connect("pressed", new Callable(this, nameof(ControlsPressed)));
-		_gameplayBtn.Connect("pressed", new Callable(this, nameof(GameplayPressed)));
-		_graphicsBtn.Connect("pressed", new Callable(this, nameof(GraphicsPressed)));
-		_audioBtn.Connect("pressed", new Callable(this, nameof(AudioPressed)));
+		_continueBtn.Pressed += ContinuePressed;
+		_exitBtn.Pressed += OnExitPressed;
+		_controlsBtn.Pressed += ControlsPressed;
+		_gameplayBtn.Pressed += GameplayPressed;
+		_graphicsBtn.Pressed += GraphicsPressed;
+		_audioBtn.Pressed += AudioPressed;
+		_accessibilityBtn.Pressed += AccessibilityPressed;
 
 		OnHidden += Hidden;
 	}
@@ -85,6 +64,10 @@ public partial class SettingsMenu : Page
 	private void AudioPressed()
 	{
 		SelectPage(audioMenuPage);
+	}
+	private void AccessibilityPressed()
+	{
+		SelectPage(accessibilityPage);
 	}
 	private new void Hidden()
 	{

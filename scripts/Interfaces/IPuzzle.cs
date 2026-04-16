@@ -1,11 +1,15 @@
+using Godot;
 using System;
-using System.Numerics;
 
 public interface IPuzzle : IInteractable
 {
-    event Action<BaseEventData> OnSolve;
-    event Action<BaseEventData> OnFail;
-    event Action<BaseEventData> OnReset;
+    public PuzzleData Data { get; }
+    event Action<PuzzleData> OnSolve;
+    event Action<PuzzleData> OnFail;
+    event Action OnReset;
+    event Action OnBack;
     void Input(Vector2 vector2);
     void Submit();
+    void Back();
+    void Reset();
 }

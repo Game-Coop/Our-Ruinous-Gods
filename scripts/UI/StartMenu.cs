@@ -12,7 +12,7 @@ public partial class StartMenu : Control
 	[Export] private Label _versionLabel;
 	[Export] private AudioStreamPlayer _musicPlayer;
 	private Node3D firstScene;
-	public override void _Ready()
+	public override async void _Ready()
 	{
 		base._Ready();
 
@@ -33,7 +33,7 @@ public partial class StartMenu : Control
 		GameManager.Instance.InStartMenu = true;
 		GameManager.Instance.InCutscene = false;
 
-		firstScene = GetTree().LoadScene(ResourceDatabase.GameScene, true, true) as Node3D;
+		firstScene = await GetTree().LoadScene(ResourceDatabase.GameScene, true) as Node3D;
 		camera.Current = true;
 		if (!SaveManager.HasSave)
 		{
@@ -74,20 +74,20 @@ public partial class StartMenu : Control
 
 	private async Task LoadGame(bool newGame)
 	{
-		SaveManager.Load();
 		if (newGame)
 		{
 			GameManager.Instance.InCutscene = true;
-			GameManager.Instance.Player.SetPhysicsProcess(false);
+			GameManager.Instance.Player.SetEnabled(false);
 			camera.Current = false;
 			await sceneTransitioner.TransitionTo(firstScene, GameManager.Instance.Player, 20);
-			GameManager.Instance.Player.SetPhysicsProcess(true);
+			GameManager.Instance.Player.SetEnabled(true);
 			GameManager.Instance.InCutscene = false;
 		}
 		else
 		{
 			firstScene.QueueFree();
-			GetTree().LoadScene(ResourceDatabase.GameScene);
+			await GetTree().LoadScene(ResourceDatabase.GameScene);
+			SaveManager.Load();
 		}
 	}
 

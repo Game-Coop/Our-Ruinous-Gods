@@ -2,9 +2,10 @@ using System;
 
 public interface ISwitchable
 {
-    event Action<bool> OnStateChange;
-    bool IsOn { get; }
-    void TurnOn();
-    void TurnOff();
-    void Toggle();
+    public event Action<bool> OnStateChange;
+    public bool IsOn { get; }
+    public bool CanTurnOn { get; }
+    public void TurnOn();
+    public void TurnOff();
+    public void Toggle();
 }

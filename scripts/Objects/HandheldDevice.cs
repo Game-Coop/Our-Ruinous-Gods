@@ -3,9 +3,12 @@ using Godot;
 
 public partial class HandheldDevice : Node3D
 {
+    public static bool CanUse => !(GameManager.Instance.InCutscene || GameManager.Instance.InStartMenu || GameManager.Instance.InWorldPuzzle);
     private double startPressTime;
     private bool holdingHandheldToggle = false;
     private Tween tween;
+    [Export] private SubViewport subViewport;
+    [Export] private MeshInstance3D screenMesh;
     [Export] private Vector3 offPosition;
     [Export] private Node3D focusNode;
     [Export] private Node3D unfocusNode;
@@ -21,6 +24,7 @@ public partial class HandheldDevice : Node3D
             {
                 _isFocused = value;
                 eventBus.OnHandheldFocused(isFocused);
+                GameManager.Instance.FocusedHandheld = value;
             }
         }
     }
@@ -41,10 +45,27 @@ public partial class HandheldDevice : Node3D
     {
         base._Ready();
         eventBus = GetNode<EventBus>("/root/EventBus");
+        SetupScreenMesh();
+    }
+    private void SetupScreenMesh()
+    {
+        var mat = (StandardMaterial3D)screenMesh.MaterialOverride;
+        var viewportTexture = new ViewportTexture();
+        viewportTexture.ViewportPath = subViewport.GetPath();
+        mat.AlbedoTexture = viewportTexture;
     }
     public override void _Input(InputEvent @event)
     {
         base._Input(@event);
+        if (!CanUse)
+        {
+            if (Visible)
+            {
+                Utils.DelayedCall(HideHandheld, 0.1f);
+            }
+            return;
+        }
+
         if (@event.IsActionPressed("handheld_toggle"))
         {
             holdingHandheldToggle = true;
@@ -144,7 +165,6 @@ public partial class HandheldDevice : Node3D
     private void FocusHandheld()
     {
         Input.MouseMode = Input.MouseModeEnum.Visible;
-        GameManager.Instance.FocusedHandheld = true;
 
         KillTween();
 
@@ -165,7 +185,6 @@ public partial class HandheldDevice : Node3D
     private void UnfocusHandheld()
     {
         Input.MouseMode = Input.MouseModeEnum.Captured;
-        GameManager.Instance.FocusedHandheld = false;
 
         KillTween();
 

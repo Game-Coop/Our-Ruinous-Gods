@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://cq5d5bmrc40wr"]
+[gd_scene load_steps=6 format=3 uid="uid://cq5d5bmrc40wr"]
 
 [ext_resource type="Texture2D" uid="uid://b4bvbns7oq1fv" path="res://addons/parley/assets/ArrowHead.svg" id="1_ew2oa"]
 [ext_resource type="Script" uid="uid://ckcyeha880iie" path="res://addons/parley/components/dialogue_option/dialogue_option_node.gd" id="1_mkgmq"]
+[ext_resource type="Script" uid="uid://cecmhhcex34pa" path="res://scripts/UI/CustomLabel.cs" id="3_1t5ed"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ledo5"]
 content_margin_left = 3.0
@@ -64,11 +65,11 @@ script = ExtResource("1_mkgmq")
 layout_mode = 2
 
 [node name="Character" type="Label" parent="CharacterContainer"]
-unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 clip_text = true
 text_overrun_behavior = 3
+script = ExtResource("3_1t5ed")
 
 [node name="HSeparator" type="HSeparator" parent="."]
 layout_mode = 2
@@ -78,10 +79,10 @@ layout_mode = 2
 size_flags_vertical = 3
 
 [node name="DialogueOption" type="Label" parent="DialogueOptionContainer"]
-unique_name_in_owner = true
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 size_flags_vertical = 3
 autowrap_mode = 2
 clip_text = true
 text_overrun_behavior = 3
+script = ExtResource("3_1t5ed")

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://b1ydfislyhiof"]
+
+[ext_resource type="Script" uid="uid://ci2yrsweo55l" path="res://scripts/Wwise/OnInteractAudio.cs" id="1_cig54"]
+
+[node name="OnInteractAudio" type="Node3D"]
+script = ExtResource("1_cig54")

@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="PowerGrid" load_steps=2 format=3 uid="uid://dduc4b8evtgs0"]
+
+[ext_resource type="Script" uid="uid://rklq2656y3b" path="res://scripts/PowerGrid.cs" id="1_bau81"]
+
+[resource]
+script = ExtResource("1_bau81")
+MaxCharge = 10
+metadata/_custom_type_script = "uid://rklq2656y3b"

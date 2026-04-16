@@ -1,8 +1,9 @@
-[gd_scene load_steps=33 format=3 uid="uid://5ju312o65nch"]
+[gd_scene format=3 uid="uid://5ju312o65nch"]
 
 [ext_resource type="Environment" uid="uid://ocaio2ownu0m" path="res://Envrionment.tres" id="1_jlvo6"]
 [ext_resource type="PackedScene" uid="uid://ditkme4k3jpy0" path="res://entities/player.tscn" id="2"]
 [ext_resource type="PackedScene" uid="uid://brhnnl368syqk" path="res://assets/models/RootNode.scn" id="2_2heu7"]
+[ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="2_87hxl"]
 [ext_resource type="PackedScene" uid="uid://bbtlh1kjqcs54" path="res://objects/PowerSwitch.tscn" id="4"]
 [ext_resource type="PackedScene" uid="uid://bmyx37pp63kbo" path="res://objects/PowerableLight.tscn" id="5"]
 [ext_resource type="PackedScene" uid="uid://cbdgjnsddvyc5" path="res://objects/PowerCollisionTrigger.tscn" id="6"]
@@ -11,18 +12,29 @@
 [ext_resource type="PackedScene" uid="uid://bud1h1sxl0q8n" path="res://menus/SettingsMenu.tscn" id="9"]
 [ext_resource type="Resource" path="res://resources/AudioDatas/audioData2.tres" id="10"]
 [ext_resource type="Resource" path="res://resources/ItemDatas/KeyItem1Data.tres" id="11"]
-[ext_resource type="Resource" path="res://resources/JournalDatas/JornalEntryData1.tres" id="12"]
+[ext_resource type="Resource" uid="uid://djq0mhhkghaaf" path="res://resources/JournalDatas/JornalEntryData1.tres" id="12"]
 [ext_resource type="PackedScene" path="res://ui/Hint.tscn" id="13"]
+[ext_resource type="Material" uid="uid://dxst2enbl8tm6" path="res://shaders/hilight.tres" id="13_0wavo"]
 [ext_resource type="Script" uid="uid://fo2tpi6p37ic" path="res://scripts/Objects/CollectableItem.cs" id="14"]
 [ext_resource type="Script" uid="uid://duk6pgl6mv3j3" path="res://scripts/Objects/JournalEntryItem.cs" id="15"]
 [ext_resource type="Script" uid="uid://baxay73tmwvmy" path="res://scripts/AudioPlayer/AudioEntryItem.cs" id="17"]
 [ext_resource type="Script" uid="uid://ckqja6geconlm" path="res://scripts/Objects/SlidingDoor.cs" id="18"]
-[ext_resource type="Material" path="res://assets/models/standardSurface1.material" id="19"]
+[ext_resource type="Resource" uid="uid://b06opaqubf7s7" path="res://resources/JournalDatas/JornalEntryData3.tres" id="18_na2vv"]
+[ext_resource type="Resource" uid="uid://dhx7otpa353p7" path="res://resources/JournalDatas/JornalEntryData4.tres" id="19_6e0do"]
 [ext_resource type="Script" uid="uid://g8p6u6edsqu" path="res://scripts/Objects/PlayerSensor.cs" id="20"]
+[ext_resource type="Material" uid="uid://d24idwj2im481" path="res://shaders/Dithering/mat_fractal_dither.tres" id="20_0wavo"]
 [ext_resource type="PackedScene" uid="uid://c85rc41hsn055" path="res://objects/LadderCollision.tscn" id="20_kfrdm"]
 [ext_resource type="Script" uid="uid://sle2j723kykw" path="res://scripts/QuestSystem/QuestSwitchableNotifier.cs" id="21_jlvo6"]
 [ext_resource type="Script" uid="uid://fdl1stm4m2w" path="res://scripts/Parley/ParleyTest.cs" id="22_bmc1d"]
+[ext_resource type="PackedScene" uid="uid://3gj05nfhyh8u" path="res://shaders/Outline/prefab_outline_quad.tscn" id="23_na2vv"]
 [ext_resource type="Resource" uid="uid://dg383wlfxj8ip" path="res://dialogue_sequences/new_dialogue.ds" id="23_uyjrd"]
+[ext_resource type="PackedScene" uid="uid://dmiodsf4eh7g" path="res://prefabs/AudioNodes/SFX_OnAreaTriggered.tscn" id="24_kn4wo"]
+[ext_resource type="PackedScene" uid="uid://lfrojo445a0l" path="res://prefabs/Puzzles/fuse_box_puzzle_prototype.tscn" id="25_un4in"]
+[ext_resource type="AudioStream" uid="uid://dkibfvjlp6hf7" path="res://assets/audio/642709__creature__sci_fi_door.wav" id="25_xxtsu"]
+[ext_resource type="PackedScene" uid="uid://hl5amlhee3yn" path="res://objects/Hatch.tscn" id="26_iv5uq"]
+[ext_resource type="Script" uid="uid://rklq2656y3b" path="res://scripts/PowerGrid.cs" id="29_kn4wo"]
+[ext_resource type="Script" uid="uid://dj2gvdl6uuexa" path="res://scripts/PowerZone.cs" id="32_kn4wo"]
+[ext_resource type="Script" uid="uid://b6ukogi7n345w" path="res://scripts/Puzzles/FuseBoxPuzzle/Fuse.cs" id="37_31fnb"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kfrdm"]
 radius = 0.724904
@@ -32,242 +44,394 @@ height = 3.00492
 height = 7.47521
 
 [sub_resource type="CylinderMesh" id="6"]
+material = ExtResource("13_0wavo")
 
 [sub_resource type="CylinderShape3D" id="11"]
 
 [sub_resource type="CylinderMesh" id="12"]
+material = ExtResource("13_0wavo")
 
 [sub_resource type="CylinderShape3D" id="8"]
 
 [sub_resource type="CylinderMesh" id="9"]
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_kfrdm"]
+
+[sub_resource type="BoxShape3D" id="1"]
+size = Vector3(1, 10.9248, 1.48938)
+
+[sub_resource type="Resource" id="Resource_na2vv"]
+script = ExtResource("37_31fnb")
+target = 1
+moveAmount = 4
+metadata/_custom_type_script = "uid://dknuit44t41n5"
+
+[sub_resource type="Resource" id="Resource_6e0do"]
+script = ExtResource("37_31fnb")
+target = 1
+moveAmount = 2
+metadata/_custom_type_script = "uid://dknuit44t41n5"
+
 [sub_resource type="BoxShape3D" id="14"]
 size = Vector3(6.58246, 7.02236, 9.24394)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_kfrdm"]
+[node name="DockingBay" type="Node3D" unique_id=966385387]
 
-[node name="DockingBay" type="Node3D"]
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=2112574252]
 environment = ExtResource("1_jlvo6")
 
-[node name="Player" parent="." instance=ExtResource("2")]
-transform = Transform3D(-1.2, 0, -1.81195e-07, 0, 1.2, 0, 1.81195e-07, 0, -1.2, 0, 1.41686, 1.73652)
+[node name="Main Camera" type="Camera3D" parent="." unique_id=1185942294]
+physics_interpolation_mode = 1
+transform = Transform3D(-1.2, 0, -1.81195e-07, 0, 1.2, 0, 1.81195e-07, 0, -1.2, -0.0150359, 3.79183, 1.72684)
+top_level = true
+cull_mask = 2146959359
+
+[node name="PhantomCameraHost" type="Node" parent="Main Camera" unique_id=1107308671]
+process_priority = 300
+process_physics_priority = 300
+script = ExtResource("2_87hxl")
+metadata/_custom_type_script = "uid://bd046eokvcnu2"
+
+[node name="Outline Shader Quad" parent="." unique_id=945096109 instance=ExtResource("23_na2vv")]
+skeleton = NodePath("")
+
+[node name="Player" parent="." unique_id=1969034234 instance=ExtResource("2")]
+transform = Transform3D(-1.2, 0, -1.81195e-07, 0, 1.2, 0, 1.81195e-07, 0, -1.2, -0.0150359, 1.39183, 1.72684)
 collision_layer = 3
 collision_mask = 3
 
-[node name="LadderDetector" type="Area3D" parent="Player"]
+[node name="LadderDetector" type="Area3D" parent="Player" unique_id=98993189]
 collision_layer = 2
 collision_mask = 2
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Player/LadderDetector"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player/LadderDetector" unique_id=1726846107]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.535686, 0)
 shape = SubResource("CapsuleShape3D_kfrdm")
 
-[node name="RootNode" parent="." instance=ExtResource("2_2heu7")]
+[node name="RootNode" parent="." unique_id=1794370720 instance=ExtResource("2_2heu7")]
 transform = Transform3D(1.395, 0, 0, 0, 1.395, 0, 0, 0, 1.395, 0, 0, 0)
 
-[node name="DockingbayBlockout_CSGCombiner3D#CSGBox3D" type="CSGBox3D" parent="."]
+[node name="DockingbayBlockout_CSGCombiner3D#CSGBox3D" type="CSGBox3D" parent="." unique_id=270905628]
 transform = Transform3D(2.96124, 0, 0, 0, 3.4166, 0, 0, 0, 1, 0.447214, 2.92033, -2.10941)
 use_collision = true
 size = Vector3(3.10349, 3.1661, 1)
 
-[node name="PowerSwitch(Upstairs)" parent="." instance=ExtResource("4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.529503, 0.230173, 28.464)
+[node name="Ambient Lights" type="Node3D" parent="." unique_id=1867931012]
 
-[node name="PowerableLight" parent="PowerSwitch(Upstairs)" instance=ExtResource("5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.46353, 7.88833, 19.8214)
-State = 1
+[node name="Docking" type="Node3D" parent="Ambient Lights" unique_id=1256920724]
 
-[node name="PowerableLight2" parent="PowerSwitch(Upstairs)" instance=ExtResource("5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.26369, 8.00827, 18.525)
-State = 1
-
-[node name="PowerableLight3" parent="PowerSwitch(Upstairs)" instance=ExtResource("5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.7054, 7.91115, -6.88297)
-State = 1
-
-[node name="PowerableLight4" parent="PowerSwitch(Upstairs)" instance=ExtResource("5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.77925, 7.91115, -6.88297)
-State = 1
-
-[node name="PowerSwitch(Downstairs)" parent="." instance=ExtResource("4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.782809, -10.2342, 49.1794)
-Zone = 1
-
-[node name="PowerableLight" parent="PowerSwitch(Downstairs)" instance=ExtResource("5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.85291, 4.08115, -0.807796)
-Zone = 1
-State = 1
-
-[node name="PowerableLight2" parent="PowerSwitch(Downstairs)" instance=ExtResource("5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.52098, 4.23446, -0.772114)
-Zone = 1
-State = 1
-
-[node name="PowerableLight3" parent="PowerSwitch(Downstairs)" instance=ExtResource("5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.788644, 6.64329, -23.3324)
-Zone = 1
-State = 1
-
-[node name="Ambient Lights" type="Node3D" parent="."]
-
-[node name="Docking" type="Node3D" parent="Ambient Lights"]
-
-[node name="OmniLight5" type="OmniLight3D" parent="Ambient Lights/Docking"]
+[node name="OmniLight5" type="OmniLight3D" parent="Ambient Lights/Docking" unique_id=1115455702]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 2, 4)
 layers = 3
 light_color = Color(1, 0, 0, 1)
 light_energy = 0.25
 omni_range = 10.0
 
-[node name="OmniLight3D" type="OmniLight3D" parent="Ambient Lights/Docking"]
+[node name="OmniLight3D" type="OmniLight3D" parent="Ambient Lights/Docking" unique_id=979989357]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 7, 4)
 layers = 3
 light_color = Color(1, 0, 0, 1)
 light_energy = 0.25
 omni_range = 10.0
 
-[node name="OmniLight6" type="OmniLight3D" parent="Ambient Lights/Docking"]
+[node name="OmniLight6" type="OmniLight3D" parent="Ambient Lights/Docking" unique_id=1933783881]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 2, 4)
 layers = 3
 light_color = Color(1, 0, 0, 1)
 light_energy = 0.25
 omni_range = 10.0
 
-[node name="OmniLight2" type="OmniLight3D" parent="Ambient Lights/Docking"]
+[node name="OmniLight2" type="OmniLight3D" parent="Ambient Lights/Docking" unique_id=1126812815]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 7, 4)
 layers = 3
 light_color = Color(1, 0, 0, 1)
 light_energy = 0.25
 omni_range = 10.0
 
-[node name="OmniLight7" type="OmniLight3D" parent="Ambient Lights/Docking"]
+[node name="OmniLight7" type="OmniLight3D" parent="Ambient Lights/Docking" unique_id=716991908]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 2, 14)
 layers = 3
 light_color = Color(1, 0, 0, 1)
 light_energy = 0.25
 omni_range = 10.0
 
-[node name="OmniLight3" type="OmniLight3D" parent="Ambient Lights/Docking"]
+[node name="OmniLight3" type="OmniLight3D" parent="Ambient Lights/Docking" unique_id=1934998622]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 7, 14)
 layers = 3
 light_color = Color(1, 0, 0, 1)
 light_energy = 0.25
 omni_range = 10.0
 
-[node name="OmniLight8" type="OmniLight3D" parent="Ambient Lights/Docking"]
+[node name="OmniLight8" type="OmniLight3D" parent="Ambient Lights/Docking" unique_id=1077677343]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 2, 14)
 layers = 3
 light_color = Color(1, 0, 0, 1)
 light_energy = 0.25
 omni_range = 10.0
 
-[node name="OmniLight4" type="OmniLight3D" parent="Ambient Lights/Docking"]
+[node name="OmniLight4" type="OmniLight3D" parent="Ambient Lights/Docking" unique_id=1025355038]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 7, 14)
 layers = 3
 light_color = Color(1, 0, 0, 1)
 light_energy = 0.25
 omni_range = 10.0
 
-[node name="Bar" type="Node3D" parent="Ambient Lights"]
+[node name="Bar" type="Node3D" parent="Ambient Lights" unique_id=2066002268]
 
-[node name="OmniLight11" type="OmniLight3D" parent="Ambient Lights/Bar"]
+[node name="OmniLight11" type="OmniLight3D" parent="Ambient Lights/Bar" unique_id=518767918]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.1818, 1.00298, 21.2775)
 layers = 3
 light_color = Color(0, 0.717647, 1, 1)
 light_energy = 0.2
 omni_range = 10.0
 
-[node name="OmniLight10" type="OmniLight3D" parent="Ambient Lights/Bar"]
+[node name="OmniLight10" type="OmniLight3D" parent="Ambient Lights/Bar" unique_id=243850807]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.7666, 0.501488, 24.0893)
 layers = 3
 light_color = Color(0, 0.717647, 1, 1)
 light_energy = 0.2
 omni_range = 10.0
 
-[node name="OmniLight9" type="OmniLight3D" parent="Ambient Lights/Bar"]
+[node name="OmniLight9" type="OmniLight3D" parent="Ambient Lights/Bar" unique_id=1210915725]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.6836, 0.536226, 21.9512)
 layers = 3
 light_color = Color(0, 0.717647, 1, 1)
 light_energy = 0.2
 omni_range = 10.0
 
-[node name="Panel" type="Node3D" parent="Ambient Lights"]
+[node name="Panel" type="Node3D" parent="Ambient Lights" unique_id=1608480324]
 
-[node name="OmniLight12" type="OmniLight3D" parent="Ambient Lights/Panel"]
+[node name="OmniLight12" type="OmniLight3D" parent="Ambient Lights/Panel" unique_id=1748045995]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.1422, -0.181529, 35.1723)
 layers = 3
 light_color = Color(0.619608, 0.509804, 0.0784314, 1)
 light_energy = 0.2
 omni_range = 10.0
 
-[node name="PowerCollisionTrigger" parent="." instance=ExtResource("6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.7128, -0.993279, 34.4857)
-RunOnce = true
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=681318897]
 process_mode = 3
 script = ExtResource("8")
 pauseMenuPagePath = NodePath("Pause Menu")
 settingsMenuPagePath = NodePath("Settings Menu")
 
-[node name="Pause Menu" parent="CanvasLayer" instance=ExtResource("7")]
+[node name="Pause Menu" parent="CanvasLayer" unique_id=901988333 instance=ExtResource("7")]
+visible = false
+anchors_preset = 15
 
-[node name="Settings Menu" parent="CanvasLayer" instance=ExtResource("9")]
+[node name="Settings Menu" parent="CanvasLayer" unique_id=1321188899 instance=ExtResource("9")]
+visible = false
 
-[node name="Collectable Item 1" type="Area3D" parent="."]
+[node name="Collectibles" type="Node3D" parent="." unique_id=486739074]
+
+[node name="Collectable Item 1" type="Area3D" parent="Collectibles" unique_id=1935196622]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.87988, -10.7633, 48.6081)
 collision_layer = 2
 script = ExtResource("14")
 itemData = ExtResource("11")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Collectable Item 1"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Collectibles/Collectable Item 1" unique_id=1357279114]
 transform = Transform3D(0.3, 0, 0, 0, 0.1, 0, 0, 0, 0.3, 0, 0.291816, 0)
 shape = SubResource("5")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Collectable Item 1"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Collectibles/Collectable Item 1" unique_id=90776423]
 transform = Transform3D(0.3, 0, 0, 0, 0.1, 0, 0, 0, 0.3, 0, 0, 0)
 mesh = SubResource("6")
 
-[node name="Hint" parent="Collectable Item 1" instance=ExtResource("13")]
+[node name="Hint" parent="Collectibles/Collectable Item 1" unique_id=479964581 instance=ExtResource("13")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.317379, 0)
 
-[node name="Audio Entry Item 1" type="Area3D" parent="."]
+[node name="Audio Entry Item 1" type="Area3D" parent="Collectibles" unique_id=135968979]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17, 1.18534, 20)
 collision_layer = 2
 script = ExtResource("17")
 audioData = ExtResource("10")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Audio Entry Item 1"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Collectibles/Audio Entry Item 1" unique_id=1210731235]
 transform = Transform3D(0.215, 0, 0, 0, 0.300748, 0, 0, 0, 0.215, 0.00912213, 0.319621, 0.02742)
 shape = SubResource("11")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Audio Entry Item 1"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Collectibles/Audio Entry Item 1" unique_id=625736616]
 transform = Transform3D(0.215, 0, 0, 0, 0.026, 0, 0, 0, 0.215, 0, 0, 0)
 mesh = SubResource("12")
 
-[node name="Hint" parent="Audio Entry Item 1" instance=ExtResource("13")]
+[node name="Hint" parent="Collectibles/Audio Entry Item 1" unique_id=468319951 instance=ExtResource("13")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0935812, 0)
 
-[node name="JournalEntry Item 1" type="Area3D" parent="."]
+[node name="JournalEntry Item 1" type="Area3D" parent="Collectibles" unique_id=728885490]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.40817, 1.23542, 28.369)
 collision_layer = 2
 script = ExtResource("15")
 journalData = ExtResource("12")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="JournalEntry Item 1"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Collectibles/JournalEntry Item 1" unique_id=1188311523]
 transform = Transform3D(0.183, 0, 0, 0, 0.160994, 0, 0, 0, 0.183, 0, 0.135152, 0)
 shape = SubResource("8")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="JournalEntry Item 1"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Collectibles/JournalEntry Item 1" unique_id=1805485588]
+transform = Transform3D(0.183, 0, 0, 0, 0.025, 0, 0, 0, 0.183, 0, 0, 0)
+material_override = ExtResource("13_0wavo")
+mesh = SubResource("9")
+
+[node name="Hint" parent="Collectibles/JournalEntry Item 1" unique_id=59771875 instance=ExtResource("13")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25511, 0)
+
+[node name="JournalEntry Item 2" type="Area3D" parent="Collectibles" unique_id=1054687595]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.17, 1.04856, 27.7412)
+collision_layer = 2
+script = ExtResource("15")
+journalData = ExtResource("18_na2vv")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Collectibles/JournalEntry Item 2" unique_id=324753517]
+transform = Transform3D(0.183, 0, 0, 0, 0.160994, 0, 0, 0, 0.183, 0, 0.135152, 0)
+shape = SubResource("8")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Collectibles/JournalEntry Item 2" unique_id=1213632054]
 transform = Transform3D(0.183, 0, 0, 0, 0.025, 0, 0, 0, 0.183, 0, 0, 0)
 mesh = SubResource("9")
 
-[node name="Hint" parent="JournalEntry Item 1" instance=ExtResource("13")]
+[node name="Hint" parent="Collectibles/JournalEntry Item 2" unique_id=1694872202 instance=ExtResource("13")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25511, 0)
 
-[node name="Sliding Door" type="Node3D" parent="."]
+[node name="JournalEntry Item 3" type="Area3D" parent="Collectibles" unique_id=763165198]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.17, 1.04856, 26.2093)
+collision_layer = 2
+script = ExtResource("15")
+journalData = ExtResource("19_6e0do")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Collectibles/JournalEntry Item 3" unique_id=163543031]
+transform = Transform3D(0.183, 0, 0, 0, 0.160994, 0, 0, 0, 0.183, 0, 0.135152, 0)
+shape = SubResource("8")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Collectibles/JournalEntry Item 3" unique_id=222143359]
+transform = Transform3D(0.183, 0, 0, 0, 0.025, 0, 0, 0, 0.183, 0, 0, 0)
+mesh = SubResource("9")
+
+[node name="Hint" parent="Collectibles/JournalEntry Item 3" unique_id=1117856390 instance=ExtResource("13")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25511, 0)
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="." unique_id=1369504123]
+transform = Transform3D(7, 0, 0, 0, 0.0965926, -1.2941, 0, 0.0258819, 4.82963, 0.594981, -0.0590178, 20.305)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D2" unique_id=542473169]
+shape = SubResource("BoxShape3D_kfrdm")
+
+[node name="StaticBody3D3" type="StaticBody3D" parent="." unique_id=1112385465]
+transform = Transform3D(7, 0, 0, 0, 0.0996378, 0.425172, 0, -0.00850343, 4.98189, 0.594981, 0.367756, 15.3814)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D3" unique_id=2023555661]
+shape = SubResource("BoxShape3D_kfrdm")
+
+[node name="StaticBody3D4" type="StaticBody3D" parent="." unique_id=1058229044]
+transform = Transform3D(3.70488, 0, 0, 0, 0.0827685, -1.16484, 0, 0.0341942, 2.81955, 0.603499, -10.4625, 38.8494)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D4" unique_id=2140703828]
+shape = SubResource("BoxShape3D_kfrdm")
+
+[node name="StaticBody3D5" type="StaticBody3D" parent="." unique_id=2052902372]
+transform = Transform3D(3.70488, 0, 0, 0, 0.0975966, 0.989858, 0, -0.0342505, 2.82059, 0.603499, -10.3941, 36.0546)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D5" unique_id=259260697]
+shape = SubResource("BoxShape3D_kfrdm")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=364913433]
+transform = Transform3D(0.6809, -0.0729938, 0.72873, 0.604828, -0.505049, -0.615718, 0.412988, 0.859999, -0.299739, 25.8281, 30.6139, -41.3749)
+visible = false
+layers = 3
+
+[node name="LadderCollision" parent="." unique_id=229266143 instance=ExtResource("20_kfrdm")]
+
+[node name="CollisionShape" parent="LadderCollision" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.7785, -4.9624, 34.6688)
+shape = SubResource("1")
+
+[node name="QuestSwitchableNotifier" type="Node" parent="." unique_id=1565068584]
+script = ExtResource("21_jlvo6")
+questVariable = "interaction_main_door"
+switchableNode = NodePath("../Power Grid/Power Zone 3/Sliding Door")
+
+[node name="Parley Test" type="Node" parent="." unique_id=1026047985]
+script = ExtResource("22_bmc1d")
+dialog = ExtResource("23_uyjrd")
+
+[node name="FuseBox Puzzle Prototype" parent="." unique_id=1494170002 instance=ExtResource("25_un4in")]
+transform = Transform3D(-1.07285e-07, 0, 1, 0, 1, 0, -1, 0, -1.07285e-07, -3.22057, 3.12225, 11.2072)
+fuses = Array[Object]([SubResource("Resource_na2vv"), SubResource("Resource_6e0do")])
+
+[node name="TopFloor_Hatch_mesh_01" parent="." unique_id=1328087823 instance=ExtResource("26_iv5uq")]
+transform = Transform3D(0.999458, -0.032911, 0, 0.032911, 0.999458, 0, 0, 0, 1, 26.3401, -0.012, 34.803)
+openPosition = Vector3(26.34, -0.012, 34.803)
+closedPosition = Vector3(25.121, -1.4, 34.803)
+
+[node name="Door Sensor" type="Area3D" parent="." unique_id=1193497034]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 15.3612)
+script = ExtResource("20")
+switchablePath = NodePath("../Power Grid/Power Zone 3/Sliding Door")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Door Sensor" unique_id=1720863674]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.57936, 1.74968)
+visible = false
+shape = SubResource("14")
+
+[node name="SFX_OnAreaTriggered" parent="Door Sensor" unique_id=1806462259 instance=ExtResource("24_kn4wo")]
+Audio = ExtResource("25_xxtsu")
+
+[node name="SFX_OnAreaTriggered2" parent="Door Sensor" unique_id=334972691 instance=ExtResource("24_kn4wo")]
+Trigger = 1
+Audio = ExtResource("25_xxtsu")
+
+[node name="Power Grid" type="Node3D" parent="." unique_id=360768827]
+script = ExtResource("29_kn4wo")
+
+[node name="Power Zone 1" type="Node3D" parent="Power Grid" unique_id=2042711338]
+script = ExtResource("32_kn4wo")
+Charge = 2
+
+[node name="PowerCollisionTrigger" parent="Power Grid/Power Zone 1" unique_id=172966028 instance=ExtResource("6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.7128, -0.993279, 34.4857)
+RunOnce = true
+
+[node name="PowerSwitch(Upstairs)" parent="Power Grid/Power Zone 1" unique_id=1843926628 instance=ExtResource("4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.529503, 0.230173, 28.464)
+
+[node name="PowerableLight" parent="Power Grid/Power Zone 1/PowerSwitch(Upstairs)" unique_id=2075021323 instance=ExtResource("5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.46353, 7.88833, 19.8214)
+
+[node name="PowerableLight2" parent="Power Grid/Power Zone 1/PowerSwitch(Upstairs)" unique_id=1924179423 instance=ExtResource("5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.26369, 8.00827, 18.525)
+
+[node name="PowerableLight3" parent="Power Grid/Power Zone 1/PowerSwitch(Upstairs)" unique_id=224201070 instance=ExtResource("5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.7054, 7.91115, -6.88297)
+
+[node name="PowerableLight4" parent="Power Grid/Power Zone 1/PowerSwitch(Upstairs)" unique_id=1612421609 instance=ExtResource("5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.77925, 7.91115, -6.88297)
+
+[node name="Power Zone 2" type="Node3D" parent="Power Grid" unique_id=1209999993]
+script = ExtResource("32_kn4wo")
+Charge = 3
+
+[node name="PowerSwitch(Downstairs)" parent="Power Grid/Power Zone 2" unique_id=647553973 instance=ExtResource("4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.782809, -10.2342, 49.1794)
+
+[node name="PowerableLight" parent="Power Grid/Power Zone 2/PowerSwitch(Downstairs)" unique_id=1388190980 instance=ExtResource("5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.85291, 4.08115, -0.807796)
+
+[node name="PowerableLight2" parent="Power Grid/Power Zone 2/PowerSwitch(Downstairs)" unique_id=1238167725 instance=ExtResource("5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.52098, 4.23446, -0.772114)
+
+[node name="PowerableLight3" parent="Power Grid/Power Zone 2/PowerSwitch(Downstairs)" unique_id=299921020 instance=ExtResource("5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.788644, 6.64329, -23.3324)
+
+[node name="Power Zone 3" type="Node3D" parent="Power Grid" unique_id=1722071849]
+script = ExtResource("32_kn4wo")
+Charge = 4
+
+[node name="PowerSwitch(Door)" parent="Power Grid/Power Zone 3" unique_id=1207424766 instance=ExtResource("4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.34369, 3.29959, 9.51121)
+
+[node name="PowerableLight" parent="Power Grid/Power Zone 3/PowerSwitch(Door)" unique_id=118029236 instance=ExtResource("5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.85291, 3.33978, 5.95726)
+
+[node name="Sliding Door" type="Node3D" parent="Power Grid/Power Zone 3" unique_id=56611423]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.597278, 3.946, 17.5416)
 script = ExtResource("18")
 rightDoorPath = NodePath("RightDoor")
@@ -279,74 +443,27 @@ leftLocalClosePos = Vector3(-3, 0, 0)
 rightLocalOpenPos = Vector3(7.2, 0, 0)
 rightLocalClosePos = Vector3(3, 0, 0)
 
-[node name="LeftDoor" type="CSGCombiner3D" parent="Sliding Door"]
+[node name="LeftDoor" type="CSGCombiner3D" parent="Power Grid/Power Zone 3/Sliding Door" unique_id=1402044931]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 0)
 use_collision = true
 
-[node name="CSGBox3D" type="CSGBox3D" parent="Sliding Door/LeftDoor"]
+[node name="CSGBox3D" type="CSGBox3D" parent="Power Grid/Power Zone 3/Sliding Door/LeftDoor" unique_id=1553992060]
 transform = Transform3D(2, 0, 0, 0, 3, 0, 0, 0, 0.4, 0, 0, 0)
 size = Vector3(3.10349, 3.1661, 1)
-material = ExtResource("19")
+material = ExtResource("20_0wavo")
 
-[node name="RightDoor" type="CSGCombiner3D" parent="Sliding Door"]
+[node name="RightDoor" type="CSGCombiner3D" parent="Power Grid/Power Zone 3/Sliding Door" unique_id=1653968762]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 0)
 use_collision = true
 
-[node name="CSGBox3D" type="CSGBox3D" parent="Sliding Door/RightDoor"]
+[node name="CSGBox3D" type="CSGBox3D" parent="Power Grid/Power Zone 3/Sliding Door/RightDoor" unique_id=1875793823]
 transform = Transform3D(2, 0, 0, 0, 3, 0, 0, 0, 0.4, 0, 0, 0)
 size = Vector3(3.10349, 3.1661, 1)
-material = ExtResource("19")
+material = ExtResource("20_0wavo")
 
-[node name="Door Sensor" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 15.3612)
-script = ExtResource("20")
-switchablePath = NodePath("../Sliding Door")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Door Sensor"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.57936, 1.74968)
-shape = SubResource("14")
-
-[node name="StaticBody3D2" type="StaticBody3D" parent="."]
-transform = Transform3D(7, 0, 0, 0, 0.0965926, -1.2941, 0, 0.0258819, 4.82963, 0.594981, -0.0590178, 20.305)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D2"]
-shape = SubResource("BoxShape3D_kfrdm")
-
-[node name="StaticBody3D3" type="StaticBody3D" parent="."]
-transform = Transform3D(7, 0, 0, 0, 0.0996378, 0.425172, 0, -0.00850343, 4.98189, 0.594981, 0.367756, 15.3814)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D3"]
-shape = SubResource("BoxShape3D_kfrdm")
-
-[node name="StaticBody3D4" type="StaticBody3D" parent="."]
-transform = Transform3D(3.70488, 0, 0, 0, 0.0827685, -1.16484, 0, 0.0341942, 2.81955, 0.603499, -10.4625, 38.8494)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D4"]
-shape = SubResource("BoxShape3D_kfrdm")
-
-[node name="StaticBody3D5" type="StaticBody3D" parent="."]
-transform = Transform3D(3.70488, 0, 0, 0, 0.0975966, 0.989858, 0, -0.0342505, 2.82059, 0.603499, -10.3941, 36.0546)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D5"]
-shape = SubResource("BoxShape3D_kfrdm")
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.6809, -0.0729938, 0.72873, 0.604828, -0.505049, -0.615718, 0.412988, 0.859999, -0.299739, 25.8281, 30.6139, -41.3749)
-layers = 3
-
-[node name="LadderCollision" parent="." instance=ExtResource("20_kfrdm")]
-
-[node name="CollisionShape" parent="LadderCollision" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.7785, -4.9624, 34.6688)
-
-[node name="QuestSwitchableNotifier" type="Node" parent="."]
-script = ExtResource("21_jlvo6")
-questVariable = "interaction_main_door"
-switchableNode = NodePath("../Sliding Door")
-
-[node name="Parley Test" type="Node" parent="."]
-script = ExtResource("22_bmc1d")
-dialog = ExtResource("23_uyjrd")
+[node name="Power Zone 4" type="Node3D" parent="Power Grid" unique_id=916334219]
+script = ExtResource("32_kn4wo")
+Charge = 5
 
 [connection signal="PlayerEnterLadder" from="LadderCollision" to="Player" method="OnAreaEntered"]
 [connection signal="PlayerExitLadder" from="LadderCollision" to="Player" method="OnAreaExited"]

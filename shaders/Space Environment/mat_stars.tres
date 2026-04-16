@@ -1,0 +1,30 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://kl1w4dej8nup"]
+
+[ext_resource type="Shader" uid="uid://ce3xmrtbsd35r" path="res://shaders/Space Environment/stars.gdshader" id="1_tlqln"]
+
+[resource]
+shader = ExtResource("1_tlqln")
+shader_parameter/vertical_sections = 100
+shader_parameter/min_star_size = 0.01
+shader_parameter/max_star_size = 0.05
+shader_parameter/star_falloff = 2.5
+shader_parameter/margin = 0.05
+shader_parameter/star_density = 2.0
+shader_parameter/glow_star_size_threshold = 0.03
+shader_parameter/big_glow_multiplier = 2.0
+shader_parameter/small_glow_multiplier = 30.0
+shader_parameter/small_glow_interval_min = 40.0
+shader_parameter/small_glow_interval_max = 6.0
+shader_parameter/pulse_duration = 0.15
+shader_parameter/vertical_sections_2 = 20
+shader_parameter/min_star_size_2 = 0.01
+shader_parameter/max_star_size_2 = 0.4
+shader_parameter/star_density_2 = 0.48
+shader_parameter/star_falloff_2 = 3.0
+shader_parameter/big_glow_multiplier_2 = 1.5
+shader_parameter/cloud_density = 0.02
+shader_parameter/cloud_scale = 4.455
+shader_parameter/cloud_color = Vector3(0.4, 0.5, 0.7)
+shader_parameter/cloud_opacity = 0.55
+shader_parameter/cloud_step_threshold1 = 0.55
+shader_parameter/cloud_step_threshold2 = 0.95

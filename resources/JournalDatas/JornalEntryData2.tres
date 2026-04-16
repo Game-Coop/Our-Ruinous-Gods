@@ -1,10 +1,10 @@
-[gd_resource type="Resource" load_steps=2 format=2]
+[gd_resource type="Resource" script_class="JournalData" load_steps=2 format=3 uid="uid://b5s4cf1nx5m0s"]
 
-[ext_resource path="res://scripts/Journal/JournalData.cs" type="Script" id=1]
+[ext_resource type="Script" uid="uid://d0vmpl467m0n0" path="res://scripts/Journal/JournalData.cs" id="1"]
 
 [resource]
-script = ExtResource( 1 )
+script = ExtResource("1")
 Id = 1
-Name = "Log 2"
-Content = "I like to sit here and watch our big friend’s body gently spin around. I can’t see much through the darkness, but sometimes I catch a glimpse of rotten bone. At least, I think it’s bone. They didn’t tell us much about what we’re studying up here, just that it could be the key to eternal life. Honestly, I think the company knows just as little as we do about it. That’s fine with me; just means more secrets to unravel"
+Name = "Log 3: Someone Will Care"
+Content = "As a little girl, I would look up and wonder why there were so few stars in the city skies, when my favorite storybooks from the bygone era had so many.@Everything felt so empty, like there was nothing up there watching us, nothing caring about what we did.@ Now, being here, I feel more comfortable than ever. So many suns, so many worlds out there, so many chances that the good we accomplish will matter to someone, somewhere. I feel…at home. "
 Category = 0

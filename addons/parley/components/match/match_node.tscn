@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://bmkirsqm7siwr"]
+[gd_scene load_steps=6 format=3 uid="uid://bmkirsqm7siwr"]
 
 [ext_resource type="Script" uid="uid://b1mht28t52klh" path="res://addons/parley/components/match/match_node.gd" id="1_43mlm"]
 [ext_resource type="Texture2D" uid="uid://b4bvbns7oq1fv" path="res://addons/parley/assets/ArrowHead.svg" id="1_46ahc"]
+[ext_resource type="Script" uid="uid://cecmhhcex34pa" path="res://scripts/UI/CustomLabel.cs" id="3_oifpe"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1ga5i"]
 content_margin_left = 3.0
@@ -59,25 +60,16 @@ slot/2/right_type = 0
 slot/2/right_color = Color(0.498039, 1, 0, 1)
 slot/2/right_icon = null
 slot/2/draw_stylebox = true
-slot/3/left_enabled = false
-slot/3/left_type = 0
-slot/3/left_color = Color(0.498039, 1, 0, 1)
-slot/3/left_icon = null
-slot/3/right_enabled = false
-slot/3/right_type = 0
-slot/3/right_color = Color(0.498039, 1, 0, 1)
-slot/3/right_icon = null
-slot/3/draw_stylebox = true
 script = ExtResource("1_43mlm")
 
 [node name="MatchDescriptionContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
 
 [node name="MatchDescription" type="Label" parent="MatchDescriptionContainer"]
-unique_name_in_owner = true
 layout_mode = 2
 clip_text = true
 text_overrun_behavior = 3
+script = ExtResource("3_oifpe")
 
 [node name="HSeparator" type="HSeparator" parent="MatchDescriptionContainer"]
 layout_mode = 2
@@ -91,13 +83,14 @@ layout_mode = 2
 [node name="FactLabel" type="Label" parent="FactContainer/FactLabelContainer"]
 layout_mode = 2
 text = "Fact: "
+script = ExtResource("3_oifpe")
 
 [node name="Fact" type="Label" parent="FactContainer/FactLabelContainer"]
-unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 clip_text = true
 text_overrun_behavior = 3
+script = ExtResource("3_oifpe")
 
 [node name="HSeparator2" type="HSeparator" parent="FactContainer"]
 layout_mode = 2
@@ -106,9 +99,9 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="CasesLabel" type="Label" parent="CasesContainer"]
-unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Cases:"
 clip_text = true
 text_overrun_behavior = 3
+script = ExtResource("3_oifpe")

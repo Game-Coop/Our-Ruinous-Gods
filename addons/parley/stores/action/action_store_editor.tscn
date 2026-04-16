@@ -1,12 +1,14 @@
-[gd_scene load_steps=8 format=3 uid="uid://dil4p8wvfe0y3"]
+[gd_scene load_steps=10 format=3 uid="uid://dil4p8wvfe0y3"]
 
 [ext_resource type="Script" uid="uid://bg4e1jywm04ml" path="res://addons/parley/stores/action/action_store_editor.gd" id="1_kjlpr"]
 [ext_resource type="Texture2D" uid="uid://bmyblj8lm0jme" path="res://addons/parley/assets/Save.svg" id="2_y3m6q"]
 [ext_resource type="Texture2D" uid="uid://ct6iywe1qjuh3" path="res://addons/parley/assets/New.svg" id="3_1824u"]
+[ext_resource type="Script" uid="uid://behpdnx34u6d7" path="res://addons/parley/components/editor/resource_editor.gd" id="3_xotdo"]
 [ext_resource type="PackedScene" uid="uid://dlqqxs60xui5w" path="res://addons/parley/components/editor/resource_editor.tscn" id="4_f1tkb"]
 [ext_resource type="Texture2D" uid="uid://drrcpeyo5x1ih" path="res://addons/parley/assets/Warning.svg" id="4_s2qgp"]
 [ext_resource type="Texture2D" uid="uid://cr4knibdm85n1" path="res://addons/parley/assets/Search.svg" id="5_s2qgp"]
 [ext_resource type="PackedScene" uid="uid://msdptt8ygebm" path="res://addons/parley/stores/register_store_modal.tscn" id="6_1824u"]
+[ext_resource type="Script" uid="uid://85wkenyryluy" path="res://addons/parley/stores/register_store_modal.gd" id="9_aed7i"]
 
 [node name="ActionStoreEditor" type="PanelContainer"]
 offset_right = 40.0
@@ -24,10 +26,11 @@ layout_mode = 2
 [node name="AvailableStoresContainer" type="HBoxContainer" parent="ActionStoreMarginContainer/ActionStoreContainer"]
 layout_mode = 2
 
-[node name="ActionStore" parent="ActionStoreMarginContainer/ActionStoreContainer/AvailableStoresContainer" instance=ExtResource("4_f1tkb")]
+[node name="ActionStore" type="HBoxContainer" parent="ActionStoreMarginContainer/ActionStoreContainer/AvailableStoresContainer" instance=ExtResource("4_f1tkb")]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
+script = ExtResource("3_xotdo")
 key = "Action Store"
 base_type = "ParleyActionStore"
 
@@ -53,9 +56,10 @@ tooltip_text = "Create and register new Action Store."
 icon = ExtResource("3_1824u")
 flat = true
 
-[node name="DialogueSequenceContainer" parent="ActionStoreMarginContainer/ActionStoreContainer" instance=ExtResource("4_f1tkb")]
+[node name="DialogueSequenceContainer" type="HBoxContainer" parent="ActionStoreMarginContainer/ActionStoreContainer" instance=ExtResource("4_f1tkb")]
 unique_name_in_owner = true
 layout_mode = 2
+script = ExtResource("3_xotdo")
 key = "Dialogue Sequence"
 base_type = "DialogueAst"
 
@@ -86,10 +90,14 @@ layout_mode = 2
 tooltip_text = "Add Action to the currently selected store."
 text = "Add Action"
 
-[node name="RegisterActionStoreModal" parent="." instance=ExtResource("6_1824u")]
+[node name="RegisterActionStoreModal" type="Window" parent="." instance=ExtResource("6_1824u")]
 unique_name_in_owner = true
 title = "Register Action Store"
+initial_position = 2
+size = Vector2i(1000, 600)
 visible = false
+min_size = Vector2i(1000, 600)
+script = ExtResource("9_aed7i")
 type = 2
 
 [connection signal="resource_changed" from="ActionStoreMarginContainer/ActionStoreContainer/AvailableStoresContainer/ActionStore" to="." method="_on_action_store_resource_changed"]

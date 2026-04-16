@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://bbtlh1kjqcs54"]
+[gd_scene load_steps=6 format=3 uid="uid://bbtlh1kjqcs54"]
 
 [ext_resource type="Script" uid="uid://epj28x3ifpfr" path="res://scripts/Objects/PowerSwitch.cs" id="1"]
 [ext_resource type="PackedScene" path="res://ui/Hint.tscn" id="2"]
+[ext_resource type="Material" uid="uid://b86b4launycv1" path="res://shaders/hilight.tres" id="2_4dt5v"]
 
 [sub_resource type="BoxShape3D" id="3"]
 
@@ -16,6 +17,7 @@ script = ExtResource("1")
 shape = SubResource("3")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_override = ExtResource("2_4dt5v")
 mesh = SubResource("4")
 
 [node name="Hint" parent="." instance=ExtResource("2")]

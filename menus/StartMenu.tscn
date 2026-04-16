@@ -1,130 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://jsmom37esqfc"]
+[gd_scene load_steps=8 format=3 uid="uid://jsmom37esqfc"]
 
 [ext_resource type="AudioStream" uid="uid://bfkc80yhg62qr" path="res://assets/audio/88 horroramb2.wav" id="1"]
-[ext_resource type="FontFile" uid="uid://djxjfdocobiaf" path="res://fonts/Chakra_Petch/ChakraPetch-Regular.ttf" id="3"]
+[ext_resource type="Script" uid="uid://cecmhhcex34pa" path="res://scripts/UI/CustomLabel.cs" id="2_wns2j"]
+[ext_resource type="PackedScene" uid="uid://bin1ci7shkke" path="res://prefabs/AudioNodes/SFX_OnButtonClicked.tscn" id="3_ye8o8"]
 [ext_resource type="Script" uid="uid://dtcloosmxo5fu" path="res://scripts/UI/StartMenu.cs" id="4"]
+[ext_resource type="AudioStream" uid="uid://bqxu68r0bcnyj" path="res://assets/audio/button tick.wav" id="4_7xqkm"]
 [ext_resource type="PackedScene" uid="uid://bxxhpppmwi4rt" path="res://prefabs/SceneTransitioner.tscn" id="4_wns2j"]
-
-[sub_resource type="FontFile" id="3"]
-fallbacks = Array[Font]([ExtResource("3"), ExtResource("3")])
-subpixel_positioning = 0
-msdf_pixel_range = 14
-msdf_size = 128
-cache/0/16/0/ascent = 0.0
-cache/0/16/0/descent = 0.0
-cache/0/16/0/underline_position = 0.0
-cache/0/16/0/underline_thickness = 0.0
-cache/0/16/0/scale = 1.0
-cache/0/26/0/ascent = 0.0
-cache/0/26/0/descent = 0.0
-cache/0/26/0/underline_position = 0.0
-cache/0/26/0/underline_thickness = 0.0
-cache/0/26/0/scale = 1.0
-cache/0/31/0/ascent = 0.0
-cache/0/31/0/descent = 0.0
-cache/0/31/0/underline_position = 0.0
-cache/0/31/0/underline_thickness = 0.0
-cache/0/31/0/scale = 1.0
-cache/0/41/0/ascent = 0.0
-cache/0/41/0/descent = 0.0
-cache/0/41/0/underline_position = 0.0
-cache/0/41/0/underline_thickness = 0.0
-cache/0/41/0/scale = 1.0
-cache/0/46/0/ascent = 0.0
-cache/0/46/0/descent = 0.0
-cache/0/46/0/underline_position = 0.0
-cache/0/46/0/underline_thickness = 0.0
-cache/0/46/0/scale = 1.0
-cache/0/56/0/ascent = 0.0
-cache/0/56/0/descent = 0.0
-cache/0/56/0/underline_position = 0.0
-cache/0/56/0/underline_thickness = 0.0
-cache/0/56/0/scale = 1.0
-cache/0/61/0/ascent = 0.0
-cache/0/61/0/descent = 0.0
-cache/0/61/0/underline_position = 0.0
-cache/0/61/0/underline_thickness = 0.0
-cache/0/61/0/scale = 1.0
-cache/0/66/0/ascent = 0.0
-cache/0/66/0/descent = 0.0
-cache/0/66/0/underline_position = 0.0
-cache/0/66/0/underline_thickness = 0.0
-cache/0/66/0/scale = 1.0
-cache/0/76/0/ascent = 0.0
-cache/0/76/0/descent = 0.0
-cache/0/76/0/underline_position = 0.0
-cache/0/76/0/underline_thickness = 0.0
-cache/0/76/0/scale = 1.0
-cache/0/81/0/ascent = 0.0
-cache/0/81/0/descent = 0.0
-cache/0/81/0/underline_position = 0.0
-cache/0/81/0/underline_thickness = 0.0
-cache/0/81/0/scale = 1.0
-cache/0/91/0/ascent = 0.0
-cache/0/91/0/descent = 0.0
-cache/0/91/0/underline_position = 0.0
-cache/0/91/0/underline_thickness = 0.0
-cache/0/91/0/scale = 1.0
-cache/0/96/0/ascent = 0.0
-cache/0/96/0/descent = 0.0
-cache/0/96/0/underline_position = 0.0
-cache/0/96/0/underline_thickness = 0.0
-cache/0/96/0/scale = 1.0
-cache/0/106/0/ascent = 0.0
-cache/0/106/0/descent = 0.0
-cache/0/106/0/underline_position = 0.0
-cache/0/106/0/underline_thickness = 0.0
-cache/0/106/0/scale = 1.0
-cache/0/111/0/ascent = 0.0
-cache/0/111/0/descent = 0.0
-cache/0/111/0/underline_position = 0.0
-cache/0/111/0/underline_thickness = 0.0
-cache/0/111/0/scale = 1.0
-cache/0/121/0/ascent = 0.0
-cache/0/121/0/descent = 0.0
-cache/0/121/0/underline_position = 0.0
-cache/0/121/0/underline_thickness = 0.0
-cache/0/121/0/scale = 1.0
-cache/0/126/0/ascent = 0.0
-cache/0/126/0/descent = 0.0
-cache/0/126/0/underline_position = 0.0
-cache/0/126/0/underline_thickness = 0.0
-cache/0/126/0/scale = 1.0
-cache/0/131/0/ascent = 0.0
-cache/0/131/0/descent = 0.0
-cache/0/131/0/underline_position = 0.0
-cache/0/131/0/underline_thickness = 0.0
-cache/0/131/0/scale = 1.0
-cache/0/136/0/ascent = 0.0
-cache/0/136/0/descent = 0.0
-cache/0/136/0/underline_position = 0.0
-cache/0/136/0/underline_thickness = 0.0
-cache/0/136/0/scale = 1.0
-cache/0/116/0/ascent = 0.0
-cache/0/116/0/descent = 0.0
-cache/0/116/0/underline_position = 0.0
-cache/0/116/0/underline_thickness = 0.0
-cache/0/116/0/scale = 1.0
-cache/0/101/0/ascent = 0.0
-cache/0/101/0/descent = 0.0
-cache/0/101/0/underline_position = 0.0
-cache/0/101/0/underline_thickness = 0.0
-cache/0/101/0/scale = 1.0
-cache/0/86/0/ascent = 0.0
-cache/0/86/0/descent = 0.0
-cache/0/86/0/underline_position = 0.0
-cache/0/86/0/underline_thickness = 0.0
-cache/0/86/0/scale = 1.0
-cache/0/71/0/ascent = 0.0
-cache/0/71/0/descent = 0.0
-cache/0/71/0/underline_position = 0.0
-cache/0/71/0/underline_thickness = 0.0
-cache/0/71/0/scale = 1.0
-cache/0/54/0/ascent = 0.0
-cache/0/54/0/descent = 0.0
-cache/0/54/0/underline_position = 0.0
-cache/0/54/0/underline_thickness = 0.0
-cache/0/54/0/scale = 1.0
 
 [sub_resource type="Curve3D" id="Curve3D_rj5xk"]
 _data = {
@@ -180,12 +61,17 @@ flat = true
 layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = 1.0
+offset_bottom = 23.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_fonts/font = SubResource("3")
-theme_override_font_sizes/font_size = 54
 text = "CONTINUE"
 vertical_alignment = 1
+script = ExtResource("2_wns2j")
+
+[node name="SfxOnButtonClicked" parent="Panel/Panel2/Panel/Continue Button" instance=ExtResource("3_ye8o8")]
+Audio = ExtResource("4_7xqkm")
+PlayAs3D = false
 
 [node name="New Game Button" type="Button" parent="Panel/Panel2/Panel"]
 custom_minimum_size = Vector2(0, 100)
@@ -197,12 +83,17 @@ flat = true
 layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = 1.0
+offset_bottom = 23.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_fonts/font = SubResource("3")
-theme_override_font_sizes/font_size = 54
 text = "NEW GAME"
 vertical_alignment = 1
+script = ExtResource("2_wns2j")
+
+[node name="SfxOnButtonClicked" parent="Panel/Panel2/Panel/New Game Button" instance=ExtResource("3_ye8o8")]
+Audio = ExtResource("4_7xqkm")
+PlayAs3D = false
 
 [node name="Exit Button" type="Button" parent="Panel/Panel2/Panel"]
 custom_minimum_size = Vector2(0, 100)
@@ -214,12 +105,17 @@ flat = true
 layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = 1.0
+offset_bottom = 23.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_fonts/font = SubResource("3")
-theme_override_font_sizes/font_size = 54
 text = "EXIT"
 vertical_alignment = 1
+script = ExtResource("2_wns2j")
+
+[node name="SfxOnButtonClicked" parent="Panel/Panel2/Panel/Exit Button" instance=ExtResource("3_ye8o8")]
+Audio = ExtResource("4_7xqkm")
+PlayAs3D = false
 
 [node name="Version Label" type="Label" parent="Panel"]
 layout_mode = 0
@@ -229,10 +125,11 @@ anchor_right = 0.991
 anchor_bottom = 0.974
 offset_left = 0.439819
 offset_top = 0.23999
-offset_right = -0.720093
-offset_bottom = 0.0799561
+offset_right = 1.43982
+offset_bottom = 23.24
 horizontal_alignment = 1
 vertical_alignment = 2
+script = ExtResource("2_wns2j")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("1")

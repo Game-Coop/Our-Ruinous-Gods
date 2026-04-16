@@ -1,41 +1,94 @@
-[gd_scene load_steps=3 format=3 uid="uid://bx0l648bpqw70"]
+[gd_scene load_steps=5 format=3 uid="uid://bx0l648bpqw70"]
 
 [ext_resource type="Script" uid="uid://b0qfehwjd3bm7" path="res://addons/parley/components/dialogue/dialogue_node_editor.gd" id="1_ad3ky"]
-[ext_resource type="PackedScene" uid="uid://m3v11vm16l8y" path="res://addons/parley/components/node/node_editor.tscn" id="1_okdx1"]
+[ext_resource type="Script" uid="uid://cecmhhcex34pa" path="res://scripts/UI/CustomLabel.cs" id="2_wbci0"]
+[ext_resource type="Texture2D" uid="uid://dres8tr2nd82o" path="res://addons/parley/assets/Remove.svg" id="3_ertlp"]
 
-[node name="DialogueNodeEditor" instance=ExtResource("1_okdx1")]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l4dko"]
+bg_color = Color(0.658824, 0.313726, 0.0470588, 1)
+
+[node name="DialogueNodeEditor" type="VBoxContainer"]
+offset_right = 125.0
+offset_bottom = 39.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 script = ExtResource("1_ad3ky")
-character = ""
-dialogue = ""
 type = 0
 
-[node name="TitleLabel" parent="TitleContainer/TitlePanelContainer/TitleMarginContainer/TitlePartsContainer" index="0"]
-text = "Dialogue [ID: ]"
-
-[node name="CharacterSelectorContainer" type="HBoxContainer" parent="BodyMarginContainer/BodyScrollContainer/BodyContainer" index="0"]
+[node name="TitleContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
 
-[node name="CharacterSelectorLabel" type="Label" parent="BodyMarginContainer/BodyScrollContainer/BodyContainer/CharacterSelectorContainer" index="0"]
-layout_mode = 2
-text = "Character: "
-
-[node name="CharacterSelector" type="OptionButton" parent="BodyMarginContainer/BodyScrollContainer/BodyContainer/CharacterSelectorContainer" index="1"]
+[node name="TitlePanelContainer" type="PanelContainer" parent="TitleContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_l4dko")
+
+[node name="TitleMarginContainer" type="MarginContainer" parent="TitleContainer/TitlePanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 1
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 1
+
+[node name="TitlePartsContainer" type="HBoxContainer" parent="TitleContainer/TitlePanelContainer/TitleMarginContainer"]
+layout_mode = 2
+
+[node name="TitleLabel" type="Label" parent="TitleContainer/TitlePanelContainer/TitleMarginContainer/TitlePartsContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Dialogue [ID: ]"
+script = ExtResource("2_wbci0")
+
+[node name="DeleteNodeButton" type="Button" parent="TitleContainer/TitlePanelContainer/TitleMarginContainer/TitlePartsContainer"]
+layout_mode = 2
+tooltip_text = "Delete the selected node."
+icon = ExtResource("3_ertlp")
+flat = true
+
+[node name="BodyMarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="BodyScrollContainer" type="ScrollContainer" parent="BodyMarginContainer"]
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="BodyContainer" type="VBoxContainer" parent="BodyMarginContainer/BodyScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="CharacterSelectorContainer" type="HBoxContainer" parent="BodyMarginContainer/BodyScrollContainer/BodyContainer"]
+layout_mode = 2
+
+[node name="CharacterSelectorLabel" type="Label" parent="BodyMarginContainer/BodyScrollContainer/BodyContainer/CharacterSelectorContainer"]
+layout_mode = 2
+text = "Character: "
+script = ExtResource("2_wbci0")
+
+[node name="CharacterSelector" type="OptionButton" parent="BodyMarginContainer/BodyScrollContainer/BodyContainer/CharacterSelectorContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
 size_flags_horizontal = 3
 text_overrun_behavior = 3
 clip_text = true
 
-[node name="DialogueEditorContainer" type="VBoxContainer" parent="BodyMarginContainer/BodyScrollContainer/BodyContainer" index="1"]
+[node name="DialogueEditorContainer" type="VBoxContainer" parent="BodyMarginContainer/BodyScrollContainer/BodyContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="DialogueEditorLabel" type="Label" parent="BodyMarginContainer/BodyScrollContainer/BodyContainer/DialogueEditorContainer" index="0"]
+[node name="DialogueEditorLabel" type="Label" parent="BodyMarginContainer/BodyScrollContainer/BodyContainer/DialogueEditorContainer"]
 layout_mode = 2
 text = "Text: "
+script = ExtResource("2_wbci0")
 
-[node name="DialogueEditor" type="TextEdit" parent="BodyMarginContainer/BodyScrollContainer/BodyContainer/DialogueEditorContainer" index="1"]
+[node name="DialogueEditor" type="TextEdit" parent="BodyMarginContainer/BodyScrollContainer/BodyContainer/DialogueEditorContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
@@ -43,5 +96,6 @@ size_flags_vertical = 3
 placeholder_text = "Dialogue goes here.."
 wrap_mode = 1
 
+[connection signal="pressed" from="TitleContainer/TitlePanelContainer/TitleMarginContainer/TitlePartsContainer/DeleteNodeButton" to="." method="_on_delete_node_button_pressed"]
 [connection signal="item_selected" from="BodyMarginContainer/BodyScrollContainer/BodyContainer/CharacterSelectorContainer/CharacterSelector" to="." method="_on_character_selector_item_selected"]
 [connection signal="text_changed" from="BodyMarginContainer/BodyScrollContainer/BodyContainer/DialogueEditorContainer/DialogueEditor" to="." method="_on_dialogue_editor_text_changed"]

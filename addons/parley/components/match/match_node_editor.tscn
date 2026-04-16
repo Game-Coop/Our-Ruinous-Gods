@@ -1,21 +1,74 @@
-[gd_scene load_steps=5 format=3 uid="uid://bec24fvhws41m"]
+[gd_scene load_steps=7 format=3 uid="uid://bec24fvhws41m"]
 
-[ext_resource type="PackedScene" uid="uid://m3v11vm16l8y" path="res://addons/parley/components/node/node_editor.tscn" id="1_kdtf2"]
 [ext_resource type="Script" uid="uid://cqwma84t2j4tb" path="res://addons/parley/components/match/match_node_editor.gd" id="2_jun7c"]
+[ext_resource type="Script" uid="uid://cecmhhcex34pa" path="res://scripts/UI/CustomLabel.cs" id="2_p7537"]
 [ext_resource type="Texture2D" uid="uid://c4qx01xbrjp7h" path="res://addons/parley/assets/Edit.svg" id="3_frbg2"]
+[ext_resource type="Texture2D" uid="uid://dres8tr2nd82o" path="res://addons/parley/assets/Remove.svg" id="3_k5fco"]
 [ext_resource type="Texture2D" uid="uid://oqt4tn7c8fd" path="res://addons/parley/assets/Fallback.svg" id="3_uceht"]
 
-[node name="ParleyMatchNodeEditor" instance=ExtResource("1_kdtf2")]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l4dko"]
+bg_color = Color(0.658824, 0.313726, 0.0470588, 1)
+
+[node name="ParleyMatchNodeEditor" type="VBoxContainer"]
+offset_right = 125.0
+offset_bottom = 39.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 script = ExtResource("2_jun7c")
 type = 7
 
-[node name="TitleLabel" parent="TitleContainer/TitlePanelContainer/TitleMarginContainer/TitlePartsContainer" index="0"]
-text = "Match [ID: ]"
-
-[node name="MatchDescriptionContainer" type="VBoxContainer" parent="BodyMarginContainer/BodyScrollContainer/BodyContainer" index="0"]
+[node name="TitleContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
 
-[node name="MatchDescription" type="TextEdit" parent="BodyMarginContainer/BodyScrollContainer/BodyContainer/MatchDescriptionContainer" index="0"]
+[node name="TitlePanelContainer" type="PanelContainer" parent="TitleContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_l4dko")
+
+[node name="TitleMarginContainer" type="MarginContainer" parent="TitleContainer/TitlePanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 1
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 1
+
+[node name="TitlePartsContainer" type="HBoxContainer" parent="TitleContainer/TitlePanelContainer/TitleMarginContainer"]
+layout_mode = 2
+
+[node name="TitleLabel" type="Label" parent="TitleContainer/TitlePanelContainer/TitleMarginContainer/TitlePartsContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Match [ID: ]"
+script = ExtResource("2_p7537")
+
+[node name="DeleteNodeButton" type="Button" parent="TitleContainer/TitlePanelContainer/TitleMarginContainer/TitlePartsContainer"]
+layout_mode = 2
+tooltip_text = "Delete the selected node."
+icon = ExtResource("3_k5fco")
+flat = true
+
+[node name="BodyMarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="BodyScrollContainer" type="ScrollContainer" parent="BodyMarginContainer"]
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="BodyContainer" type="VBoxContainer" parent="BodyMarginContainer/BodyScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="MatchDescriptionContainer" type="VBoxContainer" parent="BodyMarginContainer/BodyScrollContainer/BodyContainer"]
+layout_mode = 2
+
+[node name="MatchDescription" type="TextEdit" parent="BodyMarginContainer/BodyScrollContainer/BodyContainer/MatchDescriptionContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 placeholder_text = "Match description (Eg. Difficulty level)"
@@ -24,58 +77,61 @@ scroll_past_end_of_file = true
 scroll_fit_content_height = true
 use_default_word_separators = false
 
-[node name="HSeparator" type="HSeparator" parent="BodyMarginContainer/BodyScrollContainer/BodyContainer" index="1"]
+[node name="HSeparator" type="HSeparator" parent="BodyMarginContainer/BodyScrollContainer/BodyContainer"]
 layout_mode = 2
 
-[node name="FactContainer" type="HBoxContainer" parent="BodyMarginContainer/BodyScrollContainer/BodyContainer" index="2"]
+[node name="FactContainer" type="HBoxContainer" parent="BodyMarginContainer/BodyScrollContainer/BodyContainer"]
 layout_mode = 2
 
-[node name="FactLabel" type="Label" parent="BodyMarginContainer/BodyScrollContainer/BodyContainer/FactContainer" index="0"]
+[node name="FactLabel" type="Label" parent="BodyMarginContainer/BodyScrollContainer/BodyContainer/FactContainer"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 text = "Fact:"
+script = ExtResource("2_p7537")
 
-[node name="FactSelector" type="OptionButton" parent="BodyMarginContainer/BodyScrollContainer/BodyContainer/FactContainer" index="1"]
+[node name="FactSelector" type="OptionButton" parent="BodyMarginContainer/BodyScrollContainer/BodyContainer/FactContainer"]
 unique_name_in_owner = true
-layout_mode = 2
 custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
 size_flags_horizontal = 3
 text_overrun_behavior = 3
 clip_text = true
 
-[node name="EditFactButton" type="Button" parent="BodyMarginContainer/BodyScrollContainer/BodyContainer/FactContainer" index="2"]
+[node name="EditFactButton" type="Button" parent="BodyMarginContainer/BodyScrollContainer/BodyContainer/FactContainer"]
 layout_mode = 2
 tooltip_text = "Edit Action Script."
 icon = ExtResource("3_frbg2")
 
-[node name="HSeparator2" type="HSeparator" parent="BodyMarginContainer/BodyScrollContainer/BodyContainer" index="3"]
+[node name="HSeparator2" type="HSeparator" parent="BodyMarginContainer/BodyScrollContainer/BodyContainer"]
 layout_mode = 2
 
-[node name="CasesContainer" type="VBoxContainer" parent="BodyMarginContainer/BodyScrollContainer/BodyContainer" index="4"]
+[node name="CasesContainer" type="VBoxContainer" parent="BodyMarginContainer/BodyScrollContainer/BodyContainer"]
 layout_mode = 2
 
-[node name="CasesLabel" type="Label" parent="BodyMarginContainer/BodyScrollContainer/BodyContainer/CasesContainer" index="0"]
+[node name="CasesLabel" type="Label" parent="BodyMarginContainer/BodyScrollContainer/BodyContainer/CasesContainer"]
 layout_mode = 2
 text = "Cases:"
+script = ExtResource("2_p7537")
 
-[node name="CasesEditor" type="VBoxContainer" parent="BodyMarginContainer/BodyScrollContainer/BodyContainer/CasesContainer" index="1"]
+[node name="CasesEditor" type="VBoxContainer" parent="BodyMarginContainer/BodyScrollContainer/BodyContainer/CasesContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="HSeparator3" type="HSeparator" parent="BodyMarginContainer/BodyScrollContainer/BodyContainer" index="5"]
+[node name="HSeparator3" type="HSeparator" parent="BodyMarginContainer/BodyScrollContainer/BodyContainer"]
 layout_mode = 2
 
-[node name="AddCaseButton" type="Button" parent="BodyMarginContainer/BodyScrollContainer/BodyContainer" index="6"]
+[node name="AddCaseButton" type="Button" parent="BodyMarginContainer/BodyScrollContainer/BodyContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Add Case"
 
-[node name="AddFallbackCaseButton" type="Button" parent="BodyMarginContainer/BodyScrollContainer/BodyContainer" index="7"]
+[node name="AddFallbackCaseButton" type="Button" parent="BodyMarginContainer/BodyScrollContainer/BodyContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Add Fallback Case"
 icon = ExtResource("3_uceht")
 
+[connection signal="pressed" from="TitleContainer/TitlePanelContainer/TitleMarginContainer/TitlePartsContainer/DeleteNodeButton" to="." method="_on_delete_node_button_pressed"]
 [connection signal="text_changed" from="BodyMarginContainer/BodyScrollContainer/BodyContainer/MatchDescriptionContainer/MatchDescription" to="." method="_on_match_description_text_changed"]
 [connection signal="item_selected" from="BodyMarginContainer/BodyScrollContainer/BodyContainer/FactContainer/FactSelector" to="." method="_on_fact_selector_item_selected"]
 [connection signal="pressed" from="BodyMarginContainer/BodyScrollContainer/BodyContainer/FactContainer/EditFactButton" to="." method="_on_edit_fact_button_pressed"]

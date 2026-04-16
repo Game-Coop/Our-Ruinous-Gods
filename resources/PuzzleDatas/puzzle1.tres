@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="PuzzleData" load_steps=2 format=3 uid="uid://b7tan7ehl7vki"]
+
+[ext_resource type="Script" uid="uid://cbiihymjp5cc5" path="res://scripts/SaveSystem/PuzzleData.cs" id="1_ee1d2"]
+
+[resource]
+script = ExtResource("1_ee1d2")
+Id = 0
+Name = "Fuse Box"
+Description = "Allign the energy levels of each fuse"
+metadata/_custom_type_script = "uid://cbiihymjp5cc5"
