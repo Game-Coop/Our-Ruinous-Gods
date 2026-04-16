@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://crrip5xuk02ou"]
+
+[ext_resource type="Script" uid="uid://c25jblrsfnuli" path="res://scripts/Wwise/OnUIButtonClickAudio.cs" id="1_qmf81"]
+
+[node name="SFX_OnButtonClicked" type="Node3D"]
+script = ExtResource("1_qmf81")
