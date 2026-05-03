@@ -1,0 +1,28 @@
+{
+  "title": "Open First Door",
+  "nodes": [
+    {
+      "id": "node:1",
+      "type": "START",
+      "position": "(180.0, 540.0)"
+    },
+    {
+      "id": "node:2",
+      "type": "DIALOGUE",
+      "position": "(616.0, 443.0)",
+      "character": "uid://dks7iglsfui0y::3",
+      "text": "Great job showing initiative, you're now fully on the clock. Again, this should be fairly routine, but keep your eyes open and take note of any red flags. "
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge:1",
+      "from_node": "node:1",
+      "from_slot": 0,
+      "to_node": "node:2",
+      "to_slot": 0,
+      "should_override_colour": false,
+      "colour_override": "(0.4118, 0.4118, 0.4118, 1.0)"
+    }
+  ]
+}

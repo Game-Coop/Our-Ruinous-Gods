@@ -28,7 +28,7 @@ public partial class PowerableLight : Node3D, IPower
 	{
 		base.Dispose(disposing);
 		eventBus.Power -= OnPowerEvent; // I had to dispose this otherwise it gives error after reloading scene
-    }
+	}
 
 	public void OnPowerEvent(int zone)
 	{

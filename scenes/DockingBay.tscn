@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://bud1h1sxl0q8n" path="res://menus/SettingsMenu.tscn" id="9"]
 [ext_resource type="Resource" path="res://resources/AudioDatas/audioData2.tres" id="10"]
 [ext_resource type="Resource" path="res://resources/ItemDatas/KeyItem1Data.tres" id="11"]
-[ext_resource type="Resource" path="res://resources/JournalDatas/JornalEntryData1.tres" id="12"]
+[ext_resource type="Resource" uid="uid://dwnvqstipcwwd" path="res://resources/JournalDatas/JornalEntryData1.tres" id="12"]
 [ext_resource type="PackedScene" path="res://ui/Hint.tscn" id="13"]
 [ext_resource type="Script" uid="uid://fo2tpi6p37ic" path="res://scripts/Objects/CollectableItem.cs" id="14"]
 [ext_resource type="Script" uid="uid://duk6pgl6mv3j3" path="res://scripts/Objects/JournalEntryItem.cs" id="15"]
@@ -23,6 +23,8 @@
 [ext_resource type="Script" uid="uid://sle2j723kykw" path="res://scripts/QuestSystem/QuestSwitchableNotifier.cs" id="21_jlvo6"]
 [ext_resource type="Script" uid="uid://fdl1stm4m2w" path="res://scripts/Parley/ParleyTest.cs" id="22_bmc1d"]
 [ext_resource type="Resource" uid="uid://bhhespnnd63cn" path="res://dialogue_sequences/test_dialogue.ds" id="23_bmc1d"]
+[ext_resource type="Resource" uid="uid://b6orevilhiqu3" path="res://dialogue_sequences/flipped_upstairs_power_dialogue.ds" id="23_iv5uq"]
+[ext_resource type="Resource" uid="uid://b77odx5f7jsud" path="res://dialogue_sequences/open_first_door_dialogue.ds" id="23_un4in"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kfrdm"]
 radius = 0.724904
@@ -73,7 +75,7 @@ use_collision = true
 size = Vector3(3.10349, 3.1661, 1)
 
 [node name="PowerSwitch(Upstairs)" parent="." unique_id=954820128 instance=ExtResource("4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.529503, 0.230173, 28.464)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.8094575, 1.4292501, 28.464)
 
 [node name="PowerableLight" parent="PowerSwitch(Upstairs)" unique_id=1587620818 instance=ExtResource("5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.46353, 7.88833, 19.8214)
@@ -342,6 +344,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.7785, -4.9624, 34.6688)
 script = ExtResource("21_jlvo6")
 questVariable = "interaction_main_door"
 switchableNode = NodePath("../Sliding Door")
+dialog = ExtResource("23_un4in")
+
+[node name="QuestSwitchableNotifier2" type="Node" parent="." unique_id=927150465]
+script = ExtResource("21_jlvo6")
+questVariable = "interaction_power_switch"
+switchableNode = NodePath("../PowerSwitch(Upstairs)")
+dialog = ExtResource("23_iv5uq")
 
 [node name="Parley Test" type="Node" parent="." unique_id=1041029198]
 script = ExtResource("22_bmc1d")

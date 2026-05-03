@@ -1,0 +1,14 @@
+[remap]
+
+importer="parley_dialogue_sequence_ast_1.0.0"
+type="Resource"
+uid="uid://b6orevilhiqu3"
+path="res://.godot/imported/flipped_upstairs_power_dialogue.ds-9c1865343d9c10c0104af0c8ec7f0faf.tres"
+
+[deps]
+
+source_file="res://dialogue_sequences/flipped_upstairs_power_dialogue.ds"
+dest_files=["res://.godot/imported/flipped_upstairs_power_dialogue.ds-9c1865343d9c10c0104af0c8ec7f0faf.tres"]
+
+[params]
+

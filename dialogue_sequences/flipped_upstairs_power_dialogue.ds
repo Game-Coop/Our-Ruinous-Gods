@@ -1,0 +1,28 @@
+{
+  "title": "Flipped Upstairs Power",
+  "nodes": [
+    {
+      "id": "node:1",
+      "type": "START",
+      "position": "(420.0, 1040.0)"
+    },
+    {
+      "id": "node:2",
+      "type": "DIALOGUE",
+      "position": "(751.9901, 991.2413)",
+      "character": "uid://dks7iglsfui0y::3",
+      "text": "Good job following procedure by turning on the power. Now let's start making sure the area is secure."
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge:1",
+      "from_node": "node:1",
+      "from_slot": 0,
+      "to_node": "node:2",
+      "to_slot": 0,
+      "should_override_colour": false,
+      "colour_override": "(0.4118, 0.4118, 0.4118, 1.0)"
+    }
+  ]
+}

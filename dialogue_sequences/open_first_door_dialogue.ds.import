@@ -1,0 +1,14 @@
+[remap]
+
+importer="parley_dialogue_sequence_ast_1.0.0"
+type="Resource"
+uid="uid://b77odx5f7jsud"
+path="res://.godot/imported/open_first_door_dialogue.ds-4b1df1c872811641666d2d3123185b43.tres"
+
+[deps]
+
+source_file="res://dialogue_sequences/open_first_door_dialogue.ds"
+dest_files=["res://.godot/imported/open_first_door_dialogue.ds-4b1df1c872811641666d2d3123185b43.tres"]
+
+[params]
+

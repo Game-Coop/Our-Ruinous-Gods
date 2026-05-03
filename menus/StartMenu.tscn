@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://jsmom37esqfc"]
+[gd_scene format=3 uid="uid://jsmom37esqfc"]
 
 [ext_resource type="AudioStream" uid="uid://bfkc80yhg62qr" path="res://assets/audio/88 horroramb2.wav" id="1"]
 [ext_resource type="FontFile" uid="uid://djxjfdocobiaf" path="res://fonts/Chakra_Petch/ChakraPetch-Regular.ttf" id="3"]
@@ -10,6 +10,15 @@ fallbacks = Array[Font]([ExtResource("3"), ExtResource("3")])
 subpixel_positioning = 0
 msdf_pixel_range = 14
 msdf_size = 128
+cache/0/variation_coordinates = {}
+cache/0/face_index = 0
+cache/0/embolden = 0.0
+cache/0/transform = Transform2D(1, 0, 0, 1, 0, 0)
+cache/0/spacing_top = 0
+cache/0/spacing_bottom = 0
+cache/0/spacing_space = 0
+cache/0/spacing_glyph = 0
+cache/0/baseline_offset = 0.0
 cache/0/16/0/ascent = 0.0
 cache/0/16/0/descent = 0.0
 cache/0/16/0/underline_position = 0.0
@@ -133,7 +142,7 @@ _data = {
 }
 point_count = 6
 
-[node name="Start Menu" type="Control" node_paths=PackedStringArray("sceneTransitioner", "camera", "_newGameBtn", "_continueBtn", "_exitBtn", "_versionLabel", "_musicPlayer")]
+[node name="Start Menu" type="Control" unique_id=493335342 node_paths=PackedStringArray("sceneTransitioner", "camera", "_newGameBtn", "_continueBtn", "_exitBtn", "_versionLabel", "_musicPlayer")]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15
@@ -150,19 +159,19 @@ _exitBtn = NodePath("Panel/Panel2/Panel/Exit Button")
 _versionLabel = NodePath("Panel/Version Label")
 _musicPlayer = NodePath("AudioStreamPlayer")
 
-[node name="Panel" type="Panel" parent="."]
+[node name="Panel" type="Panel" parent="." unique_id=434819565]
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 
-[node name="Panel2" type="Panel" parent="Panel"]
+[node name="Panel2" type="Panel" parent="Panel" unique_id=511503128]
 self_modulate = Color(0, 0, 0, 0.5)
 layout_mode = 0
 anchor_bottom = 1.0
 offset_right = 382.0
 
-[node name="Panel" type="VBoxContainer" parent="Panel/Panel2"]
+[node name="Panel" type="VBoxContainer" parent="Panel/Panel2" unique_id=1681103736]
 layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -170,13 +179,13 @@ offset_left = 20.0
 theme_override_constants/separation = 10
 alignment = 1
 
-[node name="Continue Button" type="Button" parent="Panel/Panel2/Panel"]
+[node name="Continue Button" type="Button" parent="Panel/Panel2/Panel" unique_id=2075223293]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 size_flags_horizontal = 3
 flat = true
 
-[node name="Label" type="Label" parent="Panel/Panel2/Panel/Continue Button"]
+[node name="Label" type="Label" parent="Panel/Panel2/Panel/Continue Button" unique_id=598780100]
 layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -187,13 +196,13 @@ theme_override_font_sizes/font_size = 54
 text = "CONTINUE"
 vertical_alignment = 1
 
-[node name="New Game Button" type="Button" parent="Panel/Panel2/Panel"]
+[node name="New Game Button" type="Button" parent="Panel/Panel2/Panel" unique_id=1437625876]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 size_flags_horizontal = 3
 flat = true
 
-[node name="Label" type="Label" parent="Panel/Panel2/Panel/New Game Button"]
+[node name="Label" type="Label" parent="Panel/Panel2/Panel/New Game Button" unique_id=1283720078]
 layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -204,13 +213,13 @@ theme_override_font_sizes/font_size = 54
 text = "NEW GAME"
 vertical_alignment = 1
 
-[node name="Exit Button" type="Button" parent="Panel/Panel2/Panel"]
+[node name="Exit Button" type="Button" parent="Panel/Panel2/Panel" unique_id=1598878915]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 size_flags_horizontal = 3
 flat = true
 
-[node name="Label" type="Label" parent="Panel/Panel2/Panel/Exit Button"]
+[node name="Label" type="Label" parent="Panel/Panel2/Panel/Exit Button" unique_id=1354460555]
 layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -221,7 +230,7 @@ theme_override_font_sizes/font_size = 54
 text = "EXIT"
 vertical_alignment = 1
 
-[node name="Version Label" type="Label" parent="Panel"]
+[node name="Version Label" type="Label" parent="Panel" unique_id=2030794897]
 layout_mode = 0
 anchor_left = 0.893
 anchor_top = 0.897
@@ -234,17 +243,17 @@ offset_bottom = 0.0799561
 horizontal_alignment = 1
 vertical_alignment = 2
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=984832892]
 stream = ExtResource("1")
 autoplay = true
 bus = &"Music"
 
-[node name="Camera3D" type="Camera3D" parent="."]
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1099594835]
 process_mode = 1
 transform = Transform3D(-0.714412, -0.224214, 0.66283, -1.49012e-08, 0.947272, 0.320431, -0.699726, 0.22892, -0.676742, 121.254, 46.0335, -7.69838)
 visible = false
 
-[node name="Scene Transitioner" parent="." instance=ExtResource("4_wns2j")]
+[node name="Scene Transitioner" parent="." unique_id=1847139932 instance=ExtResource("4_wns2j")]
 process_mode = 1
 transform = Transform3D(-0.714412, -0.224214, 0.66283, -1.49012e-08, 0.947272, 0.320431, -0.699726, 0.22892, -0.676742, 121.254, 46.0335, -7.69838)
 curve = SubResource("Curve3D_rj5xk")
