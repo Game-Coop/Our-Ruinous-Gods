@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://cwf728cvw01e1"]
+
+[ext_resource type="Texture2D" uid="uid://bbn0upgga4nlx" path="res://assets/ui/player/BottomLeft-border.svg" id="1_p1j7q"]
+[ext_resource type="Texture2D" uid="uid://d2ydrue817se" path="res://assets/ui/player/Cassette-tape.svg" id="2_paw1u"]
+
+[node name="CassetteHUD" type="Control" unique_id=1946471705]
+layout_mode = 3
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 9.0
+offset_top = -170.0
+offset_right = 9.0
+offset_bottom = -170.0
+grow_vertical = 0
+
+[node name="BorderLines" type="TextureRect" parent="." unique_id=624124516]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_p1j7q")
+
+[node name="CassetteContainer" type="Control" parent="." unique_id=1938557624]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="CassetteImage" type="TextureRect" parent="CassetteContainer" unique_id=1172010652]
+layout_mode = 0
+offset_left = 21.0
+offset_top = 44.0
+offset_right = 160.0
+offset_bottom = 133.0
+texture = ExtResource("2_paw1u")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2048314070]
+
+[node name="Icon" type="TextureRect" parent="." unique_id=1222903247]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
