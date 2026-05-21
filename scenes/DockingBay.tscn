@@ -373,10 +373,12 @@ visible = false
 shape = SubResource("14")
 
 [node name="SFX_OnAreaTriggered" parent="Door Sensor" unique_id=1806462259 instance=ExtResource("24_kn4wo")]
+RequiredPowerZonePath = NodePath("../../Power Grid/Power Zone 3")
 Audio = ExtResource("25_xxtsu")
 
 [node name="SFX_OnAreaTriggered2" parent="Door Sensor" unique_id=334972691 instance=ExtResource("24_kn4wo")]
 Trigger = 1
+RequiredPowerZonePath = NodePath("../../Power Grid/Power Zone 3")
 Audio = ExtResource("25_xxtsu")
 
 [node name="Power Grid" type="Node3D" parent="." unique_id=360768827]
