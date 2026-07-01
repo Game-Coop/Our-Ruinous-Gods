@@ -1,4 +1,4 @@
-[gd_resource type="WwiseProjectData" load_steps=18 format=3 uid="uid://bi0akrday2gfi"]
+[gd_resource type="WwiseProjectData" format=3 uid="uid://bi0akrday2gfi"]
 
 [sub_resource type="WwiseTreeObject" id="WwiseTreeObject_dn5s6"]
 path = "\\SoundBanks\\Default Work Unit\\Test_Bank"
@@ -26,7 +26,7 @@ id = 125608783
 
 [sub_resource type="WwiseTreeObjectEvent" id="WwiseTreeObjectEvent_2b7v5"]
 max_duration = 1.464
-min_duration = 0.893208
+min_duration = 0.8932083
 path = "\\Events\\Default Work Unit\\Play_Test"
 type = 3
 name = "Play_Test"

@@ -465,8 +465,6 @@ material = ExtResource("20_0wavo")
 script = ExtResource("32_kn4wo")
 Charge = 5
 
-[connection signal="PlayerEnterLadder" from="LadderCollision" to="Player" method="OnAreaEntered"]
-[connection signal="PlayerExitLadder" from="LadderCollision" to="Player" method="OnAreaExited"]
 [connection signal="body_entered" from="LadderCollision" to="LadderCollision" method="_on_body_entered"]
 [connection signal="body_exited" from="LadderCollision" to="LadderCollision" method="_on_body_exited"]
 
